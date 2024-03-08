@@ -5,7 +5,13 @@ export default {
 </script>
 
 <template>
-    <div>sono header ciao</div>
+    <div>
+        <div>sono header</div>
+
+        <router-link :to="{ name: 'Login' }"> vai sull login </router-link>
+
+        <router-link :to="{ name: 'Advance' }"> sono Advance </router-link>
+    </div>
 </template>
 
 <style lang="scss">
