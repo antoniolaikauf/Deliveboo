@@ -18,7 +18,7 @@ export default {
                     <!-- BOTTONE LOGIN -->
 
                     <router-link :to="{ name: 'Login' }">
-                        <button class="d-flex mx-3">
+                        <button class="d-flex btn-boo mx-3">
                             <div class="mx-3">
                                 <i class="fa-solid fa-house color"></i>
                             </div>
@@ -31,7 +31,7 @@ export default {
 
                     <!-- BOTTONE ADVANCE (ricerca) -->
                     <button
-                    class="d-flex"
+                    class="d-flex btn-boo"
                         type="button"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasRight"
@@ -90,28 +90,9 @@ export default {
 </template>
 
 <style lang="scss">
-
+*
 .logo {
     width: 100px;
 }
 
-button {
-    padding: 10px 40px;
-    border-radius: 7px;
-    border: none;
-    transition: background-color 0.5s ease;
-
-    &:hover {
-        background-color: rgb(215, 206, 206);
-    }
-
-    .color {
-        color: #22cdd0;
-    }
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
 </style>

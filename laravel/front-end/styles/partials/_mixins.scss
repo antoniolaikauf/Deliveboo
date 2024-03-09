@@ -2,43 +2,27 @@
 
 // Definisci il mixin per i bottoni
 @mixin buttons {
-    padding: 15px 45px;
-    transition: 0.8s;
+    padding: 5px 15px;
+    border-radius: 7px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+
+    &:hover {
+        border: 1px;
+        -webkit-box-shadow:0px 0px 6px 0px rgba(45,255,196,1);
+-moz-box-shadow: 0px 0px 6px 0px rgba(45,255,196,1);
+box-shadow: 0px 0px 6px 0px rgba(45,255,196,1);
+    }
+
+    .color {
+        color: #22cdd0;
+    }
 }
 
 // Stile per il primo pulsante
-.btn-orange {
+.btn-boo  {
     @include buttons;
-    background-color: $tertiary-color;
-    color: $tertiary-text-color;
+    background-color: white;
     &:hover {
-        background-color: $secondary-text-color;
-    }
-}
-
-// Stile per il secondo pulsante
-.btn-light-orange {
-    @include buttons;
-    background-color: $fourth-color;
-    color: $tertiary-color;
-    &:hover {
-        background-color: $tertiary-color;
-        color: $tertiary-text-color;
-    }
-}
-
-// Stile per il terzo pulsante
-.btn-green {
-    @include buttons;
-    background-color: $fifth-color;
-    color: $tertiary-text-color;
-    &:hover {
-        background-color: $sixth-color;
-        color: $tertiary-text-color;
+        
     }
 }
