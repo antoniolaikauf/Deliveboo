@@ -1,6 +1,7 @@
 <script>
 import Footer from "./components/ComponentFooter.vue";
 import Header from "./components/ComponentHeader.vue";
+// import { database } from 'fontawesome';
 
 export default {
     components: {
