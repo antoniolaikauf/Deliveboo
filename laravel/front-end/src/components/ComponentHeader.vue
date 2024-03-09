@@ -66,9 +66,9 @@ export default {
                             ></button>
                         </div>
                         <hr />
-                        <div class="offcanvas-body">
-                            <router-link :to="{ name: 'Advance' }">
-                                <button class="d-flex w-100">
+                        <div class="offcanvas-body ">
+                            <router-link :to="{ name: 'Advance' }" class="text-decoration-none">
+                                <button class="d-flex w-100 rounded">
                                     <div class="mx-3">
                                         <i
                                             class="fa-solid fa-utensils color"
@@ -93,6 +93,10 @@ export default {
 *
 .logo {
     width: 100px;
+}
+
+a {
+    color: black;
 }
 
 </style>
