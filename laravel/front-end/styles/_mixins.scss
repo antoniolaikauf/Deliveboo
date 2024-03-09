@@ -1,0 +1,44 @@
+@use '../styles/partials/variables' as *;
+
+// Definisci il mixin per i bottoni
+@mixin buttons {
+    padding: 15px 45px;
+    transition: 0.8s;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+// Stile per il primo pulsante
+.btn-orange {
+    @include buttons;
+    background-color: $tertiary-color;
+    color: $tertiary-text-color;
+    &:hover {
+        background-color: $secondary-text-color;
+    }
+}
+
+// Stile per il secondo pulsante
+.btn-light-orange {
+    @include buttons;
+    background-color: $fourth-color;
+    color: $tertiary-color;
+    &:hover {
+        background-color: $tertiary-color;
+        color: $tertiary-text-color;
+    }
+}
+
+// Stile per il terzo pulsante
+.btn-green {
+    @include buttons;
+    background-color: $fifth-color;
+    color: $tertiary-text-color;
+    &:hover {
+        background-color: $sixth-color;
+        color: $tertiary-text-color;
+    }
+}
