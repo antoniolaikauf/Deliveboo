@@ -50,8 +50,8 @@ export default {
                 <div class="col-md-6 col-lg-3">
                     <div class="card">
                         <h5 class="text-white">Porta Deliveboo con te</h5>
-                        <!-- BOTTONE APPLE STORE -->
-                        <!-- BOTTONE GOOGLE PLAY -->
+                        <a class="mb-3" href="#"><img src="/public/180px-Download_on_the_App_Store_Badge_IT_RGB_blk.svg.png" alt="AppStore"></a>
+                        <a href="#"><img src="/public/google_play_store_badge_it.svg_.png" alt="GooglePlay"></a>
                     </div>
                 </div>
             </div>
@@ -82,6 +82,10 @@ export default {
                 }
             }
 
+        }
+
+        img{
+            width: 180px;
         }
 
     }
