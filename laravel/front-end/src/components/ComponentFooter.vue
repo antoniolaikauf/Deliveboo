@@ -33,7 +33,12 @@ export default {
                             <h6><a href="#">Ristoranti</a></h6>
                             <h6><a href="#">Cookies</a></h6>
                             <h6><a href="#">Classificazione dei partner</a></h6>
-                            <h6><a href="#">Richieste da parte delle Autorità Pubbliche</a></h6>
+                            <h6>
+                                <a href="#"
+                                    >Richieste da parte delle Autorità
+                                    Pubbliche</a
+                                >
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -50,9 +55,35 @@ export default {
                 <div class="col-md-6 col-lg-3">
                     <div class="card">
                         <h5 class="text-white">Porta Deliveboo con te</h5>
-                        <a class="mb-3" href="#"><img src="/public/180px-Download_on_the_App_Store_Badge_IT_RGB_blk.svg.png" alt="AppStore"></a>
-                        <a href="#"><img src="/public/google_play_store_badge_it.svg_.png" alt="GooglePlay"></a>
+                        <a class="mb-3" href="#"
+                            ><img
+                                src="/public/180px-Download_on_the_App_Store_Badge_IT_RGB_blk.svg.png"
+                                alt="AppStore"
+                        /></a>
+                        <a href="#"
+                            ><img
+                                src="/public/google_play_store_badge_it.svg_.png"
+                                alt="GooglePlay"
+                        /></a>
                     </div>
+                </div>
+            </div>
+
+            <div class="social d-flex justify-content-between">
+                <div>
+                    <a href="#"
+                        ><i class="fa-brands fa-facebook-f text-white blue"></i
+                    ></a>
+                    <a href="#"
+                        ><i class="fa-brands fa-twitter text-white blue"></i
+                    ></a>
+                    <a href="#"
+                        ><i class="fa-brands fa-instagram text-white purple"></i
+                    ></a>
+                </div>
+
+                <div>
+                    <h5 class="text-white">© 2024 Deliveboo</h5>
                 </div>
             </div>
         </div>
@@ -62,34 +93,40 @@ export default {
 <style lang="scss">
 @import "../style/general.scss";
 
-.bg_footer{
+.bg_footer {
     background-color: rgb(48, 49, 49);
 
-    .card{
+    .card {
         background-color: grey;
         min-height: 400px;
         margin: 30px 0;
         padding: 20px;
 
-        h6{
+        h6 {
             margin-top: 15px;
 
-            a{
+            a {
                 color: white;
 
-                &:hover{
+                &:hover {
                     color: rgb(59, 170, 170);
                 }
             }
-
         }
 
-        img{
+        img {
             width: 180px;
         }
+    }
+
+    .social {
+        a {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
 
     }
 
 }
-
 </style>

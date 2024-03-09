@@ -53,7 +53,11 @@ export default {
                         aria-labelledby="offcanvasRightLabel"
                     >
                         <div class="offcanvas-header">
-                            <h5 id="offcanvasRightLabel">Deliveboo</h5>
+                            <img
+                                class="logo"
+                                src="/DelivebooNoBG.svg"
+                                alt="logo-deliveboo"
+                            />
                             <button
                                 type="button"
                                 class="btn-close text-reset"
@@ -76,6 +80,7 @@ export default {
                                     </div>
                                 </button>
                             </router-link>
+
                         </div>
                     </div>
                 </div>
