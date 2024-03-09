@@ -91,7 +91,6 @@ export default {
 </template>
 
 <style lang="scss">
-@import "../style/general.scss";
 
 .bg_footer {
     background-color: rgb(48, 49, 49);
