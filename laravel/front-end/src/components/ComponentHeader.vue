@@ -15,7 +15,6 @@ export default {
                 />
 
                 <div class="d-flex">
-
                     <!-- BOTTONE LOGIN -->
 
                     <router-link :to="{ name: 'Login' }">
@@ -31,24 +30,58 @@ export default {
                     </router-link>
 
                     <!-- BOTTONE ADVANCE (ricerca) -->
+                    <button
+                    class="d-flex"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight"
+                        aria-controls="offcanvasRight"
+                    >
+                        <div class="mx-3">
+                            <i class="fa-solid fa-utensils color"></i>
+                        </div>
 
-                    <router-link :to="{ name: 'Advance' }">
-                        <button class="d-flex">
-                            <div class="mx-3">
-                                <i class="fa-solid fa-utensils color"></i>
-                            </div>
+                        <div>
+                            <span>Advance</span>
+                        </div>
+                    </button>
 
-                            <div>
-                                <span>Advance</span>
-                            </div>
-                        </button>
-                    </router-link>
+                    <div
+                        class="offcanvas offcanvas-end"
+                        tabindex="-1"
+                        id="offcanvasRight"
+                        aria-labelledby="offcanvasRightLabel"
+                    >
+                        <div class="offcanvas-header">
+                            <h5 id="offcanvasRightLabel">Deliveboo</h5>
+                            <button
+                                type="button"
+                                class="btn-close text-reset"
+                                data-bs-dismiss="offcanvas"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <hr />
+                        <div class="offcanvas-body">
+                            <router-link :to="{ name: 'Advance' }">
+                                <button class="d-flex w-100">
+                                    <div class="mx-3">
+                                        <i
+                                            class="fa-solid fa-utensils color"
+                                        ></i>
+                                    </div>
+
+                                    <div>
+                                        <span>Advance</span>
+                                    </div>
+                                </button>
+                            </router-link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
     </div>
-
-
 </template>
 
 <style lang="scss">
