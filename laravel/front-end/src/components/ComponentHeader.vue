@@ -17,8 +17,8 @@ export default {
                 <div class="d-flex">
                     <!-- BOTTONE LOGIN -->
 
-                    <router-link :to="{ name: 'Login' }">
-                        <button class="d-flex mx-3">
+                    <router-link :to="{ name: 'Login' }" class="text-decoration-none">
+                        <button class="d-flex mx-3 rounded">
                             <div class="mx-3">
                                 <i class="fa-solid fa-house color"></i>
                             </div>
@@ -31,7 +31,7 @@ export default {
 
                     <!-- BOTTONE ADVANCE (ricerca) -->
                     <button
-                    class="d-flex"
+                    class="d-flex rounded"
                         type="button"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasRight"
@@ -66,9 +66,9 @@ export default {
                             ></button>
                         </div>
                         <hr />
-                        <div class="offcanvas-body">
-                            <router-link :to="{ name: 'Advance' }">
-                                <button class="d-flex w-100">
+                        <div class="offcanvas-body ">
+                            <router-link :to="{ name: 'Advance' }" class="text-decoration-none">
+                                <button class="d-flex w-100 rounded">
                                     <div class="mx-3">
                                         <i
                                             class="fa-solid fa-utensils color"
@@ -95,9 +95,12 @@ export default {
     width: 100px;
 }
 
+a {
+    color: black;
+}
+
 button {
     padding: 10px 40px;
-    border-radius: 7px;
     border: none;
     transition: background-color 0.5s ease;
 
@@ -110,8 +113,5 @@ button {
     }
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}
+
 </style>

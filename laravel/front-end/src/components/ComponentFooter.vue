@@ -106,6 +106,7 @@ export default {
 
             a {
                 color: white;
+                text-decoration: none;
 
                 &:hover {
                     color: rgb(59, 170, 170);
