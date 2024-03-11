@@ -181,7 +181,7 @@ a {
 
 @media screen and (max-width: 590px) {
     .search {
-        width: 180px;
+        width: 155px;
     }
 }
 </style>
