@@ -1,12 +1,18 @@
 <script>
+import ComponentJambo from '../components/ComponentJambo.vue';
+
 export default {
     name: "Home",
+
+    components: {
+        ComponentJambo
+    }
 };
 </script>
 
 <template>
     <div>
-       sono home 
+       <ComponentJambo/>
     </div>
 </template>
 
