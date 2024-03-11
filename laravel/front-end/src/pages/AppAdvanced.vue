@@ -362,26 +362,15 @@ export default {
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- div invio dati -->
-                                        <div>
-                                            <router-link
-                                                :to="{ name: 'Restaurant' }"
-                                            >
-                                                <button
-                                                    class="d-flex btn-boo mx-3 ricerca-button my-3"
-                                                    @click="
-                                                        buttonRicercaAvanzata
-                                                    "
-                                                >
-                                                    <div>
-                                                        <span
-                                                            >ricerca
-                                                            avanzata</span
-                                                        >
-                                                    </div>
-                                                </button></router-link
-                                            >
-                                        </div>
+                                        <!-- dati inseriti dall'utente -->
+                                        <button
+                                            class="d-flex btn-boo mx-3 ricerca-button my-3"
+                                            @click="buttonRicercaAvanzata"
+                                        >
+                                            <div>
+                                                <span>ricerca avanzata</span>
+                                            </div>
+                                        </button>
                                     </div>
                                 </ul>
                             </div>
@@ -393,31 +382,36 @@ export default {
                                     class="card col-12 col-lg-4 px-4 border-0"
                                     v-for="(ristorante, i) in ristoranti"
                                 >
-                                    <div class="border shadow">
-                                        <img
-                                            :src="ristorante.immagine"
-                                            class="card-img-top"
-                                            alt="i"
-                                        />
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                {{ ristorante.nome }}
-                                            </h5>
-                                            <p class="card-text">
-                                                ristorante specializzato in
-                                                <strong>
-                                                    {{
-                                                        ristorante.tipoCibo
-                                                    }}</strong
-                                                >
-                                            </p>
-                                            <p class="card-text">
-                                                ci trovi in via{{
-                                                    ristorante.indirizzo
-                                                }}
-                                            </p>
+                                    <router-link
+                                        :to="{ name: 'Restaurant' }"
+                                        class="text-dark"
+                                    >
+                                        <div class="border shadow">
+                                            <img
+                                                :src="ristorante.immagine"
+                                                class="card-img-top"
+                                                alt="i"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    {{ ristorante.nome }}
+                                                </h5>
+                                                <p class="card-text">
+                                                    ristorante specializzato in
+                                                    <strong>
+                                                        {{
+                                                            ristorante.tipoCibo
+                                                        }}</strong
+                                                    >
+                                                </p>
+                                                <p class="card-text">
+                                                    ci trovi in via{{
+                                                        ristorante.indirizzo
+                                                    }}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </router-link>
                                 </div>
                             </div>
                         </div>
