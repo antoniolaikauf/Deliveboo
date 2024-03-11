@@ -269,7 +269,7 @@ export default {
                                                         <label
                                                             for="numberMin"
                                                             class="me-2"
-                                                            >Inserisci il tuo
+                                                            >Inserisci il prezzo
                                                             minimo dei
                                                             piatti</label
                                                         >
@@ -283,7 +283,7 @@ export default {
                                                         <label
                                                             for="numberMax"
                                                             class="me-2"
-                                                            >Inserisci il tuo
+                                                            >Inserisci il prezzo
                                                             massimo dei
                                                             piatti</label
                                                         >
