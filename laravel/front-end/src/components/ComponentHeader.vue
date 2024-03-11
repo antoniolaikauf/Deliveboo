@@ -59,8 +59,8 @@ export default {
                                 alt="logo-deliveboo"
                             />
                             <button
-                                type="button"
-                                class="btn-close text-reset"
+                                type="button "
+                                class="btn-close text-reset btn-boo "
                                 data-bs-dismiss="offcanvas"
                                 aria-label="Close"
                             ></button>
@@ -68,7 +68,7 @@ export default {
                         <hr />
                         <div class="offcanvas-body ">
                             <router-link :to="{ name: 'Advance' }" class="text-decoration-none">
-                                <button class="d-flex w-100 rounded">
+                                <button class="d-flex w-100 rounded btn-boo btn-off">
                                     <div class="mx-3">
                                         <i
                                             class="fa-solid fa-utensils color"
@@ -89,7 +89,7 @@ export default {
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 *
 .logo {
     width: 100px;
@@ -97,6 +97,10 @@ export default {
 
 a {
     color: black;
+}
+
+.btn-off{
+    border: 1px solid rgb(227, 221, 221);
 }
 
 </style>
