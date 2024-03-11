@@ -4,6 +4,7 @@ export default {
 
     data() {
         return {
+            // array di ristoranti
             ristoranti: [
                 {
                     nome: "Trattoria del Gusto",
@@ -27,7 +28,21 @@ export default {
                         "https://tse1.mm.bing.net/th?id=OIP.nKQPDz6Nu6BoGnnKj2HAfgHaE8&pid=Api&P=0&h=180",
                 },
             ],
+            // variabile con dentro tutti i contenuti
+            valoriSceltiUtenti: {
+                checkName: [],
+                checkVia: [],
+                checkGenere: [],
+                numberMin: "",
+                numberMax: "",
+            },
         };
+    },
+    methods: {
+        buttonRicercaAvanzata() {
+            console.log(this.valoriSceltiUtenti);
+            console.log("qua ci va la axios che prenderà i dati nella select");
+        },
     },
 };
 </script>
@@ -35,13 +50,15 @@ export default {
 <template>
     <div class="container-fluid">
         <div class="row">
-            <h2 class="text-center">
-                ristoranti che consegnano nella zona ricercata
+            <h2 class="text-center my-2">
+                Ristoranti che consegnano nella zona ricercata
             </h2>
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-expand-lg navbar-light my-2">
                 <div class="container-fluid">
                     <div class="d-flex flex-wrap" style="width: 100%">
-                        <div class="col-12 col-md-3 contenitore-selezione">
+                        <!-- contenitore contenete la selezione per utente  -->
+                        <div class="col-12 col-lg-3 contenitore-selezione">
+                            <!-- button per drop -->
                             <button
                                 class="navbar-toggler"
                                 type="button"
@@ -53,6 +70,7 @@ export default {
                             >
                                 <span class="navbar-toggler-icon"></span>
                             </button>
+
                             <div
                                 class="collapse navbar-collapse"
                                 id="navbarNav"
@@ -89,6 +107,7 @@ export default {
                                                 class="accordion-collapse collapse show"
                                                 aria-labelledby="panelsStayOpen-headingOne"
                                             >
+                                                <!-- selezione per genere ristorante -->
                                                 <div class="accordion-body">
                                                     <div
                                                         class="form-check py-2"
@@ -98,6 +117,10 @@ export default {
                                                             type="radio"
                                                             name="flexRadioDefault"
                                                             id="flexRadioDefault1"
+                                                            value="valore 1"
+                                                            v-model="
+                                                                valoriSceltiUtenti.checkGenere
+                                                            "
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -114,6 +137,10 @@ export default {
                                                             type="radio"
                                                             name="flexRadioDefault"
                                                             id="flexRadioDefault2"
+                                                            value="valore 2"
+                                                            v-model="
+                                                                valoriSceltiUtenti.checkGenere
+                                                            "
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -131,6 +158,10 @@ export default {
                                                             type="radio"
                                                             name="flexRadioDefault"
                                                             id="flexRadioDefault3"
+                                                            value="valore3"
+                                                            v-model="
+                                                                valoriSceltiUtenti.checkGenere
+                                                            "
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -162,6 +193,7 @@ export default {
                                                     via/indirizzo
                                                 </button>
                                             </h2>
+                                            <!-- selezione per via -->
                                             <div
                                                 id="collapseTwo"
                                                 class="accordion-collapse collapse"
@@ -173,8 +205,11 @@ export default {
                                                         <input
                                                             class="form-check-input"
                                                             type="checkbox"
-                                                            value=""
+                                                            value="qua inserisci la via1"
                                                             id="flexCheckDefault"
+                                                            v-model="
+                                                                valoriSceltiUtenti.checkVia
+                                                            "
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -187,8 +222,11 @@ export default {
                                                         <input
                                                             class="form-check-input"
                                                             type="checkbox"
-                                                            value=""
+                                                            value="qua nserisci la via 2"
                                                             id="flexCheckChecked"
+                                                            v-model="
+                                                                valoriSceltiUtenti.checkVia
+                                                            "
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -219,6 +257,7 @@ export default {
                                                     media prezzo
                                                 </button>
                                             </h2>
+                                            <!-- selezione per media prezzo -->
                                             <div
                                                 id="collapseThree"
                                                 class="accordion-collapse collapse"
@@ -227,20 +266,34 @@ export default {
                                             >
                                                 <div class="accordion-body">
                                                     <div class="form-check">
-                                                        <!-- <input
-                                                            class="form-check-input"
-                                                            type="checkbox"
-                                                            value=""
-                                                            id="prezzomedio"
+                                                        <label
+                                                            for="numberMin"
+                                                            class="me-2"
+                                                            >Inserisci il prezzo
+                                                            minimo dei
+                                                            piatti</label
+                                                        >
+                                                        <input
+                                                            type="number"
+                                                            id="numberMin"
+                                                            v-model="
+                                                                valoriSceltiUtenti.numberMin
+                                                            "
                                                         />
                                                         <label
-                                                            class="form-check-label"
-                                                            for="prezzomedio"
+                                                            for="numberMax"
+                                                            class="me-2"
+                                                            >Inserisci il prezzo
+                                                            massimo dei
+                                                            piatti</label
                                                         >
-                                                            Default checkbox
-                                                        </label> -->
-                                                        <input type="number" />
-                                                        <input type="number" />
+                                                        <input
+                                                            v-model="
+                                                                valoriSceltiUtenti.numberMax
+                                                            "
+                                                            type="number"
+                                                            id="numberMax"
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -264,6 +317,7 @@ export default {
                                                     genere cibo
                                                 </button>
                                             </h2>
+                                            <!-- selezione per genere cibo  -->
                                             <div
                                                 id="collapseFour"
                                                 class="accordion-collapse collapse"
@@ -275,8 +329,11 @@ export default {
                                                         <input
                                                             class="form-check-input"
                                                             type="checkbox"
-                                                            value=""
+                                                            value="qua inserisci il valore1 "
                                                             id="idcibo1"
+                                                            v-model="
+                                                                valoriSceltiUtenti.checkName
+                                                            "
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -289,8 +346,11 @@ export default {
                                                         <input
                                                             class="form-check-input"
                                                             type="checkbox"
-                                                            value=""
+                                                            value="qua inserisci il valore 2"
                                                             id="idcibo2"
+                                                            v-model="
+                                                                valoriSceltiUtenti.checkName
+                                                            "
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -302,58 +362,56 @@ export default {
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- div invio dati -->
-                                        <div>
-                                            <router-link
-                                                :to="{ name: 'Restaurant' }"
-                                            >
-                                                <button
-                                                    class="d-flex btn-boo mx-3 ricerca-button my-3"
-                                                >
-                                                    <div>
-                                                        <span
-                                                            >ricerca
-                                                            avanzata</span
-                                                        >
-                                                    </div>
-                                                </button></router-link
-                                            >
-                                        </div>
+                                        <!-- dati inseriti dall'utente -->
+                                        <button
+                                            class="d-flex btn-boo mx-3 ricerca-button my-3"
+                                            @click="buttonRicercaAvanzata"
+                                        >
+                                            <div>
+                                                <span>ricerca avanzata</span>
+                                            </div>
+                                        </button>
                                     </div>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-12 col-md-9 contenitore-ristoranti">
+                        <!-- contenitore contenente i ristoranti dati dal risultato -->
+                        <div class="col-12 col-lg-9 contenitore-ristoranti">
                             <div class="row m-0">
                                 <div
-                                    class="card col-12 col-md-4 px-4 border-0"
+                                    class="card col-12 col-lg-4 px-4 border-0"
                                     v-for="(ristorante, i) in ristoranti"
                                 >
-                                    <div class="border shadow">
-                                        <img
-                                            :src="ristorante.immagine"
-                                            class="card-img-top"
-                                            alt="i"
-                                        />
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                {{ ristorante.nome }}
-                                            </h5>
-                                            <p class="card-text">
-                                                ristorante specializzato in
-                                                <strong>
-                                                    {{
-                                                        ristorante.tipoCibo
-                                                    }}</strong
-                                                >
-                                            </p>
-                                            <p class="card-text">
-                                                ci trovi in via{{
-                                                    ristorante.indirizzo
-                                                }}
-                                            </p>
+                                    <router-link
+                                        :to="{ name: 'Restaurant' }"
+                                        class="text-dark"
+                                    >
+                                        <div class="border shadow">
+                                            <img
+                                                :src="ristorante.immagine"
+                                                class="card-img-top"
+                                                alt="i"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    {{ ristorante.nome }}
+                                                </h5>
+                                                <p class="card-text">
+                                                    ristorante specializzato in
+                                                    <strong>
+                                                        {{
+                                                            ristorante.tipoCibo
+                                                        }}</strong
+                                                    >
+                                                </p>
+                                                <p class="card-text">
+                                                    ci trovi in via{{
+                                                        ristorante.indirizzo
+                                                    }}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </router-link>
                                 </div>
                             </div>
                         </div>
@@ -369,6 +427,7 @@ export default {
 h2 {
     font-size: $boo-font;
 }
+// css per elementi del contenitore selezione
 .contenitore-selezione {
     .accordion-item {
         border-top: 2px solid black;
@@ -378,16 +437,18 @@ h2 {
         --bs-accordion-active-bg: transparent;
     }
     .ricerca-button {
-        color: white;
-        background-color: black;
+        background-color: $boo-text-color;
     }
     .ricerca-button:hover {
-        color: black;
-        background-color: white;
+        background-color: $boo-text-color;
+    }
+    .form-check-input:checked {
+        background-color: $boo-text-color;
+        border-color: $boo-text-color;
     }
 }
-
-@media screen and (max-width: 768px) {
+// breakpoint
+@media screen and (max-width: 992px) {
     .contenitore-selezione {
         margin-bottom: 30px;
     }

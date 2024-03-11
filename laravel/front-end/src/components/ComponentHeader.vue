@@ -18,18 +18,14 @@ export default {
                 <div class="search-container">
                     <i class="fa-solid fa-paper-plane"></i>
 
-                    <input class="search" type="text" placeholder="Ricerca">
-                    <button class="btn  input-btn">
-                        Cerca
-                    </button>
+                    <input class="search" type="text" placeholder="Ricerca" />
+                    <button class="btn input-btn">Cerca</button>
                 </div>
-
-
 
                 <div class="d-flex">
                     <!-- BOTTONE LOGIN -->
                     <router-link :to="{ name: 'Login' }">
-                        <button class="d-none d-md-flex  btn-boo mx-3">
+                        <button class="d-none d-md-flex btn-boo mx-3">
                             <div class="mx-3">
                                 <i class="fa-solid fa-house color"></i>
                             </div>
@@ -42,7 +38,7 @@ export default {
 
                     <!-- BOTTONE LOGIN (RESPONSIVE) -->
                     <router-link :to="{ name: 'Login' }">
-                        <button class=" btn-boo d-md-none mx-3">
+                        <button class="btn-boo d-md-none mx-3">
                             <div class="mx-3">
                                 <i class="fa-solid fa-house color"></i>
                             </div>
@@ -51,7 +47,7 @@ export default {
 
                     <!-- BOTTONE ADVANCE (ricerca) -->
                     <button
-                        class="d-none d-md-flex  btn-boo"
+                        class="d-none d-md-flex btn-boo"
                         type="button"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasRight"
@@ -68,7 +64,7 @@ export default {
 
                     <!-- BOTTONE ADVANCE (RESPONSIVE) -->
                     <button
-                    class="d-flex btn-boo d-md-none"
+                        class="d-flex btn-boo d-md-none"
                         type="button"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasRight"
@@ -77,15 +73,26 @@ export default {
                         <div class="mx-3">
                             <i class="fa-solid fa-utensils color"></i>
                         </div>
-
                     </button>
 
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                        aria-labelledby="offcanvasRightLabel">
+                    <div
+                        class="offcanvas offcanvas-end"
+                        tabindex="-1"
+                        id="offcanvasRight"
+                        aria-labelledby="offcanvasRightLabel"
+                    >
                         <div class="offcanvas-header">
-                            <img class="logo" src="/DelivebooNoBG.svg" alt="logo-deliveboo" />
-                            <button type="button " class="btn-close text-reset btn-boo " data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
+                            <img
+                                class="logo"
+                                src="/DelivebooNoBG.svg"
+                                alt="logo-deliveboo"
+                            />
+                            <button
+                                type="button "
+                                class="btn-close text-reset btn-boo"
+                                data-bs-dismiss="offcanvas"
+                                aria-label="Close"
+                            ></button>
                         </div>
                         <hr />
                         <div class="offcanvas-body">
@@ -93,9 +100,13 @@ export default {
                                 :to="{ name: 'Advance' }"
                                 class="text-decoration-none"
                             >
-                                <button class="d-flex w-100 rounded btn-boo btn-off">
+                                <button
+                                    class="d-flex w-100 rounded btn-boo btn-off"
+                                >
                                     <div class="mx-3">
-                                        <i class="fa-solid fa-utensils color"></i>
+                                        <i
+                                            class="fa-solid fa-utensils color"
+                                        ></i>
                                     </div>
 
                                     <div>
@@ -112,7 +123,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../styles/partials/variables' as *; .logo {
+@use "../styles/partials/variables" as *;
+.logo {
     width: 100px;
 }
 
@@ -135,7 +147,6 @@ a {
     padding-left: 40px;
 }
 
-
 .input-btn {
     position: absolute;
     top: 6px;
@@ -147,7 +158,6 @@ a {
     color: white;
     background-color: $boo-text-color;
 }
-
 
 .fa-paper-plane {
     position: absolute;
@@ -167,13 +177,11 @@ a {
     .search {
         width: 250px;
     }
-
 }
 
 @media screen and (max-width: 590px) {
     .search {
         width: 180px;
     }
-
 }
 </style>
