@@ -59,17 +59,17 @@ export default {
     z-index: 500;
     position: absolute;
     top: 30%;
-    overflow: hidden;
 
 }
 
 .center {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .slider {
-    width: 100%;
+    width: 99vw;
     height: fit-content;
     overflow: hidden;
 }

@@ -28,6 +28,7 @@ export default {
 <style lang="scss">
     .relative{
         position: relative;
+        width: 100%;
     }
 
     .alt{
