@@ -27,6 +27,48 @@ export default {
                     immagine:
                         "https://tse1.mm.bing.net/th?id=OIP.nKQPDz6Nu6BoGnnKj2HAfgHaE8&pid=Api&P=0&h=180",
                 },
+                {
+                    nome: "Steakhouse Royale",
+                    tipoCibo: "Cucina americana",
+                    indirizzo: "Piazza Angus, 789",
+                    immagine:
+                        "https://tse1.mm.bing.net/th?id=OIP.nKQPDz6Nu6BoGnnKj2HAfgHaE8&pid=Api&P=0&h=180",
+                },
+                {
+                    nome: "Steakhouse Royale",
+                    tipoCibo: "Cucina americana",
+                    indirizzo: "Piazza Angus, 789",
+                    immagine:
+                        "https://tse1.mm.bing.net/th?id=OIP.nKQPDz6Nu6BoGnnKj2HAfgHaE8&pid=Api&P=0&h=180",
+                },
+                {
+                    nome: "Steakhouse Royale",
+                    tipoCibo: "Cucina americana",
+                    indirizzo: "Piazza Angus, 789",
+                    immagine:
+                        "https://tse1.mm.bing.net/th?id=OIP.nKQPDz6Nu6BoGnnKj2HAfgHaE8&pid=Api&P=0&h=180",
+                },
+                {
+                    nome: "Steakhouse Royale",
+                    tipoCibo: "Cucina americana",
+                    indirizzo: "Piazza Angus, 789",
+                    immagine:
+                        "https://tse1.mm.bing.net/th?id=OIP.nKQPDz6Nu6BoGnnKj2HAfgHaE8&pid=Api&P=0&h=180",
+                },
+                {
+                    nome: "Steakhouse Royale",
+                    tipoCibo: "Cucina americana",
+                    indirizzo: "Piazza Angus, 789",
+                    immagine:
+                        "https://tse1.mm.bing.net/th?id=OIP.nKQPDz6Nu6BoGnnKj2HAfgHaE8&pid=Api&P=0&h=180",
+                },
+                {
+                    nome: "Steakhouse Royale",
+                    tipoCibo: "Cucina americana",
+                    indirizzo: "Piazza Angus, 789",
+                    immagine:
+                        "https://tse1.mm.bing.net/th?id=OIP.nKQPDz6Nu6BoGnnKj2HAfgHaE8&pid=Api&P=0&h=180",
+                },
             ],
             // variabile con dentro tutti i contenuti
             valoriSceltiUtenti: {
@@ -54,10 +96,11 @@ export default {
                 Ristoranti che consegnano nella zona ricercata
             </h2>
             <nav class="navbar navbar-expand-lg navbar-light my-2">
-                <div class="container-fluid">
-                    <div class="d-flex flex-wrap" style="width: 100%">
-                        <!-- contenitore contenete la selezione per utente  -->
-                        <div class="col-12 col-lg-3 contenitore-selezione">
+                <!-- <div class="container-fluid"> -->
+                <div class="d-flex flex-wrap" style="width: 100%">
+                    <!-- contenitore contenete la selezione per utente  -->
+                    <div class="col-12 col-lg-3">
+                        <div class="contenitore-selezione">
                             <!-- button per drop -->
                             <button
                                 class="navbar-toggler"
@@ -375,48 +418,49 @@ export default {
                                 </ul>
                             </div>
                         </div>
-                        <!-- contenitore contenente i ristoranti dati dal risultato -->
-                        <div class="col-12 col-lg-9 contenitore-ristoranti">
-                            <div class="row m-0">
-                                <div
-                                    class="card col-12 col-lg-4 px-4 border-0"
-                                    v-for="(ristorante, i) in ristoranti"
-                                >
-                                    <router-link
-                                        :to="{ name: 'Restaurant' }"
-                                        class="text-dark"
+                    </div>
+                    <!-- contenitore contenente i ristoranti dati dal risultato -->
+                    <!-- QUA CI SARANNO I COMPONENTI CHE RITORNERà L'API -->
+                    <div class="col-12 col-lg-9 contenitore-ristoranti">
+                        <div class="row m-0">
+                            <div
+                                class="card col-12 col-lg-4 px-4 my-2 border-0"
+                                v-for="(ristorante, i) in ristoranti"
+                            >
+                                <router-link :to="{ name: 'Restaurant' }">
+                                    <div
+                                        class="border shadow rounded text-dark"
                                     >
-                                        <div class="border shadow">
-                                            <img
-                                                :src="ristorante.immagine"
-                                                class="card-img-top"
-                                                alt="i"
-                                            />
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    {{ ristorante.nome }}
-                                                </h5>
-                                                <p class="card-text">
-                                                    ristorante specializzato in
-                                                    <strong>
-                                                        {{
-                                                            ristorante.tipoCibo
-                                                        }}</strong
-                                                    >
-                                                </p>
-                                                <p class="card-text">
-                                                    ci trovi in via{{
-                                                        ristorante.indirizzo
-                                                    }}
-                                                </p>
-                                            </div>
+                                        <img
+                                            :src="ristorante.immagine"
+                                            class="card-img-top"
+                                            alt="i"
+                                        />
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                {{ ristorante.nome }}
+                                            </h5>
+                                            <p class="card-text">
+                                                ristorante specializzato in
+                                                <strong>
+                                                    {{
+                                                        ristorante.tipoCibo
+                                                    }}</strong
+                                                >
+                                            </p>
+                                            <p class="card-text">
+                                                ci trovi in via{{
+                                                    ristorante.indirizzo
+                                                }}
+                                            </p>
                                         </div>
-                                    </router-link>
-                                </div>
+                                    </div>
+                                </router-link>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- </div> -->
             </nav>
         </div>
     </div>
@@ -429,6 +473,8 @@ h2 {
 }
 // css per elementi del contenitore selezione
 .contenitore-selezione {
+    position: sticky;
+    top: 0px;
     .accordion-item {
         border-top: 2px solid black;
         border: 0px;
