@@ -1,7 +1,7 @@
 <script>
 import ComponentJambo from '../components/ComponentJambo.vue';
 import ComponentSliderHome from '../components/ComponentSliderHome.vue';
-import Mappa from '../components/Mappa.vue';
+import ComponentMap from '../components/ComponentMap.vue';
 
 export default {
     name: "Home",
@@ -9,7 +9,7 @@ export default {
     components: {
         ComponentJambo,
         ComponentSliderHome,
-        Mappa
+        ComponentMap
     }
 };
 </script>
@@ -19,7 +19,7 @@ export default {
        <ComponentJambo/>
         <ComponentSliderHome/>
         <div class="alt">
-            <Mappa/>
+            <ComponentMap/>
         </div>
 
     </div>
@@ -28,7 +28,6 @@ export default {
 <style lang="scss">
     .relative{
         position: relative;
-        width: 100%;
     }
 
     .alt{

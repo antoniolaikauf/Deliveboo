@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: "Mappa",
+    name: "ComponentMap",
 };
 </script>
 
@@ -11,7 +11,7 @@ export default {
 
 <style>
 
-h1{
+/* h1{
     background-color: rgb(180, 107, 17);
-}
+} */
 </style>

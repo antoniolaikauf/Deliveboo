@@ -9,44 +9,43 @@ export default {
         <div class="center">
             <div class="slider">
                 <div class="items">
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
+                    <img src="/public/panzerotti.jpeg" alt="" class="item" />
+                    <img src="/public/lospollos.jpeg" alt="" class="item" />
+                    <img src="/public/kfc.png" alt="" class="item-small" />
+                    <img src="/public/pizzahut.png" alt="" class="item" />
+                    <img src="/public/martinucci.png" alt="" class="item-small" />
+                    <img src="/public/kfc.png" alt="" class="item-small" />
+                    <img src="/public/old wild west.png" alt="" class="item" />
 
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
+                    <img src="/public/baffa.jpeg" alt="" class="item" />
+                    <img src="/public/lospollos.jpeg" alt="" class="item" />
+                    <img src="/public/kfc.png" alt="" class="item-small" />
+                    <img src="/public/pizzahut.png" alt="" class="item" />
+                    <img src="/public/martinucci.png" alt="" class="item-small" />
+                    <img src="/public/kfc.png" alt="" class="item-small" />
+                    <img src="/public/old wild west.png" alt="" class="item" />
                 </div>
             </div>
         </div>
 
-
         <div class="center">
             <div class="slider">
                 <div class="items">
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
+                    <img src="/public/baffa.jpeg" alt="" class="item" />
+                    <img src="/public/burrata.jpeg" alt="" class="item" />
+                    <img src="/public/pizza.jpeg" alt="" class="item-small" />
+                    <img src="/public/panzerotti.jpeg" alt="" class="item-small" />
+                    <img src="/public/pizza.jpeg" alt="" class="item" />
+                    <img src="/public/mcdo.png" alt="" class="item-small" />
+                    <img src="/public/pizzahut.png" alt="" class="item" />
 
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
-                    <img src="/public/1.jpeg" alt="" class="item" />
+                    <img src="/public/burrata.jpeg" alt="" class="item" />
+                    <img src="/public/martinucci.png" alt="" class="item" />
+                    <img src="/public/pizza.jpeg" alt="" class="item-small" />
+                    <img src="/public/panzerotti.jpeg" alt="" class="item-small" />
+                    <img src="/public/pizza.jpeg" alt="" class="item" />
+                    <img src="/public/mcdo.png" alt="" class="item-small" />
+                    <img src="/public/pizzahut.png" alt="" class="item" />
                 </div>
             </div>
         </div>
@@ -59,7 +58,8 @@ export default {
     z-index: 500;
     position: absolute;
     top: 30%;
-
+    width: 100%;
+    overflow: hidden;
 }
 
 .center {
@@ -69,19 +69,31 @@ export default {
 }
 
 .slider {
-    width: 99vw;
+    width: 100%;
     height: fit-content;
     overflow: hidden;
 }
 .items {
     width: fit-content;
     display: flex;
-    animation: slide 50s linear infinite;
+    margin: 0;
+    animation: slide 200s linear infinite;
+    height: 130px;
 }
 .item {
-    width: 250px;
+    width: 170px;
     border-radius: 5mm;
     margin: 5px;
+    box-sizing: border-box;
+    object-fit: cover;
+}
+
+.item-small{
+    width: 120px;
+    border-radius: 5mm;
+    margin: 5px;
+    box-sizing: border-box;
+    object-fit: cover;
 }
 @keyframes slide {
     0% {
