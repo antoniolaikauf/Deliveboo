@@ -71,7 +71,6 @@ export default {
 .slider {
     width: 100%;
     height: fit-content;
-    overflow: hidden;
 }
 .items {
     width: fit-content;
