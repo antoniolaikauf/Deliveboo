@@ -80,20 +80,6 @@ export default {
 
                     </button>
 
-                    <!-- BOTTONE ADVANCE (RESPONSIVE) -->
-                    <button
-                    class="d-flex btn-boo d-md-none"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight"
-                    >
-                        <div class="mx-3">
-                            <i class="fa-solid fa-utensils color"></i>
-                        </div>
-
-                    </button>
-
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                         aria-labelledby="offcanvasRightLabel">
                         <div class="offcanvas-header">
