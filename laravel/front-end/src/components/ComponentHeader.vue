@@ -8,11 +8,12 @@ export default {
     <div class="container-fluid gx-0">
         <nav class="navbar navbar-light bg-black">
             <div class="container-fluid">
-                <img
-                    class="logo"
-                    src="/DelivebooNoBG.svg"
-                    alt="logo-deliveboo"
-                />
+                <router-link :to="{ name: 'home' }">
+                    <img
+                        class="logo"
+                        src="/DelivebooNoBG.svg"
+                        alt="logo-deliveboo"
+                /></router-link>
 
                 <div class="d-flex">
                     <!-- BOTTONE LOGIN -->
@@ -31,7 +32,7 @@ export default {
 
                     <!-- BOTTONE ADVANCE (ricerca) -->
                     <button
-                    class="d-flex btn-boo"
+                        class="d-flex btn-boo"
                         type="button"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasRight"
@@ -66,8 +67,11 @@ export default {
                             ></button>
                         </div>
                         <hr />
-                        <div class="offcanvas-body ">
-                            <router-link :to="{ name: 'Advance' }" class="text-decoration-none">
+                        <div class="offcanvas-body">
+                            <router-link
+                                :to="{ name: 'Advance' }"
+                                class="text-decoration-none"
+                            >
                                 <button class="d-flex w-100 rounded">
                                     <div class="mx-3">
                                         <i
@@ -80,7 +84,6 @@ export default {
                                     </div>
                                 </button>
                             </router-link>
-
                         </div>
                     </div>
                 </div>
@@ -90,13 +93,11 @@ export default {
 </template>
 
 <style lang="scss">
-*
-.logo {
+* .logo {
     width: 100px;
 }
 
 a {
     color: black;
 }
-
 </style>
