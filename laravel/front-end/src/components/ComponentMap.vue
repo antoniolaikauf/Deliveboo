@@ -8,12 +8,12 @@ export default {
     <div class="container-fluid gx-0">
         <div class="container">
             <div class="row">
-                <div class="col-6 p-0">
+                <div class="col-12 col-lg-6 p-0">
                     <div class="text-map">
 
                     </div>
                 </div>
-                <div class="col-6 p-0">
+                <div class="col-12 col-lg-6 p-0">
                     <div class="img-map">
                         <img src="/public/Mappa.png" alt="map">
                     </div>
