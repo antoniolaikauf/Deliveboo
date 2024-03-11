@@ -33,14 +33,6 @@ export default {
 </script>
 
 <template>
-    <!-- <div>
-        <div>
-            <router-link :to="{ name: 'Restaurant' }">
-                vai sull Restaurant</router-link
-            >
-        </div>
-    </div> -->
-
     <div class="container-fluid">
         <div class="row">
             <h2 class="text-center">
@@ -73,6 +65,7 @@ export default {
                                         class="accordion"
                                         id="accordionPanelsStayOpenExample"
                                     >
+                                        <!-- div con dentro genere ristorante  -->
                                         <div
                                             class="accordion-item border-top rounded-0"
                                         >
@@ -121,7 +114,6 @@ export default {
                                                             type="radio"
                                                             name="flexRadioDefault"
                                                             id="flexRadioDefault2"
-                                                            checked
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -139,7 +131,6 @@ export default {
                                                             type="radio"
                                                             name="flexRadioDefault"
                                                             id="flexRadioDefault3"
-                                                            checked
                                                         />
                                                         <label
                                                             class="form-check-label"
@@ -152,6 +143,7 @@ export default {
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- div con dentro indirizzi -->
                                         <div
                                             class="accordion-item border-top rounded-0"
                                         >
@@ -167,7 +159,7 @@ export default {
                                                     aria-expanded="false"
                                                     aria-controls="collapseTwo"
                                                 >
-                                                    indirizzo
+                                                    via/indirizzo
                                                 </button>
                                             </h2>
                                             <div
@@ -177,14 +169,140 @@ export default {
                                                 data-bs-parent="#accordionExample"
                                             >
                                                 <div class="accordion-body">
-                                                    <input
-                                                        type="text"
-                                                        class="ricerca-indirizzo p-2 rounded-pill"
-                                                        placeholder="scrivi indirizzo"
-                                                    />
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="checkbox"
+                                                            value=""
+                                                            id="flexCheckDefault"
+                                                        />
+                                                        <label
+                                                            class="form-check-label"
+                                                            for="flexCheckDefault"
+                                                        >
+                                                            via n1
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="checkbox"
+                                                            value=""
+                                                            id="flexCheckChecked"
+                                                        />
+                                                        <label
+                                                            class="form-check-label"
+                                                            for="flexCheckChecked"
+                                                        >
+                                                            vian2
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- div con dentro prezzi -->
+                                        <div
+                                            class="accordion-item border-top rounded-0"
+                                        >
+                                            <h2
+                                                class="accordion-header"
+                                                id="headingTwo"
+                                            >
+                                                <button
+                                                    class="accordion-button collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseThree"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapseThree"
+                                                >
+                                                    media prezzo
+                                                </button>
+                                            </h2>
+                                            <div
+                                                id="collapseThree"
+                                                class="accordion-collapse collapse"
+                                                aria-labelledby="headingTwo"
+                                                data-bs-parent="#accordionExample"
+                                            >
+                                                <div class="accordion-body">
+                                                    <div class="form-check">
+                                                        <!-- <input
+                                                            class="form-check-input"
+                                                            type="checkbox"
+                                                            value=""
+                                                            id="prezzomedio"
+                                                        />
+                                                        <label
+                                                            class="form-check-label"
+                                                            for="prezzomedio"
+                                                        >
+                                                            Default checkbox
+                                                        </label> -->
+                                                        <input type="number" />
+                                                        <input type="number" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- div con dentro i genere dei piatti -->
+                                        <div
+                                            class="accordion-item border-top rounded-0"
+                                        >
+                                            <h2
+                                                class="accordion-header"
+                                                id="headingTwo"
+                                            >
+                                                <button
+                                                    class="accordion-button collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFour"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapseFour"
+                                                >
+                                                    genere cibo
+                                                </button>
+                                            </h2>
+                                            <div
+                                                id="collapseFour"
+                                                class="accordion-collapse collapse"
+                                                aria-labelledby="headingTwo"
+                                                data-bs-parent="#accordionExample"
+                                            >
+                                                <div class="accordion-body">
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="checkbox"
+                                                            value=""
+                                                            id="idcibo1"
+                                                        />
+                                                        <label
+                                                            class="form-check-label"
+                                                            for="idcibo1"
+                                                        >
+                                                            vegano
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="checkbox"
+                                                            value=""
+                                                            id="idcibo2"
+                                                        />
+                                                        <label
+                                                            class="form-check-label"
+                                                            for="idcibo2"
+                                                        >
+                                                            vegetariano
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- div invio dati -->
                                         <div>
                                             <router-link
                                                 :to="{ name: 'Restaurant' }"
@@ -247,15 +365,10 @@ export default {
 </template>
 
 <style lang="scss">
-// .contenitore-selezione {
-//     // position: -webkit-sticky;
-//     position: sticky;
-//     top: 0;
-//     background-color: yellow;
-//     padding: 50px;
-//     font-size: 20px;
-// }
-
+@use "../styles/partials/variables" as *;
+h2 {
+    font-size: $boo-font;
+}
 .contenitore-selezione {
     .accordion-item {
         border-top: 2px solid black;
@@ -263,9 +376,6 @@ export default {
     }
     .accordion {
         --bs-accordion-active-bg: transparent;
-    }
-    .ricerca-indirizzo {
-        width: 100%;
     }
     .ricerca-button {
         color: white;

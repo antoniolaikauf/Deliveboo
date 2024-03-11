@@ -17,7 +17,6 @@ export default {
 
                 <div class="d-flex">
                     <!-- BOTTONE LOGIN -->
-
                     <router-link :to="{ name: 'Login' }">
                         <button class="d-flex btn-boo mx-3">
                             <div class="mx-3">
