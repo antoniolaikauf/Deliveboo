@@ -8,11 +8,12 @@ export default {
     <div class="container-fluid gx-0">
         <nav class="navbar navbar-light bg-black">
             <div class="container-fluid">
-                <img
-                    class="logo"
-                    src="/DelivebooNoBG.svg"
-                    alt="logo-deliveboo"
-                />
+                <router-link :to="{ name: 'home' }">
+
+                    <img class="logo" src="/DelivebooNoBG.svg" alt="logo-deliveboo" />
+
+                </router-link>
+
 
                 <div class="d-flex">
                     <!-- BOTTONE LOGIN -->
@@ -30,13 +31,8 @@ export default {
                     </router-link>
 
                     <!-- BOTTONE ADVANCE (ricerca) -->
-                    <button
-                    class="d-flex btn-boo"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight"
-                    >
+                    <button class="d-flex btn-boo" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                         <div class="mx-3">
                             <i class="fa-solid fa-utensils color"></i>
                         </div>
@@ -46,33 +42,19 @@ export default {
                         </div>
                     </button>
 
-                    <div
-                        class="offcanvas offcanvas-end"
-                        tabindex="-1"
-                        id="offcanvasRight"
-                        aria-labelledby="offcanvasRightLabel"
-                    >
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                        aria-labelledby="offcanvasRightLabel">
                         <div class="offcanvas-header">
-                            <img
-                                class="logo"
-                                src="/DelivebooNoBG.svg"
-                                alt="logo-deliveboo"
-                            />
-                            <button
-                                type="button "
-                                class="btn-close text-reset btn-boo "
-                                data-bs-dismiss="offcanvas"
-                                aria-label="Close"
-                            ></button>
+                            <img class="logo" src="/DelivebooNoBG.svg" alt="logo-deliveboo" />
+                            <button type="button " class="btn-close text-reset btn-boo " data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
                         </div>
                         <hr />
                         <div class="offcanvas-body ">
                             <router-link :to="{ name: 'Advance' }" class="text-decoration-none">
                                 <button class="d-flex w-100 rounded btn-boo btn-off">
                                     <div class="mx-3">
-                                        <i
-                                            class="fa-solid fa-utensils color"
-                                        ></i>
+                                        <i class="fa-solid fa-utensils color"></i>
                                     </div>
 
                                     <div>
@@ -90,8 +72,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-*
-.logo {
+* .logo {
     width: 100px;
 }
 
@@ -99,8 +80,7 @@ a {
     color: black;
 }
 
-.btn-off{
+.btn-off {
     border: 1px solid rgb(227, 221, 221);
 }
-
 </style>
