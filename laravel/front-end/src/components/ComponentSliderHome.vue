@@ -73,7 +73,7 @@ export default {
 .container-slider{
     z-index: 500;
     position: absolute;
-    top: 30%;
+    top: 37%;
     width: 100%;
     overflow: hidden;
 }
@@ -117,5 +117,14 @@ export default {
     100% {
         transform: translateX(-50%);
     }
+}
+
+@media screen and (max-width: 993px) {
+    .container-slider{
+
+        top: 30%;
+
+    }
+
 }
 </style>
