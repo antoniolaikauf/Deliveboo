@@ -57,7 +57,7 @@ export default {
 .container-slider{
     z-index: 500;
     position: absolute;
-    top: 35%;
+    top: 30%;
     width: 100%;
     overflow: hidden;
 }

@@ -2,6 +2,7 @@
 import ComponentJambo from '../components/ComponentJambo.vue';
 import ComponentSliderHome from '../components/ComponentSliderHome.vue';
 import ComponentMap from '../components/ComponentMap.vue';
+import ComponentPartner from '../components/ComponentPartner.vue';
 
 export default {
     name: "Home",
@@ -9,7 +10,8 @@ export default {
     components: {
         ComponentJambo,
         ComponentSliderHome,
-        ComponentMap
+        ComponentMap,
+        ComponentPartner
     }
 };
 </script>
@@ -21,8 +23,8 @@ export default {
         <div class="alt">
             <ComponentMap/>
         </div>
-
     </div>
+    <ComponentPartner/>
 </template>
 
 <style lang="scss">
@@ -31,8 +33,9 @@ export default {
     }
 
     .alt{
-    //     height: 600px;
+        height: 600px;
         margin-top: 300px;
+        margin-bottom: 95px;
     }
 
 </style>
