@@ -31,7 +31,7 @@ export default {
     }
 
     .alt{
-        height: 500px;
+        height: 600px;
         margin-top: 300px;
     }
 
