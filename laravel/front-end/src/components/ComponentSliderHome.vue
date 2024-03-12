@@ -80,7 +80,7 @@ export default {
     height: 130px;
 }
 .item {
-    width: 170px;
+    width: 200px;
     border-radius: 5mm;
     margin: 5px;
     box-sizing: border-box;
