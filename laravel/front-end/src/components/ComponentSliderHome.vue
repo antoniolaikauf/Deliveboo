@@ -9,6 +9,14 @@ export default {
         <div class="center">
             <div class="slider">
                 <div class="items">
+                    <img src="/public/panzerotti.jpeg" alt="" class="item-small" />
+                    <img src="/public/lospollos.jpeg" alt="" class="item" />
+                    <img src="/public/kfc.png" alt="" class="item-small" />
+                    <img src="/public/pizzahut.png" alt="" class="item" />
+                    <img src="/public/martinucci.png" alt="" class="item-small" />
+                    <img src="/public/kfc.png" alt="" class="item-small" />
+                    <img src="/public/old wild west.png" alt="" class="item" />
+
                     <img src="/public/panzerotti.jpeg" alt="" class="item" />
                     <img src="/public/lospollos.jpeg" alt="" class="item" />
                     <img src="/public/kfc.png" alt="" class="item-small" />
@@ -17,7 +25,7 @@ export default {
                     <img src="/public/kfc.png" alt="" class="item-small" />
                     <img src="/public/old wild west.png" alt="" class="item" />
 
-                    <img src="/public/baffa.jpeg" alt="" class="item" />
+                    <img src="/public/panzerotti.jpeg" alt="" class="item" />
                     <img src="/public/lospollos.jpeg" alt="" class="item" />
                     <img src="/public/kfc.png" alt="" class="item-small" />
                     <img src="/public/pizzahut.png" alt="" class="item" />
@@ -33,6 +41,14 @@ export default {
                 <div class="items">
                     <img src="/public/baffa.jpeg" alt="" class="item" />
                     <img src="/public/burrata.jpeg" alt="" class="item" />
+                    <img src="/public/pizza.jpeg" alt="" class="item-small" />
+                    <img src="/public/panzerotti.jpeg" alt="" class="item-small" />
+                    <img src="/public/pizza.jpeg" alt="" class="item" />
+                    <img src="/public/mcdo.png" alt="" class="item-small" />
+                    <img src="/public/pizzahut.png" alt="" class="item" />
+
+                    <img src="/public/burrata.jpeg" alt="" class="item" />
+                    <img src="/public/martinucci.png" alt="" class="item" />
                     <img src="/public/pizza.jpeg" alt="" class="item-small" />
                     <img src="/public/panzerotti.jpeg" alt="" class="item-small" />
                     <img src="/public/pizza.jpeg" alt="" class="item" />
@@ -80,7 +96,7 @@ export default {
     height: 130px;
 }
 .item {
-    width: 170px;
+    width: 200px;
     border-radius: 5mm;
     margin: 5px;
     box-sizing: border-box;
