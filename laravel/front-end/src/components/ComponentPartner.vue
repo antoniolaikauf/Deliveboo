@@ -82,7 +82,7 @@ export default {
     </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .card {
     border: none !important;
 }
@@ -92,7 +92,7 @@ export default {
     background-size: cover;
     height: 500px;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -105,10 +105,11 @@ export default {
     background-size: cover;
     height: 500px;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
     display: flex;
     flex-direction: column;
     justify-content: end;
     padding: 30px;
 }
+
 </style>
