@@ -63,7 +63,7 @@ export default {
 .restaurantName {
     font-family: $boo-font;
     font-weight: bolder;
-    
+
 }
 
 .img-fluid{
