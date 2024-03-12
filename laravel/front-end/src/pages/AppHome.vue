@@ -3,6 +3,7 @@ import ComponentJambo from '../components/ComponentJambo.vue';
 import ComponentSliderHome from '../components/ComponentSliderHome.vue';
 import ComponentMap from '../components/ComponentMap.vue';
 import ComponentPartner from '../components/ComponentPartner.vue';
+import ComponentSliderReview from '../components/ComponentSliderReview.vue'
 
 export default {
     name: "Home",
@@ -11,7 +12,8 @@ export default {
         ComponentJambo,
         ComponentSliderHome,
         ComponentMap,
-        ComponentPartner
+        ComponentPartner,
+        ComponentSliderReview
     }
 };
 </script>
@@ -24,6 +26,7 @@ export default {
             <ComponentMap/>
         </div>
     </div>
+    <ComponentSliderReview/>
     <ComponentPartner/>
 </template>
 
