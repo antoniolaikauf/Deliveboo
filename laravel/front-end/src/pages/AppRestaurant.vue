@@ -24,11 +24,11 @@ export default {
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Informazioni</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    woo hooo prova
+                                    lista ingredienti
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -47,7 +47,7 @@ export default {
     </section>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @use '../styles/partials/mixins' as *;
 @use '../styles/partials/variables' as *;
 @use '../styles/general.scss' as *;
