@@ -422,9 +422,9 @@ export default {
                     <!-- contenitore contenente i ristoranti dati dal risultato -->
                     <!-- QUA CI SARANNO I COMPONENTI CHE RITORNERà L'API -->
                     <div class="col-12 col-lg-9 contenitore-ristoranti">
-                        <div class="row m-0">
+                        <div class="row m-0 px-5">
                             <div
-                                class="card col-12 col-lg-4 px-4 my-2 border-0"
+                                class="card col-12 col-lg-4 px-4 my-4 border-0 card-restaurant"
                                 v-for="(ristorante, i) in ristoranti"
                             >
                                 <router-link :to="{ name: 'Restaurant' }">
@@ -492,6 +492,14 @@ h2 {
         background-color: $boo-text-color;
         border-color: $boo-text-color;
     }
+}
+
+.card-restaurant {
+    transition: transform 0.5s ease;
+}
+
+.card-restaurant:hover {
+    transform: scale(1.05);
 }
 // breakpoint
 @media screen and (max-width: 992px) {
