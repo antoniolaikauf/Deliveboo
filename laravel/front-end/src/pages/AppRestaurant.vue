@@ -14,9 +14,9 @@ export default {
                     <p>25-40 min Tipo Ristorante</p>
                     <p>Località Chiude alle 23:00 Consegna gratuita</p>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-boo" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <h4><i class="fa-solid fa-circle-info"></i>Allergeni</h4>
-                        Informazioni e altro
+                    <button type="button" class="btn btn-boo border-secondary-subtle" data-bs-toggle="modal"                        data-bs-target="#exampleModal" style="width: 250px;">
+                        <h4 class="d-flex"><i class="fa-solid fa-circle-info"></i>Allergeni</h4>
+                        Informazioni e tanto altro
                     </button>
 
                     <!-- Modal -->
@@ -27,12 +27,15 @@ export default {
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Informazioni</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    lista ingredienti
+                                <div class="modal-body" style="background-color: #d8d9d9;">
+                                    <h5>Allergeni</h5>
+                                    <div>
+                                    Lista ingredienti
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <p>Leggi maggiori informazioni sugli allergeni presenti nei prodotti offerti da questo partner.</p>
+                                    <a href="https://www.youtube.com/watch?v=nvm2pVrirBQ" style="color: #00CCBC;"><i class="fa-solid fa-circle-info" ></i> Visualizza informazioni sugli allergeni</a>
                                 </div>
                             </div>
                         </div>
