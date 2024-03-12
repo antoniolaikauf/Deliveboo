@@ -23,7 +23,7 @@ export default {
                             <div>
                                 <router-link :to="{ name: 'Login' }">
                                     <button
-                                        class="d-flex btn-boo mx-3"
+                                        class="d-flex btn-boo"
                                     >
                                         <div class="mx-3">
                                             <i
@@ -60,7 +60,7 @@ export default {
                             <div>
                                 <router-link :to="{ name: 'Login' }">
                                     <button
-                                        class="d-flex btn-boo mx-3"
+                                        class="d-flex btn-boo"
                                     >
                                         <div class="mx-3">
                                             <i
