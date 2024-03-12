@@ -32,16 +32,16 @@ export default {
 
         <div class="animation">
             <div class="img animation1">
-                <img src="../../public/hamburger.jpg" alt="hamburger">
+                <img src="../../public/hamburger.png" alt="hamburger">
             </div>
             <div class="img animation2">
-                <img src="../../public/pizza.jpg" alt="pizza">
+                <img src="../../public/pizza.png" alt="pizza">
             </div>
             <div class="img animation4">
                 <img src="../../public/patatine-fritte.png" alt="patatine fritte" style="width: 30px;">
             </div>
             <div class="img animation3">
-                <img src="../../public/sushi.jpg" alt="sushi">
+                <img src="../../public/sushi.png" alt="sushi">
             </div>
         </div>
 
@@ -129,16 +129,16 @@ export default {
 
         <div class="animation">
             <div class="img animation3">
-                <img src="../../public/hamburger.jpg" alt="hamburger">
+                <img src="../../public/hamburger.png" alt="hamburger">
             </div>
             <div class="img animation1">
-                <img src="../../public/pizza.jpg" alt="pizza">
+                <img src="../../public/pizza.png" alt="pizza">
             </div>
             <div class="img animation2">
                 <img src="../../public/patatine-fritte.png" alt="patatine fritte" style="width: 30px;">
             </div>
             <div class="img animation4">
-                <img src="../../public/sushi.jpg" alt="sushi" style="width: 50px;">
+                <img src="../../public/sushi.png" alt="sushi" style="width: 50px;">
             </div>
         </div>
 
