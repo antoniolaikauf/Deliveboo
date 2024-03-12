@@ -95,7 +95,7 @@ export default {
             <h2 class="text-center my-2">
                 Ristoranti che consegnano nella zona ricercata
             </h2>
-            <nav class="navbar navbar-expand-lg navbar-light my-2">
+            <div class="navbar navbar-expand-lg navbar-light my-2">
                 <!-- <div class="container-fluid"> -->
                 <div class="d-flex flex-wrap" style="width: 100%">
                     <!-- contenitore contenete la selezione per utente  -->
@@ -461,7 +461,7 @@ export default {
                     </div>
                 </div>
                 <!-- </div> -->
-            </nav>
+            </div>
         </div>
     </div>
 </template>
