@@ -13,9 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::table('dishes', function (Blueprint $table) {
-        //    $table->foreignId('');
-        // });
+        Schema::table('dishes', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+        });
+
+        Schema::table('orders', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+        });
+        Schema::table('user_type', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('type_id')->constrained();
+        });
+        Schema::table('dish_order', function (Blueprint $table) {
+            $table->foreignId('dish_id')->constrained();
+            $table->foreignId('order_id')->constrained();
+        });
     }
 
     /**
@@ -25,6 +37,5 @@ return new class extends Migration
      */
     public function down()
     {
-        
     }
 };
