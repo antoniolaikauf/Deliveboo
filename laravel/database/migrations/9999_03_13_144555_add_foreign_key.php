@@ -37,5 +37,29 @@ return new class extends Migration
      */
     public function down()
     {
+
+        Schema::table('dishes', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+            $table->dropForeign('dishes_user_id_foreign');
+        });
+
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+            $table->dropForeign('orders_user_id_foreign');
+        });
+        Schema::table('user_type', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+            $table->dropColumn('type_id');
+
+            $table->dropForeign('user_type_user_id_foreign');
+            $table->dropForeign('user_type_type_id_foreign');
+        });
+        Schema::table('dish_order', function (Blueprint $table) {
+            $table->dropColumn('dish_id');
+            $table->dropColumn('order_id');
+
+            $table->dropForeign('dish_order_dish_id_foreign');
+            $table->dropForeign('dish_order_order_id_foreign');
+        });
     }
 };
