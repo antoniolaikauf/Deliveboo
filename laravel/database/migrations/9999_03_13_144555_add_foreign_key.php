@@ -28,6 +28,9 @@ return new class extends Migration
             $table->foreignId('dish_id')->constrained();
             $table->foreignId('order_id')->constrained();
         });
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+        });
     }
 
     /**
@@ -60,6 +63,10 @@ return new class extends Migration
 
             $table->dropForeign('dish_order_dish_id_foreign');
             $table->dropForeign('dish_order_order_id_foreign');
+        });
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+            $table->dropForeign('restaurants_user_id_foreign');
         });
     }
 };
