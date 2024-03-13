@@ -1,4 +1,5 @@
 <script>
+import { store } from "../store";
 export default {
     name: "Advance",
 
@@ -93,10 +94,7 @@ export default {
     <div class="container-fluid">
         <div class="row">
             <h2 class="text-center my-2">
-                Ristoranti che consegnano nella zona ricercata    
-
-
-                
+                Ristoranti che consegnano nella zona ricercata
             </h2>
             <div class="navbar navbar-expand-lg navbar-light my-2">
                 <!-- <div class="container-fluid"> -->
