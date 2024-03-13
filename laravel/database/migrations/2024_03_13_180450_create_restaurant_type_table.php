@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_type', function (Blueprint $table) {
+        Schema::create('restaurant_type', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_type');
+        Schema::dropIfExists('restaurant_type');
     }
 };
