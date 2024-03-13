@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            $table->string('delivery_address',32);
-            $table->string('payment',32);
-            $table->decimal('order_price');
-            $table-> datetime('date');
+            $table->string('address', 128);
+            $table->string('payment', 128);
+            $table->decimal('price');
+            $table->datetime('date');
 
             $table->timestamps();
         });

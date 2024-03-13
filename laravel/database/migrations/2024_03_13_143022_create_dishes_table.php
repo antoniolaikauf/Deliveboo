@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
 
-            $table-> string('name_dish',16);
+            $table-> string('name',128);
             $table-> text('description');
-            $table-> string('image',128);
+            $table-> string('image',);
             $table-> decimal('price');
             $table-> boolean('available');
 
