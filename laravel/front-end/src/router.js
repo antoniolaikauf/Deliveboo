@@ -1,8 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 // importazione file per rotte
-// import AppAbout from "./pages/AppAbout.vue";
-// import AppSkils from './pages/AppSkils.vue'
-// import AppHome from "./pages/AppHome.vue";
 
 import Home from "./pages/AppHome.vue"
 import Login from "./pages/AppLogin.vue"
