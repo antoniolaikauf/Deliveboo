@@ -15,16 +15,25 @@ export default {
                             <p class="text-white">
                                 <b>
                                     Raggiungi più clienti con Deliveboo
-                                    registrandoti da ristoratore. Gestiamo noi la
-                                    consegna, così tu puoi dedicarti a offrire i
-                                    migliori piatti e prodotti.
+                                    registrandoti da ristoratore. Gestiamo noi
+                                    la consegna, così tu puoi dedicarti a
+                                    offrire i migliori piatti e prodotti.
                                 </b>
                             </p>
                             <div>
-                                <router-link :to="{ name: 'Login' }">
-                                    <button
-                                        class="d-flex btn-boo"
-                                    >
+                                <!-- <router-link :to="{ name: 'Login' }"> -->
+                                <button class="d-flex btn-boo">
+                                    <div class="mx-3">
+                                        <i class="fa-solid fa-house color"></i>
+                                    </div>
+
+                                    <div>
+                                        <span>Registrati o Accedi</span>
+                                    </div>
+                                </button>
+                                <!-- </router-link> -->
+                                <a href="http://localhost:8000/register"
+                                    ><button class="d-flex btn-boo">
                                         <div class="mx-3">
                                             <i
                                                 class="fa-solid fa-house color"
@@ -34,8 +43,8 @@ export default {
                                         <div>
                                             <span>Registrati o Accedi</span>
                                         </div>
-                                    </button>
-                                </router-link>
+                                    </button></a
+                                >
                             </div>
                         </div>
                     </div>
@@ -46,22 +55,22 @@ export default {
                             <h1 class="text-white">
                                 Ordina comodamente da casa
                             </h1>
-                            <p class="text-white"><b>
+                            <p class="text-white">
+                                <b>
                                     Scegli tra una vasta selezione di piatti
                                     deliziosi o prodotti preferiti direttamente
                                     dalla comodità del tuo divano. Concediti il
-                                    lusso di ordinare ciò che desideri mentre godi
-                                    della tua serie o film preferito, rendendo
-                                    l'esperienza di ordinare cibo o prodotti ancora
-                                    più piacevole e senza stress.
+                                    lusso di ordinare ciò che desideri mentre
+                                    godi della tua serie o film preferito,
+                                    rendendo l'esperienza di ordinare cibo o
+                                    prodotti ancora più piacevole e senza
+                                    stress.
                                 </b>
                             </p>
 
                             <div>
                                 <router-link :to="{ name: 'Login' }">
-                                    <button
-                                        class="d-flex btn-boo"
-                                    >
+                                    <button class="d-flex btn-boo">
                                         <div class="mx-3">
                                             <i
                                                 class="fa-solid fa-house color"
@@ -111,5 +120,4 @@ export default {
     justify-content: end;
     padding: 30px;
 }
-
 </style>

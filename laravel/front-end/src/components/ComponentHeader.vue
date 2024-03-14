@@ -24,7 +24,9 @@ export default {
 
                 <div class="d-flex">
                     <!-- BOTTONE LOGIN -->
-                    <router-link :to="{ name: 'Login' }">
+                    <!-- <router-link :to="{ name: 'Login' }"> -->
+
+                    <a href="http://localhost:8000/login">
                         <button class="d-none d-md-flex btn-boo mx-3">
                             <div class="mx-3">
                                 <i class="fa-solid fa-house color"></i>
@@ -33,8 +35,9 @@ export default {
                             <div>
                                 <span>Accedi</span>
                             </div>
-                        </button>
-                    </router-link>
+                        </button></a
+                    >
+                    <!-- </router-link> -->
 
                     <!-- BOTTONE LOGIN (RESPONSIVE) -->
                     <router-link :to="{ name: 'Login' }">
