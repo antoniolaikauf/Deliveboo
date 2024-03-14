@@ -1,7 +1,7 @@
 
 <h1>CIAO SONO IL FOOTER</h1>
 
-{{-- <div class="container-fluid gx-0 bg_footer">
+<!-- {{-- <div class="container-fluid gx-0 bg_footer">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-lg-3">
@@ -128,4 +128,4 @@
         }
 
     }
-    </style> --}}
+    </style> --}} -->

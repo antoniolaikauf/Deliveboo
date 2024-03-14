@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests\StoreRestaurantRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Dish;
@@ -18,11 +19,9 @@ class RestaurantController extends Controller
     public function index()
     {
 
-        $dishes = Dish:: all();
+        $dishes = Dish::all();
 
-        return view ('dish', compact ('dishes'));
-
-
+        return view('dish', compact('dishes'));
     }
 
     /**
@@ -33,7 +32,7 @@ class RestaurantController extends Controller
     public function create()
     {
         $user = User::all();
-        return view('create' , compact('user'));
+        return view('create', compact('user'));
     }
 
     /**
@@ -46,20 +45,20 @@ class RestaurantController extends Controller
     {
 
 
-        $data = $request -> all();
+        $data = $request->all();
 
         $newDish = new Dish();
 
-        $newDish -> user_id = Auth::id();
+        $newDish->user_id = Auth::id();
 
-        $newDish -> name = $data['name'];
-        $newDish -> description = $data['description'];
-        $newDish -> price = $data['price'];
-        $newDish -> available = $data['available'];
+        $newDish->name = $data['name'];
+        $newDish->description = $data['description'];
+        $newDish->price = $data['price'];
+        $newDish->available = $data['available'];
 
-        $newDish -> save();
+        $newDish->save();
 
-        return redirect() -> route('dish.index', $newDish -> id);
+        return redirect()->route('dish.index', $newDish->id);
     }
 
     /**
@@ -95,18 +94,18 @@ class RestaurantController extends Controller
     public function update(StoreRestaurantRequest $request, $id)
     {
 
-        $data = $request -> all();
+        $data = $request->all();
         $dish = Dish::find($id);
 
 
-        $dish -> user_id = Auth::id();
+        $dish->user_id = Auth::id();
 
-        $dish -> name = $data['name'];
-        $dish -> description = $data['description'];
-        $dish -> price = $data['price'];
+        $dish->name = $data['name'];
+        $dish->description = $data['description'];
+        $dish->price = $data['price'];
         $dish->available = $data['available'];
 
-        $dish -> save();
+        $dish->save();
 
         return redirect()->route('dish.index', $dish->id);
     }
@@ -120,8 +119,8 @@ class RestaurantController extends Controller
     public function destroy($id)
     {
         $dish = Dish::find($id);
-        $dish -> delete();
+        $dish->delete();
 
-        return redirect() -> route('dish.index');
+        return redirect()->route('dish.index');
     }
 }

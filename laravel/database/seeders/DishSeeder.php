@@ -139,6 +139,6 @@ class DishSeeder extends Seeder
             $dish->user()->associate($randomUser);
 
             $dish->save();
-        }
+        };
     }
 }
