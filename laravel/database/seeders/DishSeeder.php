@@ -136,7 +136,7 @@ class DishSeeder extends Seeder
         foreach ($dishes as $dishData) {
             $dish = Dish::make($dishData);
             $randomUser = User::inRandomOrder()->first();
-            $dish->user()->associate($randomUser);
+            $dish->user()->associate($randomUser);           
 
             $dish->save();
         };

@@ -15,7 +15,7 @@ use App\Http\Controllers\RestaurantController;
 |
 */
 
-Route::get('/', [RestaurantController::class, 'index'])->middleware(['auth', 'verified'])->name('dish.index');
+Route::get('/', [RestaurantController::class, 'index'])->name('dish.index');
 
 
 
@@ -24,7 +24,7 @@ Route::get('/', [RestaurantController::class, 'index'])->middleware(['auth', 've
 // e spostata ->middleware(['auth', 'verified']) in index 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

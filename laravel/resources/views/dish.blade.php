@@ -6,12 +6,17 @@
         <div class="col-12">
             @auth
             <div class="text-center">
-                <a href="{{route('dish.create')}}" class="btn btn-primary">Create</a>
+                <div>
+                    ecco tutti i tuoi piatti
+                    {{ Auth::user()->name }}
+                </div>
+                <a href="{{route('dish.create')}}" class="btn btn-primary my-3">Create</a>
             </div>
             @endauth
         </div>
         <div class="col-12 d-flex flex-wrap">
             @foreach ($dishes as $dish)
+            
             @if (Auth::check() && Auth::id() === $dish->user_id)
             <div class="col-4">
                 <div class="card">
