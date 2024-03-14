@@ -100,4 +100,21 @@
     </div>
 </body>
 
+<style>
+    .btn-primary {
+        background-color: #00CCBC;
+        border: white 1px solid;
+    }
+
+    .btn-primary:hover {
+        background-color: unset;
+        color: black;
+    }
+
+    .btn-danger {
+        background-color: black;
+        border: white 1px solid;
+    }
+</style>
+
 </html>

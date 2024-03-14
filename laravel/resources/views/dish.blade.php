@@ -1,43 +1,63 @@
 @extends('layouts.app')
 @section('content')
-<h1>Dishes</h1>
 
-@auth
-<a href="{{route('dish.create')}}"><button>Create</button></a>
-@endauth
-<ul>
-    @foreach ($dishes as $dish)
-    @if (Auth::check() && Auth::id() === $dish->user_id)
-    <li>
-
-        <div>{{ $dish->name }}</div>
-        <div>{{ $dish->description }}</div>
-        <div>{{ $dish->price }}</div>
-        <div>
-            @if($dish->available)
-            SI
-            @else
-            NO
-            @endif
+<div class="container-fluid">
+    <div class="row m-5 prova">
+        <div class="col-12">
+            @auth
+            <div class="text-center">
+                <a href="{{route('dish.create')}}" class="btn btn-primary">Create</a>
+            </div>
+            @endauth
         </div>
+        <div class="col-12 d-flex flex-wrap">
+            @foreach ($dishes as $dish)
+            @if (Auth::check() && Auth::id() === $dish->user_id)
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ $dish->name }}</h5>
+                        <p class="card-text">{{ $dish->description }}</p>
+                        <div>{{$dish->price}}</div>
+                        <div>
+                            <div>
+                                @if($dish->available)
+                                <div>
+                                    disponibile
+                                </div>
+                                @else
+                                <div>
+                                    non disponibile
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                @auth
+                                <a href="{{ route('dish.edit', $dish->id)}}" class="btn btn-primary">EDIT</a>
+                                @endauth
+                            </div>
 
-        @auth
-        <a href="{{ route('dish.edit', $dish->id)}}"><button>EDIT</button></a>
-        @endauth
+                            <div>
+                                @auth
+                                <form action="{{ route('dish.delete', $dish->id) }}" method="POST">
 
-        @auth
-        <form action="{{ route('dish.delete', $dish->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
 
-            @csrf
-            @method('DELETE')
-
-            <input type="submit" value="DELETE">
-        </form>
-        @endauth
-    </li>
-    @endif
-    @endforeach
-</ul>
-
-
-@endsection
+                                    <input type="submit" value="DELETE" class="btn btn-danger">
+                                </form>
+                                @endauth
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @endforeach
+        </div>
+    </div>
+    <style>
+    </style>
+    @endsection
