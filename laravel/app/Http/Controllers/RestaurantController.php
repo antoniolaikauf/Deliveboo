@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Dish;
 
 class RestaurantController extends Controller
 {
@@ -13,7 +14,12 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        
+
+        $dishes = Dish:: all();
+
+        return view ('dish', compact ('dishes'));
+
+
     }
 
     /**
@@ -77,8 +83,11 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $dish = Dish::find($id);
+        $dish -> delete();
+
+        return redirect() -> route('dish.index');
     }
 }

@@ -22,7 +22,7 @@ export default {
                             </p>
                             <div>
                                 <!-- <router-link :to="{ name: 'Login' }"> -->
-                                <button class="d-flex btn-boo">
+                                <!-- <button class="d-flex btn-boo">
                                     <div class="mx-3">
                                         <i class="fa-solid fa-house color"></i>
                                     </div>
@@ -30,21 +30,17 @@ export default {
                                     <div>
                                         <span>Registrati o Accedi</span>
                                     </div>
-                                </button>
+                                </button> -->
                                 <!-- </router-link> -->
-                                <a href="http://localhost:8000/register"
-                                    ><button class="d-flex btn-boo">
+                                <a href="http://localhost:8000/register"><button class="d-flex btn-boo">
                                         <div class="mx-3">
-                                            <i
-                                                class="fa-solid fa-house color"
-                                            ></i>
+                                            <i class="fa-solid fa-house color"></i>
                                         </div>
 
                                         <div>
-                                            <span>Registrati o Accedi</span>
+                                            <span>Registrati</span>
                                         </div>
-                                    </button></a
-                                >
+                                    </button></a>
                             </div>
                         </div>
                     </div>
@@ -72,9 +68,7 @@ export default {
                                 <router-link :to="{ name: 'Login' }">
                                     <button class="d-flex btn-boo">
                                         <div class="mx-3">
-                                            <i
-                                                class="fa-solid fa-house color"
-                                            ></i>
+                                            <i class="fa-solid fa-house color"></i>
                                         </div>
 
                                         <div>
