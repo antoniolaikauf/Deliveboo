@@ -95,6 +95,9 @@
         <main class="">
             @yield('content')
         </main>
+        <footer>
+            @include('footer')
+        </footer>
     </div>
 </body>
 

@@ -17,8 +17,7 @@ use App\Http\Controllers\RestaurantController;
 
 Route::get('/', [RestaurantController::class, 'index'])-> name('dish.index');
 
-// ROTTE DELETE
-Route::delete('/dish/{$id}', [RestaurantController::class, 'delete']) -> name('dish.delete');
+
 
 
 
@@ -31,7 +30,22 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // ROTTE CREATE
+    Route::get('/dish', [RestaurantController::class, 'create']) -> name('dish.create');
 
+    //ROTTE STORE
+    Route::post('/dish', [RestaurantController::class, 'store']) -> name('dish.store');
+
+    // ROTTE DELETE
+    Route::delete('/{id}', [RestaurantController::class, 'destroy']) -> name('dish.delete');
+
+    // ROTTE EDIT
+    Route::get('/dish/{id}/edit', [RestaurantController::class, 'edit']) -> name('dish.edit');
+
+    // ROTTE UPDATE
+    Route::put('/dish/{id}', [RestaurantController::class, 'update']) -> name('dish.update');
 });
+
+
 
 require __DIR__.'/auth.php';

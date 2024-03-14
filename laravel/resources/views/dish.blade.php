@@ -2,24 +2,43 @@
 @section('content')
     <h1>Dishes</h1>
 
-    <ul>
+        @auth
+            <a href="{{route('dish.create')}}"><button>Create</button></a>
+        @endauth
+        <ul>
 
-        @foreach ($dishes as $dish)
-            <li>
+            @foreach ($dishes as $dish)
+                @if (Auth::check() && Auth::id() === $dish->user_id)
+                    <li>
 
-                <div>{{ $dish->name }}</div>
-                <div>{{ $dish->description }}</div>
-                <div>{{ $dish->price }}</div>
-                <div>{{ $dish->available }}</div>
+                        <div>{{ $dish->name }}</div>
+                        <div>{{ $dish->description }}</div>
+                        <div>{{ $dish->price }}</div>
+                        <div>
+                            @if($dish->available)
+                                SI
+                            @else
+                                NO
+                            @endif
+                        </div>
 
-                <form action="{{ route('dish.delete', $dish->id) }}" method="POST">
+                            @auth
+                                <a href="{{ route('dish.edit', $dish->id)}}"><button>EDIT</button></a>
+                            @endauth
 
-                    @csrf
-                    @method('DELETE')
+                            @auth
+                                <form action="{{ route('dish.delete', $dish->id) }}" method="POST">
 
-                    <input type="submit" value="DELETE">
-                </form>
-            </li>
-        @endforeach
-    </ul>
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <input type="submit" value="DELETE">
+                                </form>
+                            @endauth
+                    </li>
+                @endif
+            @endforeach
+        </ul>
+
+
 @endsection
