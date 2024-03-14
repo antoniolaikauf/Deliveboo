@@ -7,6 +7,10 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Type;
 
+use App\Models\Restaurant;
+
+use function PHPSTORM_META\type;
+
 class TypeSeeder extends Seeder
 {
     /**
@@ -16,6 +20,28 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // Genera i tipi
+        $types = [
+            ['name' => 'vegetariano'],
+            ['name' => 'mediterraneo'],
+            ['name' => 'asiatico'],
+            ['name' => 'fast-food'],
+            ['name' => 'fushion'],
+            ['name' => 'vegano'],
+        ];
+        // ciclo per creazione dei type 
+        foreach ($types as $typeData) {
+            $type = Type::create($typeData);
+        }
+
+        // Associa un tipo casuale a ciascun ristorante
+        // ottenere tutti i restaurant nel tabella database
+        $restaurants = Restaurant::all();
+        // ciclo per associare ogni restaurant ad un type
+        foreach ($restaurants as $restaurant) {
+            // associamo ogni retaurant ad uno o piu type
+            $randomType = Type::inRandomOrder()->limit(rand(1, 2))->get();
+            $restaurant->types()->attach($randomType);
+        }
     }
 }
