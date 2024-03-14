@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <h1>Dishes</h1>
+     <!-- <h1>Dishes</h1>
 
     <ul>
 
@@ -13,5 +13,5 @@
                 <div>{{ $dish->available }}</div>
             </li>
         @endforeach
-    </ul> --}}
+    </ul>  -->
 @endsection

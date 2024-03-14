@@ -15,12 +15,13 @@ use App\Http\Controllers\RestaurantController;
 |
 */
 
-Route::get('/', [RestaurantController::class, 'index'])-> name('dish.index');
+Route::get('/', [RestaurantController::class, 'index'])->middleware(['auth', 'verified'])->name('dish.index');
 
 
 
 
-
+// commentata cosi non porta in dashbord dopo aver fatto il log 
+// e spostata ->middleware(['auth', 'verified']) in index 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -31,21 +32,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // ROTTE CREATE
-    Route::get('/dish', [RestaurantController::class, 'create']) -> name('dish.create');
+    Route::get('/dish', [RestaurantController::class, 'create'])->name('dish.create');
 
     //ROTTE STORE
-    Route::post('/dish', [RestaurantController::class, 'store']) -> name('dish.store');
+    Route::post('/dish', [RestaurantController::class, 'store'])->name('dish.store');
 
     // ROTTE DELETE
-    Route::delete('/{id}', [RestaurantController::class, 'destroy']) -> name('dish.delete');
+    Route::delete('/{id}', [RestaurantController::class, 'destroy'])->name('dish.delete');
 
     // ROTTE EDIT
-    Route::get('/dish/{id}/edit', [RestaurantController::class, 'edit']) -> name('dish.edit');
+    Route::get('/dish/{id}/edit', [RestaurantController::class, 'edit'])->name('dish.edit');
 
     // ROTTE UPDATE
-    Route::put('/dish/{id}', [RestaurantController::class, 'update']) -> name('dish.update');
+    Route::put('/dish/{id}', [RestaurantController::class, 'update'])->name('dish.update');
 });
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
