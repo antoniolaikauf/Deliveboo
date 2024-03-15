@@ -14,12 +14,14 @@ class ApiRestaurant extends Controller
     public function TypeRestaurants()
     {
 
-        $types = Type::with('restaurants')->get();
+        $types = Type::all();
+        $restaurants = Restaurant::all();
 
 
         return response()->json([
             'riuscito' => 'collegamento riuscito',
             'types' => $types,
+            'restaurants' => $restaurants,
         ]);
     }
 

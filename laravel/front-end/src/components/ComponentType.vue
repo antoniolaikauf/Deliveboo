@@ -7,7 +7,9 @@ export default {
         return {
             // arrray per tutti i types
             arrayTypes: [],
-            // array con dentro i ristoranti
+            // array con dentro tutti i ristoranti
+            restaurants: [],
+            // array con dentro i ristoranti selezionati
             arrayRestaurants: [],
             // variabile per mostrare risrtoranti
             showRestaurant: false,
@@ -41,6 +43,7 @@ export default {
             .get("http://localhost:8000/api/v1/types")
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
+                this.restaurants = risposta.data.restaurants;
                 console.log(this.arrayTypes);
             })
             .catch((err) => {
@@ -65,20 +68,36 @@ export default {
                 >
                     <strong>{{ type.name }}</strong>
                 </div>
-                <div class="row">
-                    <div v-for="(Restaurants, i) in type.restaurants">
-                        <div>
-                            {{ Restaurants.name }}
-                        </div>
+            </div>
+            <!-- div contenente tutti i ristoranti nel database -->
+            <div v-if="!showRestaurant" class="row my-3">
+                <h2 class="text-center">Ristoranti Disponibili</h2>
+                <div
+                    v-for="(restaurant, i) in restaurants"
+                    :key="i"
+                    class="col-4 card-restaurant p-5"
+                >
+                    <div class="card">
                         <img
-                            :src="Restaurants.img"
+                            :src="restaurant.img"
                             class="card-img-top img-restaurants"
                             :alt="i"
                         />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                nome ristorante:
+                                <strong> {{ restaurant.name }}</strong>
+                            </h5>
+                            <h5 class="card-title">
+                                città ristorante:
+                                <strong>{{ restaurant.city }}</strong>
+                            </h5>
+                            <a href="#" class="btn btn-primary">show</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- div contenente i ristoranti -->
+            <!-- div contenente i ristoranti selezionati-->
             <div v-if="showRestaurant" class="col-12">
                 <div class="row p-3">
                     <div
