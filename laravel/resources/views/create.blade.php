@@ -3,7 +3,7 @@
 <div class="container-fluid bg-sfondo p-5">
     <div class="row justify-content-center py-5">
         <div class="col-6 p-4 form-create bg-secondary text-white">
-            <form action="{{ route('dish.store') }}" method="POST">
+            <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
                 @method('POST')
@@ -64,9 +64,15 @@
                     @enderror
                 </div>
 
+                <div class="input-group my-3 gap-3">
+                    <label for="img">Inserisci un immagine:</label>
+                    <input type="file" name="img" id="img" class="form-control" accept="image/">
+                </div>
+
                 <div class="text-center ">
                     <input type="submit" value="CREA PIATTO" class="btn-boo buttons">
                 </div>
+
 
             </form>
         </div>

@@ -19,27 +19,29 @@
                         <div class="col-6 p-4">
                             <div class="card card-restaurant">
                                 <div class="card-body text-center ">
-                                    <h5 class="card-title">Nome piatto <strong>{{ $dish->name }}</strong></h5>
+                                    <h5 class="card-title">Nome piatto: <strong>{{ $dish->name }}</strong></h5>
                                     <p class="card-text">{{ $dish->description }}</p>
-                                    <div class="my-2">presso piatto <strong>{{ $dish->price }}&#128;</strong></div>
+                                    <div class="my-2">Prezzo: <strong>{{ $dish->price }}&#128;</strong></div>
                                     <div>
                                         <div>
                                             @if ($dish->available)
                                                 <div>
-                                                    <span class="bg-success p-2 rounded ">
-
-                                                        piatto disponibile
-                                                    </span>
+                                                    <span class="bg-success p-2 rounded">Piatto disponibile</span>
                                                 </div>
                                             @else
                                                 <div>
-                                                    <span class="bg-danger p-2 rounded">
-                                                        piatto non disponibile
-                                                    </span>
+                                                    <span class="bg-danger p-2 rounded">Piatto non disponibile</span>
                                                 </div>
                                             @endif
                                         </div>
                                     </div>
+
+                                    <div class="img">
+                                        @if($dish->img)
+                                            <img src="{{asset('storage/'.$dish ->img) }}" alt="img dish">
+                                        @endif
+                                    </div>
+
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             @auth
@@ -94,12 +96,23 @@
 
         <style>
             .card-restaurant {
-                border: #00CCBC 1px solid;
-                transition: transform 0.5s ease;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+                margin-right: 20px;
+                margin-bottom: 20px;
+                height: 500px;
             }
 
             .card-restaurant:hover {
                 transform: scale(1.05);
+            }
+
+            .img img{
+                width: 100%;
+                max-height: 250px;
+                object-fit: cover;
             }
         </style>
 
@@ -113,4 +126,4 @@
                 document.getElementById('deleteForm_' + dishId).submit();
             }
         </script>
-    @endsection
+@endsection

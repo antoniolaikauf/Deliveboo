@@ -41,6 +41,11 @@
             </select>
         </div>
 
+        <div class="d-flex mb-3 align-items-center">
+            <label for="img">Modifica l'immagine:</label>
+            <input type="file" name="img" id="img" accept="image/" class="form-control" >
+        </div>
+
         <div class="d-flex mb-2 justify-content-center">
 
             <input type="submit" value="MODIFICA">
