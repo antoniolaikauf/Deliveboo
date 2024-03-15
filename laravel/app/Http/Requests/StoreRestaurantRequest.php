@@ -35,9 +35,13 @@ class StoreRestaurantRequest extends FormRequest
     public function messages(){
 
         return[
+            'name.min'=>'Il Nome non deve essere minore di 5 caratteri',
+            'name.max'=>'Il Nome non deve essere maggiore di 5 caratteri',
             'name.required' => 'Il campo Nome è obbligatorio.',
             'name.max' => 'Il campo Nome non può superare i 128 caratteri.',
             'description.required' => 'Il campo Descrizione è obbligatorio.',
+            'description.min' => 'Il campo Descrizione non deve essere minore di 10 caratteri.',
+            'description.max' => 'Il campo Descrizione non deve essere maggiore di 200 caratteri.',
             'price.required' => 'Il campo Prezzo è obbligatorio.',
             'price.numeric' => 'Il campo Prezzo deve essere un numero.',
             'price.min' => 'il prezzo deve essere maggiore di 0.',
