@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid bg-sfondo p-5">
     <div class="row justify-content-center py-5">
         <div class="col-6 p-4 form-create bg-secondary text-white">
             <form action="{{ route('dish.store') }}" method="POST">
@@ -54,6 +54,12 @@
     .form-create {
         border: 1px solid #00CCBC;
         border-radius: 15px;
+    }
+
+    .bg-sfondo {
+        height: 700px;
+        background-image: url(https://images.pexels.com/photos/784632/pexels-photo-784632.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+        background-size: cover;
     }
 </style>
 @endsection
