@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center py-5">
-        <div class="col-6 p-4 form-create">
+        <div class="col-6 p-4 form-create bg-secondary text-white">
             <form action="{{ route('dish.store') }}" method="POST">
 
                 @csrf
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="text-center ">
-                    <input type="submit" value="CREA PIATTO" class=".btn-boo .buttons">
+                    <input type="submit" value="CREA PIATTO" class="btn-boo buttons">
                 </div>
 
             </form>
