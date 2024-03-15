@@ -14,6 +14,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
@@ -38,7 +41,7 @@
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
-                <!-- 
+                <!--
                 {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -46,7 +49,10 @@
                 </button> --}} -->
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <a href="http://localhost:5174" class="btn btn-primary me-3 p-2 border-0">Home</a>
+                    <div>
+
+                        <a href="http://localhost:5174" class="buttons btn-boo me-3 p-2 border-0"> <i class="fa-solid fa-house color"></i> Home</a>
+                    </div>
                     <!-- Left Side Of Navbar -->
                     <!-- {{-- <ul class="navbar-nav me-auto">
                         <li class="nav-item">
@@ -59,16 +65,16 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary mx-3 border-0" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link buttons btn-boo mx-3 border-0" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i> {{ __('Accedi') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary border-0" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link button btn-boo border-0" href="{{ route('register') }}"><i class="fa-solid fa-address-card"></i> {{ __('Registrati') }}</a>
                         </li>
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle btn btn-primary border-0 " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle buttons btn-boo border-0 " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -101,21 +107,55 @@
 </body>
 
 <style>
-    .btn-primary {
-        background-color: #00CCBC;
-        border: white 1px solid;
-        color: white;
-    }
+/* Button styles */
+.buttons {
+    border-radius: 7px;
+}
 
-    .btn-primary:hover {
-        background-color: white;
-        color: black;
-    }
+.buttons:hover {
+    border: 1px;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+    box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+}
 
-    .btn-danger {
-        background-color: black;
-        border: white 1px solid;
+a{
+    text-decoration: none;
+    color: black;
+}
+
+/* Stile per il primo pulsante */
+.btn-boo {
+    padding: 5px 15px;
+    border-radius: 7px;
+    border: none;
+    background-color: white;
+}
+
+.btn-boo:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+
+.collapse:not(.show) {
+    display: flex;
+}
+
+i{
+    color: #22cdd0;
+}
+
+.navbar > .container{
+    flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 769px) {
+    .navbar-nav{
+        flex-direction: row;
     }
+}
+
 </style>
 
 </html>
