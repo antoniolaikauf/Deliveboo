@@ -38,7 +38,7 @@
 
                                     <div class="img">
                                         @if($dish->img)
-                                            <img src="{{asset('storage/'.$dish ->img) }}" alt="img dish">
+                                            <img src="{{asset('storage/'.$dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
                                         @endif
                                     </div>
 

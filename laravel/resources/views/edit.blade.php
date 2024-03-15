@@ -3,7 +3,7 @@
 
     <h2 class="text-center mt-3">Modifica il tuo piatto</h2>
 
-    <form action="{{ route('dish.update', $dish->id) }}" method="POST">
+    <form action="{{ route('dish.update', $dish->id) }}" method="POST"  enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
