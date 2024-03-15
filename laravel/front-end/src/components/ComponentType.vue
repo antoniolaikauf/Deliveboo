@@ -65,6 +65,18 @@ export default {
                 >
                     <strong>{{ type.name }}</strong>
                 </div>
+                <div class="row">
+                    <div v-for="(Restaurants, i) in type.restaurants">
+                        <div>
+                            {{ Restaurants.name }}
+                        </div>
+                        <img
+                            :src="Restaurants.img"
+                            class="card-img-top img-restaurants"
+                            :alt="i"
+                        />
+                    </div>
+                </div>
             </div>
             <!-- div contenente i ristoranti -->
             <div v-if="showRestaurant" class="col-12">

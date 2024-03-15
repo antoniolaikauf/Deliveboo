@@ -14,7 +14,8 @@ class ApiRestaurant extends Controller
     public function TypeRestaurants()
     {
 
-        $types = Type::all();
+        $types = Type::with('restaurants')->get();
+
 
         return response()->json([
             'riuscito' => 'collegamento riuscito',
