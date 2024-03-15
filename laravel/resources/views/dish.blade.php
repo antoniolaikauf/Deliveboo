@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <div class="row m-5 prova">
+    <div class="row m-5">
         <div class="col-12">
             @auth
             <div class="text-center">

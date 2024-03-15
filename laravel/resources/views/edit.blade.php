@@ -33,11 +33,6 @@
             <input type="number" class="form-control" name="price" id="price" value="{{ $dish->price }}">
         </div>
 
-        <!-- <div class="d-flex mb-2 align-items-center">
-                                                                                                                <label for="available">Disponibilità</label>
-                                                                                                                <input type="text" name="available" id="available" placeholder="Inserisci 1 per SI e 0 per NO"
-                                                                                                                    value="{{ $dish->available }}">
-                                                                                                            </div> -->
         <div class="d-flex mb-3 align-items-center">
             <label for="available">disponibile</label>
             <select name="available" id="available" class="form-control">

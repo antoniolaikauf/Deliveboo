@@ -86,7 +86,6 @@ class DishSeeder extends Seeder
                 'available' => true,
                 'price' => 13.50,
             ],
-
             // Dolci
             [
                 'id' => 10,
@@ -132,11 +131,111 @@ class DishSeeder extends Seeder
                 'available' => true,
                 'price' => 2.50,
             ],
+             // AGGIUNTO
+            // Secondi piatti
+            [
+                'id' =>16 ,
+                'name' => 'Hamburger Classico',
+                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
+                'available' => true,
+                'price' => 14.00,
+            ],
+            [
+                'id' => 17,
+                'name' => 'Sushi Misto',
+                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
+                'available' => true,
+                'price' => 18.00,
+            ],
+            [
+                'id' => 18,
+                'name' => 'Pollo alla Cacciatora',
+                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
+                'available' => true,
+                'price' => 13.50,
+            ],
+            // FINE AGGIUNTO 
+            // AGGIUNTO
+            // Secondi piatti
+            [
+                'id' => 19,
+                'name' => 'Hamburger Classico',
+                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
+                'available' => true,
+                'price' => 14.00,
+            ],
+            [
+                'id' => 20,
+                'name' => 'Sushi Misto',
+                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
+                'available' => true,
+                'price' => 18.00,
+            ],
+            [
+                'id' => 21,
+                'name' => 'Pollo alla Cacciatora',
+                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
+                'available' => true,
+                'price' => 13.50,
+            ],
+            // FINE AGGIUNTO 
+             // AGGIUNTO
+            // Secondi piatti
+            [
+                'id' =>22 ,
+                'name' => 'Hamburger Classico',
+                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
+                'available' => true,
+                'price' => 14.00,
+            ],
+            [
+                'id' => 23,
+                'name' => 'Sushi Misto',
+                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
+                'available' => true,
+                'price' => 18.00,
+            ],
+            [
+                'id' => 24,
+                'name' => 'Pollo alla Cacciatora',
+                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
+                'available' => true,
+                'price' => 13.50,
+            ],
+ 
+            // AGGIUNTO
+
+            [
+                'id' => 25,
+                'name' => 'Hamburger Classico',
+                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
+                'available' => true,
+                'price' => 14.00,
+            ],
+            [
+                'id' => 26,
+                'name' => 'Sushi Misto',
+                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
+                'available' => true,
+                'price' => 18.00,
+            ],
+            [
+                'id' => 27,
+                'name' => 'Pollo alla Cacciatora',
+                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
+                'available' => true,
+                'price' => 13.50,
+            ],
+            // FINE AGGIUNTO 
+
         ];
+
         foreach ($dishes as $dishData) {
             $dish = Dish::make($dishData);
+
             $randomUser = User::inRandomOrder()->first();
-            $dish->user()->associate($randomUser);           
+            $dish->user()->associate($randomUser);
+
 
             $dish->save();
         };
