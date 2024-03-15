@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -102,6 +103,8 @@
             @include('footer')
         </footer>
     </div>
+
+
 </body>
 
 <style>
@@ -166,5 +169,8 @@
         background-color: #00CCBC;
     }
 </style>
+
+{{-- SCRIPT JS --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </html>

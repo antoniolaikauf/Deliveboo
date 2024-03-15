@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\StoreRestaurantRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Dish;
 use App\Models\User;
@@ -47,6 +48,9 @@ class RestaurantController extends Controller
 
         $data = $request->all();
 
+        $img = $data['img'];
+        $image_path = Storage :: disk('public') -> put('images', $img);
+
         $newDish = new Dish();
 
         $newDish->user_id = Auth::id();
@@ -55,6 +59,7 @@ class RestaurantController extends Controller
         $newDish->description = $data['description'];
         $newDish->price = $data['price'];
         $newDish->available = $data['available'];
+        $newDish->img = $image_path;
 
         $newDish->save();
 
@@ -104,6 +109,11 @@ class RestaurantController extends Controller
         $dish->description = $data['description'];
         $dish->price = $data['price'];
         $dish->available = $data['available'];
+
+        $img = $data['img'];
+        $image_path = Storage :: disk('public') -> put('images', $img);
+        $dish->img = $image_path;
+
 
         $dish->save();
 

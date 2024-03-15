@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ApiRestaurant;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,3 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => '/v1'], function () {
+
+    route::get('types', [ApiRestaurant::class, 'TypeRestaurants']);
+
+    route::get('types/{id}', [ApiRestaurant::class, 'TypesSelected']);
+});

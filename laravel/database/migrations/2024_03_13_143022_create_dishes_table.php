@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table-> string('name',128);
             $table-> text('description');
-            // $table-> string('image');
+            $table-> string('img');
             $table-> decimal('price');
             $table-> boolean('available');
 
