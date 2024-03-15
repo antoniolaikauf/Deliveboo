@@ -24,5 +24,6 @@ Route::group(['prefix' => '/v1'], function () {
 
     route::get('types', [ApiRestaurant::class, 'TypeRestaurants']);
 
-    route::get('types/{id}', [ApiRestaurant::class, 'TypesSelected']);
+    // route::get('types/{id}', [ApiRestaurant::class, 'TypesSelected']);
+    route::post('types/select', [ApiRestaurant::class, 'TypesSelected']);
 });

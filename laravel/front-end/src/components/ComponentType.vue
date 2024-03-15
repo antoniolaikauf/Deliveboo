@@ -9,28 +9,25 @@ export default {
             arrayTypes: [],
             // array con dentro tutti i ristoranti
             restaurants: [],
-            // array con dentro i ristoranti selezionati
-            arrayRestaurants: [],
             // variabile per mostrare risrtoranti
             showRestaurant: false,
+            checked: [],
+
+            arrayRestaurantsSelect: "",
         };
     },
 
     methods: {
-        // metodo per ottenere i ristoranti
-        typeSpecific(index) {
-            let indice = index + 1;
+        takevalue() {
             this.showRestaurant = true;
-            // chiamata per ottenere i ristoranti
             axios
-                .get("http://localhost:8000/api/v1/types/" + indice)
+                .post("http://localhost:8000/api/v1/types/select", this.checked)
                 .then((risposta) => {
-                    let array = risposta.data.risposta;
-                    for (let i = 0; i < array.length; i++) {
-                        array[i].type = this.arrayTypes[index].name;
-                        console.log(array[i]);
-                        this.arrayRestaurants.push(array[i]);
+                    if (risposta.data.risposta.length === 0) {
+                        this.showRestaurant = false;
                     }
+
+                    this.arrayRestaurantsSelect = risposta.data.risposta;
                 })
                 .catch((err) => {
                     console.log(err);
@@ -56,19 +53,21 @@ export default {
 <template>
     <div class="container-fluid my-5">
         <div class="row">
-            <!-- div contenete i types dei ristoranti -->
-            <div
-                class="col-12 col-lg-2 my-3"
-                v-for="(type, i) in arrayTypes"
-                :key="i"
-            >
-                <div
-                    class="p-2 border text-center rounded"
-                    @click="typeSpecific(i)"
-                >
-                    <strong>{{ type.name }}</strong>
+            <form @submit.prevent="takevalue()">
+                <div class="form-check" v-for="(type, i) in arrayTypes">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        :value="i"
+                        :id="i"
+                        v-model="checked"
+                    />
+                    <label class="form-check-label" :for="i">
+                        {{ type.name }}
+                    </label>
                 </div>
-            </div>
+                <button type="submit">Invia</button>
+            </form>
             <!-- div contenente tutti i ristoranti nel database -->
             <div v-if="!showRestaurant" class="row my-3">
                 <h2 class="text-center">Ristoranti Disponibili</h2>
@@ -97,34 +96,34 @@ export default {
                     </div>
                 </div>
             </div>
-            <!-- div contenente i ristoranti selezionati-->
-            <div v-if="showRestaurant" class="col-12">
-                <div class="row p-3">
-                    <div
-                        v-for="(Restaurants, i) in arrayRestaurants"
-                        :key="i"
-                        class="col-4 card-restaurant p-5"
-                    >
-                        <div class="card">
-                            <img
-                                :src="Restaurants.img"
-                                class="card-img-top img-restaurants"
-                                :alt="i"
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    nome ristorante:
-                                    <strong>{{ Restaurants.name }}</strong>
-                                </h5>
-                                <h5 class="card-title">
-                                    città ristorante:
-                                    <strong>{{ Restaurants.city }}</strong>
-                                </h5>
-                                <h5 class="card-title">
-                                    tipo ristorante:
-                                    <strong>{{ Restaurants.type }}</strong>
-                                </h5>
-                                <a href="#" class="btn btn-primary">show</a>
+            <div v-if="showRestaurant">
+                <div
+                    class="col-12"
+                    v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
+                >
+                    <div class="row p-3">
+                        <div
+                            class="col-4 card-restaurant p-5"
+                            v-for="(Restaurant, i) in RestaurantsSelect"
+                        >
+                            <div class="card">
+                                <img
+                                    :src="Restaurant.img"
+                                    class="card-img-top img-restaurants"
+                                    :alt="i"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        nome ristorante:
+                                        <strong>{{ Restaurant.name }}</strong>
+                                    </h5>
+                                    <h5 class="card-title">
+                                        città ristorante:
+                                        <strong>{{ Restaurant.city }}</strong>
+                                    </h5>
+
+                                    <a href="#" class="btn btn-primary">show</a>
+                                </div>
                             </div>
                         </div>
                     </div>

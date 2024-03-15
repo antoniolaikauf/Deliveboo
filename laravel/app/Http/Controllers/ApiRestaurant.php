@@ -25,13 +25,19 @@ class ApiRestaurant extends Controller
         ]);
     }
 
-    public function TypesSelected($id)
+    public function TypesSelected(Request $request)
     {
-        $accessories = Type::find($id);
-        $types_restaurants = $accessories->restaurants;
+        $data = $request->all();
+        $container = [];
+        for ($i = 0; $i < count($data); $i++) {
+            $data[$i] = $data[$i] + 1;
+            $accessories = Type::find($data[$i]);
+            $types_restaurants = $accessories->restaurants;
+            array_push($container, $types_restaurants);
+        }
         return response()->json([
-            'riuscito' => 'collegamento riuscito',
-            'risposta' => $types_restaurants,
+            'risposta' => $container,
         ]);
     }
+
 }
