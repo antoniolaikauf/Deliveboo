@@ -109,7 +109,24 @@
                                     <input id="img" type="file" class="form-control" name="img">
                                 </div>
                             </div>
+                            <div class="mb-4 d-flex">
+                                <label for="type"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Tipo di cucina') }}</label>
+                                <div>
+                                    @foreach ($types as $type)
+                                        <div>
+                                            <input type="checkbox"class="form-check-input" name="types[]"
+                                                value="{{ $type->id }}" id="type{{ $type->id }}">
+                                            <label for="type{{ $type->id }}">{{ $type->name }}</label>
+                                            <br>
+                                        </div>
+                                    @endforeach
 
+                                </div>
+
+
+
+                            </div>
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
