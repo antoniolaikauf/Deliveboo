@@ -27,8 +27,8 @@ export default {
         <div class="alt">
             <ComponentMap />
         </div>
-        <TypeRestaurant />
     </div>
+    <TypeRestaurant />
     <ComponentSliderReview />
     <ComponentPartner />
 </template>
