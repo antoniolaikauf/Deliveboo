@@ -26,7 +26,7 @@
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm p-0 bg-dark">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center p-0" href="{{ url('/') }}">
                     <div class="logo_laravel">
@@ -49,7 +49,7 @@
                 </button> --}} -->
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <a href="http://localhost:5174">Home</a>
+                    <a href="http://localhost:5174" class="btn btn-primary me-3 p-2 border-0">Home</a>
                     <!-- Left Side Of Navbar -->
                     <!-- {{-- <ul class="navbar-nav me-auto">
                         <li class="nav-item">
@@ -62,16 +62,16 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link btn btn-primary mx-3 border-0" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link btn btn-primary border-0" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle btn btn-primary border-0 " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -107,10 +107,11 @@
     .btn-primary {
         background-color: #00CCBC;
         border: white 1px solid;
+        color: white;
     }
 
     .btn-primary:hover {
-        background-color: unset;
+        background-color: white;
         color: black;
     }
 

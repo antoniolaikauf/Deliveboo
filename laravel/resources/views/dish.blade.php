@@ -6,33 +6,38 @@
         <div class="col-12">
             @auth
             <div class="text-center">
-                <div>
-                    ecco tutti i tuoi piatti
+                <h2>
+                    tutti i suoi piatti che dispone sulla piattaforma
                     {{ Auth::user()->name }}
-                </div>
+                </h2>
                 <a href="{{route('dish.create')}}" class="btn btn-primary my-3">Create</a>
             </div>
             @endauth
         </div>
         <div class="col-12 d-flex flex-wrap">
             @foreach ($dishes as $dish)
-            
+
             @if (Auth::check() && Auth::id() === $dish->user_id)
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $dish->name }}</h5>
+            <div class="col-6 p-4">
+                <div class="card card-restaurant">
+                    <div class="card-body text-center ">
+                        <h5 class="card-title">Nome piatto <strong>{{ $dish->name }}</strong></h5>
                         <p class="card-text">{{ $dish->description }}</p>
-                        <div>{{$dish->price}}</div>
+                        <div class="my-2">presso piatto <strong>{{$dish->price}}&#128;</strong></div>
                         <div>
                             <div>
                                 @if($dish->available)
                                 <div>
-                                    disponibile
+                                    <span class="bg-success p-2 rounded ">
+
+                                        piatto disponibile
+                                    </span>
                                 </div>
                                 @else
                                 <div>
-                                    non disponibile
+                                    <span class="bg-danger p-2 rounded">
+                                        piatto non disponibile
+                                    </span>
                                 </div>
                                 @endif
                             </div>
@@ -64,5 +69,13 @@
         </div>
     </div>
     <style>
+        .card-restaurant {
+            border: #00CCBC 1px solid;
+            transition: transform 0.5s ease;
+        }
+
+        .card-restaurant:hover {
+            transform: scale(1.05);
+        }
     </style>
     @endsection
