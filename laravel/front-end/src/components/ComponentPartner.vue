@@ -38,7 +38,7 @@ export default {
                                         </div>
 
                                         <div>
-                                            <span>Registrati</span>
+                                            <span>Registrati o Accedi</span>
                                         </div>
                                     </button></a>
                             </div>
@@ -60,11 +60,11 @@ export default {
                                     godi della tua serie o film preferito,
                                     rendendo l'esperienza di ordinare cibo o
                                     prodotti ancora più piacevole e senza
-                                    stress.
+                                    stress, anche senza registrarti.
                                 </b>
                             </p>
 
-                            <div>
+                            <!-- <div>
                                 <router-link :to="{ name: 'Login' }">
                                     <button class="d-flex btn-boo">
                                         <div class="mx-3">
@@ -76,7 +76,7 @@ export default {
                                         </div>
                                     </button>
                                 </router-link>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
