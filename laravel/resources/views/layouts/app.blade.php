@@ -14,9 +14,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
@@ -107,55 +105,66 @@
 </body>
 
 <style>
-/* Button styles */
-.buttons {
-    border-radius: 7px;
-}
-
-.buttons:hover {
-    border: 1px;
-    -webkit-box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
-    -moz-box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
-    box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
-}
-
-a{
-    text-decoration: none;
-    color: black;
-}
-
-/* Stile per il primo pulsante */
-.btn-boo {
-    padding: 5px 15px;
-    border-radius: 7px;
-    border: none;
-    background-color: white;
-}
-
-.btn-boo:hover {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-
-.collapse:not(.show) {
-    display: flex;
-}
-
-i{
-    color: #22cdd0;
-}
-
-.navbar > .container{
-    flex-wrap: nowrap;
-}
-
-@media screen and (max-width: 769px) {
-    .navbar-nav{
-        flex-direction: row;
+    /* Button styles */
+    .buttons {
+        border-radius: 7px;
     }
-}
 
+    .buttons:hover {
+        border: 1px;
+        -webkit-box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+        -moz-box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+        box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    /* Stile per il primo pulsante */
+    .btn-boo {
+        padding: 5px 15px;
+        border-radius: 7px;
+        border: none;
+        background-color: white;
+    }
+
+    .btn-boo:hover {
+        background-color: #f0f0f0;
+        color: #333;
+    }
+
+
+    .collapse:not(.show) {
+        display: flex;
+    }
+
+    i {
+        color: #22cdd0;
+    }
+
+    .navbar>.container {
+        flex-wrap: nowrap;
+    }
+
+    @media screen and (max-width: 769px) {
+        .navbar-nav {
+            flex-direction: row;
+        }
+    }
+
+    /* // cambio della largezza della barra scorrimento */
+    ::-webkit-scrollbar {
+        width: 13px;
+    }
+
+    /* // cambio contenuto della barra di scorrimento */
+    ::-webkit-scrollbar-thumb {
+        border: 4px solid rgba(0, 0, 0, 0);
+        border-radius: 50px;
+        background-color: #00CCBC;
+    }
 </style>
 
 </html>
