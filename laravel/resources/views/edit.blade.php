@@ -37,11 +37,11 @@
         </div> -->
     <div>
         <select name="available" id="available">
-            <option value="1" @if( $dish->available===1)
+            <option value="1" @if( $dish->available==1)
                 selected
                 @endif
                 >disponibile</option>
-            <option value="0" @if( $dish->available===0)
+            <option value="0" @if( $dish->available==0)
                 selected
                 @endif>non disponibile</option>
         </select>
