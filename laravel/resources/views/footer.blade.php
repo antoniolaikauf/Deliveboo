@@ -1,7 +1,5 @@
 
-<h1>CIAO SONO IL FOOTER</h1>
-
-<!-- {{-- <div class="container-fluid gx-0 bg_footer">
+<div class="container-fluid gx-0 bg_footer">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-lg-3">
@@ -85,47 +83,38 @@
     </div>
 </div>
 
-<style lang="scss">
+<style>
 
-    .bg_footer {
-        background-color: rgb(48, 49, 49);
+.bg_footer {
+    background-color: rgb(48, 49, 49);
+}
 
-        .card {
-            background-color: grey;
-            min-height: 400px;
-            margin: 30px 0;
-            padding: 20px;
+.bg_footer .card {
+    background-color: grey;
+    min-height: 400px;
+    margin: 30px 0;
+    padding: 20px;
+}
 
-            h6 {
-                margin-top: 15px;
+.bg_footer .card h6 {
+    margin-top: 15px;
+}
 
-            }
+.bg_footer .card a {
+    color: white;
+    text-decoration: none;
+}
 
+.bg_footer .card a:hover {
+    color: rgb(59, 170, 170);
+}
 
-            a {
-                    color: white;
-                    text-decoration: none;
+.bg_footer .card img {
+    width: 180px;
+}
 
-
-                }
-
-                a:hover {
-                        color: rgb(59, 170, 170);
-                    }
-
-            img {
-                width: 180px;
-            }
-        }
-
-        .social {
-            a {
-                margin-right: 10px;
-                font-size: 20px;
-            }
-
-
-        }
-
-    }
-    </style> --}} -->
+.bg_footer .social a {
+    margin-right: 10px;
+    font-size: 20px;
+}
+    </style>
