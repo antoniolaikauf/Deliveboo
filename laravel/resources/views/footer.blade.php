@@ -1,4 +1,5 @@
 
+
 <div class="container-fluid gx-0 bg_footer">
     <div class="container">
         <div class="row">
@@ -49,16 +50,8 @@
             <div class="col-md-6 col-lg-3">
                 <div class="card">
                     <h5 class="text-white">Porta Deliveboo con te</h5>
-                    <a class="mb-3" href="#"
-                        ><img
-                            src="/public/180px-Download_on_the_App_Store_Badge_IT_RGB_blk.svg.png"
-                            alt="AppStore"
-                    /></a>
-                    <a href="#"
-                        ><img
-                            src="/public/google_play_store_badge_it.svg_.png"
-                            alt="GooglePlay"
-                    /></a>
+                    <a class="mb-3" href="#"><img src="{{ asset('imgs/180px-Download_on_the_App_Store_Badge_IT_RGB_blk.svg.png') }}" alt="AppStore"></a>
+                    <a href="#"><img src="{{ asset('imgs/google_play_store_badge_it.svg_.png') }}" alt="GooglePlay"></a>
                 </div>
             </div>
         </div>
