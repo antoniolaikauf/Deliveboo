@@ -20,8 +20,8 @@ Route::get('/', [RestaurantController::class, 'index'])->name('dish.index');
 
 
 
-// commentata cosi non porta in dashbord dopo aver fatto il log 
-// e spostata ->middleware(['auth', 'verified']) in index 
+// commentata cosi non porta in dashbord dopo aver fatto il log
+// e spostata ->middleware(['auth', 'verified']) in index
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
 
     // ROTTE UPDATE
     Route::put('/dish/{id}', [RestaurantController::class, 'update'])->name('dish.update');
+
+
+    //ROTTA DASHBOARD
+    Route::get('/dashboard', [RestaurantController::class, 'dashboard'])->name('dashboard');
 });
 
 

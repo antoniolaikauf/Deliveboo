@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Dish;
 use App\Models\User;
+use App\Models\Restaurant;
 
 class RestaurantController extends Controller
 {
@@ -132,5 +133,18 @@ class RestaurantController extends Controller
         $dish->delete();
 
         return redirect()->route('dish.index');
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard()
+    {
+
+        $restaurants = Restaurant::all();
+
+        return view('dashboard', compact('restaurants'));
     }
 }
