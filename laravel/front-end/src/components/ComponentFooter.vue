@@ -12,15 +12,15 @@ export default {
                     <div class="card">
                         <h5 class="text-white">Scopri Deliveboo</h5>
                         <div>
-                            <h6><a href="#">Investitori</a></h6>
+                            <h6><a href="https://www.youtube.com/@mattiaruta">Investitori</a></h6>
                             <h6><a href="#">Chi siamo</a></h6>
-                            <h6><a href="#">Ristoranti</a></h6>
+                            <h6><a href="http://localhost:5174">Ristoranti</a></h6>
                             <h6><a href="#">Altro</a></h6>
                             <h6><a href="#">Pressroom</a></h6>
-                            <h6><a href="#">Programmazione</a></h6>
+                            <h6><a href="https://boolean.careers/">Programmazione</a></h6>
                             <h6><a href="#">Design</a></h6>
-                            <h6><a href="#">Lavora con noi</a></h6>
-                            <h6><a href="#">Diventa nostro partner</a></h6>
+                            <h6><a href="https://boolean.careers/">Lavora con noi</a></h6>
+                            <h6><a href="https://tinder.com/it">Diventa nostro partner</a></h6>
                         </div>
                     </div>
                 </div>
@@ -33,12 +33,6 @@ export default {
                             <h6><a href="#">Ristoranti</a></h6>
                             <h6><a href="#">Cookies</a></h6>
                             <h6><a href="#">Classificazione dei partner</a></h6>
-                            <h6>
-                                <a href="#"
-                                    >Richieste da parte delle Autorità
-                                    Pubbliche</a
-                                >
-                            </h6>
                         </div>
                     </div>
                 </div>
@@ -55,12 +49,12 @@ export default {
                 <div class="col-md-6 col-lg-3">
                     <div class="card">
                         <h5 class="text-white">Porta Deliveboo con te</h5>
-                        <a class="mb-3" href="#"
+                        <a class="mb-3" href="https://www.apple.com/it/app-store/"
                             ><img
                                 src="/public/180px-Download_on_the_App_Store_Badge_IT_RGB_blk.svg.png"
                                 alt="AppStore"
                         /></a>
-                        <a href="#"
+                        <a href="https://play.google.com/store/games?hl=it&gl=US&pli=1"
                             ><img
                                 src="/public/google_play_store_badge_it.svg_.png"
                                 alt="GooglePlay"

@@ -70,7 +70,7 @@ class RestaurantSeeder extends Seeder
                 'name' => 'La Mia Patong',
                 'city' => 'Gubbio',
                 'piva' => '56789012345',
-                'img' => 'https://images.pexels.com/photos/12876414/pexels-photo-12876414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                'img' => '../../public/imgs/PatongRestaurant.jpeg',
                 'id' => 6,
                 'user_id' => 6,
             ],
