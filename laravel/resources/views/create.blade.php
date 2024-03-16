@@ -128,8 +128,8 @@
             let nameValue = nameInput.value.trim();
 
             // Verifica la lunghezza minima
-            if (nameValue.length < 3) {
-                nameInput.setCustomValidity("Il nome deve essere di almeno 3 caratteri");
+            if (nameValue.length < 5) {
+                nameInput.setCustomValidity("Il nome deve essere di almeno 5 caratteri");
             }
             // Verifica la lunghezza massima
             else if (nameValue.length > 50) {
