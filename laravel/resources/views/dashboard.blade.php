@@ -34,7 +34,7 @@
                 @endif
             @endforeach
             <div>
-                <a href="http://localhost:8000" class="my-4">Vai al tuo menù</a>
+                <a href="http://localhost:8000" class="my-4 link-dashboard">Vai al tuo menù</a>
             </div>
         </div>
     </div>
@@ -45,14 +45,14 @@
             object-fit: cover;
         }
 
-        a {
+        .link-dashboard {
             padding: 7px;
             border: 1px solid black;
             border-radius: 5px;
             width: 200px;
         }
 
-        a:hover {
+        .link-dashboard:hover {
             border: 1px solid #22cdd0;
         }
     </style>
