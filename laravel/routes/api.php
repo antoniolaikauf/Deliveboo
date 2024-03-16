@@ -21,9 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => '/v1'], function () {
-
+    // chiamata per ottenere i type
     route::get('types', [ApiRestaurant::class, 'TypeRestaurants']);
-
-    // route::get('types/{id}', [ApiRestaurant::class, 'TypesSelected']);
+    // chiamata per ottenere i ristoranti 
     route::post('types/select', [ApiRestaurant::class, 'TypesSelected']);
 });

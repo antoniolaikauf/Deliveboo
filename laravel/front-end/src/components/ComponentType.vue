@@ -9,10 +9,11 @@ export default {
             arrayTypes: [],
             // array con dentro tutti i ristoranti
             restaurants: [],
-            // variabile per mostrare risrtoranti
+            // variabile per mostrare ristoranti
             showRestaurant: false,
+            // array di input checked
             checked: [],
-
+            // restaurants selezionati dall'utente
             arrayRestaurantsSelect: "",
         };
     },
@@ -23,6 +24,7 @@ export default {
             axios
                 .post("http://localhost:8000/api/v1/types/select", this.checked)
                 .then((risposta) => {
+                    // controllo se non ritorna niente
                     if (risposta.data.risposta.length === 0) {
                         this.showRestaurant = false;
                     }
@@ -53,20 +55,31 @@ export default {
 <template>
     <div class="container-fluid my-5">
         <div class="row">
-            <form @submit.prevent="takevalue()">
-                <div class="form-check" v-for="(type, i) in arrayTypes">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        :value="i"
-                        :id="i"
-                        v-model="checked"
-                    />
-                    <label class="form-check-label" :for="i">
-                        {{ type.name }}
-                    </label>
+            <form @submit.prevent="takevalue()" class="px-5">
+                <div class="d-flex flex-wrap">
+                    <div
+                        class="form-check col-12 col-md-2"
+                        v-for="(type, i) in arrayTypes"
+                    >
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            :value="i"
+                            :id="i"
+                            v-model="checked"
+                        />
+                        <label class="form-check-label" :for="i">
+                            {{ type.name }}
+                        </label>
+                    </div>
                 </div>
-                <button type="submit">Invia</button>
+                <div class="d-flex justify-content-center my-4">
+                    <button type="submit" class="btn-boo mx-3 border">
+                        <div>
+                            <span>cerca</span>
+                        </div>
+                    </button>
+                </div>
             </form>
             <!-- div contenente tutti i ristoranti nel database -->
             <div v-if="!showRestaurant" class="row my-3">
@@ -74,7 +87,7 @@ export default {
                 <div
                     v-for="(restaurant, i) in restaurants"
                     :key="i"
-                    class="col-4 card-restaurant p-5"
+                    class="col-12 col-md-6 col-xl-4 card-restaurant p-5"
                 >
                     <div class="card">
                         <img
@@ -103,7 +116,7 @@ export default {
                 >
                     <div class="row p-3">
                         <div
-                            class="col-4 card-restaurant p-5"
+                            class="col-12 col-md-6 col-xl-4 card-restaurant p-5"
                             v-for="(Restaurant, i) in RestaurantsSelect"
                         >
                             <div class="card">

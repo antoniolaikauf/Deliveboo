@@ -13,7 +13,7 @@ class ApiRestaurant extends Controller
 {
     public function TypeRestaurants()
     {
-
+        // ottieni tutti i ristoranti e type
         $types = Type::all();
         $restaurants = Restaurant::all();
 
@@ -27,8 +27,10 @@ class ApiRestaurant extends Controller
 
     public function TypesSelected(Request $request)
     {
+        // ottieni i ristoranti selezionati dall'utente
         $data = $request->all();
         $container = [];
+        // trova tutti i ristoratori e li associa con le types 
         for ($i = 0; $i < count($data); $i++) {
             $data[$i] = $data[$i] + 1;
             $accessories = Type::find($data[$i]);
@@ -39,5 +41,4 @@ class ApiRestaurant extends Controller
             'risposta' => $container,
         ]);
     }
-
 }
