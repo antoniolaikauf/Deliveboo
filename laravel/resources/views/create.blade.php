@@ -66,11 +66,11 @@
 
                 <div class="input-group my-3 gap-3">
                     <label for="img">Inserisci un immagine:</label>
-                    <input type="file" name="img" id="img" class="form-control" accept="image/">
+                    <input type="file" name="img" id="img" required class="form-control" accept="image/">
                 </div>
 
                 <div class="text-center ">
-                    <input type="submit" value="CREA PIATTO" class="btn-boo buttons">
+                    <input type="submit"  value="CREA PIATTO" class="btn-boo buttons">
                 </div>
 
 
@@ -128,8 +128,8 @@
             let nameValue = nameInput.value.trim();
 
             // Verifica la lunghezza minima
-            if (nameValue.length < 3) {
-                nameInput.setCustomValidity("Il nome deve essere di almeno 3 caratteri");
+            if (nameValue.length < 5) {
+                nameInput.setCustomValidity("Il nome deve essere di almeno 5 caratteri");
             }
             // Verifica la lunghezza massima
             else if (nameValue.length > 50) {

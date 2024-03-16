@@ -26,9 +26,10 @@
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm p-0 bg-dark">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm p-0">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center p-0" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex align-items-center p-0" href="http://localhost:5174/">
+                     {{-- {{ url('/') }} --}}
                     <div class="logo_laravel">
                         <!-- <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg"
                             style="width: 150px"> -->
@@ -49,10 +50,10 @@
                 </button> --}} -->
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <div>
+                    {{-- <div>
 
                         <a href="http://localhost:5174" class="buttons btn-boo me-3 p-2 border-0"> <i class="fa-solid fa-house color"></i> Home</a>
-                    </div>
+                    </div> --}}
                     <!-- Left Side Of Navbar -->
                     <!-- {{-- <ul class="navbar-nav me-auto">
                         <li class="nav-item">
@@ -64,6 +65,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                        
                         <li class="nav-item">
                             <a class="nav-link buttons btn-boo mx-3 border-0" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i> {{ __('Accedi') }}</a>
                         </li>
@@ -77,26 +79,26 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle buttons btn-boo border-0 " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
+                            
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                
                             </div>
                         </li>
+                        <a class="buttons btn-boo me-3 p-2 border-0" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();"> <i class="fa-solid fa-house color"></i>
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
+        
         <main class="">
             @yield('content')
         </main>
@@ -109,6 +111,9 @@
 </body>
 
 <style>
+    .navbar{
+        background: black;
+    }
     /* Button styles */
     .buttons {
         border-radius: 7px;
