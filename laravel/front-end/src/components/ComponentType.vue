@@ -30,6 +30,34 @@ export default {
                     }
 
                     this.arrayRestaurantsSelect = risposta.data.risposta;
+                    setTimeout(() => {
+                        const carousels =
+                            document.querySelectorAll(".mySwiper");
+                        for (let i = 0; i < carousels.length; i++) {
+                            var swiper = new Swiper(carousels[i], {
+                                centeredSlides: true,
+                                loop: true,
+                                autoplay: {
+                                    delay: 2500,
+                                    disableOnInteraction: false,
+                                },
+                                breakpoints: {
+                                    640: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 20,
+                                    },
+                                    768: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 20,
+                                    },
+                                    1024: {
+                                        slidesPerView: 5,
+                                        spaceBetween: 20,
+                                    },
+                                },
+                            });
+                        }
+                    }, 500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -104,39 +132,58 @@ export default {
                                 città ristorante:
                                 <strong>{{ restaurant.city }}</strong>
                             </h5>
-                            <a href="#" class="btn btn-primary">show</a>
+                            <div
+                                class="btn-group"
+                                role="group"
+                                aria-label="Basic example"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn-boo mx-3 border"
+                                >
+                                    dettagli
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div v-if="showRestaurant">
+            <!-- vedere se tenerla o no questa altezza -->
+            <div style="min-height: 300px">
                 <div
-                    class="col-12"
                     v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
+                    class="my-5"
+                    style="height: 350px"
                 >
-                    <div class="row p-3">
-                        <div
-                            class="col-12 col-md-6 col-xl-4 card-restaurant p-5"
-                            v-for="(Restaurant, i) in RestaurantsSelect"
-                        >
-                            <div class="card">
-                                <img
-                                    :src="Restaurant.img"
-                                    class="card-img-top img-restaurants"
-                                    :alt="i"
-                                />
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        nome ristorante:
-                                        <strong>{{ Restaurant.name }}</strong>
-                                    </h5>
-                                    <h5 class="card-title">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div
+                                class="swiper-slide d-block border rounded"
+                                v-for="(Restaurant, i) in RestaurantsSelect"
+                            >
+                                <div class="p-2">
+                                    <h5>
                                         città ristorante:
                                         <strong>{{ Restaurant.city }}</strong>
                                     </h5>
-
-                                    <a href="#" class="btn btn-primary">show</a>
+                                    <h5>
+                                        città name:
+                                        <strong>{{ Restaurant.name }}</strong>
+                                    </h5>
                                 </div>
+                                <div
+                                    class="btn-group"
+                                    role="group"
+                                    aria-label="Basic example"
+                                >
+                                    <button
+                                        type="button"
+                                        class="btn-boo mx-3 border"
+                                    >
+                                        dettagli
+                                    </button>
+                                </div>
+                                <img :src="Restaurant.img" :alt="i" />
                             </div>
                         </div>
                     </div>
@@ -146,8 +193,29 @@ export default {
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .img-restaurants {
     height: 300px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 </style>
