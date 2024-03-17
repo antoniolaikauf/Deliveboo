@@ -125,7 +125,7 @@ export default {
                                 <strong> {{ restaurant.name }}</strong>
                             </h5>
                             <h5 class="card-title">
-                                città ristorante:
+                                località:
                                 <strong>{{ restaurant.city }}</strong>
                             </h5>
                             <div
@@ -159,11 +159,11 @@ export default {
                             >
                                 <div class="p-2">
                                     <h5>
-                                        città ristorante:
+                                        località:
                                         <strong>{{ Restaurant.city }}</strong>
                                     </h5>
                                     <h5>
-                                        città name:
+                                        città ristorante:
                                         <strong>{{ Restaurant.name }}</strong>
                                     </h5>
                                 </div>
