@@ -31,23 +31,26 @@
             <div class="col-12 col-lg-6">
                 <div class="card text-center py-4" style="width: 500px">
                     @foreach ($restaurants as $restaurant)
-                    @if (Auth::check() && Auth::id() === $restaurant->user_id)
-                    <h1 class="mb-4">{{ $restaurant->name }}</h1>
-                    <div class="img">
-                        <img src="{{ asset('storage/' . $restaurant->img) }}" alt="{{ $restaurant->name }}">
-                    </div>
-                    @endif
+                        @if (Auth::check() && Auth::id() === $restaurant->user_id)
+                            <h1 class="mb-4">{{ $restaurant->name }}</h1>
+                            <div class="img">
+                                <img src="{{ asset('storage/' . $restaurant->img) }}" alt="{{ $restaurant->name }}">
+                            </div>
+                        @endif
                     @endforeach
                 </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-4">
-                    <div>
-                        <a href="http://localhost:8000" class="my-4 link-dashboard">Entra nel tuo menù</a>
-                    </div>
             </div>
+            <div class="col-12 col-lg-6 mt-4">
+                <div>
+                    <a href="http://localhost:8000" class="my-4 link-dashboard">Entra nel tuo menù</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
             <style>
-
-
                 .link-dashboard {
                     padding: 16px 45px;
                     border: 5px solid black;
