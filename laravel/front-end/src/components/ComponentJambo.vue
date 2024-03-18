@@ -9,7 +9,6 @@ export default {
         <div class="jumbotron">
             <video autoplay loop muted playsinline class="background-clip">
                 <source src="/public/preparingdeliveboo.mp4" type="video/mp4" />
-                <!-- cidooododdood -->
             </video>
             <div class="description text-white">
                 <h1>
