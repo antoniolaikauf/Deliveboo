@@ -8,11 +8,20 @@ export default {
     <div class="container-fluid gx-0">
         <div class="jumbotron">
             <video autoplay loop muted playsinline class="background-clip">
-                <source src="/public/preparingdeliveboo.mp4" type="video/mp4">
+                <source src="/public/preparingdeliveboo.mp4" type="video/mp4" />
+                <!-- cidooododdood -->
             </video>
             <div class="description text-white">
-                <h1>I piatti dei ristoranti che ami <br> e la spesa, a domicilio </h1>
-                <p style="font-size: 25px;">Esplora una vasta varietà di cucine dai migliori ristoranti della tua zona, <br> e goditi il piacere della consegna a domicilio direttamente sul tuo tavolo!</p>
+                <h1>
+                    I piatti dei ristoranti che ami <br />
+                    e la spesa, a domicilio
+                </h1>
+                <p style="font-size: 25px">
+                    Esplora una vasta varietà di cucine dai migliori ristoranti
+                    della tua zona, <br />
+                    e goditi il piacere della consegna a domicilio direttamente
+                    sul tuo tavolo!
+                </p>
             </div>
         </div>
     </div>
@@ -22,7 +31,7 @@ export default {
 .jumbotron {
     position: relative;
     height: 450px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .background-clip {
