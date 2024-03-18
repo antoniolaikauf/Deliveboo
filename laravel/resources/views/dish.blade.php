@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 @auth
-                    <div class="text-center">
+                    <div class="text-center m-4">
                         <h2 class="text-white auth m-4">
                             Ciao, {{ Auth::user()->name }}. Ecco tutti i piatti disponibili nel tuo account.
                         </h2>
@@ -131,7 +131,7 @@
         .bg-img {
             background-image: url(/imgs/8afbf530-609f-4e88-99f1-628c2a9faa63.png);
             background-size: cover;
-            height: 100%;
+            height: 100vh;
             width: 100%;
         }
 
