@@ -97,10 +97,10 @@ export default {
 
 <template>
     <section class="py-4 mb-5">
-        <div class="container-fluid">
+        <div class="container-fluid bg-dark">
 
             <div class="row">
-                <form @submit.prevent="takevalue()" class="px-5 bg-dark pt-3">
+                <form @submit.prevent="takevalue()" class="px-5  pt-3">
                     <h1 class="text-white text-center m-5">Ecco una varietà di opzioni tra cui puoi scegliere, <br> seleziona la tipologia che ti interessa e esplora ulteriori dettagli!</h1>
                     <div class="d-flex flex-wrap">
                         <div
