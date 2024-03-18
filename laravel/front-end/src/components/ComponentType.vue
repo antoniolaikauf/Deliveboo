@@ -32,8 +32,8 @@ export default {
                     this.arrayRestaurantsSelect = risposta.data.risposta;
                     console.log(this.arrayRestaurantsSelect);
                     setTimeout(() => {
-                        const carousels =
-                            document.querySelectorAll(".mySwiper");
+                        let carousels = document.querySelectorAll(".mySwiper");
+
                         for (let i = 0; i < carousels.length; i++) {
                             var swiper = new Swiper(carousels[i], {
                                 centeredSlides: true,
@@ -54,6 +54,8 @@ export default {
                                 },
                             });
                         }
+
+                        console.log(carousels);
                     }, 500);
                 })
                 .catch((err) => {
@@ -68,6 +70,7 @@ export default {
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
+                console.log(this.restaurants);
                 console.log(this.arrayTypes);
             })
             .catch((err) => {
@@ -78,24 +81,27 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid gx-0 my-5">
+    <div class="container-fluid my-5">
         <div class="row">
             <form @submit.prevent="takevalue()" class="px-5">
                 <div class="d-flex flex-wrap">
                     <div
-                        class="form-check col-12 col-md-2 checkbox-type"
+                        class="form-check col-12 col-lg-2"
                         v-for="(type, i) in arrayTypes"
                     >
-                        <input
-                            class="form-check-inputp"
-                            type="checkbox"
-                            :value="i"
-                            :id="i"
-                            v-model="checked"
-                        />
-                        <label class="form-check-label" :for="i">
-                            {{ type.name }}
-                        </label>
+                        <div class="my-2 checkbox-type ps-5">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                :value="i"
+                                :id="i"
+                                v-model="checked"
+                            />
+
+                            <label :for="i" class="form-check-label">
+                                {{ type.name }}
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center my-4">
@@ -107,7 +113,8 @@ export default {
                 </div>
             </form>
             <!-- div contenente tutti i ristoranti nel database -->
-            <div v-if="!showRestaurant" class="row my-3">
+            <!-- VEDERE E TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
+            <!-- <div v-if="!showRestaurant" class="row my-3">
                 <h2 class="text-center">Ristoranti Disponibili</h2>
                 <div
                     v-for="(restaurant, i) in restaurants"
@@ -129,6 +136,14 @@ export default {
                                 località:
                                 <strong>{{ restaurant.city }}</strong>
                             </h5>
+                            <h5>
+                                <div v-for="(type, i) in restaurant.types">
+                                    genere:
+                                    <strong>
+                                        {{ type.name }}
+                                    </strong>
+                                </div>
+                            </h5>
 
                             <div
                                 class="btn-group"
@@ -145,38 +160,38 @@ export default {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- vedere se tenerla o no questa altezza -->
-            <div style="min-height: 300px">
+            <div class="container-carousel">
                 <div
                     v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                     class="my-5"
-                    style="height: 350px"
+                    style="height: 400px"
                 >
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             <div
-                                class="swiper-slide d-block border rounded"
+                                class="swiper-slide d-block border rounded shadow"
                                 v-for="(Restaurant, i) in RestaurantsSelect"
                             >
-                                <div class="p-2">
-                                    <h5>
-                                        località:
-                                        <strong>{{ Restaurant.city }}</strong>
-                                    </h5>
-                                    <h5>
-                                        città ristorante:
+                                <div class="p-2 text-start">
+                                    <h3>
                                         <strong>{{ Restaurant.name }}</strong>
+                                    </h3>
+                                    <h5 class="locality">
+                                        <i class="fa-solid fa-city"></i>
+                                        località:
+                                        {{ Restaurant.city }}
                                     </h5>
-                                    <h5>
+                                    <h5 class="type">
+                                        <i class="fa-solid fa-bowl-food"></i>
                                         genere:
-                                        <strong>
-                                            {{
-                                                arrayTypes[
-                                                    Restaurant.pivot.type_id - 1
-                                                ].name
-                                            }}</strong
-                                        >
+
+                                        {{
+                                            arrayTypes[
+                                                Restaurant.pivot.type_id - 1
+                                            ].name
+                                        }}
                                     </h5>
                                     <div
                                         class="btn-group"
@@ -185,13 +200,16 @@ export default {
                                     >
                                         <button
                                             type="button"
-                                            class="btn-boo mx-3 border"
+                                            class="btn-boo ms-2 border"
                                         >
                                             dettagli
                                         </button>
                                     </div>
                                 </div>
-                                <img :src="Restaurant.img" :alt="i" />
+                                <div class="container-img">
+                                    <div>Consegna Gratuita</div>
+                                    <img :src="Restaurant.img" :alt="i" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -202,13 +220,32 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.img-restaurants {
-    height: 300px;
-}
+// .img-restaurants {
+//     height: 300px;
+// }
 
 .swiper {
     width: 100%;
     height: 100%;
+    .container-img {
+        position: relative;
+        div {
+            padding: 8px 8px 8px 0px;
+            top: 10px;
+            position: absolute;
+            background-color: rgb(255, 0, 0);
+            color: white;
+        }
+    }
+    .locality {
+        color: rgb(64, 64, 255);
+        i {
+            color: orange;
+        }
+    }
+    .type {
+        color: rgb(255, 83, 83);
+    }
 }
 
 .swiper-slide {
@@ -227,10 +264,17 @@ export default {
     object-fit: cover;
 }
 
-// @media all and (max-width: 720px) {
-//     .checkbox-type {
-//         display: flex;
-//         justify-content: center;
-//     }
-// }
+.checkbox-type {
+    padding: 5px 15px;
+    border-radius: 7px;
+    background-color: #f0f0f0;
+    border: 1px;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+    box-shadow: 0px 0px 6px 0px rgba(45, 255, 196, 1);
+    .form-check-input:checked {
+        background-color: #00ccbc;
+        border-color: #00ccbc;
+    }
+}
 </style>

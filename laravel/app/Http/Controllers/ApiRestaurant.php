@@ -15,7 +15,7 @@ class ApiRestaurant extends Controller
     {
         // ottieni tutti i ristoranti e type
         $types = Type::all();
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::With('types')->get();
 
 
         return response()->json([
