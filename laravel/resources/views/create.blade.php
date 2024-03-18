@@ -3,93 +3,127 @@
 <div class="container-fluid bg-sfondo p-5">
     <div class="row justify-content-center py-5">
         <div class="col-6 p-4 form-create  text-white">
-            <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
 
-                @csrf
-                @method('POST')
+            <div class="container form-bg">
 
-                {{-- @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif --}}
+                    <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
+
+                        @csrf
+                        @method('POST')
+
+                        {{-- @if ($errors->any())
+                            <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif --}}
 
 
-                <div class="d-flex align-items-center flex-column gap-3">
-                    <label class="label-style-create" for="name">Nome del piatto</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nome piatto" name="name" required id="name" aria-label="Username" aria-describedby="basic-addon1">
-                    @error('name')
+                    <div class="d-flex align-items-center flex-column gap-3">
+                        <label class="label-style-create" for="name">Nome del piatto</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nome piatto" name="name" required id="name" aria-label="Username" aria-describedby="basic-addon1">
+                        @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
+                        @enderror
+                    </div>
+
+                    {{-- DESCRIZIONE --}}
+                    <div class="d-flex align-items-center flex-column my-3 gap-3">
+                        <label class="label-style-create" for="description">Inserire descrizione del piatto</label>
+                        <textarea class="form-control @error('description') is-invalid @enderror" aria-label="With textarea" placeholder="Inserisci la descrizione" name="description" required id="description"></textarea>
+                        @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="d-flex align-items-center flex-column gap-3">
+                            <label class="label-style-create" for="price">Inserire prezzo del piatto creato </label>
+                            <input type="number" name="price" required id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il prezzo">
+                            @error('price')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="d-flex align-items-center flex-column my-3 gap-3">
+                            <label class="label-style-create" for="available">Seleziona la disponibilità del piatto</label>
+                            <select name="available" id="available" class="form-select @error('available') is-invalid @enderror" aria-label="Default select example">
+                                <option value="" selected disabled hidden>Scegli disponibilità</option>
+                                <option value="1">disponibile</option>
+                                <option value="0">non disponibile</option>
+                            </select>
+                            @error('available')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="d-flex align-items-center flex-column my-3 gap-3">
+                            <label class="label-style-create" for="img">Inserisci un immagine:</label>
+                            <input type="file" name="img" id="img" required class="form-control" accept="image/">
+                        </div>
+
+                        <div class="text-center ">
+                            <input type="submit"  value="CREA PIATTO" class=" button-create">
+                        </div>
+
+
+                    </form>
                 </div>
-
-                {{-- DESCRIZIONE --}}
-                <div class="d-flex align-items-center flex-column my-3 gap-3">
-                    <label class="label-style-create" for="description">Inserire descrizione del piatto</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" aria-label="With textarea" placeholder="Inserisci la descrizione" name="description" required id="description"></textarea>
-                    @error('description')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="d-flex align-items-center flex-column gap-3">
-                    <label class="label-style-create" for="price">Inserire prezzo del piatto creato </label>
-                    <input type="number" name="price" required id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il prezzo">
-                    @error('price')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="d-flex align-items-center flex-column my-3 gap-3">
-                    <label class="label-style-create" for="available">Seleziona la disponibilità del piatto</label>
-                    <select name="available" id="available" class="form-select @error('available') is-invalid @enderror" aria-label="Default select example">
-                        <option value="" selected disabled hidden>Scegli disponibilità</option>
-                        <option value="1">disponibile</option>
-                        <option value="0">non disponibile</option>
-                    </select>
-                    @error('available')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="d-flex align-items-center flex-column my-3 gap-3">
-                    <label class="label-style-create" for="img">Inserisci un immagine:</label>
-                    <input type="file" name="img" id="img" required class="form-control" accept="image/">
-                </div>
-
-                <div class="text-center ">
-                    <input type="submit"  value="CREA PIATTO" class="btn-boo buttons">
-                </div>
-
-
-            </form>
+            </div>
         </div>
-    </div>
 </div>
 
 <style>
+    /* STILE FORM */
+    .form-bg {
+        background-color: #292929;
+        padding: 40px;
+        border-radius: 17px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        transform: translateY(10px);
+    }
 
-    .label-style-create{
-        background-color: #22cdd0;
-        padding: 4px 11px;
-        border-radius: 10px
+    .form-control {
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) inset;
+        background-color: transparent;
+        color: #ffffff;
+    }
+
+    .form-control::placeholder {
+        color: #ffffff;
+    }
+
+    .form-select{
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) inset;
+        background-color: transparent;
+        color: #ffffff;
+    }
+
+    .form-selectl::placeholder{
+        color: #ffffff;
     }
 
     .form-create {
         border-radius: 15px;
     }
+
+    /* END STILE FORM */
 
     .bg-sfondo {
         height: 700px;
@@ -97,13 +131,22 @@
         background-size: cover;
         height: 100vh;
     }
-    .form-control{
-        width: 450px;
+
+    .button-create {
+        color: black;
+        border: none;
+        padding: 5px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
     }
 
-    .form-select{
-        width: 450px;
+    .button-create:hover {
+        background-color: #22cdd0;
     }
+
+
+
 </style>
 
 <script>
