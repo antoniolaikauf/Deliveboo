@@ -15,7 +15,7 @@ export default {
             checked: [],
             // restaurants selezionati dall'utente
             arrayRestaurantsSelect: "",
-            // variabile controllo select 
+            // variabile controllo select
             control: true,
         };
     },
@@ -37,11 +37,16 @@ export default {
                     }
 
                     this.arrayRestaurantsSelect = risposta.data.risposta;
-                    console.log(this.arrayRestaurantsSelect);
+                    // console.log(this.arrayRestaurantsSelect);
                     setTimeout(() => {
                         let carousels = document.querySelectorAll(".mySwiper");
 
                         for (let i = 0; i < carousels.length; i++) {
+                            // controllo se esiste gia un carousel
+                            if (carousels[i].swiper) {
+                                //    codice per disintegrare il carousel
+                                carousels[i].swiper.destroy(true, true);
+                            }
                             var swiper = new Swiper(carousels[i], {
                                 centeredSlides: true,
                                 loop: true,
@@ -61,8 +66,6 @@ export default {
                                 },
                             });
                         }
-
-                        console.log(carousels);
                     }, 500);
                 })
                 .catch((err) => {
@@ -77,8 +80,8 @@ export default {
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
-                console.log(this.restaurants);
-                console.log(this.arrayTypes);
+                // console.log(this.restaurants);
+                // console.log(this.arrayTypes);
             })
             .catch((err) => {
                 console.log(err);
@@ -182,7 +185,7 @@ export default {
                         v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                         class="my-5"
                     >
-                        <div class="swiper mySwiper" style="height: 450px">
+                        <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <div
                                     class="swiper-slide d-block border rounded shadow"
@@ -245,7 +248,7 @@ export default {
 
 .swiper {
     width: 100%;
-    height: 100%;
+    height: 450px;
     .container-img {
         position: relative;
         height: 100%;
