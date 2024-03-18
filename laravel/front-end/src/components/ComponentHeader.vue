@@ -49,7 +49,7 @@ export default {
                     </router-link>
 
                     <!-- BOTTONE ADVANCE (ricerca) -->
-                    <button
+                    <!-- <button
                         class="d-none d-md-flex btn-boo"
                         type="button"
                         data-bs-toggle="offcanvas"
@@ -65,7 +65,7 @@ export default {
                         </div>
                     </button>
 
-                    <!-- BOTTONE ADVANCE (RESPONSIVE) -->
+                    BOTTONE ADVANCE (RESPONSIVE)
                     <button
                         class="d-flex btn-boo d-md-none"
                         type="button"
@@ -110,15 +110,15 @@ export default {
                                         <i
                                             class="fa-solid fa-utensils color"
                                         ></i>
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <span>Advance</span>
                                     </div>
                                 </button>
-                            </router-link>
-                        </div>
-                    </div>
+                            </router-link> -->
+                        <!-- </div>
+                    </div> -->
                 </div>
             </div>
         </nav>
