@@ -84,7 +84,7 @@
     .label-style-create{
         background-color: #22cdd0;
         padding: 4px 11px;
-        border-radius: 15px
+        border-radius: 10px
     }
 
     .form-create {
