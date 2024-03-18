@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantProfileController extends Controller
 {
@@ -30,11 +31,16 @@ class RestaurantProfileController extends Controller
 
 
         $restaurant = Restaurant::find($id);
+
         $restaurant->user_id = Auth::id();
         $restaurant->name = $data['nome_ristorante'];
         $restaurant->city = $data['city'];
         $restaurant->piva = $data['piva'];
-        $restaurant->img = $data['img'];
+
+        $img = $data['img'];
+        $image_path = Storage :: disk('public') -> put('images', $img);
+        $restaurant->img = $image_path;
+
         $restaurant->save();
 
         $restaurant->types()->attach($request->input('types'));

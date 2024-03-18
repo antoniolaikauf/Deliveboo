@@ -31,55 +31,44 @@
             <div class="col-12 col-lg-6">
                 <div class="card text-center py-4" style="width: 500px">
                     @foreach ($restaurants as $restaurant)
-                    @if (Auth::check() && Auth::id() === $restaurant->user_id)
-                    <h1 class="mb-4">{{ $restaurant->name }}</h1>
-                    <div class="img">
-                        <img src="{{ asset('storage/' . $restaurant->img) }}" alt="{{ $restaurant->name }}">
-                    </div>
-                    @endif
+                        @if (Auth::check() && Auth::id() === $restaurant->user_id)
+                            <h1 class="mb-4">{{ $restaurant->name }}</h1>
+                            <div class="img">
+                                <img src="{{ asset('storage/' . $restaurant->img) }}" alt="{{ $restaurant->name }}">
+                            </div>
+                        @endif
                     @endforeach
+                    <div class="mt-5">
+                        <a href="http://localhost:8000" class="my-4 link-dashboard">Vai al tuo menù</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 mt-4">
-                <div>
-                    <a href="http://localhost:8000" class="my-4 link-dashboard">Entra nel tuo menù</a>
-                </div>
-            </div>
-        </div>
-    </div>
-<style>
-    /* .img img {
-        width: 50%;
-        height: 100%;
-        object-fit: cover;
-    } */
+            <style>
+                .img img {
+                    width: 100%;
+                    max-height: 500px;
+                    object-fit: cover;
+                }
 
-    .link-dashboard {
-        width: 200px;
-        padding: 16px 45px;
-        border: 5px solid black;
-        border-radius: 32px 0px;
-        background-color: white;
-        transition: border 0.3s ease, background-color 0.3s ease;
-        color: black;
-        font-size: 20px
-    }
+                .link-dashboard {
+                    padding: 7px;
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    width: 200px;
+                }
 
-    .link-dashboard:hover {
-        border: 1px solid #22cdd0;
-        background-color: #22cdd0;
-    }
+                .link-dashboard:hover {
+                    border: 1px solid #22cdd0;
+                }
 
-    .background-clip {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        object-fit: cover;
-        z-index: -1;
-        height: 100vh;
-        opacity: 0.5;
-
-    }
-</style>
-@endsection
+                .background-clip {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    object-fit: cover;
+                    z-index: -1;
+                    height: 100vh
+                }
+            </style>
+        @endsection

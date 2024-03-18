@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+
 export default {
     name: "TypeRestaurant",
 
@@ -64,6 +65,10 @@ export default {
                                         spaceBetween: 20,
                                     },
                                 },
+                                navigation: {
+                                    nextEl: '.swiper-button-next',
+                                    prevEl: '.swiper-button-prev',
+                                },
                             });
                         }
                     }, 500);
@@ -93,8 +98,10 @@ export default {
 <template>
     <section class="py-4 mb-5">
         <div class="container-fluid">
+
             <div class="row">
                 <form @submit.prevent="takevalue()" class="px-5 bg-dark pt-3">
+                    <h1 class="text-white text-center m-5">Ecco una varietà di opzioni tra cui puoi scegliere, <br> seleziona la tipologia che ti interessa e esplora ulteriori dettagli!</h1>
                     <div class="d-flex flex-wrap">
                         <div
                             class="form-check col-12 col-lg-2"
@@ -233,6 +240,9 @@ export default {
                                     </div>
                                 </div>
                             </div>
+                            <!-- Frecce di navigazione -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
                         </div>
                     </div>
                 </div>
@@ -296,5 +306,21 @@ export default {
         background-color: #00ccbc;
         border-color: #00ccbc;
     }
+}
+
+.swiper-button-prev {
+    left: 10px;
+    color: #00ccbc;
+    background-color: white;
+    padding: 35px;
+    border-radius: 46% 16%;
+}
+
+.swiper-button-next {
+    right: 10px;
+    color: #00ccbc;
+    background-color: white;
+    padding: 35px;
+    border-radius: 16% 46%;
 }
 </style>
