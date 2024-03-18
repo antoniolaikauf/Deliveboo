@@ -30,6 +30,7 @@ export default {
                     }
 
                     this.arrayRestaurantsSelect = risposta.data.risposta;
+                    console.log(this.arrayRestaurantsSelect);
                     setTimeout(() => {
                         const carousels =
                             document.querySelectorAll(".mySwiper");
@@ -82,11 +83,11 @@ export default {
             <form @submit.prevent="takevalue()" class="px-5">
                 <div class="d-flex flex-wrap">
                     <div
-                        class="form-check col-12 col-md-2"
+                        class="form-check col-12 col-md-2 checkbox-type"
                         v-for="(type, i) in arrayTypes"
                     >
                         <input
-                            class="form-check-input"
+                            class="form-check-inputp"
                             type="checkbox"
                             :value="i"
                             :id="i"
@@ -128,6 +129,7 @@ export default {
                                 località:
                                 <strong>{{ restaurant.city }}</strong>
                             </h5>
+
                             <div
                                 class="btn-group"
                                 role="group"
@@ -166,18 +168,28 @@ export default {
                                         città ristorante:
                                         <strong>{{ Restaurant.name }}</strong>
                                     </h5>
-                                </div>
-                                <div
-                                    class="btn-group"
-                                    role="group"
-                                    aria-label="Basic example"
-                                >
-                                    <button
-                                        type="button"
-                                        class="btn-boo mx-3 border"
+                                    <h5>
+                                        genere:
+                                        <strong>
+                                            {{
+                                                arrayTypes[
+                                                    Restaurant.pivot.type_id - 1
+                                                ].name
+                                            }}</strong
+                                        >
+                                    </h5>
+                                    <div
+                                        class="btn-group"
+                                        role="group"
+                                        aria-label="Basic example"
                                     >
-                                        dettagli
-                                    </button>
+                                        <button
+                                            type="button"
+                                            class="btn-boo mx-3 border"
+                                        >
+                                            dettagli
+                                        </button>
+                                    </div>
                                 </div>
                                 <img :src="Restaurant.img" :alt="i" />
                             </div>
@@ -214,4 +226,11 @@ export default {
     height: 100%;
     object-fit: cover;
 }
+
+// @media all and (max-width: 720px) {
+//     .checkbox-type {
+//         display: flex;
+//         justify-content: center;
+//     }
+// }
 </style>
