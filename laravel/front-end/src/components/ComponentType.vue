@@ -81,7 +81,7 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid gx-0 my-5">
+    <div class="container-fluid my-5">
         <div class="row">
             <form @submit.prevent="takevalue()" class="px-5">
                 <div class="d-flex flex-wrap">
@@ -91,7 +91,7 @@ export default {
                     >
                         <div class="my-2 checkbox-type ps-5">
                             <input
-                                class="form-check-input me-3"
+                                class="form-check-input"
                                 type="checkbox"
                                 :value="i"
                                 :id="i"
@@ -113,6 +113,7 @@ export default {
                 </div>
             </form>
             <!-- div contenente tutti i ristoranti nel database -->
+            <!-- VEDERE E TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
             <!-- <div v-if="!showRestaurant" class="row my-3">
                 <h2 class="text-center">Ristoranti Disponibili</h2>
                 <div
@@ -165,32 +166,32 @@ export default {
                 <div
                     v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                     class="my-5"
-                    style="height: 350px"
+                    style="height: 400px"
                 >
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             <div
-                                class="swiper-slide d-block border rounded"
+                                class="swiper-slide d-block border rounded shadow"
                                 v-for="(Restaurant, i) in RestaurantsSelect"
                             >
-                                <div class="p-2">
-                                    <h5>
-                                        località:
-                                        <strong>{{ Restaurant.city }}</strong>
-                                    </h5>
-                                    <h5>
-                                        città ristorante:
+                                <div class="p-2 text-start">
+                                    <h3>
                                         <strong>{{ Restaurant.name }}</strong>
+                                    </h3>
+                                    <h5 class="locality">
+                                        <i class="fa-solid fa-city"></i>
+                                        località:
+                                        {{ Restaurant.city }}
                                     </h5>
-                                    <h5>
+                                    <h5 class="type">
+                                        <i class="fa-solid fa-bowl-food"></i>
                                         genere:
-                                        <strong>
-                                            {{
-                                                arrayTypes[
-                                                    Restaurant.pivot.type_id - 1
-                                                ].name
-                                            }}</strong
-                                        >
+
+                                        {{
+                                            arrayTypes[
+                                                Restaurant.pivot.type_id - 1
+                                            ].name
+                                        }}
                                     </h5>
                                     <div
                                         class="btn-group"
@@ -199,13 +200,16 @@ export default {
                                     >
                                         <button
                                             type="button"
-                                            class="btn-boo mx-3 border"
+                                            class="btn-boo ms-2 border"
                                         >
                                             dettagli
                                         </button>
                                     </div>
                                 </div>
-                                <img :src="Restaurant.img" :alt="i" />
+                                <div class="container-img">
+                                    <div>Consegna Gratuita</div>
+                                    <img :src="Restaurant.img" :alt="i" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -223,6 +227,25 @@ export default {
 .swiper {
     width: 100%;
     height: 100%;
+    .container-img {
+        position: relative;
+        div {
+            padding: 8px 8px 8px 0px;
+            top: 10px;
+            position: absolute;
+            background-color: rgb(255, 0, 0);
+            color: white;
+        }
+    }
+    .locality {
+        color: rgb(64, 64, 255);
+        i {
+            color: orange;
+        }
+    }
+    .type {
+        color: rgb(255, 83, 83);
+    }
 }
 
 .swiper-slide {
