@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid bg-sfondo p-5">
     <div class="row justify-content-center py-5">
-        <div class="col-6 p-4 form-create bg-secondary text-white">
+        <div class="col-6 p-4 form-create  text-white">
             <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
@@ -19,8 +19,8 @@
                 @endif --}}
 
 
-                <div class="input-group gap-3">
-                    <label for="name">Nome del piatto</label>
+                <div class="d-flex align-items-center flex-column gap-3">
+                    <label class="label-style-create" for="name">Nome del piatto</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nome piatto" name="name" required id="name" aria-label="Username" aria-describedby="basic-addon1">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -30,9 +30,9 @@
                 </div>
 
                 {{-- DESCRIZIONE --}}
-                <div class="input-group my-3 gap-3">
-                    <label for="description">Inserire descrizione del piatto</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" aria-label="With textarea" name="description" required id="description"></textarea>
+                <div class="d-flex align-items-center flex-column my-3 gap-3">
+                    <label class="label-style-create" for="description">Inserire descrizione del piatto</label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" aria-label="With textarea" placeholder="Inserisci la descrizione" name="description" required id="description"></textarea>
                     @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -40,9 +40,9 @@
                     @enderror
                 </div>
 
-                <div class="input-group gap-3">
-                    <label for="price">Inserire prezzo del piatto creato </label>
-                    <input type="number" name="price" required id="price" class="form-control @error('price') is-invalid @enderror">
+                <div class="d-flex align-items-center flex-column gap-3">
+                    <label class="label-style-create" for="price">Inserire prezzo del piatto creato </label>
+                    <input type="number" name="price" required id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il prezzo">
                     @error('price')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -50,8 +50,8 @@
                     @enderror
                 </div>
 
-                <div class="input-group my-3 gap-3">
-                    <label for="available">Seleziona la disponibilità del piatto</label>
+                <div class="d-flex align-items-center flex-column my-3 gap-3">
+                    <label class="label-style-create" for="available">Seleziona la disponibilità del piatto</label>
                     <select name="available" id="available" class="form-select @error('available') is-invalid @enderror" aria-label="Default select example">
                         <option value="" selected disabled hidden>Scegli disponibilità</option>
                         <option value="1">disponibile</option>
@@ -64,8 +64,8 @@
                     @enderror
                 </div>
 
-                <div class="input-group my-3 gap-3">
-                    <label for="img">Inserisci un immagine:</label>
+                <div class="d-flex align-items-center flex-column my-3 gap-3">
+                    <label class="label-style-create" for="img">Inserisci un immagine:</label>
                     <input type="file" name="img" id="img" required class="form-control" accept="image/">
                 </div>
 
@@ -80,8 +80,14 @@
 </div>
 
 <style>
+
+    .label-style-create{
+        background-color: #22cdd0;
+        padding: 4px 11px;
+        border-radius: 10px
+    }
+
     .form-create {
-        border: 1px solid #00CCBC;
         border-radius: 15px;
     }
 
@@ -89,6 +95,14 @@
         height: 700px;
         background-image: url(https://images.pexels.com/photos/784632/pexels-photo-784632.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
         background-size: cover;
+        height: 100vh;
+    }
+    .form-control{
+        width: 450px;
+    }
+
+    .form-select{
+        width: 450px;
     }
 </style>
 
