@@ -48,40 +48,35 @@
         </div>
     </div>
 
-
-
-            <style>
-                .link-dashboard {
-                    padding: 16px 45px;
-                    border: 5px solid black;
-                    border-radius: 32px 0px;
-                    background-color: white;
-                    transition: border 0.3s ease, background-color 0.3s ease;
-                    color: black;
-                    font-size: 20px;
-                    width: 200px;
-                }
-
-                .link-dashboard:hover {
-                    border: 1px solid #22cdd0;
-                    background-color: #22cdd0;
-                }
-
-                .background-clip {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    object-fit: cover;
-                    z-index: -1;
-                    height: 100vh;
-                    opacity: 0.5;
-                }
-
-                .img img {
-                    width: 150px;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            </style>
-        @endsection
+    <style>
+        .link-dashboard {
+            padding: 16px 45px;
+            border: 5px solid black;
+            border-radius: 32px 0px;
+            background-color: white;
+            transition: border 0.3s ease, background-color 0.3s ease;
+            color: black;
+            font-size: 20px;
+            width: 200px;
+        }
+        .link-dashboard:hover {
+            border: 1px solid #22cdd0;
+            background-color: #22cdd0;
+        }
+        .background-clip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            object-fit: cover;
+            z-index: -1;
+            height: 100vh;
+            opacity: 0.5;
+        }
+        .img img {
+            width: 150px;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+@endsection
