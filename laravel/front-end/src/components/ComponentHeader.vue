@@ -6,7 +6,7 @@ export default {
 
 <template>
     <div class="container-fluid gx-0">
-        <nav class="navbar navbar-light bg-black">
+        <nav class="navbar bg-black">
             <div class="container-fluid">
                 <router-link :to="{ name: 'home' }">
                     <img
@@ -15,12 +15,12 @@ export default {
                         alt="logo-deliveboo"
                 /></router-link>
 
-                <div class="search-container">
+                <!-- <div class="search-container">
                     <i class="fa-solid fa-paper-plane"></i>
 
                     <input class="search" type="text" placeholder="Ricerca" />
                     <button class="btn input-btn">Cerca</button>
-                </div>
+                </div> -->
 
                 <div class="d-flex">
                     <!-- BOTTONE LOGIN -->
@@ -49,7 +49,7 @@ export default {
                     </router-link>
 
                     <!-- BOTTONE ADVANCE (ricerca) -->
-                    <button
+                    <!-- <button
                         class="d-none d-md-flex btn-boo"
                         type="button"
                         data-bs-toggle="offcanvas"
@@ -65,7 +65,7 @@ export default {
                         </div>
                     </button>
 
-                    <!-- BOTTONE ADVANCE (RESPONSIVE) -->
+                    BOTTONE ADVANCE (RESPONSIVE)
                     <button
                         class="d-flex btn-boo d-md-none"
                         type="button"
@@ -110,15 +110,15 @@ export default {
                                         <i
                                             class="fa-solid fa-utensils color"
                                         ></i>
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <span>Advance</span>
                                     </div>
                                 </button>
-                            </router-link>
-                        </div>
-                    </div>
+                            </router-link> -->
+                        <!-- </div>
+                    </div> -->
                 </div>
             </div>
         </nav>

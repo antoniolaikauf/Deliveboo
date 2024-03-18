@@ -81,7 +81,7 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid my-5">
+    <div class="container-fluid gx-0 my-5">
         <div class="row">
             <form @submit.prevent="takevalue()" class="px-5">
                 <div class="d-flex flex-wrap">

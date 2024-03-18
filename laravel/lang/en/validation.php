@@ -152,6 +152,41 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'name' => [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'string' => 'Il campo :attribute deve essere una stringa.',
+            'max' => 'Il campo :attribute non può superare :max caratteri.',
+        ],
+        'email' => [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'email' => 'Il campo :attribute deve essere un indirizzo email valido.',
+            'unique' => 'Questo indirizzo email è già stato utilizzato.',
+        ],
+        'password' => [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'confirmed' => 'Le password non corrispondono.',
+        ],
+        'password_confirmation' => [
+            'required' => 'Il campo :attribute è obbligatorio.',
+        ],
+        'nome_ristorante' => [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'string' => 'Il campo :attribute deve essere una stringa.',
+        ],
+        'city' => [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'string' => 'Il campo :attribute deve essere una stringa.',
+        ],
+        'piva' => [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'string' => 'Il campo :attribute deve essere una stringa.',
+        ],
+        'img' => [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'image' => 'Il file caricato deve essere un\'immagine.',
+        ],
+        // Aggiungi regole di validazione personalizzate per altri campi se necessario
+
     ],
 
     /*
