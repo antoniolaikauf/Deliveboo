@@ -30,7 +30,13 @@
 
         <div class="d-flex mb-2 align-items-center">
             <label for="price">Prezzo del piatto</label>
-            <input type="number" class="form-control" name="price" required id="price" value="{{ $dish->price }}">
+            <input type="number" class="form-control" require id="price" value="{{ $dish->price }}" 
+        name="price" min="0" 
+        max="1000" step="0.01">
+        {{-- prova fix price in float --}}
+
+        
+            {{-- <input type="number" class="form-control" name="price" required id="price" value="{{ $dish->price }}"> --}}
         </div>
 
         <div class="d-flex mb-3 align-items-center">

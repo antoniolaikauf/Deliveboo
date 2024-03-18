@@ -53,3 +53,6 @@ $response = $kernel->handle(
 )->send();
 
 $kernel->terminate($request, $response);
+
+$imageRef = 'path/to/image.jpg'; 
+echo '<img src="' . $imageRef . '">'; 

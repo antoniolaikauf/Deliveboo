@@ -19,7 +19,7 @@ return new class extends Migration
             $table-> string('name',128);
             $table-> text('description');
             $table-> string('img');
-            $table-> decimal('price');
+            $table-> float('price');
             $table-> boolean('available');
 
             $table->timestamps();
