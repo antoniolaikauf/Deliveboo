@@ -65,7 +65,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        
+
                         <li class="nav-item">
                             <a class="nav-link buttons btn-boo mx-3 border-0" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i> {{ __('Accedi') }}</a>
                         </li>
@@ -79,11 +79,11 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle buttons btn-boo border-0 " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-                            
+
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
-                                <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
-                                
+                                <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Pannello di controllo') }}</a>
+                                <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Il tuo profilo') }}</a>
+
                             </div>
                         </li>
                         <a class="buttons btn-boo me-3 p-2 border-0" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </nav>
-        
+
         <main class="">
             @yield('content')
         </main>
