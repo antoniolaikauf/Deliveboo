@@ -4,9 +4,10 @@
 <div class="container-fluid bg-sfondo p-5">
     <div class="row justify-content-center py-5">
         <div class="col-6 p-4 form-create  text-white">
+            <h2 class="text-center mt-3">Modifica il tuo piatto</h2>
             <div class="container form-bg">
 
-                <h2 class="text-center mt-3">Modifica il tuo piatto</h2>
+
 
                 <form action="{{ route('dish.update', $dish->id) }}" method="POST"  enctype="multipart/form-data">
 
@@ -78,7 +79,7 @@
 
                     <div class="d-flex mb-2 justify-content-center">
 
-                        <input type="submit" value="MODIFICA">
+                        <input type="submit" value="MODIFICA" class="btn-boo buttons">
 
                     </div>
 
