@@ -97,9 +97,9 @@ export default {
 
 <template>
     <section class="py-4 mb-5">
-        <div class="container-fluid">
+        <div class="container-fluid bg-dark">
             <div class="row">
-                <form @submit.prevent="takevalue()" class="px-5 bg-dark pt-3">
+                <form @submit.prevent="takevalue()" class="px-5 pt-3">
                     <h1 class="text-white text-center m-5">
                         Ecco una varietà di opzioni tra cui puoi scegliere,
                         <br />
@@ -225,23 +225,28 @@ export default {
                                                 ].name
                                             }}
                                         </h5>
-
-                                        <router-link
-                                            :to="{ name: 'Restaurant' }"
+                                        <div
+                                            class="btn-group"
+                                            role="group"
+                                            aria-label="Basic example"
                                         >
-                                            <div
-                                                class="btn-group"
-                                                role="group"
-                                                aria-label="Basic example"
+                                            <router-link
+                                                :to="{ name: 'Restaurant' }"
                                             >
-                                                <button
-                                                    type="button"
-                                                    class="btn-boo ms-2 border"
+                                                <div
+                                                    class="btn-group"
+                                                    role="group"
+                                                    aria-label="Basic example"
                                                 >
-                                                    Dettagli
-                                                </button>
-                                            </div></router-link
-                                        >
+                                                    <button
+                                                        type="button"
+                                                        class="btn-boo ms-2 border"
+                                                    >
+                                                        Dettagli
+                                                    </button>
+                                                </div></router-link
+                                            >
+                                        </div>
                                     </div>
                                     <div class="container-img">
                                         <div>Consegna Gratuita</div>
