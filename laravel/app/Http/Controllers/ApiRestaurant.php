@@ -38,7 +38,16 @@ class ApiRestaurant extends Controller
 
             // Verifica se il tipo esiste prima di procedere
             if ($type) {
+                // Stai utilizzando la relazione tra restaurants e user per caricare i dati degli utenti associati a ciascun ristorante, 
+                // e quindi utilizzi with('user.dishes') per caricare anche i dati dei piatti associati a ciascun utente.
                 $restaurants = $type->restaurants()->with('user.dishes')->get();
+
+                // Stai tentando di utilizzare il metodo with() direttamente su una collezione di ristoranti ($type->restaurants)
+                //  anziché sulla relazione
+                //  stessa. Il problema qui è che $type->restaurants restituisce una collezione di ristoranti, e non la relazione stessa
+                // $accessories = Type::find($data[$i]);
+                // $types_restaurants = $accessories->restaurants;
+                // $restaurants = $type->restaurants->user->with('dishes')->get();
                 $container[] = $restaurants;
             }
         }

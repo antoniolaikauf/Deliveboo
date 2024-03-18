@@ -19,8 +19,6 @@ export default {
             arrayRestaurantsSelect: "",
             // variabile controllo select
             control: true,
-
-            // prova: "",
         };
     },
 
