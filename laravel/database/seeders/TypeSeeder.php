@@ -22,12 +22,12 @@ class TypeSeeder extends Seeder
     {
         // Genera i tipi
         $types = [
-            ['name' => 'vegetariano'],
-            ['name' => 'mediterraneo'],
-            ['name' => 'asiatico'],
-            ['name' => 'fast-food'],
-            ['name' => 'fushion'],
-            ['name' => 'vegano'],
+            ['name' => 'Vegetariano'],
+            ['name' => 'Mediterraneo'],
+            ['name' => 'Asiatico'],
+            ['name' => 'Fast-food'],
+            ['name' => 'Fushion'],
+            ['name' => 'Vegano'],
         ];
         // ciclo per creazione dei type 
         foreach ($types as $typeData) {

@@ -5,26 +5,28 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid gx-0">
-        <nav class="navbar bg-black">
-            <div class="container-fluid">
-                <router-link :to="{ name: 'home' }">
-                    <img
+    <div class="container-fluid bg-black gx-0">
+        <div class="container">
+
+            <nav class="navbar ">
+                <div class="container-fluid">
+                    <router-link :to="{ name: 'home' }">
+                        <img
                         class="logo"
                         src="/DelivebooNoBG.svg"
                         alt="logo-deliveboo"
-                /></router-link>
+                        /></router-link>
 
-                <!-- <div class="search-container">
-                    <i class="fa-solid fa-paper-plane"></i>
+                        <!-- <div class="search-container">
+                            <i class="fa-solid fa-paper-plane"></i>
 
-                    <input class="search" type="text" placeholder="Ricerca" />
-                    <button class="btn input-btn">Cerca</button>
-                </div> -->
+                            <input class="search" type="text" placeholder="Ricerca" />
+                            <button class="btn input-btn">Cerca</button>
+                        </div> -->
 
-                <div class="d-flex">
-                    <!-- BOTTONE LOGIN -->
-                    <!-- <router-link :to="{ name: 'Login' }"> -->
+                        <div class="d-flex">
+                            <!-- BOTTONE LOGIN -->
+                            <!-- <router-link :to="{ name: 'Login' }"> -->
 
                     <a href="http://localhost:8000/login">
                         <button class="d-none d-md-flex btn-boo mx-3">
@@ -36,37 +38,37 @@ export default {
                                 <span>Accedi</span>
                             </div>
                         </button></a
-                    >
-                    <!-- </router-link> -->
+                        >
+                        <!-- </router-link> -->
 
-                    <!-- BOTTONE LOGIN (RESPONSIVE) -->
-                    <router-link :to="{ name: 'Login' }">
-                        <button class="btn-boo d-md-none mx-3">
+                        <!-- BOTTONE LOGIN (RESPONSIVE) -->
+                        <router-link :to="{ name: 'Login' }">
+                            <button class="btn-boo d-md-none mx-3">
+                                <div class="mx-3">
+                                    <i class="fa-solid fa-house color"></i>
+                                </div>
+                            </button>
+                        </router-link>
+
+                        <!-- BOTTONE ADVANCE (ricerca) -->
+                        <!-- <button
+                            class="d-none d-md-flex btn-boo"
+                            type="button"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight"
+                            aria-controls="offcanvasRight"
+                            >
                             <div class="mx-3">
-                                <i class="fa-solid fa-house color"></i>
+                                <i class="fa-solid fa-utensils color"></i>
+                            </div>
+
+                            <div>
+                                <span>Advance</span>
                             </div>
                         </button>
-                    </router-link>
 
-                    <!-- BOTTONE ADVANCE (ricerca) -->
-                    <!-- <button
-                        class="d-none d-md-flex btn-boo"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight"
-                    >
-                        <div class="mx-3">
-                            <i class="fa-solid fa-utensils color"></i>
-                        </div>
-
-                        <div>
-                            <span>Advance</span>
-                        </div>
-                    </button>
-
-                    BOTTONE ADVANCE (RESPONSIVE)
-                    <button
+                        BOTTONE ADVANCE (RESPONSIVE)
+                        <button
                         class="d-flex btn-boo d-md-none"
                         type="button"
                         data-bs-toggle="offcanvas"
@@ -83,45 +85,46 @@ export default {
                         tabindex="-1"
                         id="offcanvasRight"
                         aria-labelledby="offcanvasRightLabel"
-                    >
+                        >
                         <div class="offcanvas-header">
                             <img
-                                class="logo"
-                                src="/DelivebooNoBG.svg"
-                                alt="logo-deliveboo"
+                            class="logo"
+                            src="/DelivebooNoBG.svg"
+                            alt="logo-deliveboo"
                             />
                             <button
-                                type="button "
-                                class="btn-close text-reset btn-boo"
-                                data-bs-dismiss="offcanvas"
-                                aria-label="Close"
+                            type="button "
+                            class="btn-close text-reset btn-boo"
+                            data-bs-dismiss="offcanvas"
+                            aria-label="Close"
                             ></button>
                         </div>
                         <hr />
                         <div class="offcanvas-body">
                             <router-link
-                                :to="{ name: 'Advance' }"
-                                class="text-decoration-none"
+                            :to="{ name: 'Advance' }"
+                            class="text-decoration-none"
                             >
-                                <button
-                                    class="d-flex w-100 rounded btn-boo btn-off"
-                                >
-                                    <div class="mx-3">
-                                        <i
-                                            class="fa-solid fa-utensils color"
-                                        ></i>
-                                    </div> -->
+                            <button
+                            class="d-flex w-100 rounded btn-boo btn-off"
+                            >
+                            <div class="mx-3">
+                                <i
+                                class="fa-solid fa-utensils color"
+                                ></i>
+                            </div> -->
 
-                                    <!-- <div>
-                                        <span>Advance</span>
-                                    </div>
-                                </button>
-                            </router-link> -->
-                        <!-- </div>
+                            <!-- <div>
+                                <span>Advance</span>
+                            </div>
+                        </button>
+                    </router-link> -->
+                    <!-- </div>
                     </div> -->
                 </div>
             </div>
         </nav>
+    </div>
     </div>
 </template>
 
