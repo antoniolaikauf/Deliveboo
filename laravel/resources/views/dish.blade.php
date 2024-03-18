@@ -5,10 +5,10 @@
             <div class="col-12">
                 @auth
                     <div class="text-center">
-                        <h2 class="text-white auth mt-4">
+                        <h2 class="text-white auth m-4">
                             Ciao, {{ Auth::user()->name }}. Ecco tutti i piatti disponibili nel tuo account.
                         </h2>
-                        <a href="{{ route('dish.create') }}" class="btn btn-primary my-3">Crea il piatto</a>
+                        <a href="{{ route('dish.create') }}" class="btn-boo buttons p-2">Crea il piatto</a>
                     </div>
                 @endauth
             </div>
@@ -16,9 +16,31 @@
                 @foreach ($dishes as $dish)
                     @if (Auth::check() && Auth::id() === $dish->user_id)
                         <div class="col-12 col-lg-6 p-4">
-                            <div class="card card-restaurant">
+                            <div class="card p-5 card-restaurant">
+
+
+                                <div class="button-dish mt-2">
+                                    <div>
+                                        @auth
+                                            <a href="{{ route('dish.edit', $dish->id) }}" class=" mx-2"><button class="btn-boo buttons"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                                        @endauth
+                                    </div>
+
+                                    <div class="py-2">
+                                        @auth
+                                            <form id="deleteForm_{{ $dish->id }}"
+                                                action="{{ route('dish.delete', $dish->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="showConfirmationModal('{{ $dish->id }}')"><i class="fa-solid fa-trash" style="color: white"></i></i></button>
+                                            </form>
+                                        @endauth
+                                    </div>
+                                </div>
+
                                 <div class="card-body text-center ">
-                                    <h5 class="card-title">Nome delpiatto: <strong>{{ $dish->name }}</strong></h5>
+                                    <h5 class="card-title">Nome del piatto: <strong>{{ $dish->name }}</strong></h5>
                                     <p class="card-text">{{ $dish->description }}</p>
                                     <div class="my-2">Prezzo: <strong>{{ $dish->price }}&#128;</strong></div>
 
@@ -36,31 +58,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="img">
+                                    <div class="img_container ">
                                         @if($dish->img)
-                                            <img src="{{asset('storage/'.$dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+                                            <img class="img-fluid" src="{{asset('storage/'.$dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
                                         @endif
+
+
                                     </div>
 
-                                    <div class="d-flex justify-content-center mt-2">
-                                        <div>
-                                            @auth
-                                                <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-primary mx-2">Modifica</a>
-                                            @endauth
-                                        </div>
 
-                                        <div>
-                                            @auth
-                                                <form id="deleteForm_{{ $dish->id }}"
-                                                    action="{{ route('dish.delete', $dish->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button" class="btn btn-danger"
-                                                        onclick="showConfirmationModal('{{ $dish->id }}')">Cancella</button>
-                                                </form>
-                                            @endauth
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -94,6 +100,7 @@
 
     <style>
 
+        /* stile disponibilità */
         .dish-availability {
             margin-top: 10px;
         }
@@ -111,41 +118,52 @@
         }
 
         .unavailable {
-        background-color: #dc3545;
-        color: #fff;
-    }
+            background-color: #dc3545;
+            color: #fff;
+        }
 
+        /* stile titolo */
         .auth {
             letter-spacing: 3px;
         }
 
+        /* stile bg */
         .bg-img {
             background-image: url(/imgs/8afbf530-609f-4e88-99f1-628c2a9faa63.png);
             background-size: cover;
             height: 100%;
             width: 100%;
-
         }
 
+        /* stile card */
         .card-restaurant {
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            margin-right: 20px;
-            margin-bottom: 20px;
             height: 500px;
+            position: relative;
         }
 
         .card-restaurant:hover {
             transform: scale(1.05);
         }
 
-        .img img {
+        .img_container img {
             width: 100%;
             max-height: 250px;
             object-fit: cover;
             margin-top: 35px;
+            height: 300px;
+        }
+
+        .button-dish{
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
 
