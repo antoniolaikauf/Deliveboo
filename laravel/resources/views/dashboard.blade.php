@@ -74,5 +74,11 @@
                     height: 100vh;
                     opacity: 0.5;
                 }
+
+                .img img {
+                    width: 150px;
+                    height: 100%;
+                    object-fit: cover;
+                }
             </style>
         @endsection
