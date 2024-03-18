@@ -3,7 +3,7 @@
 <div class="container-fluid bg-sfondo p-5">
     <div class="row justify-content-center py-5">
         <div class="col-6 p-4 form-create  text-white">
-            <h2 class="text-center mt-3">Crea il tuo piatto</h2>
+            <h2 class="text-center  mt-3">Crea il tuo piatto</h2>
             <div class="container form-bg">
 
                     <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
