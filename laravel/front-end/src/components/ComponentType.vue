@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+
 export default {
     name: "TypeRestaurant",
 
@@ -63,6 +64,10 @@ export default {
                                         slidesPerView: 3,
                                         spaceBetween: 20,
                                     },
+                                },
+                                navigation: {
+                                    nextEl: '.swiper-button-next',
+                                    prevEl: '.swiper-button-prev',
                                 },
                             });
                         }
@@ -235,6 +240,9 @@ export default {
                                     </div>
                                 </div>
                             </div>
+                            <!-- Frecce di navigazione -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
                         </div>
                     </div>
                 </div>
@@ -298,5 +306,21 @@ export default {
         background-color: #00ccbc;
         border-color: #00ccbc;
     }
+}
+
+.swiper-button-prev {
+    left: 10px;
+    color: #00ccbc;
+    background-color: white;
+    padding: 35px;
+    border-radius: 46% 16%;
+}
+
+.swiper-button-next {
+    right: 10px;
+    color: #00ccbc;
+    background-color: white;
+    padding: 35px;
+    border-radius: 16% 46%;
 }
 </style>
