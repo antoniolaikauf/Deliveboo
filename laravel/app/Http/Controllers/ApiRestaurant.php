@@ -15,13 +15,15 @@ class ApiRestaurant extends Controller
     {
         // ottieni tutti i ristoranti e type
         $types = Type::all();
-        $restaurants = Restaurant::all();
+        // QUA SE SI VUOLE VEDERE TUTTI I RISTORANTI NEL RONT END TOGLIERE COMMENTI 
+        // $restaurants = Restaurant::all();
 
 
         return response()->json([
             'riuscito' => 'collegamento riuscito',
             'types' => $types,
-            'restaurants' => $restaurants,
+            // QUA SE SI VUOLE VEDERE TUTTI I RISTORANTI NEL RONT END TOGLIERE COMMENTI 
+            // 'restaurants' => $restaurants,
         ]);
     }
 

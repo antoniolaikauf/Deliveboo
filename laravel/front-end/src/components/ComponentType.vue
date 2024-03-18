@@ -41,11 +41,12 @@ export default {
                     // console.log(this.arrayRestaurantsSelect);
                     setTimeout(() => {
                         let carousels = document.querySelectorAll(".mySwiper");
+                        console.log(carousels);
 
                         for (let i = 0; i < carousels.length; i++) {
                             // controllo se esiste gia un carousel
                             if (carousels[i].swiper) {
-                                //    codice per disintegrare il carousel
+                                //   codice per disintegrare il carousel
                                 carousels[i].swiper.destroy(true, true);
                             }
                             var swiper = new Swiper(carousels[i], {
@@ -142,7 +143,7 @@ export default {
                     </div>
                 </form>
                 <!-- div contenente tutti i ristoranti nel database -->
-                <!-- VEDERE E TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
+                <!-- VEDERE SE TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
                 <!-- <div v-if="!showRestaurant" class="row my-3">
                 <h2 class="text-center">Ristoranti Disponibili</h2>
                 <div
