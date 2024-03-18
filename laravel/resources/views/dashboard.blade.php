@@ -24,6 +24,9 @@
     </div>
     </div> --}}
     <div class="container my-4" style="width: 50%; margin: 0 auto;">
+        <video autoplay loop muted playsinline class="background-clip">
+            <source src="/imgs/pexels-rodnae-productions-7362582 (1080p).mp4" type="video/mp4" />
+        </video>
         <div class="card text-center py-4">
             @foreach ($restaurants as $restaurant)
             @if (Auth::check() && Auth::id() === $restaurant->user_id)
@@ -61,9 +64,9 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 460px;
         object-fit: cover;
         z-index: -1;
+        height: 100vh
     }
 </style>
 @endsection
