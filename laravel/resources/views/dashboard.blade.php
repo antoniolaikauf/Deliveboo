@@ -24,6 +24,7 @@
 </div>
 </div> --}}
 <div class="container my-4" style=" margin: 0 auto;">
+    <h1 class="text-center mb-5">Il tuo ristorante {{ Auth::user()->name }}</h1>
     <video autoplay loop muted playsinline class="background-clip">
         <source src="/imgs/pexels-rodnae-productions-7362582 (1080p).mp4" type="video/mp4" />
     </video>
