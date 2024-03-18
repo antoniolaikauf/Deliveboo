@@ -15,11 +15,18 @@ export default {
             checked: [],
             // restaurants selezionati dall'utente
             arrayRestaurantsSelect: "",
+            // variabile controllo select
+            control: true,
         };
     },
 
     methods: {
         takevalue() {
+            if (this.checked.length == 0) {
+                this.control = false;
+            } else {
+                this.control = true;
+            }
             this.showRestaurant = true;
             axios
                 .post("http://localhost:8000/api/v1/types/select", this.checked)
@@ -30,11 +37,16 @@ export default {
                     }
 
                     this.arrayRestaurantsSelect = risposta.data.risposta;
-                    console.log(this.arrayRestaurantsSelect);
+                    // console.log(this.arrayRestaurantsSelect);
                     setTimeout(() => {
-                        const carousels =
-                            document.querySelectorAll(".mySwiper");
+                        let carousels = document.querySelectorAll(".mySwiper");
+
                         for (let i = 0; i < carousels.length; i++) {
+                            // controllo se esiste gia un carousel
+                            if (carousels[i].swiper) {
+                                //    codice per disintegrare il carousel
+                                carousels[i].swiper.destroy(true, true);
+                            }
                             var swiper = new Swiper(carousels[i], {
                                 centeredSlides: true,
                                 loop: true,
@@ -68,7 +80,8 @@ export default {
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
-                console.log(this.arrayTypes);
+                // console.log(this.restaurants);
+                // console.log(this.arrayTypes);
             })
             .catch((err) => {
                 console.log(err);
@@ -78,36 +91,48 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid gx-0 my-5">
-        <div class="row">
-            <form @submit.prevent="takevalue()" class="px-5">
-                <div class="d-flex flex-wrap">
-                    <div
-                        class="form-check col-12 col-md-2 checkbox-type"
-                        v-for="(type, i) in arrayTypes"
-                    >
-                        <input
-                            class="form-check-inputp"
-                            type="checkbox"
-                            :value="i"
-                            :id="i"
-                            v-model="checked"
-                        />
-                        <label class="form-check-label" :for="i">
-                            {{ type.name }}
-                        </label>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center my-4">
-                    <button type="submit" class="btn-boo mx-3 border">
-                        <div>
-                            <span>cerca</span>
+    <section class="py-4 mb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <form @submit.prevent="takevalue()" class="px-5 bg-dark pt-3">
+                    <div class="d-flex flex-wrap">
+                        <div
+                            class="form-check col-12 col-lg-2"
+                            v-for="(type, i) in arrayTypes"
+                        >
+                            <div class="my-2 checkbox-type ps-5">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    :value="i"
+                                    :id="i"
+                                    v-model="checked"
+                                />
+
+                                <label :for="i" class="form-check-label">
+                                    {{ type.name }}
+                                </label>
+                            </div>
                         </div>
-                    </button>
-                </div>
-            </form>
-            <!-- div contenente tutti i ristoranti nel database -->
-            <div v-if="!showRestaurant" class="row my-3">
+                    </div>
+                    <div class="d-flex justify-content-center my-4">
+                        <button type="submit" class="btn-boo mx-3 border">
+                            <div>
+                                <span>Cerca</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div v-if="!control" class="text-white text-center">
+                        <div
+                            class="bg-danger d-inline-block p-1 mb-3 fs-5 text"
+                        >
+                            Inserisci una tipologia!
+                        </div>
+                    </div>
+                </form>
+                <!-- div contenente tutti i ristoranti nel database -->
+                <!-- VEDERE E TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
+                <!-- <div v-if="!showRestaurant" class="row my-3">
                 <h2 class="text-center">Ristoranti Disponibili</h2>
                 <div
                     v-for="(restaurant, i) in restaurants"
@@ -129,6 +154,14 @@ export default {
                                 località:
                                 <strong>{{ restaurant.city }}</strong>
                             </h5>
+                            <h5>
+                                <div v-for="(type, i) in restaurant.types">
+                                    genere:
+                                    <strong>
+                                        {{ type.name }}
+                                    </strong>
+                                </div>
+                            </h5>
 
                             <div
                                 class="btn-group"
@@ -145,70 +178,97 @@ export default {
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- vedere se tenerla o no questa altezza -->
-            <div style="min-height: 300px">
-                <div
-                    v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
-                    class="my-5"
-                    style="height: 350px"
-                >
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div
-                                class="swiper-slide d-block border rounded"
-                                v-for="(Restaurant, i) in RestaurantsSelect"
-                            >
-                                <div class="p-2">
-                                    <h5>
-                                        località:
-                                        <strong>{{ Restaurant.city }}</strong>
-                                    </h5>
-                                    <h5>
-                                        città ristorante:
-                                        <strong>{{ Restaurant.name }}</strong>
-                                    </h5>
-                                    <h5>
-                                        genere:
-                                        <strong>
+            </div> -->
+                <!-- vedere se tenerla o no questa altezza -->
+                <div class="container-carousel">
+                    <div
+                        v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
+                        class="my-5"
+                    >
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <div
+                                    class="swiper-slide d-block border rounded shadow"
+                                    v-for="(Restaurant, i) in RestaurantsSelect"
+                                >
+                                    <div class="p-2 text-start">
+                                        <h3>
+                                            <strong>{{
+                                                Restaurant.name
+                                            }}</strong>
+                                        </h3>
+                                        <h5 class="locality">
+                                            <i class="fa-solid fa-city"></i>
+                                            Località:
+                                            {{ Restaurant.city }}
+                                        </h5>
+                                        <h5 class="type">
+                                            <i
+                                                class="fa-solid fa-bowl-food"
+                                            ></i>
+                                            Genere:
+
                                             {{
                                                 arrayTypes[
                                                     Restaurant.pivot.type_id - 1
                                                 ].name
-                                            }}</strong
+                                            }}
+                                        </h5>
+                                        <div
+                                            class="btn-group"
+                                            role="group"
+                                            aria-label="Basic example"
                                         >
-                                    </h5>
-                                    <div
-                                        class="btn-group"
-                                        role="group"
-                                        aria-label="Basic example"
-                                    >
-                                        <button
-                                            type="button"
-                                            class="btn-boo mx-3 border"
-                                        >
-                                            dettagli
-                                        </button>
+                                            <button
+                                                type="button"
+                                                class="btn-boo ms-2 border"
+                                            >
+                                                Dettagli
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="container-img">
+                                        <div>Consegna Gratuita</div>
+                                        <img :src="Restaurant.img" :alt="i" />
                                     </div>
                                 </div>
-                                <img :src="Restaurant.img" :alt="i" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <style lang="scss" scoped>
-.img-restaurants {
-    height: 300px;
-}
+// .img-restaurants {
+//     height: 300px;
+// }
 
 .swiper {
     width: 100%;
-    height: 100%;
+    height: 450px;
+    .container-img {
+        position: relative;
+        height: 100%;
+        div {
+            padding: 4px 4px 4px 0px;
+            top: 10px;
+            position: absolute;
+            background-color: rgb(255, 0, 0);
+            color: white;
+        }
+    }
+    .locality {
+        color: rgb(64, 64, 255);
+        i {
+            color: orange;
+        }
+    }
+    .type {
+        color: rgb(255, 83, 83);
+    }
 }
 
 .swiper-slide {
@@ -221,16 +281,20 @@ export default {
 }
 
 .swiper-slide img {
-    display: block;
+    // display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    // object-fit: cover;
 }
 
-// @media all and (max-width: 720px) {
-//     .checkbox-type {
-//         display: flex;
-//         justify-content: center;
-//     }
-// }
+.checkbox-type {
+    padding: 5px 15px;
+    border-radius: 7px;
+    background-color: #f0f0f0;
+    border: 1px;
+    .form-check-input:checked {
+        background-color: #00ccbc;
+        border-color: #00ccbc;
+    }
+}
 </style>

@@ -3,7 +3,7 @@
 <div class="container-fluid bg-sfondo p-5">
     <div class="row justify-content-center py-5">
         <div class="col-6 p-4 form-create  text-white">
-
+            <h2 class="text-center mt-3">Crea il tuo piatto</h2>
             <div class="container form-bg">
 
                     <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
@@ -22,8 +22,9 @@
                     @endif --}}
 
 
+                    {{-- NOME --}}
                     <div class="d-flex align-items-center flex-column gap-3">
-                        <label class="label-style-create" for="name">Nome del piatto</label>
+                        <label class="label-style-create" for="name">Nome</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nome piatto" name="name" required id="name" aria-label="Username" aria-describedby="basic-addon1">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -34,17 +35,18 @@
 
                     {{-- DESCRIZIONE --}}
                     <div class="d-flex align-items-center flex-column my-3 gap-3">
-                        <label class="label-style-create" for="description">Inserire descrizione del piatto</label>
+                        <label class="label-style-create" for="description">Descrizione</label>
                         <textarea class="form-control @error('description') is-invalid @enderror" aria-label="With textarea" placeholder="Inserisci la descrizione" name="description" required id="description"></textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
-                        </div>
+                        @enderror
+                    </div>
 
+                    {{-- PREZZO --}}
                         <div class="d-flex align-items-center flex-column gap-3">
-                            <label class="label-style-create" for="price">Inserire prezzo del piatto creato </label>
+                            <label class="label-style-create" for="price">Prezzo in € </label>
                             <input type="number" name="price" required id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il prezzo">
                             @error('price')
                             <span class="invalid-feedback" role="alert">
@@ -54,7 +56,7 @@
                         </div>
 
                         <div class="d-flex align-items-center flex-column my-3 gap-3">
-                            <label class="label-style-create" for="available">Seleziona la disponibilità del piatto</label>
+                            <label class="label-style-create" for="available">Disponibilità</label>
                             <select name="available" id="available" class="form-select @error('available') is-invalid @enderror" aria-label="Default select example">
                                 <option value="" selected disabled hidden>Scegli disponibilità</option>
                                 <option value="1">disponibile</option>
@@ -73,7 +75,7 @@
                         </div>
 
                         <div class="text-center ">
-                            <input type="submit"  value="CREA PIATTO" class=" button-create">
+                            <input type="submit"  value="CREA PIATTO" class="btn-boo buttons">
                         </div>
 
 
@@ -141,9 +143,6 @@
         transition: background-color 0.3s ease;
     }
 
-    .button-create:hover {
-        background-color: #22cdd0;
-    }
 
 
 
