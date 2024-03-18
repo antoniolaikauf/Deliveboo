@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import { store } from "../store";
 
 export default {
     name: "TypeRestaurant",
@@ -18,6 +19,8 @@ export default {
             arrayRestaurantsSelect: "",
             // variabile controllo select
             control: true,
+
+            // prova: "",
         };
     },
 
@@ -38,7 +41,7 @@ export default {
                     }
 
                     this.arrayRestaurantsSelect = risposta.data.risposta;
-                    // console.log(this.arrayRestaurantsSelect);
+                    console.log(this.arrayRestaurantsSelect);
                     setTimeout(() => {
                         let carousels = document.querySelectorAll(".mySwiper");
                         console.log(carousels);
@@ -77,6 +80,10 @@ export default {
                 .catch((err) => {
                     console.log(err);
                 });
+        },
+        ciao(index, x) {
+            console.log(this.arrayRestaurantsSelect[index][x]);
+            store.restaurantselected = this.arrayRestaurantsSelect[index][x];
         },
     },
     mounted() {
@@ -201,7 +208,7 @@ export default {
                             <div class="swiper-wrapper">
                                 <div
                                     class="swiper-slide d-block border rounded shadow"
-                                    v-for="(Restaurant, i) in RestaurantsSelect"
+                                    v-for="(Restaurant, x) in RestaurantsSelect"
                                 >
                                     <div class="p-2 text-start">
                                         <h3>
@@ -240,6 +247,7 @@ export default {
                                                     aria-label="Basic example"
                                                 >
                                                     <button
+                                                        @click="ciao(i, x)"
                                                         type="button"
                                                         class="btn-boo ms-2 border"
                                                     >

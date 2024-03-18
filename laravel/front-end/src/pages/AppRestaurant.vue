@@ -1,6 +1,12 @@
 <script>
+import { store } from "../store";
 export default {
     name: "Restaurant",
+    data() {
+        return {
+            store,
+        };
+    },
 };
 </script>
 
@@ -16,6 +22,7 @@ export default {
                 alt="placeholderrestaurant"
             />
             <div class="container-fluid col-12 px-3">
+                {{ store.restaurantselected.name }}
                 <h1 class="restaurantName">NomeRistorante</h1>
                 <p>25-40 min Tipo Ristorante</p>
                 <p>Località Chiude alle 23:00 Consegna gratuita</p>
