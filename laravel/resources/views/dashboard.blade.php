@@ -24,6 +24,9 @@
 </div>
 </div> --}}
 <div class="container my-4" style="width: 50%; margin: 0 auto;">
+    <video autoplay loop muted playsinline class="background-clip" style="height: 100vh">
+        <source src="/imgs/riderdeliveboo.mp4" type="video/mp4">
+    </video>
     <div class="card text-center py-4">
         @foreach ($restaurants as $restaurant)
         @if (Auth::check() && Auth::id() === $restaurant->user_id)
@@ -54,6 +57,16 @@
 
     .link-dashboard:hover {
         border: 1px solid #22cdd0;
+    }
+
+    .background-clip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 460px;
+        object-fit: cover;
+        z-index: -1;
     }
 </style>
 @endsection
