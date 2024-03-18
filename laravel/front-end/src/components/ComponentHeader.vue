@@ -6,7 +6,7 @@ export default {
 
 <template>
     <div class="container-fluid gx-0">
-        <nav class="navbar navbar-light bg-black">
+        <nav class="navbar bg-black">
             <div class="container-fluid">
                 <router-link :to="{ name: 'home' }">
                     <img
@@ -15,12 +15,12 @@ export default {
                         alt="logo-deliveboo"
                 /></router-link>
 
-                <div class="search-container">
+                <!-- <div class="search-container">
                     <i class="fa-solid fa-paper-plane"></i>
 
                     <input class="search" type="text" placeholder="Ricerca" />
                     <button class="btn input-btn">Cerca</button>
-                </div>
+                </div> -->
 
                 <div class="d-flex">
                     <!-- BOTTONE LOGIN -->
