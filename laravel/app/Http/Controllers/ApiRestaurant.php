@@ -29,16 +29,20 @@ class ApiRestaurant extends Controller
 
     public function TypesSelected(Request $request)
     {
-        // ottieni i ristoranti selezionati dall'utente
+        // Ottieni i tipi selezionati dall'utente
         $data = $request->all();
         $container = [];
-        // trova tutti i ristoratori e li associa con le types 
-        for ($i = 0; $i < count($data); $i++) {
-            $data[$i] = $data[$i] + 1;
-            $accessories = Type::find($data[$i]);
-            $types_restaurants = $accessories->restaurants;
-            array_push($container, $types_restaurants);
+
+        foreach ($data as $typeId) {
+            $type = Type::find($typeId);
+
+            // Verifica se il tipo esiste prima di procedere
+            if ($type) {
+                $restaurants = $type->restaurants()->with('user.dishes')->get();
+                $container[] = $restaurants;
+            }
         }
+
         return response()->json([
             'risposta' => $container,
         ]);
