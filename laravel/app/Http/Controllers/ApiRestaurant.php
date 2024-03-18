@@ -15,10 +15,8 @@ class ApiRestaurant extends Controller
     {
         // ottieni tutti i ristoranti e type
         $types = Type::all();
-        $restaurants = Restaurant::With('types')->get();
+        $restaurants = Restaurant::all();
 
-
-        
 
         return response()->json([
             'riuscito' => 'collegamento riuscito',
@@ -32,19 +30,6 @@ class ApiRestaurant extends Controller
         // ottieni i ristoranti selezionati dall'utente
         $data = $request->all();
         $container = [];
-        $restaurants_imgs=restaurant()->img
-        
-        // trova il numero di ristorari nuovi e assegna i nuovi path
-        // if (Restaurant::all()>) {
-
-        for ($i = 0; $i < count($data); $i++) {
-                $data[$i] = $data[$i] + 1;
-                $accessories = Type::find($data[$i]);
-                $types_restaurants = $accessories->restaurants;
-                array_push($container, $types_restaurants);
-            }
-        }
-
         // trova tutti i ristoratori e li associa con le types 
         for ($i = 0; $i < count($data); $i++) {
             $data[$i] = $data[$i] + 1;
@@ -52,8 +37,6 @@ class ApiRestaurant extends Controller
             $types_restaurants = $accessories->restaurants;
             array_push($container, $types_restaurants);
         }
-
-
         return response()->json([
             'risposta' => $container,
         ]);
