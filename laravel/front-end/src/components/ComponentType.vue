@@ -66,8 +66,8 @@ export default {
                                     },
                                 },
                                 navigation: {
-                                    nextEl: '.swiper-button-next',
-                                    prevEl: '.swiper-button-prev',
+                                    nextEl: ".swiper-button-next",
+                                    prevEl: ".swiper-button-prev",
                                 },
                             });
                         }
@@ -98,10 +98,14 @@ export default {
 <template>
     <section class="py-4 mb-5">
         <div class="container-fluid">
-
             <div class="row">
                 <form @submit.prevent="takevalue()" class="px-5 bg-dark pt-3">
-                    <h1 class="text-white text-center m-5">Ecco una varietà di opzioni tra cui puoi scegliere, <br> seleziona la tipologia che ti interessa e esplora ulteriori dettagli!</h1>
+                    <h1 class="text-white text-center m-5">
+                        Ecco una varietà di opzioni tra cui puoi scegliere,
+                        <br />
+                        seleziona la tipologia che ti interessa e esplora
+                        ulteriori dettagli!
+                    </h1>
                     <div class="d-flex flex-wrap">
                         <div
                             class="form-check col-12 col-lg-2"
@@ -221,18 +225,23 @@ export default {
                                                 ].name
                                             }}
                                         </h5>
-                                        <div
-                                            class="btn-group"
-                                            role="group"
-                                            aria-label="Basic example"
+
+                                        <router-link
+                                            :to="{ name: 'Restaurant' }"
                                         >
-                                            <button
-                                                type="button"
-                                                class="btn-boo ms-2 border"
+                                            <div
+                                                class="btn-group"
+                                                role="group"
+                                                aria-label="Basic example"
                                             >
-                                                Dettagli
-                                            </button>
-                                        </div>
+                                                <button
+                                                    type="button"
+                                                    class="btn-boo ms-2 border"
+                                                >
+                                                    Dettagli
+                                                </button>
+                                            </div></router-link
+                                        >
                                     </div>
                                     <div class="container-img">
                                         <div>Consegna Gratuita</div>
