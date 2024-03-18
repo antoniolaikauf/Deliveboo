@@ -22,6 +22,7 @@
                     @endif --}}
 
 
+                    {{-- NOME --}}
                     <div class="d-flex align-items-center flex-column gap-3">
                         <label class="label-style-create" for="name">Nome</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nome piatto" name="name" required id="name" aria-label="Username" aria-describedby="basic-addon1">
@@ -40,9 +41,10 @@
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
-                        </div>
+                        @enderror
+                    </div>
 
+                    {{-- PREZZO --}}
                         <div class="d-flex align-items-center flex-column gap-3">
                             <label class="label-style-create" for="price">Prezzo in € </label>
                             <input type="number" name="price" required id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il prezzo">
