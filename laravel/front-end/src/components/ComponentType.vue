@@ -15,11 +15,18 @@ export default {
             checked: [],
             // restaurants selezionati dall'utente
             arrayRestaurantsSelect: "",
+            // variabile controllo select 
+            control: true,
         };
     },
 
     methods: {
         takevalue() {
+            if (this.checked.length == 0) {
+                this.control = false;
+            } else {
+                this.control = true;
+            }
             this.showRestaurant = true;
             axios
                 .post("http://localhost:8000/api/v1/types/select", this.checked)
@@ -112,6 +119,13 @@ export default {
                             </div>
                         </button>
                     </div>
+                    <div v-if="!control" class="text-white text-center">
+                        <div
+                            class="bg-danger d-inline-block p-1 mb-3 fs-5 text"
+                        >
+                            Inserisci una tipologia!
+                        </div>
+                    </div>
                 </form>
                 <!-- div contenente tutti i ristoranti nel database -->
                 <!-- VEDERE E TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
@@ -195,7 +209,6 @@ export default {
                                                 arrayTypes[
                                                     Restaurant.pivot.type_id - 1
                                                 ].name
-                                                    
                                             }}
                                         </h5>
                                         <div
