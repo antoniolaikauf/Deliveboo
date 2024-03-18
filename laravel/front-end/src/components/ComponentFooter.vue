@@ -65,14 +65,14 @@ export default {
 
             <div class="social d-flex justify-content-between">
                 <div>
-                    <a href="#"
-                        ><i class="fa-brands fa-facebook-f text-white blue"></i
+                    <a href="https://www.facebook.com/?locale=it_IT"
+                        ><i class="fa-brands fa-facebook-f"></i
                     ></a>
-                    <a href="#"
-                        ><i class="fa-brands fa-twitter text-white blue"></i
+                    <a href="https://twitter.com/?lang=it"
+                        ><i class="fa-brands fa-twitter"></i
                     ></a>
-                    <a href="#"
-                        ><i class="fa-brands fa-instagram text-white purple"></i
+                    <a href="https://www.instagram.com"
+                        ><i class="fa-brands fa-instagram"></i
                     ></a>
                 </div>
 
@@ -117,10 +117,20 @@ export default {
         a {
             margin-right: 10px;
             font-size: 20px;
+            color: white;
         }
 
+        .fa-facebook-f:hover{
+            color:#3b5998;
+        }
 
+        .fa-twitter:hover{
+            color:#00acee;
+        }
+
+        .fa-instagram:hover{
+            color:#D62976;
+        }
     }
-
 }
 </style>
