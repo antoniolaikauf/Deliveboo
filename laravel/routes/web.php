@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\RestaurantProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    // // ROTTE PROFILE RESTAURANT
+    // Route::get('/profile', [RestaurantProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/{id}', [RestaurantProfileController::class, 'update'])->name('restaurant.update');
 
     // ROTTE CREATE
     Route::get('/dish', [RestaurantController::class, 'create'])->name('dish.create');
