@@ -230,16 +230,6 @@ export default {
                                     <div class="container-img">
                                         <div>Consegna Gratuita</div>
                                         <img :src="Restaurant.img" :alt="i" />
-                                        <!-- <img
-                                            :src="
-                                                '../../../public/storage' +
-                                                Restaurant.img
-                                            "
-                                            :alt="i"
-                                        /> -->
-                                        <!-- <img
-                                            :src="'/public/imgs/sala-edit.jpg'"
-                                        /> -->
                                     </div>
                                 </div>
                             </div>
