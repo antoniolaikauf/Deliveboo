@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Restaurant;
+use App\Models\Type;
+
 
 class ProfileController extends Controller
 {
@@ -16,9 +19,12 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $restaurants = Restaurant::all();
+        $types = Type:: all();
+
         return view('profile.edit', [
             'user' => $request->user(),
-        ]);
+        ], compact('restaurants','types'));
     }
 
     /**
@@ -33,6 +39,7 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
