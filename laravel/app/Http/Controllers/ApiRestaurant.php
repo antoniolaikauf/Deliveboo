@@ -18,6 +18,8 @@ class ApiRestaurant extends Controller
         $restaurants = Restaurant::With('types')->get();
 
 
+        
+
         return response()->json([
             'riuscito' => 'collegamento riuscito',
             'types' => $types,
