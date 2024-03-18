@@ -22,7 +22,8 @@
             <h2>Modifica Ristorante</h2>
             @foreach ($restaurants as $restaurant)
                 @if (Auth::check() && Auth::id() === $restaurant->user_id)
-                    <form action="{{ route('restaurant.update', $restaurant->id) }}" method="POST">
+                    <form action="{{ route('restaurant.update', $restaurant->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div>
@@ -44,7 +45,7 @@
                         </div>
                         <div>
                             <label class="my-2" for="img">Immagine:</label>
-                            <input type="file" name="img" id="img" accept="image/" class="form-control"
+                            <input type="file" name="img" id="img" class="form-control"
                                 value="{{ $restaurant->img }}">
                         </div>
 
