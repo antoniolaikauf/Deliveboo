@@ -41,7 +41,7 @@ export default {
         <div class="row">
             <div class="col-12 col-lg-6 ">
                 <p class="description">
-                    "Esplora e condividi le straordinarie esperienze culinarie della tua zona attraverso la nostra piattaforma. Attraverso recensioni autentiche, la nostra community guida la tua scelta, accompagnandoti a scoprire e apprezzare i ristoranti più rinomati e apprezzati della tua regione, creando un viaggio gastronomico indimenticabile."
+                    "Esplora e condividi le straordinarie esperienze culinarie della tua zona attraverso la nostra piattaforma. La nostra community guida la tua scelta, accompagnandoti a scoprire e apprezzare i ristoranti più rinomati e apprezzati della tua regione, creando un viaggio gastronomico indimenticabile."
                 </p>
             </div>
 
@@ -55,120 +55,120 @@ export default {
                             <div
                                 class="swiper-slide"
                                 style="
-                                    background-image: url(https://www.todis.it/wp-content/uploads/2023/05/sushi-fatto-in-casa.jpg);
+                                    background-image: url(https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
                                     background-size: cover;
                                 "
                             >
                                 <div class="card_obj">
-                                    <h1>Sushi Kimo</h1>
-                                    <span>Via Roma, 32</span>
-                                    <div class="star">
+                                    <h1>Al Dente Trattoria</h1>
+                                    <span>Città: Bergamo</span>
+                                    <!-- <div class="star">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
                             <div
                                 class="swiper-slide"
                                 style="
-                                    background-image: url(https://ilfattoalimentare.it/wp-content/uploads/2022/12/Depositphotos_505971914_L-1.jpg);
+                                    background-image: url(https://images.pexels.com/photos/11794317/pexels-photo-11794317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
                                     background-size: cover;
                                 "
                             >
                                 <div class="card_obj">
-                                    <h1>Pizzeria da Francesco</h1>
-                                    <span>Via Napoli, 18</span>
-                                    <div class="star">
+                                    <h1>Ristorante Crack</h1>
+                                    <span>Città: Gubbio</span>
+                                    <!-- <div class="star">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
                             <div
                                 class="swiper-slide"
                                 style="
-                                    background-image: url(https://www.agendaonline.it/wp-content/uploads/2021/07/bistecca-fiorentina.jpg);
+                                    background-image: url(https://images.pexels.com/photos/17056969/pexels-photo-17056969/free-photo-of-ristorante-lusso-preparazione-articoli-per-la-tavola.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
                                     background-size: cover;
                                 "
                             >
                                 <div class="card_obj">
-                                    <h1>Steack House</h1>
-                                    <span>Via Firenze, 10</span>
-                                    <div class="star">
+                                    <h1>La Trattoria del Nonno</h1>
+                                    <span>Città: Grottaglie</span>
+                                    <!-- <div class="star">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
                             <div
                                 class="swiper-slide"
                                 style="
-                                    background-image: url(https://www.grottapalazzese.it/wp-content/uploads/2018/03/Grotta-Palazzese-tavolo-centrale.jpg);
+                                    background-image: url(https://images.pexels.com/photos/11775402/pexels-photo-11775402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
                                     background-size: cover;
                                 "
                             >
                                 <div class="card_obj">
-                                    <h1>Grotta Palazzese</h1>
-                                    <span>Polignano a Mare</span>
-                                    <div class="star">
+                                    <h1>Osteria del Sole</h1>
+                                    <span>Città: Alghero</span>
+                                    <!-- <div class="star">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
                             <div
                                 class="swiper-slide"
                                 style="
-                                    background-image: url(https://www.informacibo.it/wp-content/uploads/2019/10/cibo-vegano.jpg);
+                                    background-image: url(https://images.pexels.com/photos/1653702/pexels-photo-1653702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
                                     background-size: cover;
                                 "
                             >
                                 <div class="card_obj">
-                                    <h1>Vegan Flavour</h1>
-                                    <span>Via Brescia, 15</span>
-                                    <div class="star">
+                                    <h1>Kebab Da Samir</h1>
+                                    <span>Città: Gubbio</span>
+                                    <!-- <div class="star">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
                             <div
                                 class="swiper-slide"
                                 style="
-                                    background-image: url(https://caffetterialeonardo.com/wp-content/uploads/2019/10/Pasticceria-1.jpg);
+                                    background-image: url(https://images.pexels.com/photos/19130144/pexels-photo-19130144/free-photo-of-mesa-con-pizze.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
                                     background-size: cover;
                                 "
                             >
                                 <div class="card_obj">
-                                    <h1>Pastry</h1>
-                                    <span>Via Torino, 19</span>
-                                    <div class="star">
+                                    <h1>La Bottega del Gusto</h1>
+                                    <span>Città: Grottaglie</span>
+                                    <!-- <div class="star">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
