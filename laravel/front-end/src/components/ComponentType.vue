@@ -257,7 +257,7 @@ export default {
                                     </div>
                                     <div class="container-img">
                                         <div>Consegna Gratuita</div>
-                                        <img :src="Restaurant.img" :alt="i" />
+                                        <img :src="Restaurant.img" :alt="x" />
                                     </div>
                                 </div>
                             </div>
