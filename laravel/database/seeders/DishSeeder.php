@@ -15,256 +15,187 @@ class DishSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        $dishes = [
-            // Primi piatti
-            [
-                'id' => 1,
-                'name' => 'Spaghetti alla Carbonara',
-                'description' => 'Spaghetti conditi con uova, pancetta e pecorino romano.',
-                'img'=>'',
-                'available' => true,
-                'price' => 9.50,
-            ],
-            [
-                'id' => 2,
-                'name' => 'Risotto ai Funghi Porcini',
-                'description' => 'Risotto con funghi porcini freschi e prelibato brodo di carne.',
-                'img'=>'',
-                'available' => true,
-                'price' => 12.00,
-            ],
-            [
-                'id' => 3,
-                'name' => 'Spaghetti di Soia con Verdure',
-                'description' => 'Spaghetti di soia saltati in padella con verdure fresche e salsa di soia.',
-                'img'=>'',
-                'available' => true,
-                'price' => 10.00,
-            ],
-
-            // Antipasti
-            [
-                'id' => 4,
-                'name' => 'Bruschetta al Pomodoro',
-                'description' => 'Fette di pane tostate condite con pomodoro fresco, aglio, basilico e olio extra vergine di oliva.',
-                'img'=>'',
-                'available' => true,
-                'price' => 6.00,
-            ],
-            [
-                'id' => 5,
-                'name' => 'Involtini Primavera',
-                'description' => 'Involtini di verdure avvolti in pasta croccante e fritti, serviti con salsa agrodolce.',
-                'img'=>'',
-                'available' => true,
-                'price' => 8.50,
-            ],
-            [
-                'id' => 6,
-                'name' => 'Carpaccio di Manzo',
-                'description' => 'Fettine di manzo crudo condite con olio, limone, rucola e scaglie di parmigiano.',
-                'img'=>'',
-                'available' => true,
-                'price' => 10.00,
-            ],
-
-            // Secondi piatti
-            [
-                'id' => 7,
-                'name' => 'Hamburger Classico',
-                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
-                'img'=>'',
-                'available' => true,
-                'price' => 14.00,
-            ],
-            [
-                'id' => 8,
-                'name' => 'Sushi Misto',
-                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
-                'img'=>'',
-                'available' => true,
-                'price' => 18.00,
-            ],
-            [
-                'id' => 9,
-                'name' => 'Pollo alla Cacciatora',
-                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
-                'img'=>'',
-                'available' => true,
-                'price' => 13.50,
-            ],
-            // Dolci
-            [
-                'id' => 10,
-                'name' => 'Tiramisù',
-                'description' => 'Delizioso dolce al caffè con savoiardi e mascarpone.',
-                'img'=>'',
-                'available' => true,
-                'price' => 7.00,
-            ],
-            [
-                'id' => 11,
-                'name' => 'Panna Cotta',
-                'description' => 'Dolce al cucchiaio con panna, zucchero, gelatina e vaniglia.',
-                'img'=>'',
-                'available' => true,
-                'price' => 6.50,
-            ],
-            [
-                'id' => 12,
-                'name' => 'Torta di Mele',
-                'description' => 'Torta tradizionale preparata con mele fresche, cannella e zucchero.',
-                'img'=>'',
-                'available' => true,
-                'price' => 6.00,
-            ],
-
-            // Bevande
-            [
-                'id' => 13,
-                'name' => 'Acqua Naturale',
-                'description' => 'Acqua minerale naturale in bottiglia.',
-                'img'=>'',
-                'available' => true,
-                'price' => 2.00,
-            ],
-            [
-                'id' => 14,
-                'name' => 'Vino Rosso',
-                'description' => 'Vino rosso di qualità selezionata.',
-                'img'=>'',
-                'available' => true,
-                'price' => 15.00,
-            ],
-            [
-                'id' => 15,
-                'name' => 'Caffè Espresso',
-                'description' => 'Caffè espresso fatto con chicchi di caffè di alta qualità.',
-                'img'=>'',
-                'available' => true,
-                'price' => 2.50,
-            ],
-             // AGGIUNTO
-            // Secondi piatti
-            [
-                'id' =>16 ,
-                'name' => 'Hamburger Classico',
-                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
-                'img'=>'',
-                'available' => true,
-                'price' => 14.00,
-            ],
-            [
-                'id' => 17,
-                'name' => 'Sushi Misto',
-                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
-                'img'=>'',
-                'available' => true,
-                'price' => 18.00,
-            ],
-            [
-                'id' => 18,
-                'name' => 'Pollo alla Cacciatora',
-                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
-                'img'=>'',
-                'available' => true,
-                'price' => 13.50,
-            ],
-            // FINE AGGIUNTO
-            // AGGIUNTO
-            // Secondi piatti
-            [
-                'id' => 19,
-                'name' => 'Hamburger Classico',
-                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
-                'img'=>'',
-                'available' => true,
-                'price' => 14.00,
-            ],
-            [
-                'id' => 20,
-                'name' => 'Sushi Misto',
-                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
-                'img'=>'',
-                'available' => true,
-                'price' => 18.00,
-            ],
-            [
-                'id' => 21,
-                'name' => 'Pollo alla Cacciatora',
-                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
-                'img'=>'',
-                'available' => true,
-                'price' => 13.50,
-            ],
-            // FINE AGGIUNTO
-             // AGGIUNTO
-            // Secondi piatti
-            [
-                'id' =>22 ,
-                'name' => 'Hamburger Classico',
-                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
-                'img'=>'',
-                'available' => true,
-                'price' => 14.00,
-            ],
-            [
-                'id' => 23,
-                'name' => 'Sushi Misto',
-                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
-                'img'=>'',
-                'available' => true,
-                'price' => 18.00,
-            ],
-            [
-                'id' => 24,
-                'name' => 'Pollo alla Cacciatora',
-                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
-                'img'=>'',
-                'available' => true,
-                'price' => 13.50,
-            ],
-
-            // AGGIUNTO
-
-            [
-                'id' => 25,
-                'name' => 'Hamburger Classico',
-                'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
-                'img'=>'',
-                'available' => true,
-                'price' => 14.00,
-            ],
-            [
-                'id' => 26,
-                'name' => 'Sushi Misto',
-                'description' => 'Assortimento di sushi con varie tipologie di pesce.',
-                'img'=>'',
-                'available' => true,
-                'price' => 18.00,
-            ],
-            [
-                'id' => 27,
-                'name' => 'Pollo alla Cacciatora',
-                'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
-                'img'=>'',
-                'available' => true,
-                'price' => 13.50,
-            ],
-            // FINE AGGIUNTO
-
-        ];
-
-        foreach ($dishes as $dishData) {
-            $dish = Dish::make($dishData);
-
-            $randomUser = User::inRandomOrder()->first();
-            $dish->user()->associate($randomUser);
 
 
-            $dish->save();
-        };
+public function run()
+{
+
+    //recupero tutti gli utenti
+    $users = User::all();
+
+    $dishes = [
+        // Primi piatti
+        [
+
+            'name' => 'Spaghetti alla Carbonara',
+            'description' => 'Spaghetti conditi con uova, pancetta e pecorino romano.',
+            'img'=>'',
+            'available' => true,
+            'price' => 9.50,
+        ],
+        [
+
+            'name' => 'Risotto ai Funghi Porcini',
+            'description' => 'Risotto con funghi porcini freschi e prelibato brodo di carne.',
+            'img'=>'',
+            'available' => true,
+            'price' => 12.00,
+        ],
+        [
+
+            'name' => 'Spaghetti di Soia con Verdure',
+            'description' => 'Spaghetti di soia saltati in padella con verdure fresche e salsa di soia.',
+            'img'=>'',
+            'available' => true,
+            'price' => 10.00,
+        ],
+
+        // Antipasti
+        [
+
+            'name' => 'Bruschetta al Pomodoro',
+            'description' => 'Fette di pane tostate condite con pomodoro fresco, aglio, basilico e olio extra vergine di oliva.',
+            'img'=>'',
+            'available' => true,
+            'price' => 6.00,
+        ],
+        [
+
+            'name' => 'Involtini Primavera',
+            'description' => 'Involtini di verdure avvolti in pasta croccante e fritti, serviti con salsa agrodolce.',
+            'img'=>'',
+            'available' => true,
+            'price' => 8.50,
+        ],
+        [
+
+            'name' => 'Carpaccio di Manzo',
+            'description' => 'Fettine di manzo crudo condite con olio, limone, rucola e scaglie di parmigiano.',
+            'img'=>'',
+            'available' => true,
+            'price' => 10.00,
+        ],
+
+        // Secondi piatti
+        [
+
+            'name' => 'Hamburger Classico',
+            'description' => 'Hamburger con manzo, lattuga, pomodoro e maionese.',
+            'img'=>'',
+            'available' => true,
+            'price' => 14.00,
+        ],
+        [
+
+            'name' => 'Sushi Misto',
+            'description' => 'Assortimento di sushi con varie tipologie di pesce.',
+            'img'=>'',
+            'available' => true,
+            'price' => 18.00,
+        ],
+        [
+
+            'name' => 'Pollo alla Cacciatora',
+            'description' => 'Pollo cotto lentamente con pomodoro, cipolla, olive, vino bianco e aromi.',
+            'img'=>'',
+            'available' => true,
+            'price' => 13.50,
+        ],
+        // Dolci
+        [
+
+            'name' => 'Tiramisù',
+            'description' => 'Delizioso dolce al caffè con savoiardi e mascarpone.',
+            'img'=>'',
+            'available' => true,
+            'price' => 7.00,
+        ],
+        [
+
+            'name' => 'Panna Cotta',
+            'description' => 'Dolce al cucchiaio con panna, zucchero, gelatina e vaniglia.',
+            'img'=>'',
+            'available' => true,
+            'price' => 6.50,
+        ],
+        [
+
+            'name' => 'Torta di Mele',
+            'description' => 'Torta tradizionale preparata con mele fresche, cannella e zucchero.',
+            'img'=>'',
+            'available' => true,
+            'price' => 6.00,
+        ],
+
+        // Bevande
+        [
+
+            'name' => 'Acqua Naturale',
+            'description' => 'Acqua minerale naturale in bottiglia.',
+            'img'=>'',
+            'available' => true,
+            'price' => 2.00,
+        ],
+        [
+
+            'name' => 'Vino Rosso',
+            'description' => 'Vino rosso di qualità selezionata.',
+            'img'=>'',
+            'available' => true,
+            'price' => 15.00,
+        ],
+        [
+
+            'name' => 'Caffè Espresso',
+            'description' => 'Caffè espresso fatto con chicchi di caffè di alta qualità.',
+            'img'=>'',
+            'available' => true,
+            'price' => 2.50,
+        ],
+
+
+    ];
+
+         // itero attraverso ogni utente recuperato dal database
+        foreach ($users as $user) {
+
+            // ottengo l'elenco degli ID dei piatti già assegnati all'utente corrente
+            $assignedDishesIds = $user->dishes->pluck('id')->toArray(); //*1
+
+            // calcolo il numero massimo di piatti casuali da selezionare per l'utente corrente
+            $maxRandomDishes = min(10, count($dishes) - count($assignedDishesIds));
+
+            // ottengo un array di chiavi dei piatti non ancora assegnati all'utente corrente
+            $randomDishesKeys = array_diff(array_keys($dishes), $assignedDishesIds); //*2
+
+            // seleziono casualmente le chiavi dei piatti da assegnare all'utente corrente
+            $randomDishesKeys = array_rand($randomDishesKeys, $maxRandomDishes);
+
+             // itero attraverso ogni chiave selezionata casualmente
+            foreach ($randomDishesKeys as $index) {
+
+                // ottengo i dati del piatto corrispondente alla chiave
+                $dishData = $dishes[$index];
+
+                // creo un nuovo oggetto Dish utilizzando i dati del piatto
+                $dish = new Dish($dishData);
+
+                // associo l'utente corrente al piatto
+                $dish->user()->associate($user);
+
+                // salvo il piatto nel database
+                $dish->save();
+            }
+        }
     }
 }
+
+//*1 La funzione pluck('id') è un metodo di Laravel che viene chiamato su una collezione di oggetti eloquent,
+//come ad esempio una collezione di utenti.
+//Questo metodo estrae il valore dell'attributo 'id' per ogni oggetto nella collezione
+//e restituisce un array contenente tutti questi valori di ID.
+
+//*2 array_keys($dishes): Restituisce un array contenente le
+//chiavi dell'array $dishes, cioè gli indici numerici o le chiavi associative dei piatti.
+//La funzione array_diff confronta due array e restituisce un array contenente
+//tutti gli elementi presenti nel primo array che non sono presenti nel secondo array.

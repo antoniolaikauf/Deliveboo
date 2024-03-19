@@ -20,7 +20,7 @@ export default {
             <div class="col-12 col-lg-6">
             <div class="card">
                 <img
-                    class="rounded-3"
+                    class="rounded-3 img_restaurant"
                     :src= "store.restaurantselected.img"
                     alt="placeholderrestaurant"
                 />
@@ -129,6 +129,15 @@ export default {
 .restaurantName {
     font-family: $boo-font;
     font-weight: bolder;
+}
+
+.img_restaurant{
+    
+}
+
+.card{
+    max-height: 800px;
+    object-fit: cover;
 }
 
 </style>
