@@ -18,17 +18,12 @@ export default {
             // restaurants selezionati dall'utente
             arrayRestaurantsSelect: "",
             // variabile controllo select
-            control: true,
+            store,
         };
     },
 
     methods: {
         takevalue() {
-            if (this.checked.length == 0) {
-                this.control = false;
-            } else {
-                this.control = true;
-            }
             this.showRestaurant = true;
             axios
                 .post("http://localhost:8000/api/v1/types/select", this.checked)
@@ -40,49 +35,19 @@ export default {
 
                     this.arrayRestaurantsSelect = risposta.data.risposta;
                     console.log(this.arrayRestaurantsSelect);
-                    setTimeout(() => {
-                        let carousels = document.querySelectorAll(".mySwiper");
-                        console.log(carousels);
-
-                        for (let i = 0; i < carousels.length; i++) {
-                            // controllo se esiste gia un carousel
-                            if (carousels[i].swiper) {
-                                //   codice per disintegrare il carousel
-                                carousels[i].swiper.destroy(true, true);
-                            }
-                            var swiper = new Swiper(carousels[i], {
-                                centeredSlides: true,
-                                loop: true,
-                                initialSlide: 2,
-                                autoplay: {
-                                    delay: 2500,
-                                    disableOnInteraction: false,
-                                },
-                                breakpoints: {
-                                    640: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 20,
-                                    },
-                                    768: {
-                                        slidesPerView: 3,
-                                        spaceBetween: 20,
-                                    },
-                                },
-                                navigation: {
-                                    nextEl: ".swiper-button-next",
-                                    prevEl: ".swiper-button-prev",
-                                },
-                            });
-                        }
-                    }, 500);
                 })
                 .catch((err) => {
                     console.log(err);
                 });
         },
-        ciao(index, x) {
-            console.log(this.arrayRestaurantsSelect[index][x]);
-            store.restaurantselected = this.arrayRestaurantsSelect[index][x];
+        selectedRestaurantWithType(index, nRestaurants) {
+            console.log(this.arrayRestaurantsSelect[index][nRestaurants]);
+            store.restaurantselected =
+                this.arrayRestaurantsSelect[index][nRestaurants];
+        },
+        groupRestaurant(index) {
+            console.log(this.restaurants[index]);
+            store.restaurantselected = this.restaurants[index];
         },
     },
     mounted() {
@@ -92,7 +57,7 @@ export default {
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
-                // console.log(this.restaurants);
+                console.log(this.restaurants);
                 // console.log(this.arrayTypes);
             })
             .catch((err) => {
@@ -140,131 +105,97 @@ export default {
                             </div>
                         </button>
                     </div>
-                    <div v-if="!control" class="text-white text-center">
-                        <div
-                            class="bg-danger d-inline-block p-1 mb-3 fs-5 text"
-                        >
-                            Inserisci una tipologia!
-                        </div>
-                    </div>
                 </form>
-                <!-- div contenente tutti i ristoranti nel database -->
-                <!-- VEDERE SE TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
-                <!-- <div v-if="!showRestaurant" class="row my-3">
-                <h2 class="text-center">Ristoranti Disponibili</h2>
-                <div
-                    v-for="(restaurant, i) in restaurants"
-                    :key="i"
-                    class="col-12 col-md-6 col-xl-4 card-restaurant p-5"
-                >
-                    <div class="card">
-                        <img
-                            :src="restaurant.img"
-                            class="card-img-top img-restaurants"
-                            :alt="i"
-                        />
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                nome ristorante:
-                                <strong> {{ restaurant.name }}</strong>
-                            </h5>
-                            <h5 class="card-title">
-                                località:
-                                <strong>{{ restaurant.city }}</strong>
-                            </h5>
-                            <h5>
-                                <div v-for="(type, i) in restaurant.types">
-                                    genere:
-                                    <strong>
-                                        {{ type.name }}
-                                    </strong>
+                <div v-if="!showRestaurant" class="row my-3 p-5">
+                    <div
+                        class="card col-12 col-lg-3 my-3 bg-transparent border-0"
+                        v-for="(restaurant, i) in restaurants"
+                    >
+                        <router-link
+                            class="bg-white"
+                            :to="{ name: 'Restaurant' }"
+                            @click="groupRestaurant(i)"
+                        >
+                            <div class="bg-white" style="min-height: 416px">
+                                <img
+                                    :src="restaurant.img"
+                                    class="card-img-top"
+                                    style="height: 208px"
+                                />
+                                <div class="card-body">
+                                    <h2 class="card-title">
+                                        <strong> {{ restaurant.name }}</strong>
+                                    </h2>
+                                    <h5 class="card-title locality">
+                                        <i class="fa-solid fa-city"></i>
+                                        Località:
+                                        {{ restaurant.city }}
+                                    </h5>
+                                    <h5 class="type">
+                                        Genere:
+                                        <ul>
+                                            <li
+                                                v-for="(
+                                                    types, i
+                                                ) in restaurant.types"
+                                            >
+                                                <i
+                                                    class="fa-solid fa-bowl-food pe-2"
+                                                ></i>
+                                                <strong>
+                                                    {{ types.name }}</strong
+                                                >
+                                            </li>
+                                        </ul>
+                                    </h5>
                                 </div>
-                            </h5>
-
-                            <div
-                                class="btn-group"
-                                role="group"
-                                aria-label="Basic example"
-                            >
-                                <button
-                                    type="button"
-                                    class="btn-boo mx-3 border"
-                                >
-                                    dettagli
-                                </button>
                             </div>
-                        </div>
+                        </router-link>
                     </div>
                 </div>
-            </div> -->
                 <!-- vedere se tenerla o no questa altezza -->
-                <div class="container-carousel">
+                <div class="row">
                     <div
                         v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
-                        class="my-5"
+                        class="col-12 row px-5"
                     >
-                        <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
-                                <div
-                                    class="swiper-slide d-block border rounded shadow"
-                                    v-for="(Restaurant, x) in RestaurantsSelect"
-                                >
-                                    <div class="p-2 text-start">
-                                        <h3>
-                                            <strong>{{
-                                                Restaurant.name
-                                            }}</strong>
-                                        </h3>
-                                        <h5 class="locality">
-                                            <i class="fa-solid fa-city"></i>
-                                            Località:
-                                            {{ Restaurant.city }}
-                                        </h5>
-                                        <h5 class="type">
-                                            <i
-                                                class="fa-solid fa-bowl-food"
-                                            ></i>
-                                            Genere:
+                        <div
+                            class="card col-3 bg-transparent border-0 p-2"
+                            v-for="(Restaurant, x) in RestaurantsSelect"
+                            style="min-height: 416px"
+                        >
+                            <router-link
+                                class="bg-white"
+                                :to="{ name: 'Restaurant' }"
+                                @click="selectedRestaurantWithType(i, x)"
+                            >
+                                <img
+                                    :src="Restaurant.img"
+                                    class="card-img-top"
+                                    :alt="x"
+                                    style="height: 208px"
+                                />
+                                <div class="card-body">
+                                    <h3 class="">
+                                        <strong>{{ Restaurant.name }}</strong>
+                                    </h3>
+                                    <h5 class="locality card-title">
+                                        <i class="fa-solid fa-city"></i>
+                                        Località:
+                                        {{ Restaurant.city }}
+                                    </h5>
+                                    <h5 class="type card-title">
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                        Genere:
 
-                                            {{
-                                                arrayTypes[
-                                                    Restaurant.pivot.type_id - 1
-                                                ].name
-                                            }}
-                                        </h5>
-                                        <div
-                                            class="btn-group"
-                                            role="group"
-                                            aria-label="Basic example"
-                                        >
-                                            <router-link
-                                                :to="{ name: 'Restaurant' }"
-                                            >
-                                                <div
-                                                    class="btn-group"
-                                                    role="group"
-                                                    aria-label="Basic example"
-                                                >
-                                                    <button
-                                                        @click="ciao(i, x)"
-                                                        type="button"
-                                                        class="btn-boo ms-2 border"
-                                                    >
-                                                        Dettagli
-                                                    </button>
-                                                </div></router-link
-                                            >
-                                        </div>
-                                    </div>
-                                    <div class="container-img">
-                                        <div>Consegna Gratuita</div>
-                                        <img :src="Restaurant.img" :alt="x" />
-                                    </div>
+                                        {{
+                                            arrayTypes[
+                                                Restaurant.pivot.type_id - 1
+                                            ].name
+                                        }}
+                                    </h5>
                                 </div>
-                            </div>
-                            <!-- Frecce di navigazione -->
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -274,10 +205,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-// .img-restaurants {
-//     height: 300px;
-// }
-
 .swiper {
     width: 100%;
     height: 450px;
@@ -291,15 +218,6 @@ export default {
             background-color: rgb(255, 0, 0);
             color: white;
         }
-    }
-    .locality {
-        color: rgb(64, 64, 255);
-        i {
-            color: orange;
-        }
-    }
-    .type {
-        color: rgb(255, 83, 83);
     }
 }
 
@@ -344,5 +262,14 @@ export default {
     background-color: white;
     padding: 35px;
     border-radius: 16% 46%;
+}
+.locality {
+    color: rgb(64, 64, 255);
+    i {
+        color: orange;
+    }
+}
+.type {
+    color: rgb(255, 83, 83);
 }
 </style>
