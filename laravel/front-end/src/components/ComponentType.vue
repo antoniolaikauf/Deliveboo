@@ -113,7 +113,7 @@ export default {
                     >
                         <router-link
                             class="bg-white"
-                            :to="{ name: 'Restaurant' }"
+                            :to="{ name: 'Restaurant', params: { id: i + 1 } }"
                             @click="groupRestaurant(i)"
                         >
                             <div class="bg-white" style="min-height: 416px">
@@ -166,7 +166,10 @@ export default {
                         >
                             <router-link
                                 class="bg-white"
-                                :to="{ name: 'Restaurant' }"
+                                :to="{
+                                    name: 'Restaurant',
+                                    params: { id: x + 1 },
+                                }"
                                 @click="selectedRestaurantWithType(i, x)"
                             >
                                 <img
