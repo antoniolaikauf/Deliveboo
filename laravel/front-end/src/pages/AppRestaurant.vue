@@ -131,9 +131,6 @@ export default {
     font-weight: bolder;
 }
 
-.img_restaurant{
-    
-}
 
 .card{
     max-height: 800px;

@@ -57,7 +57,7 @@ export default {
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
-                // console.log(this.restaurants);
+                console.log(this.restaurants);
                 // console.log(this.arrayTypes);
             })
             .catch((err) => {
