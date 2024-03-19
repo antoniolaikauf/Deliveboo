@@ -29,45 +29,47 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dishes as $dish)
-                                @if (Auth::check() && Auth::id() === $dish->user_id)
-                                <tr>
-                                    <td>{{ $dish->name }}</td>
-                                    <td>{{ $dish->description }}</td>
-                                    <td>{{ $dish->price }} €</td>
-                                    <td>
-                                        @if ($dish->available)
-                                        <span class="badge bg-success">Disponibile</span>
-                                        @else
-                                        <span class="badge bg-danger">Non disponibile</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="img-cont">
-                                            @if($dish->img)
-                                            <img class="img-fluid" src="{{asset('storage/'.$dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
-                                            @endif
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    @auth
-                                    <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-danger" onclick="showConfirmationModal('{{ $dish->id }}')">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                    <form id="deleteForm_{{ $dish->id }}"
-                                        action="{{ route('dish.delete', $dish->id) }}" method="POST" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
-                                    @endauth
-                                </td>
-                            </tr>
-                            @endif
-                            @endforeach
+
+                                {{-- reverse, inverte l'ordine dell'array --}}
+                                @foreach ($dishes->reverse() as $dish)
+                                    @if (Auth::check() && Auth::id() === $dish->user_id)
+                                        <tr>
+                                            <td>{{ $dish->name }}</td>
+                                            <td>{{ $dish->description }}</td>
+                                            <td>{{ $dish->price }} €</td>
+                                            <td>
+                                                @if ($dish->available)
+                                                <span class="badge bg-success">Disponibile</span>
+                                                @else
+                                                <span class="badge bg-danger">Non disponibile</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="img-cont">
+                                                    @if($dish->img)
+                                                        <img class="img-fluid" src="{{asset('storage/'.$dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            </td>
+                                            <td>
+                                                @auth
+                                                    <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <button class="btn btn-sm btn-danger" onclick="showConfirmationModal('{{ $dish->id }}')">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                    <form id="deleteForm_{{ $dish->id }}"
+                                                        action="{{ route('dish.delete', $dish->id) }}" method="POST" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @endauth
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -95,7 +97,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
         @endif
         @endforeach
 
