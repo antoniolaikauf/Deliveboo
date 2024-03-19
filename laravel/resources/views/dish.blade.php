@@ -23,8 +23,8 @@
                                     <th scope="col">Nome</th>
                                     <th scope="col">Descrizione</th>
                                     <th scope="col" style="width: 100px;">Prezzo</th>
-                                    <th scope="col">Disponibilità</th>
-                                    <th scope="col">Immagini</th>
+                                    <th scope="col" style="width: 20px;">Disponibilità</th>
+                                    <th scope="col" style="width: 20px;">Immagini</th>
                                     <th scope="col" style="width: 90px;">Azioni</th>
                                 </tr>
                             </thead>
@@ -124,6 +124,8 @@
         height: 100%;
             width: 100%;
         }
+
+
 
     </style>
 
