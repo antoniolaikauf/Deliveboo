@@ -86,8 +86,22 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+    // {
+    //     $dish = Dish::find($id);
+    //     return view('edit', compact('dish'));
+    // }
+
     {
-        $dish = Dish::find($id);
+        $dish = Dish::findOrFail($id);
+    
+        // Controlla se l'utente autenticato è autorizzato a modificare questo piatto
+        if ($dish->user_id !== auth()->id()) {
+            // Se l'utente non è autorizzato, puoi gestire la situazione in vari modi,
+            // come ad esempio reindirizzarlo a una pagina di errore o mostrarlo un messaggio di errore.
+            // Qui, per esempio, reindirizziamo l'utente alla pagina principale con un messaggio di errore.
+            return redirect()->route('dish.index')->with('error', 'Non hai i permessi per modificare questo piatto.');
+        }
+    
         return view('edit', compact('dish'));
     }
 
@@ -103,7 +117,7 @@ class RestaurantController extends Controller
 
         $data = $request->all();
         $data['available'] = $request->has('available');
-        $dish = Dish::find($id);
+        $dish = Dish::findOrFail($id);
 
 
         $dish->user_id = Auth::id();
@@ -112,6 +126,12 @@ class RestaurantController extends Controller
         $dish->description = $data['description'];
         $dish->price = $data['price'];
         $dish->available = $data['available'];
+
+        // Verifica se l'utente autenticato è autorizzato a modificare questo piatto
+    if ($dish->user_id !== auth()->id()) {
+        // Se l'utente non è autorizzato, reindirizzalo alla pagina principale con un messaggio di errore
+        return redirect()->route('dish.index')->with('error', 'Non hai i permessi per modificare questo piatto.');
+    }
 
         // Verifica se la chiave 'img' esiste nell'array $data
     if ($request->has('img')) {
