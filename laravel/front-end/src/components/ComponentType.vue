@@ -53,6 +53,7 @@ export default {
                             var swiper = new Swiper(carousels[i], {
                                 centeredSlides: true,
                                 loop: true,
+                                initialSlide: 2,
                                 autoplay: {
                                     delay: 2500,
                                     disableOnInteraction: false,
@@ -257,7 +258,7 @@ export default {
                                     </div>
                                     <div class="container-img">
                                         <div>Consegna Gratuita</div>
-                                        <img :src="Restaurant.img" :alt="i" />
+                                        <img :src="Restaurant.img" :alt="x" />
                                     </div>
                                 </div>
                             </div>
