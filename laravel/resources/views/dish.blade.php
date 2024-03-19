@@ -46,8 +46,11 @@
                                             </td>
                                             <td>
                                                 <div class="img-cont">
-                                                    @if($dish->img)
-                                                        <img class="img-fluid" src="{{asset('storage/'.$dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+                                                    {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
+                                                    @if ($dish->img && Storage::disk('public')->exists($dish->img))
+                                                        <img class="img-fluid" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
+                                                    @else
+                                                        <img class="img-fluid" src="{{asset($dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
                                                     @endif
                                                 </div>
                                             </div>

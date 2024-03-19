@@ -6,11 +6,7 @@
         <div class="col-6 p-4 form-create  text-white">
             <h2 class="text-center mt-3">Modifica il tuo piatto</h2>
             <div class="container form-bg">
-
-
-
                 <form action="{{ route('dish.update', $dish->id) }}" method="POST"  enctype="multipart/form-data">
-
                     @csrf
                     @method('PUT')
 
@@ -57,19 +53,7 @@
                         @enderror
                     </div>
 
-
-
                     <div class="d-flex align-items-center flex-column my-3 gap-3">
-                        {{-- <label for="available">disponibile</label>
-                        <select name="available" id="available" class="form-select @error('available') is-invalid @enderror" aria-label="Default select example">
-                            <option value="1" @if ($dish->available == 1) selected @endif>disponibile</option>
-                            <option value="0" @if ($dish->available == 0) selected @endif>non disponibile</option>
-                        </select>
-                        @error('available')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror --}}
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="available" name="available" value="1" @if ($dish->available == 1) checked @endif>
                             <label class="form-check-label" for="available">Disponibile</label>
@@ -85,21 +69,23 @@
 
                     <div class="d-flex align-items-center flex-column my-3 gap-3">
                         <label for="img">Modifica l'immagine:</label>
-                        <input type="file" name="img" id="img" accept="image/" class="form-control" onchange="previewImage(event)">
-                        {{-- ANTEPRIMA IMG --}}
-                        <img id="preview" src="#" alt="Anteprima immagine" style="max-width: 200px; max-height: 200px; display: none;">
+                        {{-- @if($dish->img) --}}
+                            <input type="file" name="img" id="img" accept="image/" class="form-control" onchange="previewImage(event)">
+                            <img id="preview" src="#" alt="Anteprima immagine" style="max-width: 200px; max-height: 200px; display: none;">
+                        {{-- @else
+                            <h6 class="text-danger">Non ci sono immagini selezionate</h6> --}}
+                        {{-- @endif --}}
+
                     </div>
 
                     <div class="d-flex mb-2 justify-content-center">
-
                         <input type="submit" value="MODIFICA" class="btn-boo buttons">
-
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
+</div>
 
 <style>
 
@@ -235,7 +221,6 @@
         });
     });
 
-
     // Questa funzione previewImage(event) è chiamata ogni volta che il valore dell'input file viene modificato
     // (grazie all'attributo onchange="previewImage(event)" nell'elemento <input>).
     function previewImage(event) {
@@ -267,3 +252,4 @@
     }
 </script>
 @endsection
+
