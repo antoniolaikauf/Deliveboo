@@ -131,7 +131,7 @@
         .bg-img {
             background-image: url(/imgs/8afbf530-609f-4e88-99f1-628c2a9faa63.png);
             background-size: cover;
-            height: 100vh;
+            height: 100%;
             width: 100%;
         }
 
