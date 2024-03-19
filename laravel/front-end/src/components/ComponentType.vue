@@ -53,6 +53,7 @@ export default {
                             var swiper = new Swiper(carousels[i], {
                                 centeredSlides: true,
                                 loop: true,
+                                initialSlide: 2,
                                 autoplay: {
                                     delay: 2500,
                                     disableOnInteraction: false,
