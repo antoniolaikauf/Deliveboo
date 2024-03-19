@@ -23,7 +23,7 @@ export default {
     },
 
     methods: {
-        takevalue() {
+        check() {
             this.showRestaurant = true;
             axios
                 .post("http://localhost:8000/api/v1/types/select", this.checked)
@@ -71,7 +71,7 @@ export default {
     <section class="py-4 mb-5">
         <div class="container-fluid bg-dark">
             <div class="row">
-                <form @submit.prevent="takevalue()" class="px-5 pt-3">
+                <form class="px-5 pt-3">
                     <h1 class="text-white text-center m-5">
                         Ecco una varietà di opzioni tra cui puoi scegliere,
                         <br />
@@ -90,6 +90,7 @@ export default {
                                     :value="i"
                                     :id="i"
                                     v-model="checked"
+                                    @change="check($event)"
                                 />
 
                                 <label :for="i" class="form-check-label">
@@ -97,13 +98,6 @@ export default {
                                 </label>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center my-4">
-                        <button type="submit" class="btn-boo mx-3 border">
-                            <div>
-                                <span>Cerca</span>
-                            </div>
-                        </button>
                     </div>
                 </form>
                 <div v-if="!showRestaurant" class="row my-3 p-5">
