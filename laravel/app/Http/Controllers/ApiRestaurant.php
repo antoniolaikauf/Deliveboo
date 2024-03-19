@@ -34,7 +34,7 @@ class ApiRestaurant extends Controller
         $container = [];
 
         foreach ($data as $typeId) {
-            $type = Type::find($typeId);
+            $type = Type::find($typeId + 1);
 
             // Verifica se il tipo esiste prima di procedere
             if ($type) {
