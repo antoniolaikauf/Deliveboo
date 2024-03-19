@@ -65,9 +65,9 @@
                         <label for="img">La tua immagine attuale:</label>
                         {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
                         @if ($dish->img && Storage::disk('public')->exists($dish->img))
-                            <img style="width: 500px; height: 400px;" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
+                            <img style="width: 400px; height: 400px;" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
                         @else
-                            <img style="width: 00px; height: 400px;" src="{{asset($dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+                            <img style="width: 400px; height: 400px;" src="{{asset($dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
                         @endif
                     </div>
 
