@@ -48,6 +48,7 @@ class RestaurantController extends Controller
 
 
         $data = $request->all();
+        $data['available'] = $request->has('available');
 
         $img = $data['img'];
         $image_path = Storage :: disk('public') -> put('images', $img);
@@ -101,6 +102,7 @@ class RestaurantController extends Controller
     {
 
         $data = $request->all();
+        $data['available'] = $request->has('available');
         $dish = Dish::find($id);
 
 
@@ -111,8 +113,18 @@ class RestaurantController extends Controller
         $dish->price = $data['price'];
         $dish->available = $data['available'];
 
+        // Verifica se la chiave 'img' esiste nell'array $data
+    if ($request->has('img')) {
+        // Se la chiave 'img' esiste, gestisci il caricamento dell'immagine
         $img = $data['img'];
-        $image_path = Storage :: disk('public') -> put('images', $img);
+        $image_path = Storage::disk('public')->put('images', $img);
+    } else {
+        // Se la chiave 'img' non esiste, assegna un valore predefinito a $image_path o gestisci diversamente
+        $image_path = null; // Ad esempio, puoi impostare $image_path su null o su un percorso predefinito per un'immagine predefinita
+    }
+
+        // $img = $data['img'];
+        // $image_path = Storage :: disk('public') -> put('images', $img);
         $dish->img = $image_path;
 
 

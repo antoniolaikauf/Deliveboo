@@ -12,20 +12,29 @@ export default {
 
 <template>
     <!-- sezioni ristoranti impostazione -->
-    <section>
+    <section>        
         <div
-            class="restaurantpic container-fluid justify-content-center d-flex p-4"
+            class="restaurantpic container p-4"
         >
-            <img
-                class="img-fluid"
-                src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="placeholderrestaurant"
-            />
-            <div class="container-fluid col-12 px-3">
-                {{ store.restaurantselected.name }}
-                <h1 class="restaurantName">NomeRistorante</h1>
-                <p>25-40 min Tipo Ristorante</p>
-                <p>Località Chiude alle 23:00 Consegna gratuita</p>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+            <div class="card">
+                <img
+                    class="rounded-3"
+                    :src= "store.restaurantselected.img"
+                    alt="placeholderrestaurant"
+                />
+            </div>
+            </div>
+            <div class="col-12 col-lg-6 px-3">
+                
+                <h1 class="restaurantName">{{ store.restaurantselected.name }}</h1>
+
+                <div class="my-4">
+                <p>Località: <b>{{ store.restaurantselected.city }}</b> <br>
+                Chiude alle 23:00 <br> 
+                <b style="color: #00ccbc;">Consegna gratuita!</b></p>
+                </div>
                 <!-- Button trigger modal -->
                 <button
                     type="button"
@@ -35,7 +44,7 @@ export default {
                     style="width: 250px"
                 >
                     <h4 class="d-flex">
-                        <i class="fa-solid fa-circle-info"></i>Allergeni
+                        <i class="fa-solid fa-circle-info" style="color: #00ccbc;"><b style="color: black;"> Allergeni</b></i>
                     </h4>
                     Informazioni e tanto altro
                 </button>
@@ -91,14 +100,25 @@ export default {
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
+    <section class="container p-3">
+        <div>
+            <h1>Menù</h1>
+        </div>
+        <div class="card col-12 col-lg-6 my-3 p-3" v-for="dish in store.restaurantselected.user.dishes">
+            <h2>{{ dish.name }}</h2>
+            <p>{{ dish.description }} <br> <b>{{ dish.price }} &euro;</b></p>
+        </div>
+       
+    </section>
     <!-- barra checkout impostazione -->
-    <section class="checkoutbar d-flex justify-content-center">
+    <!-- <section class="checkoutbar d-flex justify-content-center">
         <router-link :to="{ name: 'success' }">
             <button class="btn-boo">Checkout</button></router-link
         >
-    </section>
+    </section> -->
 </template>
 
 <style lang="scss">
@@ -106,17 +126,9 @@ export default {
 @use "../styles/partials/variables" as *;
 @use "../styles/general.scss" as *;
 
-.restaurantpic {
-    max-width: 500px;
-    max-height: 500px;
-}
-
 .restaurantName {
     font-family: $boo-font;
     font-weight: bolder;
 }
 
-.img-fluid {
-    border-radius: 7px;
-}
 </style>

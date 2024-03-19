@@ -38,7 +38,7 @@ export default {
                                         </div>
 
                                         <div>
-                                            <span>Registrati o Accedi</span>
+                                            <span>Registrati</span>
                                         </div>
                                     </button></a>
                             </div>
