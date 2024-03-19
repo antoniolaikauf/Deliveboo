@@ -60,10 +60,14 @@
                         </div>
                     </div>
 
-                    <div class="img-cont">
-                        <h3>La tua immagine attuale:</h3>
-                        @if($dish->img)
-                            <img class="img-fluid" src="{{asset('storage/'.$dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+
+                    <div class="d-flex align-items-center flex-column my-3 gap-3 ">
+                        <label for="img">La tua immagine attuale:</label>
+                        {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
+                        @if ($dish->img && Storage::disk('public')->exists($dish->img))
+                            <img style="width: 400px" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
+                        @else
+                            <img style="width: 400px" src="{{asset($dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
                         @endif
                     </div>
 
@@ -150,6 +154,7 @@
         text-align: center;
         margin-bottom: 30px;
     }
+
 
 </style>
 
