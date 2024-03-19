@@ -14,7 +14,7 @@ export default {
                         <div>
                             <h6><a href="https://www.youtube.com/@mattiaruta">Investitori</a></h6>
                             <h6><a href="#">Chi siamo</a></h6>
-                            <h6><a href="http://localhost:5174">Ristoranti</a></h6>
+                            <h6><a href="http://localhost:5173">Ristoranti</a></h6>
                             <h6><a href="#">Altro</a></h6>
                             <h6><a href="#">Pressroom</a></h6>
                             <h6><a href="https://boolean.careers/">Programmazione</a></h6>

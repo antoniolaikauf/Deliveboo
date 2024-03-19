@@ -1,5 +1,7 @@
 <script>
 import axios from "axios";
+import { store } from "../store";
+
 export default {
     name: "TypeRestaurant",
 
@@ -15,7 +17,7 @@ export default {
             checked: [],
             // restaurants selezionati dall'utente
             arrayRestaurantsSelect: "",
-            // variabile controllo select 
+            // variabile controllo select
             control: true,
         };
     },
@@ -40,11 +42,18 @@ export default {
                     console.log(this.arrayRestaurantsSelect);
                     setTimeout(() => {
                         let carousels = document.querySelectorAll(".mySwiper");
+                        console.log(carousels);
 
                         for (let i = 0; i < carousels.length; i++) {
+                            // controllo se esiste gia un carousel
+                            if (carousels[i].swiper) {
+                                //   codice per disintegrare il carousel
+                                carousels[i].swiper.destroy(true, true);
+                            }
                             var swiper = new Swiper(carousels[i], {
                                 centeredSlides: true,
                                 loop: true,
+                                initialSlide: 2,
                                 autoplay: {
                                     delay: 2500,
                                     disableOnInteraction: false,
@@ -59,15 +68,21 @@ export default {
                                         spaceBetween: 20,
                                     },
                                 },
+                                navigation: {
+                                    nextEl: ".swiper-button-next",
+                                    prevEl: ".swiper-button-prev",
+                                },
                             });
                         }
-
-                        console.log(carousels);
                     }, 500);
                 })
                 .catch((err) => {
                     console.log(err);
                 });
+        },
+        ciao(index, x) {
+            console.log(this.arrayRestaurantsSelect[index][x]);
+            store.restaurantselected = this.arrayRestaurantsSelect[index][x];
         },
     },
     mounted() {
@@ -77,8 +92,8 @@ export default {
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
-                console.log(this.restaurants);
-                console.log(this.arrayTypes);
+                // console.log(this.restaurants);
+                // console.log(this.arrayTypes);
             })
             .catch((err) => {
                 console.log(err);
@@ -89,9 +104,15 @@ export default {
 
 <template>
     <section class="py-4 mb-5">
-        <div class="container-fluid">
+        <div class="container-fluid bg-dark">
             <div class="row">
-                <form @submit.prevent="takevalue()" class="px-5 bg-dark pt-3">
+                <form @submit.prevent="takevalue()" class="px-5 pt-3">
+                    <h1 class="text-white text-center m-5">
+                        Ecco una varietà di opzioni tra cui puoi scegliere,
+                        <br />
+                        seleziona la tipologia che ti interessa e esplora
+                        ulteriori dettagli!
+                    </h1>
                     <div class="d-flex flex-wrap">
                         <div
                             class="form-check col-12 col-lg-2"
@@ -128,7 +149,7 @@ export default {
                     </div>
                 </form>
                 <!-- div contenente tutti i ristoranti nel database -->
-                <!-- VEDERE E TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
+                <!-- VEDERE SE TENERLO O NO SE NON SI TIENE ELIMINARE CHIAMATA AXIOS -->
                 <!-- <div v-if="!showRestaurant" class="row my-3">
                 <h2 class="text-center">Ristoranti Disponibili</h2>
                 <div
@@ -182,11 +203,11 @@ export default {
                         v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                         class="my-5"
                     >
-                        <div class="swiper mySwiper" style="height: 450px">
+                        <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <div
                                     class="swiper-slide d-block border rounded shadow"
-                                    v-for="(Restaurant, i) in RestaurantsSelect"
+                                    v-for="(Restaurant, x) in RestaurantsSelect"
                                 >
                                     <div class="p-2 text-start">
                                         <h3>
@@ -216,20 +237,34 @@ export default {
                                             role="group"
                                             aria-label="Basic example"
                                         >
-                                            <button
-                                                type="button"
-                                                class="btn-boo ms-2 border"
+                                            <router-link
+                                                :to="{ name: 'Restaurant' }"
                                             >
-                                                Dettagli
-                                            </button>
+                                                <div
+                                                    class="btn-group"
+                                                    role="group"
+                                                    aria-label="Basic example"
+                                                >
+                                                    <button
+                                                        @click="ciao(i, x)"
+                                                        type="button"
+                                                        class="btn-boo ms-2 border"
+                                                    >
+                                                        Dettagli
+                                                    </button>
+                                                </div></router-link
+                                            >
                                         </div>
                                     </div>
                                     <div class="container-img">
                                         <div>Consegna Gratuita</div>
-                                        <img :src="Restaurant.img" :alt="i" />
+                                        <img :src="Restaurant.img" :alt="x" />
                                     </div>
                                 </div>
                             </div>
+                            <!-- Frecce di navigazione -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
                         </div>
                     </div>
                 </div>
@@ -245,7 +280,7 @@ export default {
 
 .swiper {
     width: 100%;
-    height: 100%;
+    height: 450px;
     .container-img {
         position: relative;
         height: 100%;
@@ -293,5 +328,21 @@ export default {
         background-color: #00ccbc;
         border-color: #00ccbc;
     }
+}
+
+.swiper-button-prev {
+    left: 10px;
+    color: #00ccbc;
+    background-color: white;
+    padding: 35px;
+    border-radius: 46% 16%;
+}
+
+.swiper-button-next {
+    right: 10px;
+    color: #00ccbc;
+    background-color: white;
+    padding: 35px;
+    border-radius: 16% 46%;
 }
 </style>

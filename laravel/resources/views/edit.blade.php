@@ -60,7 +60,7 @@
 
 
                     <div class="d-flex align-items-center flex-column my-3 gap-3">
-                        <label for="available">disponibile</label>
+                        {{-- <label for="available">disponibile</label>
                         <select name="available" id="available" class="form-select @error('available') is-invalid @enderror" aria-label="Default select example">
                             <option value="1" @if ($dish->available == 1) selected @endif>disponibile</option>
                             <option value="0" @if ($dish->available == 0) selected @endif>non disponibile</option>
@@ -69,7 +69,11 @@
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                        @enderror
+                        @enderror --}}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="available" name="available" value="1" @if ($dish->available == 1) checked @endif>
+                            <label class="form-check-label" for="available">Disponibile</label>
+                        </div>
                     </div>
 
                     <div class="d-flex align-items-center flex-column my-3 gap-3">
@@ -82,8 +86,6 @@
                         <input type="submit" value="MODIFICA" class="btn-boo buttons">
 
                     </div>
-
-
 
                 </form>
             </div>

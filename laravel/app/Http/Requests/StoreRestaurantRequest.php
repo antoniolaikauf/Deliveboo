@@ -28,7 +28,7 @@ class StoreRestaurantRequest extends FormRequest
             'name'=>'required|string|min:5|max:128',
             'description'=>'required|string|min:10|max:200',
             'price'=>'required|numeric|min:0',
-            'available'=>'required|boolean',
+            'available' => 'nullable',
         ];
     }
 
@@ -45,7 +45,6 @@ class StoreRestaurantRequest extends FormRequest
             'price.required' => 'Il campo Prezzo è obbligatorio.',
             'price.numeric' => 'Il campo Prezzo deve essere un numero.',
             'price.min' => 'il prezzo deve essere maggiore di 0.',
-            'available.required' => 'Il campo Disponibilità è obbligatorio.',
             'available.boolean' => 'Il campo Disponibile deve essere vero o falso.',
         ];
 

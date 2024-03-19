@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 @auth
-                    <div class="text-center">
+                    <div class="text-center m-4">
                         <h2 class="text-white auth m-4">
                             Ciao, {{ Auth::user()->name }}. Ecco tutti i piatti disponibili nel tuo account.
                         </h2>

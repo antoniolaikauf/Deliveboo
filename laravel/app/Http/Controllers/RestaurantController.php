@@ -48,6 +48,7 @@ class RestaurantController extends Controller
 
 
         $data = $request->all();
+        $data['available'] = $request->has('available');
 
         $img = $data['img'];
         $image_path = Storage :: disk('public') -> put('images', $img);
@@ -85,8 +86,22 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+    // {
+    //     $dish = Dish::find($id);
+    //     return view('edit', compact('dish'));
+    // }
+
     {
-        $dish = Dish::find($id);
+        $dish = Dish::findOrFail($id);
+    
+        // Controlla se l'utente autenticato è autorizzato a modificare questo piatto
+        if ($dish->user_id !== auth()->id()) {
+            // Se l'utente non è autorizzato, puoi gestire la situazione in vari modi,
+            // come ad esempio reindirizzarlo a una pagina di errore o mostrarlo un messaggio di errore.
+            // Qui, per esempio, reindirizziamo l'utente alla pagina principale con un messaggio di errore.
+            return redirect()->route('dish.index')->with('error', 'Non hai i permessi per modificare questo piatto.');
+        }
+    
         return view('edit', compact('dish'));
     }
 
@@ -101,7 +116,8 @@ class RestaurantController extends Controller
     {
 
         $data = $request->all();
-        $dish = Dish::find($id);
+        $data['available'] = $request->has('available');
+        $dish = Dish::findOrFail($id);
 
 
         $dish->user_id = Auth::id();
@@ -111,8 +127,24 @@ class RestaurantController extends Controller
         $dish->price = $data['price'];
         $dish->available = $data['available'];
 
+        // Verifica se l'utente autenticato è autorizzato a modificare questo piatto
+    if ($dish->user_id !== auth()->id()) {
+        // Se l'utente non è autorizzato, reindirizzalo alla pagina principale con un messaggio di errore
+        return redirect()->route('dish.index')->with('error', 'Non hai i permessi per modificare questo piatto.');
+    }
+
+        // Verifica se la chiave 'img' esiste nell'array $data
+    if ($request->has('img')) {
+        // Se la chiave 'img' esiste, gestisci il caricamento dell'immagine
         $img = $data['img'];
-        $image_path = Storage :: disk('public') -> put('images', $img);
+        $image_path = Storage::disk('public')->put('images', $img);
+    } else {
+        // Se la chiave 'img' non esiste, assegna un valore predefinito a $image_path o gestisci diversamente
+        $image_path = null; // Ad esempio, puoi impostare $image_path su null o su un percorso predefinito per un'immagine predefinita
+    }
+
+        // $img = $data['img'];
+        // $image_path = Storage :: disk('public') -> put('images', $img);
         $dish->img = $image_path;
 
 
