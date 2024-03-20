@@ -26,5 +26,7 @@ Route::group(['prefix' => '/v1'], function () {
     route::get('types', [ApiRestaurant::class, 'TypeRestaurants']);
     // chiamata per ottenere i ristoranti 
     route::post('types/select', [ApiRestaurant::class, 'TypesSelected']);
+
+    route::post('edit/foto', [ApiRestaurant::class, 'EditFoto']);
 });
 

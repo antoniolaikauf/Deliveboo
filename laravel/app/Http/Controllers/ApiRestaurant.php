@@ -82,4 +82,14 @@ class ApiRestaurant extends Controller
             'risposta' => $container,
         ]);
     }
+    public function EditFoto(Request $request)
+    {
+        $data = $request->input('data'); // Accedi direttamente al valore 'data' inviato dall'frontend
+
+        $imguploated = "http://localhost:8000/storage/" . $data;
+
+        return response()->json([
+            'risposta' => $imguploated,
+        ]);
+    }
 }

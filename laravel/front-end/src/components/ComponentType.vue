@@ -19,6 +19,8 @@ export default {
             arrayRestaurantsSelect: "",
             // import store
             store,
+
+            prova: "",
         };
     },
 
@@ -32,12 +34,26 @@ export default {
                     if (risposta.data.risposta.length === 0) {
                         this.showRestaurant = false;
                     }
+                    for (let i = 0; i < risposta.data.risposta[0].length; i++) {
+                        if (risposta.data.risposta[0][i].img.startsWith("i")) {
+                            // chiamata axios
 
-                    // this.arrayRestaurantsSelect = [];
-                    // this.arrayRestaurantsSelect.push(risposta.data.risposta);
+                            let foto = risposta.data.risposta[0][i].img;
+                            axios
+                                .post(
+                                    "http://localhost:8000/api/v1/edit/foto",
+                                    { data: foto } // Invia il percorso dell'immagine all'interno di un oggetto con chiave 'data'
+                                )
+                                .then((res) => {
+                                    this.prova = res.data.risposta;
+                                    console.log(res.data.risposta);
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                        }
+                    }
                     this.arrayRestaurantsSelect = risposta.data.risposta;
-                    // console.log(risposta.data.risposta);
-                    console.log(this.arrayRestaurantsSelect);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -207,6 +223,7 @@ export default {
                             }"
                             @click="selectedRestaurantWithType(i, x)"
                         >
+                            <!-- <img :src="prova" alt="" /> -->
                             <img :src="Restaurant.img" :alt="x" />
                             <div class="card-body">
                                 <h4>
