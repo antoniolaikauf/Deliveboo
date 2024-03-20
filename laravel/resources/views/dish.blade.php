@@ -15,8 +15,8 @@
                             <a href="{{ route('order.index') }}" class="btn-boo buttons bg-black text-white p-2">Visualizza
                                 ordini</a>
                         </div>
-                    </div>
-                @endauth
+                    @endauth
+                </div>
             </div>
         </div>
         <div class="row">
@@ -33,7 +33,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         {{-- reverse, inverte l'ordine dell'array --}}
                         @foreach ($dishes->reverse() as $dish)
                             @if (Auth::check() && Auth::id() === $dish->user_id)
@@ -59,33 +58,32 @@
                                                     alt="Immagine del piatto {{ $dish->name }}">
                                             @endif
                                         </div>
+                                    </td>
+                                    <td>
+                                        @auth
+                                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" onclick="showConfirmationModal('{{ $dish->id }}')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                            <form id="deleteForm_{{ $dish->id }}" action="{{ route('dish.delete', $dish->id) }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        @endauth
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            </td>
-            <td>
-                @auth
-                    <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <button class="btn btn-sm btn-danger" onclick="showConfirmationModal('{{ $dish->id }}')">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                    <form id="deleteForm_{{ $dish->id }}" action="{{ route('dish.delete', $dish->id) }}" method="POST"
-                        style="display: none;">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                @endauth
-            </td>
-            </tr>
-            @endif
-            @endforeach
-            </tbody>
-            </table>
         </div>
     </div>
-    </div>
 
-
+    {{-- Modals --}}
     @foreach ($dishes as $dish)
         @if (Auth::check() && Auth::id() === $dish->user_id)
             <div class="modal fade" id="confirmationModal_{{ $dish->id }}" tabindex="-1"
@@ -107,10 +105,10 @@
                     </div>
                 </div>
             </div>
-            </div>
         @endif
     @endforeach
 
+    {{-- JavaScript --}}
     <script>
         function showConfirmationModal(dishId) {
             $('#confirmationModal_' + dishId).modal('show');
@@ -121,6 +119,7 @@
         }
     </script>
 
+    {{-- CSS --}}
     <style>
         .img-cont .img-fluid {
             height: 50px;
