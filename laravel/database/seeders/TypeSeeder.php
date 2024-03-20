@@ -22,14 +22,32 @@ class TypeSeeder extends Seeder
     {
         // Genera i tipi
         $types = [
-            ['name' => 'Vegetariano'],
-            ['name' => 'Mediterraneo'],
-            ['name' => 'Asiatico'],
-            ['name' => 'Fast-food'],
-            ['name' => 'Fushion'],
-            ['name' => 'Vegano'],
+            [
+                'name' => 'Vegetariano',
+                'img' => 'https://www.develey.it/wp-content/uploads/2018/12/shutterstock_623007527.jpg'
+            ],
+            [
+                'name' => 'Mediterraneo',
+                'img' => 'https://master-7rqtwti-znj23gdadsstc.piximizer.px.at/maxw_978,q_80,f_inside,v_3831872a07/fileadmin/amc.info/6-Blog/it-it/Article_13_Mediterranean_food_healthy.jpg'
+            ],
+            [
+                'name' => 'Asiatico',
+                'img' => 'https://c8.alamy.com/compit/jgkbyf/cibo-asiatico-tabella-con-vari-tipi-di-cucina-cinese-e-tagliatelle-pollo-maiale-manzo-minestra-acida-riso-involtini-primavera-sushi-gamberi-e-molti-altri-servita-jgkbyf.jpg'
+            ],
+            [
+                'name' => 'Fast-food',
+                'img' => 'https://lavaligiagialla.it/wp-content/uploads/2022/02/usa-cibo-1024x512.png?x81396'
+            ],
+            [
+                'name' => 'Fushion',
+                'img' => 'https://www.ororossomilano.com/wp-content/uploads/riso-cucina-fusion.jpg'
+            ],
+            [
+                'name' => 'Vegano',
+                'img' => 'https://www.francescofavorito.it/wp-content/uploads/2016/01/mille-colori-cibo.jpg'
+            ],
         ];
-        // ciclo per creazione dei type 
+        // ciclo per creazione dei type
         foreach ($types as $typeData) {
             $type = Type::create($typeData);
         }

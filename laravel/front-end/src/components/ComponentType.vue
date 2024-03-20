@@ -53,6 +53,10 @@ export default {
             console.log(this.restaurants[index]);
             store.restaurantselected = this.restaurants[index];
         },
+        // toggleCheckbox(index) {
+        // // Cambia lo stato del checkbox corrispondente all'indice
+        // this.checked[index] = !this.checked[index];
+        // },
     },
     mounted() {
         // chiamata axios per ottenere i types
@@ -74,35 +78,57 @@ export default {
 <template>
     <section class="py-4 mb-5">
         <div class="container-fluid bg-dark">
+
             <div class="row">
-                <form class="px-5 pt-3">
-                    <h1 class="text-white text-center m-5">
-                        Ecco una varietà di opzioni tra cui puoi scegliere,
-                        <br />
-                        seleziona la tipologia che ti interessa e esplora
-                        ulteriori dettagli!
-                    </h1>
-                    <div class="d-flex flex-wrap">
-                        <div
-                            class="form-check col-12 col-lg-2"
-                            v-for="(type, i) in arrayTypes"
-                        >
-                            <div class="my-2 checkbox-type ps-5">
-                                <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    :value="i"
-                                    :id="i"
-                                    v-model="checked"
-                                    @change="check($event)"
-                                />
-                                <label :for="i" class="form-check-label">
-                                    {{ type.name }}
-                                </label>
+
+                    <form class="">
+                        <div class="container">
+                        <!-- TESTO RICERCA RISTORANTI -->
+                        <h1 class="text-white text-center m-5">
+                            Ecco una varietà di opzioni tra cui puoi scegliere,
+                            <br />
+                            seleziona la tipologia che ti interessa e esplora
+                            ulteriori dettagli!
+                        </h1>
+
+                        <!-- INPUT TYPE RISTORANTI -->
+                        <div class="d-flex flex-wrap">
+                            <div
+                                class=" col-12 col-lg-2"
+                                v-for="(type, i) in arrayTypes"
+                                :key="i"
+                            >
+                                <div class="my-2 checkbox-type ">
+                                    <!-- Input Checkbox -->
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        :value="i"
+                                        :id="'checkbox_' + i"
+                                        v-model="checked"
+                                        @change="check"
+                                        style="display: none;"
+                                    />
+
+                                    <!-- Label con immagine -->
+                                    <label
+                                        :for="'checkbox_' + i"
+                                        class="text-center mx-2"
+                                        style="background-color: transparent; color: white; "
+                                    >
+                                        <img
+                                            :src="type.img"
+                                            alt="img type"
+                                            style="cursor: pointer; width: 100%;"
+                                        />
+                                        {{ type.name }}
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                    </form>
+
                 <div v-if="!showRestaurant" class="row my-3 p-5">
                     <div
                         class="card col-12 col-lg-3 my-3 bg-transparent border-0"
@@ -237,14 +263,14 @@ export default {
     }
 }
 
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+// .swiper-slide {
+//     text-align: center;
+//     font-size: 18px;
+//     background: #fff;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
 
 .swiper-slide img {
     // display: block;
@@ -254,31 +280,33 @@ export default {
 }
 
 .checkbox-type {
-    padding: 5px 15px;
     border-radius: 7px;
-    background-color: #f0f0f0;
     border: 1px;
     .form-check-input:checked {
         background-color: #00ccbc;
         border-color: #00ccbc;
     }
+    img {
+        min-width: 200px;
+        height: 100px;
+    }
 }
 
-.swiper-button-prev {
-    left: 10px;
-    color: #00ccbc;
-    background-color: white;
-    padding: 35px;
-    border-radius: 46% 16%;
-}
+// .swiper-button-prev {
+//     left: 10px;
+//     color: #00ccbc;
+//     background-color: white;
+//     padding: 35px;
+//     border-radius: 46% 16%;
+// }
 
-.swiper-button-next {
-    right: 10px;
-    color: #00ccbc;
-    background-color: white;
-    padding: 35px;
-    border-radius: 16% 46%;
-}
+// .swiper-button-next {
+//     right: 10px;
+//     color: #00ccbc;
+//     background-color: white;
+//     padding: 35px;
+//     border-radius: 16% 46%;
+// }
 .locality {
     color: rgb(64, 64, 255);
     i {
