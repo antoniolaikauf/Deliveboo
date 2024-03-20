@@ -71,7 +71,7 @@ export default {
 </script>
 
 <template>
-    <section class="py-4 mb-5">
+    <section class="mb-5">
         <div class="container-fluid bg-dark">
             <div class="row">
                 <form class="px-5">
@@ -155,10 +155,15 @@ export default {
                     class="col-12 row px-5"
                 >
                     <div
-                        class="text-white text-center fs-3 pb-2"
+                        :class="
+                            arrayRestaurantsSelect[0].length === 0
+                                ? 'animation-error'
+                                : ''
+                        "
+                        class="text-white text-center fs-3 mb-5"
                         v-if="arrayRestaurantsSelect[0].length === 0"
                     >
-                        <span class="bg-danger d-inline-block p-2">
+                        <span class="bg-danger d-inline-block p-2 rounded">
                             Non ci sono ristoranti con queste tipologie
                         </span>
                     </div>
@@ -290,5 +295,20 @@ export default {
 }
 .type {
     color: rgb(255, 83, 83);
+}
+
+.animation-error {
+    animation-name: message-error;
+    animation-timing-function: ease;
+    animation-duration: 2s;
+}
+
+@keyframes message-error {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 </style>
