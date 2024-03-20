@@ -111,119 +111,120 @@ export default {
                                 style="display: none"
                             />
 
-                            <!-- Label con immagine -->
-                            <label
-                                :for="'checkbox_' + i"
-                                style="
-                                    background-color: transparent;
-                                    color: white;
-                                "
-                                @click="toggleLabelClicked"
-                            >
-                                <img
-                                    :src="type.img"
-                                    alt="img type"
-                                    style="cursor: pointer"
-                                />
-                                {{ type.name }}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div v-if="!showRestaurant" class="row my-3 p-5">
-                <div
-                    class="card col-12 col-lg-3 my-3 bg-transparent border-0"
-                    v-for="(restaurant, i) in restaurants"
-                >
-                    <router-link
-                        class="bg-white text-dark"
-                        :to="{ name: 'Restaurant', params: { id: i + 1 } }"
-                        @click="groupRestaurant(i)"
-                    >
-                        <div class="bg-white" style="min-height: 416px">
-                            <img
-                                :src="restaurant.img"
-                                class="card-img-top"
-                                style="height: 208px"
-                            />
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    <strong> {{ restaurant.name }}</strong>
-                                </h2>
-                                <h5 class="card-title locality">
-                                    <i class="fa-solid fa-city"></i>
-                                    Località:
-                                    {{ restaurant.city }}
-                                </h5>
-                                <h5 class="type">
-                                    Genere:
-                                    <ul>
-                                        <li
-                                            v-for="(
-                                                types, i
-                                            ) in restaurant.types"
-                                        >
-                                            <i
-                                                class="fa-solid fa-bowl-food pe-2"
-                                            ></i>
-                                            <strong> {{ types.name }}</strong>
-                                        </li>
-                                    </ul>
-                                </h5>
+                                    <!-- Label con immagine -->
+                                    <label
+                                        :for="'checkbox_' + i"
+                                        class="text-center mx-2"
+                                        style="background-color: transparent; color: white; "
+                                    >
+                                        <img
+                                            :src="type.img"
+                                            alt="img type"
+                                            style="cursor: pointer; width: 100%;"
+                                        />
+                                        {{ type.name }}
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </router-link>
-                </div>
-            </div>
-            <!-- vedere se tenerla o no questa altezza -->
-            <div class="col-12">
-                <div
-                    v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
-                    class="col-12 row px-5"
-                >
-                    <div
-                        :class="
-                            arrayRestaurantsSelect[0].length === 0
-                                ? 'animation-error'
-                                : ''
-                        "
-                        class="text-white text-center fs-3 mb-5"
-                        v-if="arrayRestaurantsSelect[0].length === 0"
-                    >
-                        <span class="bg-danger d-inline-block p-2 rounded">
-                            Non ci sono ristoranti con queste tipologie
-                        </span>
                     </div>
+                    </form>
+
+                <div v-if="!showRestaurant" class="row my-3 p-5">
                     <div
-                        v-else
-                        class="card col-12 col-lg-3 bg-transparent border-0 p-2"
-                        v-for="(Restaurant, x) in RestaurantsSelect"
-                        style="min-height: 416px"
+                        class="card col-12 col-lg-3 my-3 bg-transparent border-0"
+                        v-for="(restaurant, i) in restaurants"
                     >
                         <router-link
                             class="bg-white text-dark"
-                            :to="{
-                                name: 'Restaurant',
-                                params: { id: x + 1 },
-                            }"
-                            @click="selectedRestaurantWithType(i, x)"
+                            :to="{ name: 'Restaurant', params: { id: i + 1 } }"
+                            @click="groupRestaurant(i)"
                         >
-                            <img
-                                :src="Restaurant.img"
-                                class="card-img-top"
-                                :alt="x"
-                                style="height: 208px"
-                            />
-                            <div class="card-body">
-                                <h3 class="">
-                                    <strong>{{ Restaurant.name }}</strong>
-                                </h3>
-                                <h5 class="locality card-title">
-                                    <i class="fa-solid fa-city"></i>
-                                    Località:
-                                    {{ Restaurant.city }}
-                                </h5>
+                            <div class="bg-white" style="min-height: 416px">
+                                <img
+                                    :src="restaurant.img"
+                                    class="card-img-top"
+                                    style="height: 208px"
+                                />
+                                <div class="card-body">
+                                    <h2 class="card-title">
+                                        <strong> {{ restaurant.name }}</strong>
+                                    </h2>
+                                    <h5 class="card-title locality">
+                                        <i class="fa-solid fa-city"></i>
+                                        Località:
+                                        {{ restaurant.city }}
+                                    </h5>
+                                    <h5 class="type">
+                                        Genere:
+                                        <ul>
+                                            <li
+                                                v-for="(
+                                                    types, i
+                                                ) in restaurant.types"
+                                            >
+                                                <i
+                                                    class="fa-solid fa-bowl-food pe-2"
+                                                ></i>
+                                                <strong>
+                                                    {{ types.name }}</strong
+                                                >
+                                            </li>
+                                        </ul>
+                                    </h5>
+                                </div>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+                <!-- vedere se tenerla o no questa altezza -->
+                <div class="col-12">
+                    <div
+                        v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
+                        class="col-12 row px-5"
+                    >
+                        <div
+                            :class="
+                                arrayRestaurantsSelect[0].length === 0
+                                    ? 'animation-error'
+                                    : ''
+                            "
+                            class="text-white text-center fs-3 mb-5"
+                            v-if="arrayRestaurantsSelect[0].length === 0"
+                        >
+                            <span class="bg-danger d-inline-block p-2 rounded">
+                                Non ci sono ristoranti con queste tipologie
+                            </span>
+                        </div>
+                        <div
+                            v-else
+                            class="card col-12 col-lg-3 bg-transparent border-0 p-2"
+                            v-for="(Restaurant, x) in RestaurantsSelect"
+                            style="min-height: 416px"
+                        >
+                            <router-link
+                                class="bg-white text-dark"
+                                :to="{
+                                    name: 'Restaurant',
+                                    params: { id: x + 1 },
+                                }"
+                                @click="selectedRestaurantWithType(i, x)"
+                            >
+                                <img
+                                    :src="Restaurant.img"
+                                    class="card-img-top"
+                                    :alt="x"
+                                    style="height: 208px"
+                                />
+                                <div class="card-body">
+                                    <h3 class="">
+                                        <strong>{{ Restaurant.name }}</strong>
+                                    </h3>
+                                    <h5 class="locality card-title">
+                                        <i class="fa-solid fa-city"></i>
+                                        Località:
+                                        {{ Restaurant.city }}
+                                    </h5>
 
                                 <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
                                 <h5
