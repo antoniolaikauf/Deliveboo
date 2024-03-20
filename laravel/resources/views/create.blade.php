@@ -6,85 +6,87 @@
             <h2 class="text-center  mt-3">Crea il tuo piatto</h2>
             <div class="container form-bg">
 
-                    <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
 
-                        @csrf
-                        @method('POST')
+                    @csrf
+                    @method('POST')
 
-                        {{-- @if ($errors->any())
+                    {{-- @if ($errors->any())
                             <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif --}}
-
-
-                    {{-- NOME --}}
-                    <div class="d-flex align-items-center flex-column gap-3">
-                        <label class="label-style-create" for="name">Nome</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nome piatto" name="name" required id="name" aria-label="Username" aria-describedby="basic-addon1">
-                        @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    {{-- DESCRIZIONE --}}
-                    <div class="d-flex align-items-center flex-column my-3 gap-3">
-                        <label class="label-style-create" for="description">Descrizione</label>
-                        <textarea class="form-control @error('description') is-invalid @enderror" aria-label="With textarea" placeholder="Inserisci la descrizione" name="description" required id="description"></textarea>
-                        @error('description')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    {{-- PREZZO --}}
-                        <div class="d-flex align-items-center flex-column gap-3">
-                            <label class="label-style-create" for="price">Prezzo in € </label>
-                            <input type="number" name="price" required id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il prezzo">
-                            @error('price')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="d-flex align-items-center flex-column my-3 gap-3">
-                            <label class="label-style-create" for="available">Disponibilità</label>
-                            <select name="available" id="available" class="form-select @error('available') is-invalid @enderror" aria-label="Default select example">
-                                <option value="" selected disabled hidden>Scegli disponibilità</option>
-                                <option value="1">disponibile</option>
-                                <option value="0">non disponibile</option>
-                            </select>
-                            @error('available')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="d-flex align-items-center flex-column my-3 gap-3">
-                            <label class="label-style-create" for="img">Inserisci un immagine:</label>
-                            <input type="file" name="img" id="img" required class="form-control" accept="image/" onchange="previewImage(event)">
-                            {{-- ANTEPRIMA IMG --}}
-                            <img id="preview" src="#" alt="Anteprima immagine" style="max-width: 200px; max-height: 200px; display: none;">
-                        </div>
-
-                        <div class="text-center ">
-                            <input type="submit"  value="CREA PIATTO" class="btn-boo buttons">
-                        </div>
-
-
-                    </form>
-                </div>
+                    @endforeach
+                    </ul>
             </div>
+            @endif --}}
+
+
+            {{-- NOME --}}
+            <div class="d-flex align-items-center flex-column gap-3">
+                <label class="label-style-create" for="name">Nome</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nome piatto" name="name" required id="name" aria-label="Username" aria-describedby="basic-addon1">
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            {{-- DESCRIZIONE --}}
+            <div class="d-flex align-items-center flex-column my-3 gap-3">
+                <label class="label-style-create" for="description">Descrizione</label>
+                <textarea class="form-control @error('description') is-invalid @enderror" aria-label="With textarea" placeholder="Inserisci la descrizione" name="description" required id="description"></textarea>
+                @error('description')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            {{-- PREZZO --}}
+            <div class="d-flex align-items-center flex-column gap-3">
+                <label class="label-style-create" for="price">Prezzo in € </label>
+                <input type="number" name="price" required id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il prezzo">
+                @error('price')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            <div class="d-flex align-items-center flex-column my-3 gap-3">
+                <label class="label-style-create" for="available">Disponibilità</label>
+                <div class="form-group">
+                    <label class="form-check-label mx-2">
+                        <input class="form-check-input mx-2" type="radio" id="available" name="available" value="1">dispnibile</label>
+
+                    <label class="form-check-label">
+                        <input class="form-check-input mx-2" type="radio" id="available" name="available" value="0">non disponibile</label>
+                </div>
+                @error('available')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            <div class="d-flex align-items-center flex-column my-3 gap-3">
+                <label class="label-style-create" for="img">Inserisci un immagine:</label>
+                <input type="file" name="img" id="img" required class="form-control" accept="image/" onchange="previewImage(event)">
+                {{-- ANTEPRIMA IMG --}}
+                <img id="preview" src="#" alt="Anteprima immagine" style="max-width: 200px; max-height: 200px; display: none;">
+            </div>
+
+            <div class="text-center ">
+                <input type="submit" value="CREA PIATTO" class="btn-boo buttons">
+            </div>
+
+
+            </form>
         </div>
+    </div>
+</div>
 </div>
 
 <style>
@@ -110,7 +112,7 @@
         color: #ffffff;
     }
 
-    .form-select{
+    .form-select {
         border: none;
         border-radius: 5px;
         padding: 10px;
@@ -119,7 +121,7 @@
         color: #ffffff;
     }
 
-    .form-selectl::placeholder{
+    .form-selectl::placeholder {
         color: #ffffff;
     }
 
@@ -145,13 +147,13 @@
         transition: background-color 0.3s ease;
     }
 
-
-
-
+    .form-check-input:checked {
+        background-color: black;
+        border-color: black;
+    }
 </style>
 
 <script>
-
     // VALIDATION DESCRIZIONE
     document.addEventListener("DOMContentLoaded", function() {
         let descriptionTextarea = document.getElementById("description");
