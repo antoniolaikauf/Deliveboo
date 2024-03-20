@@ -19,7 +19,7 @@ export default {
             arrayRestaurantsSelect: "",
             // import store
             store,
-            // CAMBIARE VARIABILE
+            // variabile con img cambiata
             imgChange: "",
         };
     },
