@@ -56,6 +56,10 @@ Route::middleware('auth')->group(function () {
 
     //ROTTA DASHBOARD
     Route::get('/dashboard', [RestaurantController::class, 'dashboard'])->name('dashboard');
+
+
+    // ROTTE ORDERS
+    Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
 });
 
 // Rotta per la generazione del token
