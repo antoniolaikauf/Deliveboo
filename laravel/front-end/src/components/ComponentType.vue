@@ -77,11 +77,9 @@ export default {
 <template>
     <section class="mb-5">
         <div class="container-fluid bg-dark">
-
             <div class="row">
-
-                    <form class="">
-                        <div class="container">
+                <form class="">
+                    <div class="container">
                         <!-- TESTO RICERCA RISTORANTI -->
                         <h1 class="text-white text-center m-5">
                             Ecco una varietà di opzioni tra cui puoi scegliere,
@@ -93,11 +91,11 @@ export default {
                         <!-- INPUT TYPE RISTORANTI -->
                         <div class="d-flex flex-wrap">
                             <div
-                                class=" col-12 col-lg-2"
+                                class="col-12 col-lg-2"
                                 v-for="(type, i) in arrayTypes"
                                 :key="i"
                             >
-                                <div class="my-2 checkbox-type ">
+                                <div class="my-2 checkbox-type">
                                     <!-- Input Checkbox -->
                                     <input
                                         class="form-check-input"
@@ -106,19 +104,22 @@ export default {
                                         :id="'checkbox_' + i"
                                         v-model="checked"
                                         @change="check"
-                                        style="display: none;"
+                                        style="display: none"
                                     />
 
                                     <!-- Label con immagine -->
                                     <label
                                         :for="'checkbox_' + i"
                                         class="text-center mx-2"
-                                        style="background-color: transparent; color: white; "
+                                        style="
+                                            background-color: transparent;
+                                            color: white;
+                                        "
                                     >
                                         <img
                                             :src="type.img"
                                             alt="img type"
-                                            style="cursor: pointer; width: 100%;"
+                                            style="cursor: pointer; width: 100%"
                                         />
                                         {{ type.name }}
                                     </label>
@@ -126,7 +127,7 @@ export default {
                             </div>
                         </div>
                     </div>
-                    </form>
+                </form>
 
                 <div v-if="!showRestaurant" class="row my-3 p-5">
                     <div
