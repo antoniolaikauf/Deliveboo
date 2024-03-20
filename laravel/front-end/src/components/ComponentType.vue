@@ -81,9 +81,9 @@ export default {
 <template>
     <section class="mb-5">
         <div class="container-fluid bg-dark">
-            <div class="container">
+            <div class="container mt-5">
                 <!-- TESTO RICERCA RISTORANTI -->
-                <div class="title">
+                <div class="title" style="padding: 8px">
                     <h1 class="text-white text-center m-5">
                         Ecco una varietà di opzioni tra cui puoi scegliere,
                         <br />
@@ -131,35 +131,31 @@ export default {
                     </div>
                 </div>
             </div>
-            <div v-if="!showRestaurant" class="row my-3 p-5">
+            <div v-if="!showRestaurant" class="row my-3 p-3">
                 <div
-                    class="card col-12 col-lg-3 my-3 bg-transparent border-0"
+                    class="col-12 col-md-6 col-lg-3 my-3 bg-transparent border-0 bg-white"
                     v-for="(restaurant, i) in restaurants"
                 >
-                    <router-link
-                        class="bg-white text-dark"
-                        :to="{ name: 'Restaurant', params: { id: i + 1 } }"
-                        @click="groupRestaurant(i)"
-                    >
-                        <div class="bg-white" style="min-height: 416px">
-                            <img
-                                :src="restaurant.img"
-                                class="card-img-top"
-                                style="height: 208px"
-                            />
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    <strong> {{ restaurant.name }}</strong>
-                                </h2>
-                                <h5 class="card-title locality">
-                                    <i class="fa-solid fa-city"></i>
-                                    Località:
-                                    {{ restaurant.city }}
-                                </h5>
-                                <h5 class="type">
-                                    Genere:
-                                    <ul>
-                                        <li
+                    <div class="card">
+                        <router-link
+                            class="text-dark"
+                            :to="{ name: 'Restaurant', params: { id: i + 1 } }"
+                            @click="groupRestaurant(i)"
+                        >
+                            <div style="height: 420px">
+                                <img :src="restaurant.img" />
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <strong> {{ restaurant.name }}</strong>
+                                    </h4>
+                                    <h5 class="card-title locality">
+                                        <i class="fa-solid fa-city"></i>
+                                        Località:
+                                        {{ restaurant.city }}
+                                    </h5>
+                                    <h5 class="type">
+                                        Genere:
+                                        <div
                                             v-for="(
                                                 types, i
                                             ) in restaurant.types"
@@ -168,57 +164,54 @@ export default {
                                                 class="fa-solid fa-bowl-food pe-2"
                                             ></i>
                                             <strong> {{ types.name }}</strong>
-                                        </li>
-                                    </ul>
-                                </h5>
+                                        </div>
+                                    </h5>
+                                </div>
                             </div>
-                        </div>
-                    </router-link>
+                        </router-link>
+                    </div>
                 </div>
             </div>
             <!-- vedere se tenerla o no questa altezza -->
-            <div class="col-12">
+
+            <div
+                v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
+                class="row my-3 p-3"
+            >
                 <div
-                    v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
-                    class="col-12 row px-5"
+                    :class="
+                        arrayRestaurantsSelect[0].length === 0
+                            ? 'animation-error'
+                            : ''
+                    "
+                    class="text-white text-center fs-3 mb-5"
+                    v-if="arrayRestaurantsSelect[0].length === 0"
                 >
-                    <div
-                        :class="
-                            arrayRestaurantsSelect[0].length === 0
-                                ? 'animation-error'
-                                : ''
-                        "
-                        class="text-white text-center fs-3 mb-5"
-                        v-if="arrayRestaurantsSelect[0].length === 0"
-                    >
-                        <span class="bg-danger d-inline-block p-2 rounded">
-                            Non ci sono ristoranti con queste tipologie
-                        </span>
-                    </div>
-                    <div
-                        v-else
-                        class="card col-12 col-lg-3 bg-transparent border-0 p-2"
-                        v-for="(Restaurant, x) in RestaurantsSelect"
-                        style="min-height: 416px"
-                    >
+                    <span class="bg-danger d-inline-block p-2 rounded">
+                        Non ci sono ristoranti con queste tipologie
+                    </span>
+                </div>
+
+                <div
+                    v-else
+                    class="col-12 col-md-6 col-lg-3 bg-transparent border-0 p-2"
+                    v-for="(Restaurant, x) in RestaurantsSelect"
+                    style="height: 420px"
+                >
+                    <div class="card">
                         <router-link
-                            class="bg-white text-dark"
+                            class="text-dark"
                             :to="{
                                 name: 'Restaurant',
                                 params: { id: x + 1 },
                             }"
                             @click="selectedRestaurantWithType(i, x)"
                         >
-                            <img
-                                :src="Restaurant.img"
-                                class="card-img-top"
-                                :alt="x"
-                                style="height: 208px"
-                            />
+                            <img :src="Restaurant.img" :alt="x" />
                             <div class="card-body">
-                                <h3 class="">
+                                <h4>
                                     <strong>{{ Restaurant.name }}</strong>
-                                </h3>
+                                </h4>
                                 <h5 class="locality card-title">
                                     <i class="fa-solid fa-city"></i>
                                     Località:
@@ -304,6 +297,24 @@ export default {
     }
 }
 
+// CARD
+.card {
+    border-radius: 80px;
+    overflow: hidden;
+
+    img {
+        object-fit: cover;
+        height: 208px;
+        width: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.1);
+    }
+}
+
+//LABEL
 label {
     width: 100%;
     transition: transform 0.3s ease;
