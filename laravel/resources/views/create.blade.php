@@ -71,7 +71,9 @@
 
                         <div class="d-flex align-items-center flex-column my-3 gap-3">
                             <label class="label-style-create" for="img">Inserisci un immagine:</label>
-                            <input type="file" name="img" id="img" required class="form-control" accept="image/">
+                            <input type="file" name="img" id="img" required class="form-control" accept="image/" onchange="previewImage(event)">
+                            {{-- ANTEPRIMA IMG --}}
+                            <img id="preview" src="#" alt="Anteprima immagine" style="max-width: 200px; max-height: 200px; display: none;">
                         </div>
 
                         <div class="text-center ">
@@ -131,7 +133,7 @@
         height: 700px;
         background-image: url(https://images.pexels.com/photos/784632/pexels-photo-784632.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
         background-size: cover;
-        height: 100vh;
+        height: 100%;
     }
 
     .button-create {
@@ -215,5 +217,35 @@
             }
         });
     });
+
+    // Questa funzione previewImage(event) è chiamata ogni volta che il valore dell'input file viene modificato
+    // (grazie all'attributo onchange="previewImage(event)" nell'elemento <input>).
+    function previewImage(event) {
+        // Ottiene l'elemento HTML che ha scatenato l'evento, che è l'input file.
+        const input = event.target;
+
+        // Crea un nuovo oggetto FileReader, che consente di leggere i contenuti dei file.
+        const reader = new FileReader();
+
+        // Imposta un gestore di eventi per l'evento onload del lettore di file.
+        // Questo viene eseguito quando il lettore di file ha letto correttamente il contenuto del file.
+        reader.onload = function() {
+            // Ottiene l'elemento HTML con ID "preview", che sarà l'anteprima dell'immagine.
+            const preview = document.getElementById('preview');
+
+            // Imposta l'URL dati del file come valore dell'attributo src dell'elemento <img> con ID "preview",
+            // rendendo così visibile l'anteprima dell'immagine.
+            preview.src = reader.result;
+
+            // Imposta lo stile dell'elemento <img> su "block", rendendolo visibile.
+            // Di default, l'elemento <img> ha uno stile display di "none", quindi fa sì
+            // che l'anteprima dell'immagine sia visualizzata quando viene caricata.
+            preview.style.display = 'block';
+        }
+
+        // Avvia l'operazione di lettura del file. Quando l'operazione di lettura è completata con successo,
+        // viene scatenato l'evento onload del lettore di file.
+        reader.readAsDataURL(input.files[0]);
+    }
 </script>
 @endsection

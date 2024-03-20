@@ -23,8 +23,8 @@
                                     <th scope="col">Nome</th>
                                     <th scope="col">Descrizione</th>
                                     <th scope="col" style="width: 100px;">Prezzo</th>
-                                    <th scope="col">Disponibilità</th>
-                                    <th scope="col">Immagini</th>
+                                    <th scope="col" style="width: 20px;">Disponibilità</th>
+                                    <th scope="col" style="width: 20px;">Immagini</th>
                                     <th scope="col" style="width: 90px;">Azioni</th>
                                 </tr>
                             </thead>
@@ -46,8 +46,11 @@
                                             </td>
                                             <td>
                                                 <div class="img-cont">
-                                                    @if($dish->img)
-                                                        <img class="img-fluid" src="{{asset('storage/'.$dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+                                                    {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
+                                                    @if ($dish->img && Storage::disk('public')->exists($dish->img))
+                                                        <img class="img-fluid" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
+                                                    @else
+                                                        <img class="img-fluid" src="{{asset($dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
                                                     @endif
                                                 </div>
                                             </div>
@@ -124,6 +127,8 @@
         height: 100%;
             width: 100%;
         }
+
+
 
     </style>
 

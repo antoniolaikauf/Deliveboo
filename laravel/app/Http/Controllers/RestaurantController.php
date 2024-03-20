@@ -93,7 +93,7 @@ class RestaurantController extends Controller
 
     {
         $dish = Dish::findOrFail($id);
-    
+
         // Controlla se l'utente autenticato è autorizzato a modificare questo piatto
         if ($dish->user_id !== auth()->id()) {
             // Se l'utente non è autorizzato, puoi gestire la situazione in vari modi,
@@ -101,7 +101,7 @@ class RestaurantController extends Controller
             // Qui, per esempio, reindirizziamo l'utente alla pagina principale con un messaggio di errore.
             return redirect()->route('dish.index')->with('error', 'Non hai i permessi per modificare questo piatto.');
         }
-    
+
         return view('edit', compact('dish'));
     }
 
