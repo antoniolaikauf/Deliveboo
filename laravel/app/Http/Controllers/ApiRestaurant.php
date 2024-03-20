@@ -15,10 +15,8 @@ class ApiRestaurant extends Controller
     {
         // ottieni tutti i ristoranti e type
         $types = Type::all();
-        
+        // ottieni tutti i ristoranti con le loro tabelle gia incorporate 
         $restaurants = Restaurant::with('user.dishes', 'types')->get();
-
-
 
         return response()->json([
             'riuscito' => 'collegamento riuscito',
@@ -29,29 +27,57 @@ class ApiRestaurant extends Controller
 
     public function TypesSelected(Request $request)
     {
-        // Ottieni i tipi selezionati dall'utente
+        // // // Ottieni i tipi selezionati dall'utente e incrementali di 1
         $data = $request->all();
+        // dobbiamo aggiungere a tutti gli elementi piu uno essendo che non parte da 0 ma parte da 1 gli id di types
+        $data = $request->all();
+        $typesRestaurants = array_map(function ($valore) {
+            return $valore + 1;
+        }, $data);
         $container = [];
+        // controllo se array che ti ritorna ha piu di due valori selezionati
+        if (count($data) > 1) {
 
-        foreach ($data as $typeId) {
-            $type = Type::find($typeId + 1);
+            // prendiamo restaurants con dentro gia i suoi dati delle altre tabelle
+            $restaurants = Restaurant::with('user.dishes', 'types')->get();
 
-            // Verifica se il tipo esiste prima di procedere
-            if ($type) {
-                // Stai utilizzando la relazione tra restaurants e user per caricare i dati degli utenti associati a ciascun ristorante, 
-                // e quindi utilizzi with('user.dishes') per caricare anche i dati dei piatti associati a ciascun utente.
-                $restaurants = $type->restaurants()->with('user.dishes')->get();
+            // filter itera su tutti gli elementi dentro a $restaurants e i $typesRestaurants sono i valori che deve usare per il controllo
+            // il restaurant sarebbe l'elemento singolo di restaurants
+            $filteredRestaurants = $restaurants->filter(function ($restaurant) use ($typesRestaurants) {
 
-                // Stai tentando di utilizzare il metodo with() direttamente su una collezione di ristoranti ($type->restaurants)
-                //  anziché sulla relazione
-                //  stessa. Il problema qui è che $type->restaurants restituisce una collezione di ristoranti, e non la relazione stessa
-                // $accessories = Type::find($data[$i]);
-                // $types_restaurants = $accessories->restaurants;
-                // $restaurants = $type->restaurants->user->with('dishes')->get();
-                $container[] = $restaurants;
+                // si prendono le relazione che ci sono tra restaurants e types 
+                // pluck prende gli id che ci sono nella tabella types relazionati con i restaurant che hanno passato il filter 
+                // to array converte una collezione in un array
+                $restaurantTypeIds = $restaurant->types->pluck('id')->toArray();
+                // array_intersect controlla se ci sono dei valori uguali in questo caso tra i due array quello con dentro solo gli id 
+                // che abbiamo fatto con pluck e quello ottenuto dall'utente
+
+                // la condizione  se si toglie il count ritornerà tutti i ristoranti se che hanno gli elementi selezionati 
+                // quindi se si mette il count in relazione con quello che ti ritorna array_intersect e con array dei elementi selezionati 
+                // non ti ritorna i ristoranti con un elemento 
+
+                return count(array_intersect($typesRestaurants, $restaurantTypeIds)) === count($typesRestaurants);
+            });
+
+            // When casting to value objects, any changes made to the value object will automatically
+            //  be synced back to the model before the model is saved:
+            // tutti i cambiamenti vengono resettati con values e dopo salvati in un array 
+            $filteredRestaurantsArray = $filteredRestaurants->values()->toArray();
+
+
+            // array pushato dento ad un altro array
+            array_push($container, $filteredRestaurantsArray);
+        } else {
+            // se c'è uno solo lo trova con find e da quello lo prende e lo mette in container con dentro gia tutte le sue relazioni con altre tabelle
+
+            foreach ($typesRestaurants as $tipeid) {
+                $type = Type::find($tipeid);
+
+                $restaurant = $type->restaurants()->with('user.dishes')->get();
+                array_push($container, $restaurant);
             }
         }
-
+        // return per fron-end
         return response()->json([
             'risposta' => $container,
         ]);

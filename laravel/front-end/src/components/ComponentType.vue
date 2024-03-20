@@ -33,7 +33,11 @@ export default {
                         this.showRestaurant = false;
                     }
 
+                    // this.arrayRestaurantsSelect = [];
+                    // this.arrayRestaurantsSelect.push(risposta.data.risposta);
                     this.arrayRestaurantsSelect = risposta.data.risposta;
+
+                    // console.log(risposta.data.risposta);
                     console.log(this.arrayRestaurantsSelect);
                 })
                 .catch((err) => {
@@ -57,7 +61,7 @@ export default {
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
-                console.log(this.restaurants);
+                // console.log(this.restaurants);
                 // console.log(this.arrayTypes);
             })
             .catch((err) => {
@@ -92,7 +96,6 @@ export default {
                                     v-model="checked"
                                     @change="check($event)"
                                 />
-
                                 <label :for="i" class="form-check-label">
                                     {{ type.name }}
                                 </label>
@@ -106,7 +109,7 @@ export default {
                         v-for="(restaurant, i) in restaurants"
                     >
                         <router-link
-                            class="bg-white"
+                            class="bg-white text-dark"
                             :to="{ name: 'Restaurant', params: { id: i + 1 } }"
                             @click="groupRestaurant(i)"
                         >
@@ -159,7 +162,7 @@ export default {
                             style="min-height: 416px"
                         >
                             <router-link
-                                class="bg-white"
+                                class="bg-white text-dark"
                                 :to="{
                                     name: 'Restaurant',
                                     params: { id: x + 1 },
@@ -181,15 +184,31 @@ export default {
                                         Località:
                                         {{ Restaurant.city }}
                                     </h5>
-                                    <h5 class="type card-title">
+
+                                    <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
+                                    <h5
+                                        class="type card-title"
+                                        v-if="
+                                            Restaurant.hasOwnProperty('pivot')
+                                        "
+                                    >
                                         <i class="fa-solid fa-bowl-food"></i>
                                         Genere:
-
                                         {{
                                             arrayTypes[
                                                 Restaurant.pivot.type_id - 1
                                             ].name
                                         }}
+                                    </h5>
+
+                                    <h5
+                                        v-else
+                                        class="type card-title"
+                                        v-for="(types, i) in Restaurant.types"
+                                    >
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                        Genere:
+                                        {{ types.name }}
                                     </h5>
                                 </div>
                             </router-link>
