@@ -19,8 +19,8 @@ export default {
             arrayRestaurantsSelect: "",
             // import store
             store,
-
-            prova: "",
+            // CAMBIARE VARIABILE
+            imgChange: "",
         };
     },
 
@@ -45,7 +45,7 @@ export default {
                                     { data: foto } // Invia il percorso dell'immagine all'interno di un oggetto con chiave 'data'
                                 )
                                 .then((res) => {
-                                    this.prova = res.data.risposta;
+                                    this.imgChange = res.data.risposta;
                                     console.log(res.data.risposta);
                                 })
                                 .catch((err) => {
@@ -87,12 +87,11 @@ export default {
                         // chiamata axios
                         let foto = risposta.data.restaurants[i].img;
                         axios
-                            .post(
-                                "http://localhost:8000/api/v1/edit/foto",
-                                { data: foto } 
-                            )
+                            .post("http://localhost:8000/api/v1/edit/foto", {
+                                data: foto,
+                            })
                             .then((res) => {
-                                this.prova = res.data.risposta;
+                                this.imgChange = res.data.risposta;
                                 console.log(res.data.risposta);
                             })
                             .catch((err) => {
@@ -176,7 +175,7 @@ export default {
                                 <img
                                     :src="
                                         restaurant.user_id > 30
-                                            ? prova
+                                            ? imgChange
                                             : restaurant.img
                                     "
                                 />
@@ -247,7 +246,7 @@ export default {
                             <img
                                 :src="
                                     Restaurant.user_id > 30
-                                        ? prova
+                                        ? imgChange
                                         : Restaurant.img
                                 "
                             />
