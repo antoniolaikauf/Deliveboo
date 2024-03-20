@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\RestaurantProfileController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [RestaurantController::class, 'dashboard'])->name('dashboard');
 });
 
-
+// Rotta per la generazione del token
+Route::get('/generate',[OrderController::class, 'generate']);
+// Rotta per la vendita
+Route::post('/makePayment',[OrderController::class, 'makePayment']);
 
 require __DIR__ . '/auth.php';
