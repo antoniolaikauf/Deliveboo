@@ -73,9 +73,6 @@ export default {
         toggleLabelClicked(event) {
             event.currentTarget.classList.toggle("label-clicked");
         },
-        // toggleCheckbox() {
-        //     this.check();
-        // },
     },
     mounted() {
         // chiamata axios per ottenere i types
@@ -84,8 +81,25 @@ export default {
             .then((risposta) => {
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
-                // console.log(this.restaurants);
-                // console.log(this.arrayTypes);
+                for (let i = 0; i < risposta.data.restaurants.length; i++) {
+                    // console.log(risposta.data.restaurants[i]);
+                    if (risposta.data.restaurants[i].img.startsWith("i")) {
+                        // chiamata axios
+                        let foto = risposta.data.restaurants[i].img;
+                        axios
+                            .post(
+                                "http://localhost:8000/api/v1/edit/foto",
+                                { data: foto } 
+                            )
+                            .then((res) => {
+                                this.prova = res.data.risposta;
+                                console.log(res.data.risposta);
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                            });
+                    }
+                }
             })
             .catch((err) => {
                 console.log(err);
@@ -159,7 +173,14 @@ export default {
                             @click="groupRestaurant(i)"
                         >
                             <div style="height: 420px">
-                                <img :src="restaurant.img" />
+                                <img
+                                    :src="
+                                        restaurant.user_id > 30
+                                            ? prova
+                                            : restaurant.img
+                                    "
+                                />
+                                <!-- <img :src="restaurant.img" /> -->
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <strong> {{ restaurant.name }}</strong>
@@ -223,8 +244,13 @@ export default {
                             }"
                             @click="selectedRestaurantWithType(i, x)"
                         >
-                            <!-- <img :src="prova" alt="" /> -->
-                            <img :src="Restaurant.img" :alt="x" />
+                            <img
+                                :src="
+                                    Restaurant.user_id > 30
+                                        ? prova
+                                        : Restaurant.img
+                                "
+                            />
                             <div class="card-body">
                                 <h4>
                                     <strong>{{ Restaurant.name }}</strong>
