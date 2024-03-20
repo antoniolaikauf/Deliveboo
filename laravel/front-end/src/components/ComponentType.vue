@@ -80,7 +80,7 @@ export default {
 
 <template>
     <section class="mb-5">
-        <div class="container-fluid gx-0 bg-dark">
+        <div class="container-fluid bg-dark">
             <div class="container">
                 <!-- TESTO RICERCA RISTORANTI -->
                 <div class="title">
@@ -305,7 +305,7 @@ export default {
 }
 
 label {
-    width: 200px;
+    width: 100%;
     transition: transform 0.3s ease;
     border-radius: 10px;
 
