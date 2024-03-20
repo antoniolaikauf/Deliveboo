@@ -6,18 +6,18 @@
         <div class="col-6 p-4 form-create  text-white">
             <h2 class="text-center mt-3">Modifica il tuo piatto</h2>
             <div class="container form-bg">
-                <form action="{{ route('dish.update', $dish->id) }}" method="POST"  enctype="multipart/form-data">
+                <form action="{{ route('dish.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
 
                     {{-- NOME --}}
@@ -36,9 +36,9 @@
                         <label class="label-style-create" for="description">Descrizione</label>
                         <textarea class="form-control @error('description') is-invalid @enderror" aria-label="With textarea" placeholder="Inserisci la descrizione" name="description" required id="description">{{ $dish->description }}</textarea>
                         @error('description')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
 
@@ -63,19 +63,34 @@
 
                     <div class="d-flex align-items-center flex-column my-3 gap-3 ">
                         <label for="img">La tua immagine attuale:</label>
-                        {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
-                        @if ($dish->img && Storage::disk('public')->exists($dish->img))
-                            <img style="width: 400px; height: 400px;" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
+
+                        @if($dish->img==null)
+                        <div class="text-danger">
+                            <strong>immagine non selezionata</strong>
+                        </div>
                         @else
+                        <div>
+                            {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
+                            @if ($dish->img && Storage::disk('public')->exists($dish->img))
+                            <img style="width: 400px; height: 400px;" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
+                            @else
                             <img style="width: 400px; height: 400px;" src="{{asset($dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+                            @endif
+                        </div>
                         @endif
+                        <!-- {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
+                        @if ($dish->img && Storage::disk('public')->exists($dish->img))
+                        <img style="width: 400px; height: 400px;" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
+                        @else
+                        <img style="width: 400px; height: 400px;" src="{{asset($dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+                        @endif -->
                     </div>
 
                     <div class="d-flex align-items-center flex-column my-3 gap-3">
                         <label for="img">Modifica l'immagine:</label>
                         {{-- @if($dish->img) --}}
-                            <input type="file" name="img" id="img" accept="image/" class="form-control" onchange="previewImage(event)">
-                            <img id="preview" src="#" alt="Anteprima immagine" style="max-width: 200px; max-height: 200px; display: none;">
+                        <input type="file" name="img" id="img" accept="image/" class="form-control" onchange="previewImage(event)">
+                        <img id="preview" src="#" alt="Anteprima immagine" style="max-width: 200px; max-height: 200px; display: none;">
                         {{-- @else
                             <h6 class="text-danger">Non ci sono immagini selezionate</h6> --}}
                         {{-- @endif --}}
@@ -92,9 +107,8 @@
 </div>
 
 <style>
-
     /* STILE FORM */
-     .form-bg {
+    .form-bg {
         background-color: #292929;
         padding: 40px;
         border-radius: 17px;
@@ -115,7 +129,7 @@
         color: #ffffff;
     }
 
-    .form-select{
+    .form-select {
         border: none;
         border-radius: 5px;
         padding: 10px;
@@ -124,7 +138,7 @@
         color: #ffffff;
     }
 
-    .form-selectl::placeholder{
+    .form-selectl::placeholder {
         color: #ffffff;
     }
 
@@ -150,16 +164,13 @@
         transition: background-color 0.3s ease;
     }
 
-    .img-cont{
+    .img-cont {
         text-align: center;
         margin-bottom: 30px;
     }
-
-
 </style>
 
 <script>
-
     // VALIDATION DESCRIZIONE
     document.addEventListener("DOMContentLoaded", function() {
         let descriptionTextarea = document.getElementById("description");
@@ -257,4 +268,3 @@
     }
 </script>
 @endsection
-
