@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ApiRestaurant;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,3 +27,4 @@ Route::group(['prefix' => '/v1'], function () {
     // chiamata per ottenere i ristoranti 
     route::post('types/select', [ApiRestaurant::class, 'TypesSelected']);
 });
+

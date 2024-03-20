@@ -48,10 +48,10 @@ class RestaurantController extends Controller
 
 
         $data = $request->all();
-        $data['available'] = $request->has('available');
+
 
         $img = $data['img'];
-        $image_path = Storage :: disk('public') -> put('images', $img);
+        $image_path = Storage::disk('public')->put('images', $img);
 
         $newDish = new Dish();
 
@@ -64,6 +64,7 @@ class RestaurantController extends Controller
         $newDish->img = $image_path;
 
         $newDish->save();
+
 
         return redirect()->route('dish.index', $newDish->id);
     }
@@ -128,20 +129,20 @@ class RestaurantController extends Controller
         $dish->available = $data['available'];
 
         // Verifica se l'utente autenticato è autorizzato a modificare questo piatto
-    if ($dish->user_id !== auth()->id()) {
-        // Se l'utente non è autorizzato, reindirizzalo alla pagina principale con un messaggio di errore
-        return redirect()->route('dish.index')->with('error', 'Non hai i permessi per modificare questo piatto.');
-    }
+        if ($dish->user_id !== auth()->id()) {
+            // Se l'utente non è autorizzato, reindirizzalo alla pagina principale con un messaggio di errore
+            return redirect()->route('dish.index')->with('error', 'Non hai i permessi per modificare questo piatto.');
+        }
 
         // Verifica se la chiave 'img' esiste nell'array $data
-    if ($request->has('img')) {
-        // Se la chiave 'img' esiste, gestisci il caricamento dell'immagine
-        $img = $data['img'];
-        $image_path = Storage::disk('public')->put('images', $img);
-    } else {
-        // Se la chiave 'img' non esiste, assegna un valore predefinito a $image_path o gestisci diversamente
-        $image_path = null; // Ad esempio, puoi impostare $image_path su null o su un percorso predefinito per un'immagine predefinita
-    }
+        if ($request->has('img')) {
+            // Se la chiave 'img' esiste, gestisci il caricamento dell'immagine
+            $img = $data['img'];
+            $image_path = Storage::disk('public')->put('images', $img);
+        } else {
+            // Se la chiave 'img' non esiste, assegna un valore predefinito a $image_path o gestisci diversamente
+            $image_path = null; // Ad esempio, puoi impostare $image_path su null o su un percorso predefinito per un'immagine predefinita
+        }
 
         // $img = $data['img'];
         // $image_path = Storage :: disk('public') -> put('images', $img);
@@ -167,7 +168,7 @@ class RestaurantController extends Controller
         return redirect()->route('dish.index');
     }
 
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
