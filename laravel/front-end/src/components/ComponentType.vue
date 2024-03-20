@@ -17,7 +17,7 @@ export default {
             checked: [],
             // restaurants selezionati dall'utente
             arrayRestaurantsSelect: "",
-            // variabile controllo select
+            // import store
             store,
         };
     },
@@ -36,7 +36,6 @@ export default {
                     // this.arrayRestaurantsSelect = [];
                     // this.arrayRestaurantsSelect.push(risposta.data.risposta);
                     this.arrayRestaurantsSelect = risposta.data.risposta;
-
                     // console.log(risposta.data.risposta);
                     console.log(this.arrayRestaurantsSelect);
                 })
@@ -75,7 +74,7 @@ export default {
     <section class="py-4 mb-5">
         <div class="container-fluid bg-dark">
             <div class="row">
-                <form class="px-5 pt-3">
+                <form class="px-5">
                     <h1 class="text-white text-center m-5">
                         Ecco una varietà di opzioni tra cui puoi scegliere,
                         <br />
@@ -151,68 +150,72 @@ export default {
                     </div>
                 </div>
                 <!-- vedere se tenerla o no questa altezza -->
-                <div class="row">
+                <div
+                    v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
+                    class="col-12 row px-5"
+                >
                     <div
-                        v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
-                        class="col-12 row px-5"
+                        class="text-white text-center fs-3 pb-2"
+                        v-if="arrayRestaurantsSelect[0].length === 0"
                     >
-                        <div
-                            class="card col-3 bg-transparent border-0 p-2"
-                            v-for="(Restaurant, x) in RestaurantsSelect"
-                            style="min-height: 416px"
+                        <span class="bg-danger d-inline-block p-2">
+                            Non ci sono ristoranti con queste tipologie
+                        </span>
+                    </div>
+                    <div
+                        v-else
+                        class="card col-3 bg-transparent border-0 p-2"
+                        v-for="(Restaurant, x) in RestaurantsSelect"
+                        style="min-height: 416px"
+                    >
+                        <router-link
+                            class="bg-white text-dark"
+                            :to="{
+                                name: 'Restaurant',
+                                params: { id: x + 1 },
+                            }"
+                            @click="selectedRestaurantWithType(i, x)"
                         >
-                            <router-link
-                                class="bg-white text-dark"
-                                :to="{
-                                    name: 'Restaurant',
-                                    params: { id: x + 1 },
-                                }"
-                                @click="selectedRestaurantWithType(i, x)"
-                            >
-                                <img
-                                    :src="Restaurant.img"
-                                    class="card-img-top"
-                                    :alt="x"
-                                    style="height: 208px"
-                                />
-                                <div class="card-body">
-                                    <h3 class="">
-                                        <strong>{{ Restaurant.name }}</strong>
-                                    </h3>
-                                    <h5 class="locality card-title">
-                                        <i class="fa-solid fa-city"></i>
-                                        Località:
-                                        {{ Restaurant.city }}
-                                    </h5>
+                            <img
+                                :src="Restaurant.img"
+                                class="card-img-top"
+                                :alt="x"
+                                style="height: 208px"
+                            />
+                            <div class="card-body">
+                                <h3 class="">
+                                    <strong>{{ Restaurant.name }}</strong>
+                                </h3>
+                                <h5 class="locality card-title">
+                                    <i class="fa-solid fa-city"></i>
+                                    Località:
+                                    {{ Restaurant.city }}
+                                </h5>
 
-                                    <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
-                                    <h5
-                                        class="type card-title"
-                                        v-if="
-                                            Restaurant.hasOwnProperty('pivot')
-                                        "
-                                    >
-                                        <i class="fa-solid fa-bowl-food"></i>
-                                        Genere:
-                                        {{
-                                            arrayTypes[
-                                                Restaurant.pivot.type_id - 1
-                                            ].name
-                                        }}
-                                    </h5>
+                                <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
+                                <h5
+                                    class="type card-title"
+                                    v-if="Restaurant.hasOwnProperty('pivot')"
+                                >
+                                    <i class="fa-solid fa-bowl-food"></i>
+                                    Genere:
+                                    {{
+                                        arrayTypes[Restaurant.pivot.type_id - 1]
+                                            .name
+                                    }}
+                                </h5>
 
-                                    <h5
-                                        v-else
-                                        class="type card-title"
-                                        v-for="(types, i) in Restaurant.types"
-                                    >
-                                        <i class="fa-solid fa-bowl-food"></i>
-                                        Genere:
-                                        {{ types.name }}
-                                    </h5>
-                                </div>
-                            </router-link>
-                        </div>
+                                <h5
+                                    v-else
+                                    class="type card-title"
+                                    v-for="(types, i) in Restaurant.types"
+                                >
+                                    <i class="fa-solid fa-bowl-food"></i>
+                                    Genere:
+                                    {{ types.name }}
+                                </h5>
+                            </div>
+                        </router-link>
                     </div>
                 </div>
             </div>
