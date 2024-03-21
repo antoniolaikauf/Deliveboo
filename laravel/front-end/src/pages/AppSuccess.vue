@@ -106,7 +106,7 @@ export default {
 
         axios.get("http://localhost:8000/api/v1/generate").then((res) => {
             this.token = res.data.token;
-            this.initializeBraintree();
+            // this.initializeBraintree();
             // Assicurati di inizializzare il drop-in UI qui, dopo aver ricevuto il token
             dropin.create(
                 {
