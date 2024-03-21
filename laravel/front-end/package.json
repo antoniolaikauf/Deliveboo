@@ -16,6 +16,7 @@
     "braintree-web-drop-in": "^1.42.0",
     "swiper": "^11.0.7",
     "vue": "^3.4.19",
+    "vue-braintree": "^2.1.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
