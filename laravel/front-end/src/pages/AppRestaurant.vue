@@ -1,22 +1,23 @@
 <script>
 import { store } from "../store";
 
+
 export default {
   name: "Restaurant",
   data() {
     return {
-      store,
-      cart: [], // Array per memorizzare gli elementi nel carrello
+        store,
+      cart: store.cart,
     };
   },
 
   methods: {
-    getQuantity(dish) {
-      const index = this.cart.findIndex(item => item.dish.id === dish.id);
-      return index !== -1 ? this.cart[index].quantity : 0;
-    },
 
-    // Aggiungi un piatto al carrello e aggiungi l'ordine allo store
+    getQuantity(dish) {
+    const index = this.cart.findIndex(item => item.dish.id === dish.id);
+    return index !== -1 ? this.cart[index].quantity : 0;
+  },
+    // Aggiungi un piatto al carrello
     addToCart(dish) {
       const index = this.cart.findIndex(item => item.dish.id === dish.id);
       if (index !== -1) {
@@ -26,11 +27,13 @@ export default {
         this.cart.push({ dish: dish, quantity: 1, totalPrice: dish.price });
       }
 
-      // Aggiungi l'ordine allo store
-      store.orders.push({ dish: dish, quantity: 1, totalPrice: dish.price });
+      // Aggiorna lo store globale
+      store.cart = this.cart;
+
     },
 
-    // Rimuovi un piatto dal carrello e rimuovi l'ordine dallo store
+
+    // Rimuovi un piatto dal carrello
     removeFromCart(dish) {
       const index = this.cart.findIndex(item => item.dish.id === dish.id);
       if (index !== -1) {
@@ -42,21 +45,18 @@ export default {
         }
       }
 
-      // Rimuovi l'ordine dallo store
-      const orderIndex = store.orders.findIndex(item => item.dish.id === dish.id);
-      if (orderIndex !== -1) {
-        store.orders.splice(orderIndex, 1);
-      }
+       // Aggiorna lo store globale
+       store.cart = this.cart;
+
     },
 
-    // Calcola il prezzo totale del carrello
-    
+    // Calcola il prezzo totale del piatto moltiplicando il prezzo per la quantità
     calculateTotal() {
       let total = 0;
       for (const item of this.cart) {
-        total += parseFloat(item.totalPrice); // Converti il prezzo in un numero prima di sommarlo
+        total += item.dish.price * item.quantity;
       }
-      return total.toFixed(2); // Ritorna il totale con due decimali
+      return total;
     }
   }
 };

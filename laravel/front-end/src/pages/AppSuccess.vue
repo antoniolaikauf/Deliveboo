@@ -62,7 +62,7 @@ export default {
                 </thead>
                 <tbody>
                     <!-- Inizio dettagli ordine -->
-                    <tr v-for="item in store.orders" >
+                    <tr v-for="item in store.cart" >
                         <td>{{ item.dish.name }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.dish.price }}</td>
