@@ -42,6 +42,13 @@ export default {
             );
         });
     },
+    computed: {
+    calculateGrandTotal() {
+      return this.store.cart.reduce((total, item) => {
+        return total + (item.quantity * item.dish.price);
+      }, 0).toFixed(2);
+    }
+  }
 };
 </script>
 
@@ -62,7 +69,7 @@ export default {
                 </thead>
                 <tbody>
                     <!-- Inizio dettagli ordine -->
-                    <tr v-for="item in store.cart" >
+                    <tr v-for="(item, index) in store.cart" :key="index" >
                         <td>{{ item.dish.name }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.dish.price }}</td>
@@ -79,7 +86,7 @@ export default {
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-right">Totale</td>
-                        <td>€ 13,00</td>
+                        <td>{{ calculateGrandTotal }}</td>
                     </tr>
                 </tfoot>
             </table>
