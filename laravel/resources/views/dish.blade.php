@@ -10,7 +10,10 @@
                             <h2 class="text-white auth m-4">
                                 Ciao, {{ Auth::user()->name }}. Ecco tutti i piatti disponibili nel tuo account.
                             </h2>
-                            <a href="{{ route('dish.create') }}" class="btn-boo buttons bg-black text-white p-2">Crea il piatto</a>
+                            <a href="{{ route('dish.create') }}" class="btn-boo buttons bg-black text-white p-2">Crea il
+                                piatto</a>
+                            <a href="{{ route('order.index') }}" class="btn-boo buttons bg-black text-white p-2">Visualizza
+                                ordini</a>
                         </div>
                     @endauth
                 </div>
@@ -45,7 +48,7 @@
                                         </td>
                                         <td>
                                             <div class="img-cont">
-                                                @if($dish->img==null)
+                                                @if ($dish->img == null)
                                                     <div class="text-danger">
                                                         <b>immagine non selezionata</b>
                                                     </div>
@@ -53,9 +56,12 @@
                                                     <div>
                                                         {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
                                                         @if ($dish->img && Storage::disk('public')->exists($dish->img))
-                                                            <img class="img-fluid" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
+                                                            <img class="img-fluid"
+                                                                src="{{ asset('storage/' . $dish->img) }}"
+                                                                alt="Immagine del piatto {{ $dish->name }}">
                                                         @else
-                                                            <img class="img-fluid" src="{{asset($dish->img)}}" alt="Immagine del piatto {{ $dish->name }}">
+                                                            <img class="img-fluid" src="{{ asset($dish->img) }}"
+                                                                alt="Immagine del piatto {{ $dish->name }}">
                                                         @endif
                                                     </div>
                                                 @endif
@@ -66,10 +72,13 @@
                                                 <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <button class="btn btn-sm btn-danger" onclick="showConfirmationModal('{{ $dish->id }}')">
+                                                <button class="btn btn-sm btn-danger"
+                                                    onclick="showConfirmationModal('{{ $dish->id }}')">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
-                                                <form id="deleteForm_{{ $dish->id }}" action="{{ route('dish.delete', $dish->id) }}" method="POST" style="display: none;">
+                                                <form id="deleteForm_{{ $dish->id }}"
+                                                    action="{{ route('dish.delete', $dish->id) }}" method="POST"
+                                                    style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -88,7 +97,8 @@
     {{-- Modals --}}
     @foreach ($dishes as $dish)
         @if (Auth::check() && Auth::id() === $dish->user_id)
-            <div class="modal fade" id="confirmationModal_{{ $dish->id }}" tabindex="-1" aria-labelledby="confirmationModalLabel_{{ $dish->id }}" aria-hidden="true">
+            <div class="modal fade" id="confirmationModal_{{ $dish->id }}" tabindex="-1"
+                aria-labelledby="confirmationModalLabel_{{ $dish->id }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -100,7 +110,8 @@
                             <h6>Sei sicuro di voler eliminare "{{ $dish->name }}"?</h6>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" onclick="submitDeleteForm('{{ $dish->id }}')">Elimina</button>
+                            <button type="button" class="btn btn-danger"
+                                onclick="submitDeleteForm('{{ $dish->id }}')">Elimina</button>
                         </div>
                     </div>
                 </div>
