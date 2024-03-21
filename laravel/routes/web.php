@@ -62,9 +62,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
 });
 
-// Rotta per la generazione del token
-Route::get('/generate',[OrderController::class, 'generate']);
-// Rotta per la vendita
-Route::post('/makePayment',[OrderController::class, 'makePayment']);
+// // Rotta per la generazione del token
+// Route::get('/generate',[OrderController::class, 'generate']);
+// // Rotta per la vendita
+// Route::post('/makePayment',[OrderController::class, 'makePayment']);
 
 require __DIR__ . '/auth.php';

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ApiRestaurant;
 
+use App\Http\Controllers\OrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +30,12 @@ Route::group(['prefix' => '/v1'], function () {
     route::post('types/select', [ApiRestaurant::class, 'TypesSelected']);
 
     route::post('edit/foto', [ApiRestaurant::class, 'EditFoto']);
-});
 
+    // Rotta per la generazione del token
+    Route::get('/generate', [OrderController::class, 'generate']);
+    // Rotta per la vendita
+    Route::post('/makePayment', [OrderController::class, 'makePayment']);
+
+    // prendere ordini 
+    Route::get('/order', [ApiRestaurant::class, 'order']);
+});

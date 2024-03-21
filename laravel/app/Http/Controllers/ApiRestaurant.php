@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
 use Illuminate\Http\Request;
 
 use App\Models\Type;
 use App\Models\Restaurant;
+
+use App\Models\Order;
 
 use function PHPSTORM_META\type;
 
@@ -90,6 +93,16 @@ class ApiRestaurant extends Controller
 
         return response()->json([
             'risposta' => $imguploated,
+        ]);
+    }
+
+    public function order(Request $request)
+    {
+        // prendi tutti gli ordini
+        $dishes = order::all();
+
+        return response()->json([
+            'ordine' => $dishes,
         ]);
     }
 }

@@ -109,6 +109,7 @@ export default {
 
 <template>
     <section class="mb-5">
+        <router-link class="text-dark" :to="{ name: 'success' }"> vai alla paginaaaa</router-link>
         <div class="container-fluid bg-dark">
             <div class="container mt-5">
                 <!-- TESTO RICERCA RISTORANTI -->
