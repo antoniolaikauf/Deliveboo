@@ -108,7 +108,7 @@ export default {
    <div class="row">
         <div class="col-md-6 offset-md-3">
             <h3>Inserisci i tuoi dati</h3>
-            <form id="orderForm" method="post" action="process_order.php">
+            <form id="orderForm" method="post" action="process_payment.php">
                 <div class="form-group">
                     <label for="name">Nome</label>
                     <input type="text" class="form-control" id="name" name="name" required>
