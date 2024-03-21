@@ -106,40 +106,9 @@ export default {
             {
                 authorization: this.token,
                 container: "#dropin-container",
-                translations: {
-                    pleaseFillOutCardNumber: "Si prega di compilare il numero di carta.",
-                    pleaseCheckInformationAndTryAgain: "Si prega di controllare le informazioni e riprovare.",
-                    payingWith: "Pagamento con {{paymentSource}}",
-                    expirationDate: "Data di scadenza",
-                    chooseAnotherWayToPay: "Scegli un altro metodo di pagamento",
-                    chooseAWayToPay: "Scegli il metodo di pagamento",
-                    otherWaysToPay: "Altri metodi di pagamento",
-                    cardVerification: "Verifica della carta",
-                    payWithCard: "Paga con carta di credito",
-                    cvv: "CVV",
-                    postalCode: "CAP",
-                    cardholderName: "Nome del titolare",
-                    cardNumber: "Numero carta",
-                    expirationDatePlaceholder: "MM/AA",
-                    postalCodePlaceholder: "12345",
-                    cardholderNameLabel: "Nome del titolare",
-                    cardNumberLabel: "Numero carta",
-                    cvvLabel: "CVV",
-                    expirationDateLabel: "Data di scadenza",
-                    postalCodeLabel: "CAP",
-                    submitButton: "Invia",
-                    payWithCardTitle: "Paga con carta di credito",
-                    orUseAnotherWayToPay: "O usa un altro metodo di pagamento",
-                    cardNotSupported: "La carta non è supportata. Usa un'altra carta.",
-                    fieldEmptyForCvv: "Inserisci il CVV.",
-                    fieldEmptyForExpirationDate: "Inserisci la data di scadenza.",
-                    fieldEmptyForPostalCode: "Inserisci il CAP.",
-                    fieldInvalidForCvv: "Questo CVV non sembra valido.",
-                    fieldInvalidForExpirationDate: "Questa data di scadenza non sembra valida.",
-                    fieldInvalidForPostalCode: "Questo CAP non sembra valido.",
-                    genericError: "Si è verificato un errore durante il pagamento. Si prega di riprovare.",
 
-                },
+                //traduzione form
+                locale: 'it_IT'
             },
             (error, dropinInstance) => {
                 if (error) {
