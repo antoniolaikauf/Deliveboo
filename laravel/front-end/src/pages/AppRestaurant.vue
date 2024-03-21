@@ -1,23 +1,22 @@
 <script>
 import { store } from "../store";
 
-
 export default {
   name: "Restaurant",
   data() {
     return {
-        store,
+      store,
       cart: [], // Array per memorizzare gli elementi nel carrello
     };
   },
 
   methods: {
-
     getQuantity(dish) {
-    const index = this.cart.findIndex(item => item.dish.id === dish.id);
-    return index !== -1 ? this.cart[index].quantity : 0;
-  },
-    // Aggiungi un piatto al carrello
+      const index = this.cart.findIndex(item => item.dish.id === dish.id);
+      return index !== -1 ? this.cart[index].quantity : 0;
+    },
+
+    // Aggiungi un piatto al carrello e aggiungi l'ordine allo store
     addToCart(dish) {
       const index = this.cart.findIndex(item => item.dish.id === dish.id);
       if (index !== -1) {
@@ -26,8 +25,12 @@ export default {
       } else {
         this.cart.push({ dish: dish, quantity: 1, totalPrice: dish.price });
       }
+
+      // Aggiungi l'ordine allo store
+      store.orders.push({ dish: dish, quantity: 1, totalPrice: dish.price });
     },
-    // Rimuovi un piatto dal carrello
+
+    // Rimuovi un piatto dal carrello e rimuovi l'ordine dallo store
     removeFromCart(dish) {
       const index = this.cart.findIndex(item => item.dish.id === dish.id);
       if (index !== -1) {
@@ -38,15 +41,22 @@ export default {
           this.cart.splice(index, 1);
         }
       }
+
+      // Rimuovi l'ordine dallo store
+      const orderIndex = store.orders.findIndex(item => item.dish.id === dish.id);
+      if (orderIndex !== -1) {
+        store.orders.splice(orderIndex, 1);
+      }
     },
 
-    // Calcola il prezzo totale del piatto moltiplicando il prezzo per la quantità
+    // Calcola il prezzo totale del carrello
+    
     calculateTotal() {
       let total = 0;
       for (const item of this.cart) {
-        total += item.dish.price * item.quantity;
+        total += parseFloat(item.totalPrice); // Converti il prezzo in un numero prima di sommarlo
       }
-      return total;
+      return total.toFixed(2); // Ritorna il totale con due decimali
     }
   }
 };

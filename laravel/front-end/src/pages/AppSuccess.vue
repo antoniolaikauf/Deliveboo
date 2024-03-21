@@ -1,6 +1,6 @@
 <script>
 import { store } from "../store";
-import braintree from 'braintree-web-drop-in';
+// import braintree from 'braintree-web-drop-in';
 
 export default {
     name: "success",
