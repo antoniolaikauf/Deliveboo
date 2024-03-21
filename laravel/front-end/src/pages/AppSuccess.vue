@@ -62,7 +62,6 @@ export default {
         //     this.initializeBraintree();
         // });
 
-
         axios.get("http://localhost:8000/api/v1/generate").then((res) => {
             this.token = res.data.token;
             // Assicurati di inizializzare il drop-in UI qui, dopo aver ricevuto il token
@@ -82,12 +81,14 @@ export default {
         });
     },
     computed: {
-    calculateGrandTotal() {
-      return this.store.cart.reduce((total, item) => {
-        return total + (item.quantity * item.dish.price);
-      }, 0).toFixed(2);
-    }
-  }
+        calculateGrandTotal() {
+            return this.store.cart
+                .reduce((total, item) => {
+                    return total + item.quantity * item.dish.price;
+                }, 0)
+                .toFixed(2);
+        },
+    },
 };
 </script>
 
