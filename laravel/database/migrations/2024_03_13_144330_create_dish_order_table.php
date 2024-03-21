@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
 
             $table->integer('quantity');
-            $table->decimal('price');
 
             $table->timestamps();
         });

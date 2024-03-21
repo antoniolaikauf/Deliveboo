@@ -10,7 +10,8 @@ class Order extends Model
     use HasFactory;
 
     //molti a molti
-    public function dishes(){
+    public function dishes()
+    {
         return $this->belongsToMany(Dish::class);
     }
 }

@@ -105,4 +105,32 @@ class ApiRestaurant extends Controller
             'ordine' => $dishes,
         ]);
     }
+
+    public function makeorder(Request $request)
+    {
+
+        $data = $request->all();
+
+        // $order = new Order();
+        // $order->address = $data['indirizzo'];
+        // $order->payment = $data['selezione'];
+        // $order->price = $data['price'];
+        // $order->date = $data['data'];
+        // $order->name_customer = $data['name'];
+        // $order->phone_number = $data['numero'];
+        // $order->email_customer = $data['email'];
+
+        // $dishes = $data['dishes'];
+        // $order->save();
+
+        // foreach ($dishes as $dishData) {
+        //     $dish = Dish::find($dishData['id']);
+        //     if ($dish) {
+        //         $order->dishes()->attach($dish, ['quantity' => $dishData['quantity']]);
+        //     }
+        // }
+
+
+        return response()->json(['message' => 'unziono'], 200);
+    }
 }

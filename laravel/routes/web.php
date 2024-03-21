@@ -6,6 +6,8 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\RestaurantProfileController;
 use App\Http\Controllers\OrderController;
 
+use App\Http\Controllers\ApiRestaurant;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,10 +63,5 @@ Route::middleware('auth')->group(function () {
     // ROTTE ORDERS
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
 });
-
-// // Rotta per la generazione del token
-// Route::get('/generate',[OrderController::class, 'generate']);
-// // Rotta per la vendita
-// Route::post('/makePayment',[OrderController::class, 'makePayment']);
 
 require __DIR__ . '/auth.php';

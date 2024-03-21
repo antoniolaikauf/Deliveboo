@@ -36,6 +36,8 @@ Route::group(['prefix' => '/v1'], function () {
     // Rotta per la effettuare il pagamento
     Route::post('/makePayment', [OrderController::class, 'makePayment']);
 
+    Route::post('/create/order', [ApiRestaurant::class, 'makeorder']);
+
     // prendere ordini
     Route::get('/order', [ApiRestaurant::class, 'order']);
 });

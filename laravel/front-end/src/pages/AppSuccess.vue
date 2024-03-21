@@ -13,7 +13,20 @@ export default {
             store,
             token: "",
             dropInInstance: null,
-            error: "",
+            form: {
+                name: "",
+                email: "",
+                indirizzo: "",
+                numero: "",
+                data: "06/03/2024",
+                selezione: "",
+                price: 4.5,
+                dishes: [
+                    // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
+                    { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
+                    { id: 3, quantity: 2 },
+                ],
+            },
         };
     },
     // computed: {
@@ -97,6 +110,16 @@ export default {
         //         }
         //     );
         // },
+        processPayment() {
+            axios
+                .post("http://localhost:8000/api/v1/create/order", this.form)
+                .then((res) => {
+                    console.log(res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
     },
     mounted() {
         // axios.get("http://localhost:8000/api/v1/generate").then((res) => {
@@ -167,7 +190,7 @@ export default {
                     <tfoot>
                         <tr>
                             <td colspan="3" class="text-right">Totale</td>
-                            <td>€ {{ calculateTotal }}</td>
+                            <!-- <td>€ {{ calculateTotal }}</td> -->
                         </tr>
                     </tfoot>
                 </table>
@@ -178,6 +201,7 @@ export default {
                 <div class="col-md-6 offset-md-3">
                     <h3>Inserisci i tuoi dati</h3>
                     <form
+                        @submit.prevent="processPayment"
                         id="orderForm"
                         method="post"
                         action="process_order.php"
@@ -190,6 +214,7 @@ export default {
                                 id="name"
                                 name="name"
                                 required
+                                v-model="form.name"
                             />
                         </div>
                         <div class="form-group">
@@ -200,6 +225,7 @@ export default {
                                 id="email"
                                 name="email"
                                 required
+                                v-model="form.email"
                             />
                         </div>
                         <div class="form-group">
@@ -210,6 +236,7 @@ export default {
                                 id="address"
                                 name="address"
                                 required
+                                v-model="form.indirizzo"
                             />
                         </div>
                         <div class="form-group">
@@ -221,16 +248,28 @@ export default {
                                 name="phone"
                                 pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                                 required
+                                v-model="form.numero"
                             />
                         </div>
-                        <!-- <button
+                        <div>56</div>
+                        <div>
+                            <select
+                                name="selezionametodo"
+                                id=""
+                                v-model="form.selezione"
+                            >
+                                <option value="opzione 1">opzione 1</option>
+                                <option value="opzione 2">opzione 2</option>
+                            </select>
+                        </div>
+                        <!-- <div>pagamento carta credito</div> -->
+                        <button
                             type="submit"
                             class="btn btn-primary"
                             id="submit-button"
-                            @click.prevent="processPayment"
                         >
                             Paga adesso
-                        </button> -->
+                        </button>
                     </form>
                 </div>
             </div>
