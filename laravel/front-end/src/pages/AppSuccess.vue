@@ -13,18 +13,19 @@ export default {
             store,
             token: "",
             dropInInstance: null,
+            // form da completare con dati inseriti da utente
             form: {
                 name: "",
                 email: "",
                 indirizzo: "",
                 numero: "",
-                data: "06/03/2024",
-                selezione: "",
-                price: 4.5,
+                // Converti la data in formato aaaa-mm-gg attenti con la data 
+                data: "2024-03-06 00:00:00",
+                selezione: "opzione 1",
+                price: 7.5,
                 dishes: [
-                    // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
-                    { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
-                    { id: 3, quantity: 2 },
+                    { id: 4, quantity: 2 },
+                    { id: 4, quantity: 6 },
                 ],
             },
         };
@@ -122,27 +123,27 @@ export default {
         },
     },
     mounted() {
-    axios.get("http://localhost:8000/api/v1/generate").then((res) => {
-        this.token = res.data.token;
+        axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+            this.token = res.data.token;
 
-        dropin.create(
-            {
-                authorization: this.token,
-                container: "#dropin-container",
+            dropin.create(
+                {
+                    authorization: this.token,
+                    container: "#dropin-container",
 
-                //traduzione form
-                locale: 'it_IT'
-            },
-            (error, dropinInstance) => {
-                if (error) {
-                    console.error(error);
-                } else {
-                    this.dropInInstance = dropinInstance;
+                    //traduzione form
+                    locale: "it_IT",
+                },
+                (error, dropinInstance) => {
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        this.dropInInstance = dropinInstance;
+                    }
                 }
-            }
-        );
-    });
-},
+            );
+        });
+    },
     computed: {
         calculateGrandTotal() {
             return this.store.cart
@@ -248,7 +249,6 @@ export default {
                                 v-model="form.numero"
                             />
                         </div>
-                        <div>56</div>
                         <div>
                             <select
                                 name="selezionametodo"

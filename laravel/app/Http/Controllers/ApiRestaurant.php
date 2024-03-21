@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dish;
 use Illuminate\Http\Request;
 
+// modelli inportati 
+use App\Models\Dish;
 use App\Models\Type;
 use App\Models\Restaurant;
-
 use App\Models\Order;
 
 use function PHPSTORM_META\type;
 
 class ApiRestaurant extends Controller
 {
+    // funzione che restituisce i typi di ristoranti 
     public function TypeRestaurants()
     {
         // ottieni tutti i ristoranti e type
@@ -27,7 +28,7 @@ class ApiRestaurant extends Controller
             'restaurants' => $restaurants,
         ]);
     }
-
+// funzione che seleziona i piatti in base ad una select
     public function TypesSelected(Request $request)
     {
         // // // Ottieni i tipi selezionati dall'utente e incrementali di 1
@@ -85,6 +86,7 @@ class ApiRestaurant extends Controller
             'risposta' => $container,
         ]);
     }
+    // funzione per cambiare path foto 
     public function EditFoto(Request $request)
     {
         $data = $request->input('data'); // Accedi direttamente al valore 'data' inviato dall'frontend
@@ -105,32 +107,35 @@ class ApiRestaurant extends Controller
             'ordine' => $dishes,
         ]);
     }
-
     public function makeorder(Request $request)
     {
+        // prendi tutti i dati 
+        $data = request()->all();
 
-        $data = $request->all();
+        // Crea un nuovo ordine con i dati 
+        $order = new Order();
+        $order->address = $data['indirizzo'];
+        $order->payment = $data['selezione'];
+        $order->price = $data['price'];
+        $order->date = $data['data'];
+        $order->name_customer = $data['name'];
+        $order->phone_number = $data['numero'];
+        $order->email_customer = $data['email'];
 
-        // $order = new Order();
-        // $order->address = $data['indirizzo'];
-        // $order->payment = $data['selezione'];
-        // $order->price = $data['price'];
-        // $order->date = $data['data'];
-        // $order->name_customer = $data['name'];
-        // $order->phone_number = $data['numero'];
-        // $order->email_customer = $data['email'];
+        // Salva l'ordine
+        $order->save();
+        // prendi i dishes 
+        $dishes = $data['dishes'];
 
-        // $dishes = $data['dishes'];
-        // $order->save();
-
-        // foreach ($dishes as $dishData) {
-        //     $dish = Dish::find($dishData['id']);
-        //     if ($dish) {
-        //         $order->dishes()->attach($dish, ['quantity' => $dishData['quantity']]);
-        //     }
-        // }
-
-
-        return response()->json(['message' => 'unziono'], 200);
+        // associ i l'ordine con i piatti
+        foreach ($dishes as $dishData) {
+            // trova piatto con i dati inseriti che ha il form 
+            $dish = Dish::find($dishData['id']);
+            // associa piatto con l'ordine e associa anche la quantita del piatto
+            if ($dish) {
+                $order->dishes()->attach($dish, ['quantity' => $dishData['quantity']]);
+            }
+        }
+        return response()->json(['message' => 'funziono']);
     }
 }
