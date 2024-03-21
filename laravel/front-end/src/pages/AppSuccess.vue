@@ -55,6 +55,48 @@ export default {
             let message = error.message;
             // Whoops, an error has occured while trying to get the nonce
         },
+        // initializeBraintree() {
+        //     const self = this;
+        //     dropin.create(
+        //         {
+        //             authorization: this.token,
+        //             container: "#dropin-container",
+        //             translations: {
+        //                 payingWith: "Pagamento con {{paymentSource}}", // Pagamento con il metodo di pagamento specificato
+        //                 chooseAnotherWayToPay:
+        //                     "Scegli un altro metodo di pagamento", // Scegli un altro metodo di pagamento
+        //                 chooseAWayToPay: "Scegli il metodo di pagamento", // Scegli il metodo di pagamento
+        //                 otherWaysToPay: "Altri metodi di pagamento", // Altri metodi di pagamento disponibili
+        //                 cardVerification: "Verifica della carta", // Verifica della carta di credito
+        //                 payWithCard: "Paga con carta di credito", // Paga utilizzando una carta di credito
+        //                 expirationDate: "Data di scadenza", // Data di scadenza della carta di credito
+        //                 cvv: "Codice di sicurezza", // Codice di sicurezza della carta di credito
+        //                 postalCode: "Codice postale", // Codice postale (se richiesto per il paese)
+        //                 cardholderName: "Nome del titolare della carta", // Nome del titolare della carta di credito
+        //                 cardNumber: "Numero della carta", // Numero della carta di credito
+        //             },
+        //         }, // Qui mancava una virgola
+        //         (error, dropinInstance) => {
+        //             if (error) {
+        //                 console.error(error);
+        //             } else {
+        //                 self.dropinInstance = dropinInstance;
+        //                 dropinInstance.on(
+        //                     "paymentMethodRequestable",
+        //                     (event) => {
+        //                         // Esegui qualche azione quando un metodo di pagamento è disponibile
+        //                     }
+        //                 );
+        //                 dropinInstance.on(
+        //                     "noPaymentMethodRequestable",
+        //                     (event) => {
+        //                         // Esegui qualche azione quando non ci sono metodi di pagamento disponibili
+        //                     }
+        //                 );
+        //             }
+        //         }
+        //     );
+        // },
     },
     mounted() {
         // axios.get("http://localhost:8000/api/v1/generate").then((res) => {
@@ -64,6 +106,7 @@ export default {
 
         axios.get("http://localhost:8000/api/v1/generate").then((res) => {
             this.token = res.data.token;
+            this.initializeBraintree();
             // Assicurati di inizializzare il drop-in UI qui, dopo aver ricevuto il token
             dropin.create(
                 {
@@ -114,6 +157,12 @@ export default {
                             <td>{{ item.dish.price }}</td>
                             <td>{{ item.totalPrice }}</td>
                         </tr>
+                        <!-- <tr>
+                            <td>Pomodoro</td>
+                            <td>3</td>
+                            <td>€ 1,00</td>
+                            <td>€ 3,00</td>
+                        </tr> -->
                     </tbody>
                     <tfoot>
                         <tr>
@@ -124,10 +173,72 @@ export default {
                 </table>
             </div>
         </div>
-        <div id="dropin-container" class="mt-5"></div>
-        <button class="btn btn-primary mt-3" @click="submitPayment">
-            Paga adesso
-        </button>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h3>Inserisci i tuoi dati</h3>
+                    <form
+                        id="orderForm"
+                        method="post"
+                        action="process_order.php"
+                    >
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                name="name"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Indirizzo</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="address"
+                                name="address"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Numero di Telefono</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                id="phone"
+                                name="phone"
+                                pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                                required
+                            />
+                        </div>
+                        <!-- <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="submit-button"
+                            @click.prevent="processPayment"
+                        >
+                            Paga adesso
+                        </button> -->
+                    </form>
+                </div>
+            </div>
+            <div id="dropin-container" class="mt-5"></div>
+            <button class="btn btn-primary mt-3" @click="submitPayment">
+                Paga adesso
+            </button>
+        </div>
     </div>
 </template>
 
