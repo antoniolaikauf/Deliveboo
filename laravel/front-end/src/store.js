@@ -1,8 +1,8 @@
-import {reactive} from "vue";
+import { reactive } from "vue";
 
 export const store = reactive({
 
-  // funzione per animazione per testo 
-  restaurantselected:'',
-  
+  restaurantselected: '', // Dati del ristorante selezionato
+  cart: [], // Array per memorizzare i piatti nel carrello
+  orders: [], // Array per memorizzare i dettagli degli ordini
 });
