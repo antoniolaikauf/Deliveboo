@@ -122,30 +122,27 @@ export default {
         },
     },
     mounted() {
-        // axios.get("http://localhost:8000/api/v1/generate").then((res) => {
-        //     this.token = res.data.token;
-        //     this.initializeBraintree();
-        // });
+    axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+        this.token = res.data.token;
 
-        axios.get("http://localhost:8000/api/v1/generate").then((res) => {
-            this.token = res.data.token;
-            // this.initializeBraintree();
-            // Assicurati di inizializzare il drop-in UI qui, dopo aver ricevuto il token
-            dropin.create(
-                {
-                    authorization: this.token,
-                    container: "#dropin-container",
-                },
-                (error, dropinInstance) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        this.dropInInstance = dropinInstance;
-                    }
+        dropin.create(
+            {
+                authorization: this.token,
+                container: "#dropin-container",
+
+                //traduzione form
+                locale: 'it_IT'
+            },
+            (error, dropinInstance) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    this.dropInInstance = dropinInstance;
                 }
-            );
-        });
-    },
+            }
+        );
+    });
+},
     computed: {
         calculateGrandTotal() {
             return this.store.cart
