@@ -7,10 +7,12 @@ import axios from "axios";
 
 export default {
     name: "success",
+    name: "BraintreeDropin",
     data() {
         return {
             store,
             token: "",
+            dropinInstance: null
         };
     },
     methods: {
@@ -22,8 +24,53 @@ export default {
             let message = error.message;
             // Whoops, an error has occured while trying to get the nonce
         },
+//         initializeBraintree() {
+    //     const self = this;
+
+    //     dropin.create(
+    //         {
+    //             authorization: this.token,
+    //             container: "#dropin-container",
+    //             translations: {
+    //                 payingWith: 'Pagamento con {{paymentSource}}', // Pagamento con il metodo di pagamento specificato
+    //                 chooseAnotherWayToPay: 'Scegli un altro metodo di pagamento', // Scegli un altro metodo di pagamento
+    //                 chooseAWayToPay: 'Scegli il metodo di pagamento', // Scegli il metodo di pagamento
+    //                 otherWaysToPay: 'Altri metodi di pagamento', // Altri metodi di pagamento disponibili
+    //                 cardVerification: 'Verifica della carta', // Verifica della carta di credito
+    //                 payWithCard: 'Paga con carta di credito', // Paga utilizzando una carta di credito
+    //                 expirationDate: 'Data di scadenza', // Data di scadenza della carta di credito
+    //                 cvv: 'Codice di sicurezza', // Codice di sicurezza della carta di credito
+    //                 postalCode: 'Codice postale', // Codice postale (se richiesto per il paese)
+    //                 cardholderName: 'Nome del titolare della carta', // Nome del titolare della carta di credito
+    //                 cardNumber: 'Numero della carta', // Numero della carta di credito
+    //             }
+    //         }, // Qui mancava una virgola
+    //         (error, dropinInstance) => {
+    //             if (error) {
+    //                 console.error(error);
+    //             } else {
+    //                 self.dropinInstance = dropinInstance;
+
+    //                 dropinInstance.on('paymentMethodRequestable', (event) => {
+    //                     // Esegui qualche azione quando un metodo di pagamento è disponibile
+    //                 });
+
+    //                 dropinInstance.on('noPaymentMethodRequestable', (event) => {
+    //                     // Esegui qualche azione quando non ci sono metodi di pagamento disponibili
+    //                 });
+    //             }
+    //         }
+    //     );
+    // }
     },
+
     mounted() {
+        // axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+        //     this.token = res.data.token;
+        //     this.initializeBraintree();
+        // });
+
+
         axios.get("http://localhost:8000/api/v1/generate").then((res) => {
             this.token = res.data.token;
             // Assicurati di inizializzare il drop-in UI qui, dopo aver ricevuto il token
@@ -56,7 +103,7 @@ export default {
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <h1>{{ store.restaurantselected.name }}</h1>  
+            <h1>{{ store.restaurantselected.name }}</h1>
             <h3>Riepilogo Ordine</h3>
             <table class="table">
                 <thead>
