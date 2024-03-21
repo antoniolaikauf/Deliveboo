@@ -99,30 +99,58 @@ export default {
         // },
     },
     mounted() {
-        // axios.get("http://localhost:8000/api/v1/generate").then((res) => {
-        //     this.token = res.data.token;
-        //     this.initializeBraintree();
-        // });
+    axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+        this.token = res.data.token;
 
-        axios.get("http://localhost:8000/api/v1/generate").then((res) => {
-            this.token = res.data.token;
-            // this.initializeBraintree();
-            // Assicurati di inizializzare il drop-in UI qui, dopo aver ricevuto il token
-            dropin.create(
-                {
-                    authorization: this.token,
-                    container: "#dropin-container",
-                },
-                (error, dropinInstance) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        this.dropInInstance = dropinInstance;
-                    }
+        dropin.create(
+            {
+                authorization: this.token,
+                container: "#dropin-container",
+                translations: {
+                    cardholderNameLabel: "Nome del titolare",
+                    cardNumberLabel: "Numero carta",
+                    cvvLabel: "CVV",
+                    expirationDateLabel: "Data di scadenza",
+                    postalCodeLabel: "CAP",
+                    expirationDatePlaceholder: "MM/AA",
+                    postalCodePlaceholder: "12345",
+                    cardholderName: "Nome del titolare",
+                    cardNumber: "Numero carta",
+                    cvv: "CVV",
+                    expirationDate: "Data di scadenza",
+                    postalCode: "CAP",
+                    payingWith: "Pagamento con {{paymentSource}}",
+                    payWithCardTitle: "Paga con carta di credito",
+                    chooseAWayToPay: "Scegli il metodo di pagamento",
+                    chooseAnotherWayToPay: "Scegli un altro metodo di pagamento",
+                    otherWaysToPay: "Altri metodi di pagamento",
+                    orUseAnotherWayToPay: "O usa un altro metodo di pagamento",
+                    cardNotSupported: "La carta non è supportata. Usa un'altra carta.",
+                    fieldEmptyForCvv: "Inserisci il CVV.",
+                    fieldEmptyForExpirationDate: "Inserisci la data di scadenza.",
+                    fieldEmptyForPostalCode: "Inserisci il CAP.",
+                    fieldInvalidForCvv: "Questo CVV non sembra valido.",
+                    fieldInvalidForExpirationDate: "Questa data di scadenza non sembra valida.",
+                    fieldInvalidForPostalCode: "Questo CAP non sembra valido.",
+                    genericError: "Si è verificato un errore durante il pagamento. Si prega di riprovare.",
+                    pleaseFillOutCardNumber: "Si prega di compilare il numero di carta.",
+                    pleaseCheckInformationAndTryAgain: "Si prega di controllare le informazioni e riprovare.",
+                    paymentProcessing: "Elaborazione del pagamento in corso...",
+                    paymentFailed: "Il pagamento non è riuscito. Si prega di riprovare.",
+                    paymentSuccessful: "Pagamento completato con successo!",
                 }
-            );
-        });
-    },
+
+            },
+            (error, dropinInstance) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    this.dropInInstance = dropinInstance;
+                }
+            }
+        );
+    });
+},
     computed: {
         calculateGrandTotal() {
             return this.store.cart
