@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use App\Rules\ValidOrder;
+
 class OrderRequest extends FormRequest
 {
     /**
@@ -25,7 +27,8 @@ class OrderRequest extends FormRequest
     {
         return [
             'token' => 'required',
-            'dish' => 'required'
+            'order' => ['required', new ValidOrder()]
+            // 'dish' => 'required'
         ];
     }
 }

@@ -13,7 +13,10 @@ use Illuminate\View\View;
 use App\Models\Dish;
 use App\Models\Order;
 use Braintree\Gateway;
-use Illuminate\Http\Request\OrderRequest;
+
+use App\Http\Requests\OrderRequest;
+// commentato
+// use Illuminate\Http\Request\OrderRequest;
 
 class OrderController extends Controller
 {
@@ -24,10 +27,11 @@ class OrderController extends Controller
         $orders = Order::all();
         $dishes = Dish::all();
 
-        return view('orders', compact('orders','dishes'));
+        return view('orders', compact('orders', 'dishes'));
     }
 
-    public function generate(Request $request, Gateway $gateway){
+    public function generate(Request $request, Gateway $gateway)
+    {
         // genero il clientToken 
         $token = $gateway->clientToken()->generate();
 
@@ -35,32 +39,35 @@ class OrderController extends Controller
             'success' => true,
             'token' => $token
         ];
-        
-        return response()->json($data,200);
+
+        return response()->json($data, 200);
     }
 
-    public function makePayment(OrderRequest $request, Gateway $gateway){
+    public function makePayment(OrderRequest $request, Gateway $gateway)
+    {
 
+        $order = Order::find($request->order);
         $result = $gateway->transaction()->sale([
-            'amount' => $request->amount,
+            'amount' => $order->price,
+            // questo token inviato dal frontend
             'paymentMethodNonce' => $request->token,
             'options' => [
                 'submitForSettlement' => true
             ]
         ]);
-        
-        if($result->success){
+
+        if ($result->success) {
             $data = [
                 'success' => true,
                 'message' => 'Transazione eseguita con successo!'
             ];
-            return response()->json($data,200);
-        }else{
+            return response()->json($data, 200);
+        } else {
             $data = [
-                'success' => true,
+                'success' => false,
                 'message' => 'Transazione fallita!'
             ];
-            return response()->json($data,401);
+            return response()->json($data, 401);
         }
     }
 }
