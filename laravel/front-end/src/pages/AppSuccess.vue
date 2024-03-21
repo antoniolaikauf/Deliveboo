@@ -79,18 +79,18 @@ export default {
                 </thead>
                 <tbody>
                     <!-- Inizio dettagli ordine -->
-                    <tr>
-                        <td>Pasta</td>
-                        <td>2</td>
-                        <td>€ 5,00</td>
-                        <td>€ 10,00</td>
+                    <tr v-for="item in store.orders" >
+                        <td>{{ item.dish.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.dish.price }}</td>
+                        <td>{{ item.totalPrice }}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>Pomodoro</td>
                         <td>3</td>
                         <td>€ 1,00</td>
                         <td>€ 3,00</td>
-                    </tr>
+                    </tr> -->
                     <!-- Fine -->
                 </tbody>
                 <tfoot>
