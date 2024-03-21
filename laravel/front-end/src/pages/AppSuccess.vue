@@ -7,6 +7,7 @@ import axios from "axios";
 
 export default {
     name: "success",
+    name: "BraintreeDropin",
     data() {
         return {
             store,
@@ -51,12 +52,17 @@ export default {
             // Puoi qui anche navigare a una pagina di successo o mostrare un messaggio
         },
         onError(error) {
-            const message = error.message;
-            console.error("Errore nel processo di pagamento:", message);
-            console.log(message);
+            let message = error.message;
+            // Whoops, an error has occured while trying to get the nonce
         },
     },
     mounted() {
+        // axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+        //     this.token = res.data.token;
+        //     this.initializeBraintree();
+        // });
+
+
         axios.get("http://localhost:8000/api/v1/generate").then((res) => {
             this.token = res.data.token;
             // Assicurati di inizializzare il drop-in UI qui, dopo aver ricevuto il token
@@ -75,6 +81,13 @@ export default {
             );
         });
     },
+    computed: {
+    calculateGrandTotal() {
+      return this.store.cart.reduce((total, item) => {
+        return total + (item.quantity * item.dish.price);
+      }, 0).toFixed(2);
+    }
+  }
 };
 </script>
 
