@@ -111,7 +111,7 @@ export default {
           </div>
         </div>
       </section>
-        <section class="d-flex bg-dark">
+        <section class="d-flex justify-content-center bg-dark">
             <div class="position-relative">
                 <!-- Sezione carrello -->
                 <section>
@@ -146,11 +146,11 @@ export default {
                 <!-- Mostra ogni piatto nel carrello -->
                 <div v-if="cart.length > 0">
                     <div v-for="item in cart" :key="item.dish.id" class="card col-12 w-100 col-lg-6 my-3 p-3">
-                    <div class="d-flex justify-content-between">
-                        <div>{{ item.dish.name }}</div>
+                    <div class="d-flex justify-content-between align-middle">
+                        <div><b>{{ item.dish.name }}</b></div>
                         <div>Quantità: {{ item.quantity }}</div>
                         <div>Prezzo: <br> {{ item.dish.price }} &euro;</div>
-                        <div>Totale: <br> {{ item.totalPrice }} &euro;</div>
+                        <div>Totale: <br> <b>{{ item.totalPrice }} &euro;</b></div>
                     </div>
                     </div>
                     <div class="mt-3 d-flex justify-content-center"> <b>Totale: </b> {{ calculateTotal() }} &euro;</div>
