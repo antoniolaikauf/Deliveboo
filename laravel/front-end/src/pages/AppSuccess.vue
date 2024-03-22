@@ -22,8 +22,12 @@ export default {
                 // Converti la data in formato aaaa-mm-gg attenti con la data
                 data: "",
                 price: store.cart,
+
+                //DEVE ESSERE DINAMICO
                 restaurant_id: 2,
                 dishes: [
+
+                    //DEVE ESSERE DINAMICO
                     // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
                     { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
                     { id: 3, quantity: 2 },
@@ -32,6 +36,8 @@ export default {
             // in order metti id dell'ordine
             form_order: {
                 token: "",
+
+                //DEVE ESSERE DINAMICO
                 order: 1,
             },
         };
