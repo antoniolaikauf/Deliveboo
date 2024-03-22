@@ -251,7 +251,7 @@ export default {
                             class="btn btn-primary"
                             id="submit-button"
                         >
-                            Paga adesso
+                            Invia dati
                         </button>
                     </form>
                 </div>
