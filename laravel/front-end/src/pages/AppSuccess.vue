@@ -10,6 +10,7 @@ export default {
     name: "BraintreeDropin",
     data() {
         return {
+            paymentSuccessful: false,
             store,
             dropInInstance: null,
             form: {
@@ -35,50 +36,7 @@ export default {
         };
     },
     methods: {
-        // Rimuovi il resto dei metodi per mantenere la risposta concisa
-        // initializeBraintree() {
-        //     const self = this;
-        //     dropin.create(
-        //         {
-        //             authorization: this.token,
-        //             container: "#dropin-container",
-        //             translations: {
-        //                 payingWith: "Pagamento con {{paymentSource}}", // Pagamento con il metodo di pagamento specificato
-        //                 chooseAnotherWayToPay:
-        //                     "Scegli un altro metodo di pagamento", // Scegli un altro metodo di pagamento
-        //                 chooseAWayToPay: "Scegli il metodo di pagamento", // Scegli il metodo di pagamento
-        //                 otherWaysToPay: "Altri metodi di pagamento", // Altri metodi di pagamento disponibili
-        //                 cardVerification: "Verifica della carta", // Verifica della carta di credito
-        //                 payWithCard: "Paga con carta di credito", // Paga utilizzando una carta di credito
-        //                 expirationDate: "Data di scadenza", // Data di scadenza della carta di credito
-        //                 cvv: "Codice di sicurezza", // Codice di sicurezza della carta di credito
-        //                 postalCode: "Codice postale", // Codice postale (se richiesto per il paese)
-        //                 cardholderName: "Nome del titolare della carta", // Nome del titolare della carta di credito
-        //                 cardNumber: "Numero della carta", // Numero della carta di credito
-        //             },
-        //         }, // Qui mancava una virgola
-        //         (error, dropinInstance) => {
-        //             if (error) {
-        //                 console.error(error);
-        //             } else {
-        //                 self.dropinInstance = dropinInstance;
-        //                 dropinInstance.on(
-        //                     "paymentMethodRequestable",
-        //                     (event) => {
-        //                         // Esegui qualche azione quando un metodo di pagamento è disponibile
-        //                     }
-        //                 );
-        //                 dropinInstance.on(
-        //                     "noPaymentMethodRequestable",
-        //                     (event) => {
-        //                         // Esegui qualche azione quando non ci sono metodi di pagamento disponibili
-        //                     }
-        //                 );
-        //             }
-        //         }
-        //     );
-        // },
-        // metodo per pagamento che spedisce token
+
         sendFormDataToServer() {
             axios
                 .post(
@@ -144,6 +102,8 @@ export default {
             // messo token uguale a from_order e spedito al backend
             this.form_order.token = payload.nonce;
             console.log("Pagamento riuscito con nonce:", nonce);
+            // Imposta paymentSuccessful su true quando il pagamento è completato con successo
+            this.paymentSuccessful = true;
         },
         onError(error) {
             let message = error.message;
@@ -292,18 +252,29 @@ export default {
                             />
                         </div>
                         <div id="dropin-container" class="mt-5"></div>
-                        <button class="btn-boo buttons"  id="submit-button" type="submit" @click="submitPayment">
+
+                        <!-- bottone per effettuare il pagamento -->
+                        <button
+                            v-if="paymentSuccessful===false"
+                            class="btn-boo my-3"
+                            id="submit-button"
+                            type="submit"
+                            @click="submitPayment"
+                        >
                             Paga adesso
                         </button>
-                    </form>
 
-
-                </div>
-                <router-link class="text-center mb-5 " :to="{ name: 'PaymentCompleted' }">
+                        <!-- bottone per procedere all ordine -->
+                        <router-link  v-if="paymentSuccessful" class="text-center" :to="{ name: 'PaymentCompleted' }">
                        <button class="btn-boo">
                             Procedi con l'ordine
                        </button>
                     </router-link>
+                    </form>
+
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -332,5 +303,6 @@ export default {
 .btn-boo{
     background-color:$boo-color ;
     border: 1px solid $boo-color;
+    margin-top: 12px;
 }
 </style>
