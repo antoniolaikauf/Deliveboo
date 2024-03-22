@@ -32,6 +32,13 @@ export default {
     },
     methods: {
         submitPayment() {
+            // Effettua la validazione dei dati del form
+            if (!this.validateForm()) {
+                console.error("Dati del form non validi.");
+                return;
+            }
+
+            // Continua con la richiesta del metodo di pagamento tramite Braintree
             if (!this.dropInInstance) {
                 console.error("Drop-in instance non inizializzata.");
                 return;
@@ -45,14 +52,44 @@ export default {
                     this.onError(err);
                     return;
                 }
-                // Qui invii il payload.nonce al tuo server per processare il pagamento
+                // Qui invii il payload.nonce al tuo server per processare il pagamento tramite Braintree
                 console.log("Nonce ottenuto:", payload.nonce);
                 this.onSuccess(payload);
+
+                // Dopo aver completato il pagamento tramite Braintree, invia i dati del form al server
+                this.sendFormDataToServer();
             });
+        },
+        sendFormDataToServer() {
+            axios
+                .post("URL_DEL_TUO_SERVER", this.form)
+                .then((res) => {
+                    console.log(res.data);
+                    // Qui puoi gestire la risposta dal server dopo aver inviato i dati del form
+                })
+                .catch((err) => {
+                    console.log(err);
+                    // Gestisci eventuali errori durante l'invio dei dati del form al server
+                });
+        },
+        validateForm() {
+            // Effettua la validazione dei dati del form qui
+            // Ad esempio, puoi verificare che tutti i campi siano compilati correttamente
+            if (
+                !this.form.name ||
+                !this.form.email ||
+                !this.form.indirizzo ||
+                !this.form.numero ||
+                !this.form.selezione
+            ) {
+                return false; // Se uno qualsiasi dei campi è vuoto, restituisci false
+            }
+            // Aggiungi ulteriori controlli di validazione se necessario
+            return true; // Se tutti i campi sono validi, restituisci true
         },
         onSuccess(payload) {
             let nonce = payload.nonce;
-            // Implementa cosa fare dopo aver ottenuto il nonce, es. inviare al server per processare il pagamento
+            // Implementa cosa fare dopo aver ottenuto il nonce, es. inviare al server per processare il pagamento tramite Braintree
             console.log("Pagamento riuscito con nonce:", nonce);
             // Puoi qui anche navigare a una pagina di successo o mostrare un messaggio
         },
@@ -60,6 +97,7 @@ export default {
             let message = error.message;
             // Whoops, an error has occured while trying to get the nonce
         },
+        // Rimuovi il resto dei metodi per mantenere la risposta concisa
         initializeBraintree() {
             const self = this;
             dropin.create(
@@ -114,27 +152,27 @@ export default {
         },
     },
     mounted() {
-    axios.get("http://localhost:8000/api/v1/generate").then((res) => {
-        this.token = res.data.token;
+        axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+            this.token = res.data.token;
 
-        dropin.create(
-            {
-                authorization: this.token,
-                container: "#dropin-container",
+            dropin.create(
+                {
+                    authorization: this.token,
+                    container: "#dropin-container",
 
-                //traduzione form
-                locale: 'it_IT'
-            },
-            (error, dropinInstance) => {
-                if (error) {
-                    console.error(error);
-                } else {
-                    this.dropInInstance = dropinInstance;
+                    //traduzione form
+                    locale: "it_IT",
+                },
+                (error, dropinInstance) => {
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        this.dropInInstance = dropinInstance;
+                    }
                 }
-            }
-        );
-    });
-},
+            );
+        });
+    },
     computed: {
         calculateGrandTotal() {
             return this.store.cart
@@ -172,7 +210,9 @@ export default {
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3" class="text-right"><b>Totale finale</b></td>
+                            <td colspan="3" class="text-right">
+                                <b>Totale finale</b>
+                            </td>
                             <td>€ {{ calculateGrandTotal }}</td>
                         </tr>
                     </tfoot>
@@ -236,28 +276,43 @@ export default {
                         </div>
                         <div>
                             <div>
-                                <label for="selezionametodo">Inserisci un metodo di pagamento:</label>
-                                <select name="selezionametodo" id="" v-model="form.selezione">
+                                <label for="selezionametodo"
+                                    >Inserisci un metodo di pagamento:</label
+                                >
+                                <select
+                                    name="selezionametodo"
+                                    id=""
+                                    v-model="form.selezione"
+                                >
                                     <option value="Visa">Visa</option>
-                                    <option value="Mastercard">Mastercard</option>
+                                    <option value="Mastercard">
+                                        Mastercard
+                                    </option>
                                     <option value="Paypal">Paypal</option>
-                                    <option value="American Express">American Express</option>
+                                    <option value="American Express">
+                                        American Express
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <!-- <div>pagamento carta credito</div> -->
-                        <button
+                        <!-- <button
                             type="submit"
                             class="btn btn-primary"
                             id="submit-button"
                         >
                             Paga adesso
-                        </button>
+                        </button> -->
                     </form>
                 </div>
             </div>
             <div id="dropin-container" class="mt-5"></div>
-            <button class="btn btn-primary my-3"  id="submit-button" type="submit" @click="submitPayment">
+            <button
+                class="btn btn-primary my-3"
+                id="submit-button"
+                type="submit"
+                @click="submitPayment"
+            >
                 Paga adesso
             </button>
         </div>
