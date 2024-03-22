@@ -21,22 +21,34 @@ export default {
             store,
             // variabile con img cambiata
             imgChange: "",
+            //count ristoranti
+            countDisplayedRestaurants: 0,
         };
     },
 
     methods: {
         check() {
             this.showRestaurant = true;
+
+            //variabile interna di count
+            let count = 0;
             axios
                 .post("http://localhost:8000/api/v1/types/select", this.checked)
                 .then((risposta) => {
+
+
                     // controllo se non ritorna niente
                     if (risposta.data.risposta.length === 0) {
                         this.showRestaurant = false;
                     }
+
                     for (let i = 0; i < risposta.data.risposta[0].length; i++) {
+
+                        //incremento count ristoranti
+                        count++;
                         if (risposta.data.risposta[0][i].img.startsWith("i")) {
                             // chiamata axios
+
 
                             let foto = risposta.data.risposta[0][i].img;
                             axios
@@ -53,6 +65,7 @@ export default {
                                 });
                         }
                     }
+                    this.countDisplayedRestaurants = count;
                     this.arrayRestaurantsSelect = risposta.data.risposta;
                 })
                 .catch((err) => {
@@ -79,9 +92,12 @@ export default {
         axios
             .get("http://localhost:8000/api/v1/types")
             .then((risposta) => {
+
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
+                this.countRestaurantsFound = this.restaurants.length;
                 for (let i = 0; i < risposta.data.restaurants.length; i++) {
+
                     // console.log(risposta.data.restaurants[i]);
                     if (risposta.data.restaurants[i].img.startsWith("i")) {
                         // chiamata axios
@@ -214,6 +230,10 @@ export default {
                 v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                 class="row my-3 p-3"
             >
+
+                <p class="count">
+                    Numero di ristoranti trovati: {{ countDisplayedRestaurants  }}
+                </p>
                 <div
                     :class="
                         arrayRestaurantsSelect[0].length === 0
@@ -260,28 +280,31 @@ export default {
                                     {{ Restaurant.city }}
                                 </h5>
 
-                                <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
-                                <h5
-                                    class="type card-title"
-                                    v-if="Restaurant.hasOwnProperty('pivot')"
-                                >
-                                    <i class="fa-solid fa-bowl-food"></i>
-                                    Genere:
-                                    {{
-                                        arrayTypes[Restaurant.pivot.type_id - 1]
-                                            .name
-                                    }}
-                                </h5>
+                                <div class="label-type">
+                                    <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
+                                    <h5
+                                        class="type card-title"
+                                        v-if="Restaurant.hasOwnProperty('pivot')"
+                                    >
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                        Genere:
+                                        {{
+                                            arrayTypes[Restaurant.pivot.type_id - 1]
+                                                .name
+                                        }}
+                                    </h5>
 
-                                <h5
-                                    v-else
-                                    class="type card-title"
-                                    v-for="(types, i) in Restaurant.types"
-                                >
-                                    <i class="fa-solid fa-bowl-food"></i>
-                                    Genere:
-                                    {{ types.name }}
-                                </h5>
+                                    <h5
+                                        v-else
+                                        class="type card-title"
+                                        v-for="(types, i) in Restaurant.types"
+                                    >
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                        Genere:
+                                        {{ types.name }}
+                                    </h5>
+
+                                </div>
                             </div>
                         </router-link>
                     </div>
@@ -323,6 +346,13 @@ export default {
 //     height: 100%;
 //     // object-fit: cover;
 // }
+
+
+//COUNT
+.count{
+    font-size: 30px;
+    color: #00ccbc;
+}
 
 .checkbox-type {
     border-radius: 7px;
@@ -397,7 +427,10 @@ label {
     }
 }
 .type {
-    color: rgb(255, 83, 83);
+    color: black;
+    background-color: #00ccbc;
+    border-radius: 10px 0;
+    width: 230px;
 }
 
 .animation-error {

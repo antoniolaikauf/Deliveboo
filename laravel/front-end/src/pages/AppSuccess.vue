@@ -239,20 +239,37 @@ export default {
                                 v-model="form.numero"
                             />
                         </div>
-
-                        <div id="dropin-container" class="mt-5"></div>
-                        <button class="btn-boo buttons"  id="submit-button" type="submit" @click="submitPayment">
-                            Paga adesso
+                        <div>
+                            <div>
+                                <label for="selezionametodo">Inserisci un metodo di pagamento:</label>
+                                <select name="selezionametodo" id="" v-model="form.selezione">
+                                    <option value="Visa">Visa</option>
+                                    <option value="Mastercard">Mastercard</option>
+                                    <option value="Paypal">Paypal</option>
+                                    <option value="American Express">American Express</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <div>pagamento carta credito</div> -->
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="submit-button"
+                        >
+                            Invia dati
                         </button>
-                        
                     </form>
                 </div>
             </div>
+            <div id="dropin-container" class="mt-5"></div>
+            <button class="btn btn-primary my-3"  id="submit-button" type="submit" @click="submitPayment">
+                Paga adesso
+            </button>
         </div>
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "../styles/partials/mixins" as *;
 @use "../styles/partials/variables" as *;
 @use "../styles/general.scss" as *;
@@ -262,31 +279,4 @@ export default {
         margin: 15px 0;
     }
 }
-
-.form-bg {
-    background-color: #292929;
-    padding: 40px;
-    border-radius: 17px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-    color: white;
-    margin-bottom: 40px;
-}
-
-.cart {
-    top: 10px;
-    background-color: $boo-color;
-    max-height: 400px;
-    position: sticky;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-}
-
-.my_table{
-    border-collapse: collapse;
-    overflow: hidden;
-    border: solid #000000 2px;
-}
-
-
-
 </style>
