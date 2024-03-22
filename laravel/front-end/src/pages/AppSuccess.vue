@@ -21,7 +21,8 @@ export default {
                 numero: "",
                 // Converti la data in formato aaaa-mm-gg attenti con la data
                 data: "",
-                price: store.cart[0].totalPrice,
+                price: store.cart,
+                restaurant_id: 2,
                 dishes: [
                     // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
                     { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
