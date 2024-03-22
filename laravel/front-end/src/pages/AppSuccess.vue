@@ -36,49 +36,49 @@ export default {
     },
     methods: {
         // Rimuovi il resto dei metodi per mantenere la risposta concisa
-        initializeBraintree() {
-            const self = this;
-            dropin.create(
-                {
-                    authorization: this.token,
-                    container: "#dropin-container",
-                    translations: {
-                        payingWith: "Pagamento con {{paymentSource}}", // Pagamento con il metodo di pagamento specificato
-                        chooseAnotherWayToPay:
-                            "Scegli un altro metodo di pagamento", // Scegli un altro metodo di pagamento
-                        chooseAWayToPay: "Scegli il metodo di pagamento", // Scegli il metodo di pagamento
-                        otherWaysToPay: "Altri metodi di pagamento", // Altri metodi di pagamento disponibili
-                        cardVerification: "Verifica della carta", // Verifica della carta di credito
-                        payWithCard: "Paga con carta di credito", // Paga utilizzando una carta di credito
-                        expirationDate: "Data di scadenza", // Data di scadenza della carta di credito
-                        cvv: "Codice di sicurezza", // Codice di sicurezza della carta di credito
-                        postalCode: "Codice postale", // Codice postale (se richiesto per il paese)
-                        cardholderName: "Nome del titolare della carta", // Nome del titolare della carta di credito
-                        cardNumber: "Numero della carta", // Numero della carta di credito
-                    },
-                }, // Qui mancava una virgola
-                (error, dropinInstance) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        self.dropinInstance = dropinInstance;
-                        dropinInstance.on(
-                            "paymentMethodRequestable",
-                            (event) => {
-                                // Esegui qualche azione quando un metodo di pagamento è disponibile
-                            }
-                        );
-                        dropinInstance.on(
-                            "noPaymentMethodRequestable",
-                            (event) => {
-                                // Esegui qualche azione quando non ci sono metodi di pagamento disponibili
-                            }
-                        );
-                    }
-                }
-            );
-        },
-        // metodo per pagamento
+        // initializeBraintree() {
+        //     const self = this;
+        //     dropin.create(
+        //         {
+        //             authorization: this.token,
+        //             container: "#dropin-container",
+        //             translations: {
+        //                 payingWith: "Pagamento con {{paymentSource}}", // Pagamento con il metodo di pagamento specificato
+        //                 chooseAnotherWayToPay:
+        //                     "Scegli un altro metodo di pagamento", // Scegli un altro metodo di pagamento
+        //                 chooseAWayToPay: "Scegli il metodo di pagamento", // Scegli il metodo di pagamento
+        //                 otherWaysToPay: "Altri metodi di pagamento", // Altri metodi di pagamento disponibili
+        //                 cardVerification: "Verifica della carta", // Verifica della carta di credito
+        //                 payWithCard: "Paga con carta di credito", // Paga utilizzando una carta di credito
+        //                 expirationDate: "Data di scadenza", // Data di scadenza della carta di credito
+        //                 cvv: "Codice di sicurezza", // Codice di sicurezza della carta di credito
+        //                 postalCode: "Codice postale", // Codice postale (se richiesto per il paese)
+        //                 cardholderName: "Nome del titolare della carta", // Nome del titolare della carta di credito
+        //                 cardNumber: "Numero della carta", // Numero della carta di credito
+        //             },
+        //         }, // Qui mancava una virgola
+        //         (error, dropinInstance) => {
+        //             if (error) {
+        //                 console.error(error);
+        //             } else {
+        //                 self.dropinInstance = dropinInstance;
+        //                 dropinInstance.on(
+        //                     "paymentMethodRequestable",
+        //                     (event) => {
+        //                         // Esegui qualche azione quando un metodo di pagamento è disponibile
+        //                     }
+        //                 );
+        //                 dropinInstance.on(
+        //                     "noPaymentMethodRequestable",
+        //                     (event) => {
+        //                         // Esegui qualche azione quando non ci sono metodi di pagamento disponibili
+        //                     }
+        //                 );
+        //             }
+        //         }
+        //     );
+        // },
+        // metodo per pagamento che spedisce token
         sendFormDataToServer() {
             axios
                 .post(
@@ -141,10 +141,9 @@ export default {
         },
         onSuccess(payload) {
             let nonce = payload.nonce;
+            // messo token uguale a from_order e spedito al backend
             this.form_order.token = payload.nonce;
-            // Implementa cosa fare dopo aver ottenuto il nonce, es. inviare al server per processare il pagamento tramite Braintree
             console.log("Pagamento riuscito con nonce:", nonce);
-            // Puoi qui anche navigare a una pagina di successo o mostrare un messaggio
         },
         onError(error) {
             let message = error.message;
@@ -304,7 +303,7 @@ export default {
                                 v-model="form.numero"
                             />
                         </div>
-                        <div>
+                        <!-- <div>
                             <div>
                                 <label for="selezionametodo"
                                     >Inserisci un metodo di pagamento:</label
@@ -324,7 +323,7 @@ export default {
                                     </option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <button
                             type="submit"
                             class="btn btn-primary"
