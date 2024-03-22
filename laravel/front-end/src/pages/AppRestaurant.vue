@@ -143,22 +143,22 @@ export default {
                 </div>
                 <!-- Mostra ogni piatto nel carrello -->
                 <div v-if="cart.length > 0">
-                    <div v-for="item in cart" :key="item.dish.id" class="card col-12 col-lg-6 my-3 p-3">
+                    <div v-for="item in cart" :key="item.dish.id" class="card col-12 w-100 col-lg-6 my-3 p-3">
                     <div class="d-flex justify-content-between">
                         <div>{{ item.dish.name }}</div>
                         <div>Quantità: {{ item.quantity }}</div>
-                        <div>Prezzo: {{ item.dish.price }} &euro;</div>
-                        <div>Totale: {{ item.totalPrice }} &euro;</div>
+                        <div>Prezzo: <br> {{ item.dish.price }} &euro;</div>
+                        <div>Totale: <br> {{ item.totalPrice }} &euro;</div>
                     </div>
                     </div>
-                    <div class="mt-3">Totale: {{ calculateTotal() }} &euro;</div>
+                    <div class="mt-3 d-flex justify-content-center"> <b>Totale: </b> {{ calculateTotal() }} &euro;</div>
                 </div>
                 <div v-else>
                     <p>Il carrello è vuoto.</p>
                 </div>
 
                 <!-- checkout btn  -->
-                <section class="checkoutbar d-flex justify-content-center">
+                <section class="checkoutbar d-flex justify-content-center mt-3">
                     <router-link :to="{ name: 'success' }">
                         <button class="btn-boo">Checkout</button></router-link>
                 </section>
