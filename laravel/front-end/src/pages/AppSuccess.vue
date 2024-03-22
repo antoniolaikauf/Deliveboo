@@ -23,9 +23,9 @@ export default {
                 data: "",
                 price: store.cart[0].totalPrice,
                 dishes: [
-                    // // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
-                    // { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
-                    // { id: 3, quantity: 2 },
+                    // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
+                    { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
+                    { id: 3, quantity: 2 },
                 ],
             },
             // in order metti id dell'ordine
@@ -36,7 +36,6 @@ export default {
         };
     },
     methods: {
-
         sendFormDataToServer() {
             axios
                 .post(
@@ -180,7 +179,11 @@ export default {
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2">
-                <h1 class="text-center">Completa il tuo ordine da {{ store.restaurantselected.name }}</h1><br>
+                <h1 class="text-center">
+                    Completa il tuo ordine da
+                    {{ store.restaurantselected.name }}
+                </h1>
+                <br />
                 <h3>Riepilogo Ordine</h3>
                 <div class="my_container">
                     <table class="table my_table">
@@ -200,13 +203,17 @@ export default {
                                 <td>{{ item.totalPrice }}</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="text-right">Spese di consegna</td>
+                                <td colspan="3" class="text-right">
+                                    Spese di consegna
+                                </td>
                                 <td>€ 0.00</td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3" class="text-right"><b>Totale finale</b></td>
+                                <td colspan="3" class="text-right">
+                                    <b>Totale finale</b>
+                                </td>
                                 <td>€ {{ calculateGrandTotal }}</td>
                             </tr>
                         </tfoot>
@@ -237,7 +244,7 @@ export default {
                         </div>
                         <div class="form-group">
                             <label class="label-style-create" for="email">E-mail</label>
-
+                            >
                             <input
                                 type="email"
                                 class="form-control"
@@ -248,7 +255,9 @@ export default {
                             />
                         </div>
                         <div class="form-group">
-                            <label class="label-style-create" for="address">Indirizzo</label>
+                            <label class="label-style-create" for="address"
+                                >Indirizzo</label
+                            >
                             <input
                                 type="text"
                                 class="form-control"
@@ -259,7 +268,9 @@ export default {
                             />
                         </div>
                         <div class="form-group">
-                            <label class="label-style-create" for="phone">Numero di Telefono</label>
+                            <label class="label-style-create" for="phone"
+                                >Numero di Telefono</label
+                            >
                             <input
                                 type="tel"
                                 class="form-control"
@@ -274,7 +285,7 @@ export default {
 
                         <!-- bottone per effettuare il pagamento -->
                         <button
-                            v-if="paymentSuccessful===false"
+                            v-if="paymentSuccessful === false"
                             class="btn-boo my-3"
                             id="submit-button"
                             type="submit"
@@ -290,16 +301,17 @@ export default {
                         </div>
 
                         <!-- bottone per procedere all ordine -->
-                        <router-link v-if="paymentSuccessful && !loading" class="text-center" :to="{ name: 'PaymentCompleted' }">
+                        <router-link
+                            v-if="paymentSuccessful"
+                            class="text-center"
+                            :to="{ name: 'PaymentCompleted' }"
+                        >
                             <button class="btn-boo">
                                 Procedi con l'ordine
                             </button>
                         </router-link>
                     </form>
-
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -356,14 +368,14 @@ export default {
     margin-bottom: 40px;
 }
 
-.my_table{
+.my_table {
     border-collapse: collapse;
     overflow: hidden;
     border: solid #000000 2px;
 }
 
-.btn-boo{
-    background-color:$boo-color ;
+.btn-boo {
+    background-color: $boo-color;
     border: 1px solid $boo-color;
     margin-top: 12px;
 }

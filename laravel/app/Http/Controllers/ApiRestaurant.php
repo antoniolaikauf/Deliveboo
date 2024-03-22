@@ -28,7 +28,7 @@ class ApiRestaurant extends Controller
             'restaurants' => $restaurants,
         ]);
     }
-// funzione che seleziona i piatti in base ad una select
+    // funzione che seleziona i piatti in base ad una select
     public function TypesSelected(Request $request)
     {
         // // // Ottieni i tipi selezionati dall'utente e incrementali di 1
@@ -121,6 +121,8 @@ class ApiRestaurant extends Controller
         $order->phone_number = $data['numero'];
         $order->email_customer = $data['email'];
 
+        // associa l'ordine al ristorante 
+        $order->restaurant()->associate($data['restaurant_id']);
         // Salva l'ordine
         $order->save();
         // prendi i dishes
