@@ -6,8 +6,9 @@ import Login from "./pages/AppLogin.vue"
 import Restaurant from "./pages/AppRestaurant.vue"
 import success from "./pages/AppSuccess.vue"
 import Advance from "./pages/AppAdvanced.vue"
- 
- 
+import PaymentCompleted from "./pages/AppPaymentCompleted.vue"
+
+
 // creazione delle rotte e il loro 'percorso'
 const router = createRouter({
   history: createWebHistory(),
@@ -36,6 +37,11 @@ const router = createRouter({
       path: "/Advance",
       name: "Advance",
       component:Advance
+    },
+    {
+        path: "/paymentcompleted",
+        name: "PaymentCompleted",
+        component:PaymentCompleted
     },
   ],
 });
