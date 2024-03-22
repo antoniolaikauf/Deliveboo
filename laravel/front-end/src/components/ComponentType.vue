@@ -21,22 +21,34 @@ export default {
             store,
             // variabile con img cambiata
             imgChange: "",
+            //count ristoranti
+            countDisplayedRestaurants: 0,
         };
     },
 
     methods: {
         check() {
             this.showRestaurant = true;
+
+            //variabile interna di count
+            let count = 0;
             axios
                 .post("http://localhost:8000/api/v1/types/select", this.checked)
                 .then((risposta) => {
+
+
                     // controllo se non ritorna niente
                     if (risposta.data.risposta.length === 0) {
                         this.showRestaurant = false;
                     }
+
                     for (let i = 0; i < risposta.data.risposta[0].length; i++) {
+
+                        //incremento count ristoranti
+                        count++;
                         if (risposta.data.risposta[0][i].img.startsWith("i")) {
                             // chiamata axios
+
 
                             let foto = risposta.data.risposta[0][i].img;
                             axios
@@ -53,6 +65,7 @@ export default {
                                 });
                         }
                     }
+                    this.countDisplayedRestaurants = count;
                     this.arrayRestaurantsSelect = risposta.data.risposta;
                 })
                 .catch((err) => {
@@ -79,9 +92,12 @@ export default {
         axios
             .get("http://localhost:8000/api/v1/types")
             .then((risposta) => {
+
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
+                this.countRestaurantsFound = this.restaurants.length;
                 for (let i = 0; i < risposta.data.restaurants.length; i++) {
+
                     // console.log(risposta.data.restaurants[i]);
                     if (risposta.data.restaurants[i].img.startsWith("i")) {
                         // chiamata axios
@@ -214,6 +230,10 @@ export default {
                 v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                 class="row my-3 p-3"
             >
+
+                <p class="count">
+                    Numero di ristoranti trovati: {{ countDisplayedRestaurants  }}
+                </p>
                 <div
                     :class="
                         arrayRestaurantsSelect[0].length === 0
@@ -323,6 +343,12 @@ export default {
 //     height: 100%;
 //     // object-fit: cover;
 // }
+
+//COUNT
+.count{
+    font-size: 30px;
+    color: #00ccbc;
+}
 
 .checkbox-type {
     border-radius: 7px;
