@@ -13,32 +13,21 @@ export default {
             store,
             token: "",
             dropInInstance: null,
-            // form da completare con dati inseriti da utente
             form: {
-                name: "",
-                email: "",
-                indirizzo: "",
-                numero: "",
-                // Converti la data in formato aaaa-mm-gg attenti con la data 
-                data: "2024-03-06 00:00:00",
-                selezione: "opzione 1",
-                price: 7.5,
+                name: this.name,
+                email: this.email,
+                indirizzo: this.indirizzo,
+                numero: this.numero,
+                data: "06/03/2024",
+                price: 4.5,
                 dishes: [
-                    { id: 4, quantity: 2 },
-                    { id: 4, quantity: 6 },
+                    // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
+                    { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
+                    { id: 3, quantity: 2 },
                 ],
             },
         };
     },
-    // computed: {
-    //     calculateTotal() {
-    //         // Implementa il calcolo del totale del carrello
-    //         return this.store.cart.reduce(
-    //             (acc, item) => acc + item.totalPrice,
-    //             0
-    //         );
-    //     },
-    // },
     methods: {
         submitPayment() {
             if (!this.dropInInstance) {
@@ -69,48 +58,48 @@ export default {
             let message = error.message;
             // Whoops, an error has occured while trying to get the nonce
         },
-        // initializeBraintree() {
-        //     const self = this;
-        //     dropin.create(
-        //         {
-        //             authorization: this.token,
-        //             container: "#dropin-container",
-        //             translations: {
-        //                 payingWith: "Pagamento con {{paymentSource}}", // Pagamento con il metodo di pagamento specificato
-        //                 chooseAnotherWayToPay:
-        //                     "Scegli un altro metodo di pagamento", // Scegli un altro metodo di pagamento
-        //                 chooseAWayToPay: "Scegli il metodo di pagamento", // Scegli il metodo di pagamento
-        //                 otherWaysToPay: "Altri metodi di pagamento", // Altri metodi di pagamento disponibili
-        //                 cardVerification: "Verifica della carta", // Verifica della carta di credito
-        //                 payWithCard: "Paga con carta di credito", // Paga utilizzando una carta di credito
-        //                 expirationDate: "Data di scadenza", // Data di scadenza della carta di credito
-        //                 cvv: "Codice di sicurezza", // Codice di sicurezza della carta di credito
-        //                 postalCode: "Codice postale", // Codice postale (se richiesto per il paese)
-        //                 cardholderName: "Nome del titolare della carta", // Nome del titolare della carta di credito
-        //                 cardNumber: "Numero della carta", // Numero della carta di credito
-        //             },
-        //         }, // Qui mancava una virgola
-        //         (error, dropinInstance) => {
-        //             if (error) {
-        //                 console.error(error);
-        //             } else {
-        //                 self.dropinInstance = dropinInstance;
-        //                 dropinInstance.on(
-        //                     "paymentMethodRequestable",
-        //                     (event) => {
-        //                         // Esegui qualche azione quando un metodo di pagamento è disponibile
-        //                     }
-        //                 );
-        //                 dropinInstance.on(
-        //                     "noPaymentMethodRequestable",
-        //                     (event) => {
-        //                         // Esegui qualche azione quando non ci sono metodi di pagamento disponibili
-        //                     }
-        //                 );
-        //             }
-        //         }
-        //     );
-        // },
+        initializeBraintree() {
+            const self = this;
+            dropin.create(
+                {
+                    authorization: this.token,
+                    container: "#dropin-container",
+                    translations: {
+                        payingWith: "Pagamento con {{paymentSource}}", // Pagamento con il metodo di pagamento specificato
+                        chooseAnotherWayToPay:
+                            "Scegli un altro metodo di pagamento", // Scegli un altro metodo di pagamento
+                        chooseAWayToPay: "Scegli il metodo di pagamento", // Scegli il metodo di pagamento
+                        otherWaysToPay: "Altri metodi di pagamento", // Altri metodi di pagamento disponibili
+                        cardVerification: "Verifica della carta", // Verifica della carta di credito
+                        payWithCard: "Paga con carta di credito", // Paga utilizzando una carta di credito
+                        expirationDate: "Data di scadenza", // Data di scadenza della carta di credito
+                        cvv: "Codice di sicurezza", // Codice di sicurezza della carta di credito
+                        postalCode: "Codice postale", // Codice postale (se richiesto per il paese)
+                        cardholderName: "Nome del titolare della carta", // Nome del titolare della carta di credito
+                        cardNumber: "Numero della carta", // Numero della carta di credito
+                    },
+                }, // Qui mancava una virgola
+                (error, dropinInstance) => {
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        self.dropinInstance = dropinInstance;
+                        dropinInstance.on(
+                            "paymentMethodRequestable",
+                            (event) => {
+                                // Esegui qualche azione quando un metodo di pagamento è disponibile
+                            }
+                        );
+                        dropinInstance.on(
+                            "noPaymentMethodRequestable",
+                            (event) => {
+                                // Esegui qualche azione quando non ci sono metodi di pagamento disponibili
+                            }
+                        );
+                    }
+                }
+            );
+        },
         processPayment() {
             axios
                 .post("http://localhost:8000/api/v1/create/order", this.form)
@@ -123,27 +112,27 @@ export default {
         },
     },
     mounted() {
-        axios.get("http://localhost:8000/api/v1/generate").then((res) => {
-            this.token = res.data.token;
+    axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+        this.token = res.data.token;
 
-            dropin.create(
-                {
-                    authorization: this.token,
-                    container: "#dropin-container",
+        dropin.create(
+            {
+                authorization: this.token,
+                container: "#dropin-container",
 
-                    //traduzione form
-                    locale: "it_IT",
-                },
-                (error, dropinInstance) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        this.dropInInstance = dropinInstance;
-                    }
+                //traduzione form
+                locale: 'it_IT'
+            },
+            (error, dropinInstance) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    this.dropInInstance = dropinInstance;
                 }
-            );
-        });
-    },
+            }
+        );
+    });
+},
     computed: {
         calculateGrandTotal() {
             return this.store.cart
@@ -178,17 +167,11 @@ export default {
                             <td>{{ item.dish.price }}</td>
                             <td>{{ item.totalPrice }}</td>
                         </tr>
-                        <!-- <tr>
-                            <td>Pomodoro</td>
-                            <td>3</td>
-                            <td>€ 1,00</td>
-                            <td>€ 3,00</td>
-                        </tr> -->
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3" class="text-right">Totale</td>
-                            <!-- <td>€ {{ calculateTotal }}</td> -->
+                            <td colspan="3" class="text-right"><b>Totale finale</b></td>
+                            <td>€ {{ calculateGrandTotal }}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -249,29 +232,11 @@ export default {
                                 v-model="form.numero"
                             />
                         </div>
-                        <div>
-                            <select
-                                name="selezionametodo"
-                                id=""
-                                v-model="form.selezione"
-                            >
-                                <option value="opzione 1">opzione 1</option>
-                                <option value="opzione 2">opzione 2</option>
-                            </select>
-                        </div>
-                        <!-- <div>pagamento carta credito</div> -->
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                            id="submit-button"
-                        >
-                            Paga adesso
-                        </button>
                     </form>
                 </div>
             </div>
             <div id="dropin-container" class="mt-5"></div>
-            <button class="btn btn-primary mt-3" @click="submitPayment">
+            <button class="btn btn-primary my-3"  id="submit-button" type="submit" @click="submitPayment">
                 Paga adesso
             </button>
         </div>
