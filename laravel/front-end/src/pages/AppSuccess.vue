@@ -150,44 +150,49 @@ export default {
 <template>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <h1>{{ store.restaurantselected.name }}</h1>
+            <div class="col-md-7 offset-md-3">
+                <h1 class="text-center">Completa il tuo ordine da {{ store.restaurantselected.name }}</h1><br>
                 <h3>Riepilogo Ordine</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Prodotto</th>
-                            <th>Quantità</th>
-                            <th>Prezzo unitario</th>
-                            <th>Totale</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in store.cart" :key="item.dish.id">
-                            <td>{{ item.dish.name }}</td>
-                            <td>{{ item.quantity }}</td>
-                            <td>{{ item.dish.price }}</td>
-                            <td>{{ item.totalPrice }}</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3" class="text-right"><b>Totale finale</b></td>
-                            <td>€ {{ calculateGrandTotal }}</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="my_container">
+                    <table class="table my_table">
+                        <thead>
+                            <tr>
+                                <th>Prodotto</th>
+                                <th>Quantità</th>
+                                <th>Prezzo unitario</th>
+                                <th>Totale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in store.cart" :key="item.dish.id">
+                                <td>{{ item.dish.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.dish.price }}</td>
+                                <td>{{ item.totalPrice }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right">Spese di consegna</td>
+                                <td>€ 0.00</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right"><b>Totale finale</b></td>
+                                <td>€ {{ calculateGrandTotal }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-6 offset-md-3">
+                <div class="col-md-7 offset-md-3 form-bg">
                     <h3>Inserisci i tuoi dati</h3>
                     <form
                         @submit.prevent="processPayment"
                         id="orderForm"
                         method="post"
-                        action="process_order.php"
                     >
                         <div class="form-group">
                             <label for="name">Nome</label>
@@ -201,7 +206,7 @@ export default {
                             />
                         </div>
                         <div class="form-group">
-                            <label for="email">E-mail</label>
+                            <label class="label-style-create" for="email">E-mail</label>
                             <input
                                 type="email"
                                 class="form-control"
@@ -212,7 +217,7 @@ export default {
                             />
                         </div>
                         <div class="form-group">
-                            <label for="address">Indirizzo</label>
+                            <label class="label-style-create" for="address">Indirizzo</label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -223,7 +228,7 @@ export default {
                             />
                         </div>
                         <div class="form-group">
-                            <label for="phone">Numero di Telefono</label>
+                            <label class="label-style-create" for="phone">Numero di Telefono</label>
                             <input
                                 type="tel"
                                 class="form-control"
@@ -235,27 +240,31 @@ export default {
                             />
                         </div>
                         <div>
-                                <!-- <div>
-                                    <label for="selezionametodo">Inserisci un metodo di pagamento:</label>
-                                    <select name="selezionametodo" id="" v-model="form.selezione">
-                                        <option value="Visa">Visa</option>
-                                        <option value="Mastercard">Mastercard</option>
-                                        <option value="Paypal">Paypal</option>
-                                        <option value="American Express">American Express</option>
-                                    </select>
-                                </div> -->
+                            <div>
+                                <label for="selezionametodo">Inserisci un metodo di pagamento:</label>
+                                <select name="selezionametodo" id="" v-model="form.selezione">
+                                    <option value="Visa">Visa</option>
+                                    <option value="Mastercard">Mastercard</option>
+                                    <option value="Paypal">Paypal</option>
+                                    <option value="American Express">American Express</option>
+                                </select>
+                            </div>
                         </div>
                         <!-- <div>pagamento carta credito</div> -->
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="submit-button"
+                        >
+                            Invia dati
+                        </button>
                     </form>
                 </div>
             </div>
             <div id="dropin-container" class="mt-5"></div>
-            <button class="btn-boo my-3"  id="submit-button" type="submit" @click="submitPayment">
+            <button class="btn btn-primary my-3"  id="submit-button" type="submit" @click="submitPayment">
                 Paga adesso
-            </button><br>
-            <router-link :to="{ name: 'PaymentCompleted' }">
-                    <button class="btn-boo mb-5">Procedi con l'ordine</button>
-            </router-link>
+            </button>
         </div>
     </div>
 </template>
@@ -269,9 +278,5 @@ export default {
     button {
         margin: 15px 0;
     }
-}
-
-.btn-boo{
-    border: 1px solid $boo-color ;
 }
 </style>

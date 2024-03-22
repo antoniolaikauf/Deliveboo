@@ -6,7 +6,7 @@ export default {
   name: "Restaurant",
   data() {
     return {
-        store,
+      store,
       cart: store.cart,
     };
   },
