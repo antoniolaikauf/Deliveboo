@@ -280,28 +280,31 @@ export default {
                                     {{ Restaurant.city }}
                                 </h5>
 
-                                <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
-                                <h5
-                                    class="type card-title"
-                                    v-if="Restaurant.hasOwnProperty('pivot')"
-                                >
-                                    <i class="fa-solid fa-bowl-food"></i>
-                                    Genere:
-                                    {{
-                                        arrayTypes[Restaurant.pivot.type_id - 1]
-                                            .name
-                                    }}
-                                </h5>
+                                <div class="label-type">
+                                    <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
+                                    <h5
+                                        class="type card-title"
+                                        v-if="Restaurant.hasOwnProperty('pivot')"
+                                    >
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                        Genere:
+                                        {{
+                                            arrayTypes[Restaurant.pivot.type_id - 1]
+                                                .name
+                                        }}
+                                    </h5>
 
-                                <h5
-                                    v-else
-                                    class="type card-title"
-                                    v-for="(types, i) in Restaurant.types"
-                                >
-                                    <i class="fa-solid fa-bowl-food"></i>
-                                    Genere:
-                                    {{ types.name }}
-                                </h5>
+                                    <h5
+                                        v-else
+                                        class="type card-title"
+                                        v-for="(types, i) in Restaurant.types"
+                                    >
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                        Genere:
+                                        {{ types.name }}
+                                    </h5>
+
+                                </div>
                             </div>
                         </router-link>
                     </div>
@@ -343,6 +346,7 @@ export default {
 //     height: 100%;
 //     // object-fit: cover;
 // }
+
 
 //COUNT
 .count{
@@ -423,7 +427,10 @@ label {
     }
 }
 .type {
-    color: rgb(255, 83, 83);
+    color: black;
+    background-color: #00ccbc;
+    border-radius: 10px 0;
+    width: 230px;
 }
 
 .animation-error {
