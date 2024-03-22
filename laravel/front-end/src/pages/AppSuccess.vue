@@ -25,8 +25,8 @@ export default {
                 restaurant_id: 2,
                 dishes: [
                     // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
-                    { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
-                    { id: 3, quantity: 2 },
+                    { id: 14, quantity: 1 }, // Esempio di piatto con ID e quantità
+                    { id: 15, quantity: 2 },
                 ],
             },
             // in order metti id dell'ordine
