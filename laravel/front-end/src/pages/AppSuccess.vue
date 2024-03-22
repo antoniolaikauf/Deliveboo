@@ -235,24 +235,17 @@ export default {
                             />
                         </div>
                         <div>
-                            <div>
-                                <label for="selezionametodo">Inserisci un metodo di pagamento:</label>
-                                <select name="selezionametodo" id="" v-model="form.selezione">
-                                    <option value="Visa">Visa</option>
-                                    <option value="Mastercard">Mastercard</option>
-                                    <option value="Paypal">Paypal</option>
-                                    <option value="American Express">American Express</option>
-                                </select>
-                            </div>
+                                <!-- <div>
+                                    <label for="selezionametodo">Inserisci un metodo di pagamento:</label>
+                                    <select name="selezionametodo" id="" v-model="form.selezione">
+                                        <option value="Visa">Visa</option>
+                                        <option value="Mastercard">Mastercard</option>
+                                        <option value="Paypal">Paypal</option>
+                                        <option value="American Express">American Express</option>
+                                    </select>
+                                </div> -->
                         </div>
                         <!-- <div>pagamento carta credito</div> -->
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                            id="submit-button"
-                        >
-                            Paga adesso
-                        </button>
                     </form>
                 </div>
             </div>
