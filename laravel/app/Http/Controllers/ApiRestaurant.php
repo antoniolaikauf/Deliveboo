@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// modelli inportati 
+// modelli inportati
 use App\Models\Dish;
 use App\Models\Type;
 use App\Models\Restaurant;
@@ -14,12 +14,12 @@ use function PHPSTORM_META\type;
 
 class ApiRestaurant extends Controller
 {
-    // funzione che restituisce i typi di ristoranti 
+    // funzione che restituisce i typi di ristoranti
     public function TypeRestaurants()
     {
         // ottieni tutti i ristoranti e type
         $types = Type::all();
-        // ottieni tutti i ristoranti con le loro tabelle gia incorporate 
+        // ottieni tutti i ristoranti con le loro tabelle gia incorporate
         $restaurants = Restaurant::with('user.dishes', 'types')->get();
 
         return response()->json([
@@ -49,23 +49,23 @@ class ApiRestaurant extends Controller
             // il restaurant sarebbe l'elemento singolo di restaurants
             $filteredRestaurants = $restaurants->filter(function ($restaurant) use ($typesRestaurants) {
 
-                // si prendono le relazione che ci sono tra restaurants e types 
-                // pluck prende gli id che ci sono nella tabella types relazionati con i restaurant che hanno passato il filter 
+                // si prendono le relazione che ci sono tra restaurants e types
+                // pluck prende gli id che ci sono nella tabella types relazionati con i restaurant che hanno passato il filter
                 // to array converte una collezione in un array
                 $restaurantTypeIds = $restaurant->types->pluck('id')->toArray();
-                // array_intersect controlla se ci sono dei valori uguali in questo caso tra i due array quello con dentro solo gli id 
+                // array_intersect controlla se ci sono dei valori uguali in questo caso tra i due array quello con dentro solo gli id
                 // che abbiamo fatto con pluck e quello ottenuto dall'utente
 
-                // la condizione  se si toglie il count ritornerà tutti i ristoranti se che hanno gli elementi selezionati 
-                // quindi se si mette il count in relazione con quello che ti ritorna array_intersect e con array dei elementi selezionati 
-                // non ti ritorna i ristoranti con un elemento 
+                // la condizione  se si toglie il count ritornerà tutti i ristoranti se che hanno gli elementi selezionati
+                // quindi se si mette il count in relazione con quello che ti ritorna array_intersect e con array dei elementi selezionati
+                // non ti ritorna i ristoranti con un elemento
 
                 return count(array_intersect($typesRestaurants, $restaurantTypeIds)) === count($typesRestaurants);
             });
 
             // When casting to value objects, any changes made to the value object will automatically
             //  be synced back to the model before the model is saved:
-            // tutti i cambiamenti vengono resettati con values e dopo salvati in un array 
+            // tutti i cambiamenti vengono resettati con values e dopo salvati in un array
             $filteredRestaurantsArray = $filteredRestaurants->values()->toArray();
 
 
@@ -86,7 +86,7 @@ class ApiRestaurant extends Controller
             'risposta' => $container,
         ]);
     }
-    // funzione per cambiare path foto 
+    // funzione per cambiare path foto
     public function EditFoto(Request $request)
     {
         $data = $request->input('data'); // Accedi direttamente al valore 'data' inviato dall'frontend
@@ -109,13 +109,12 @@ class ApiRestaurant extends Controller
     }
     public function makeorder(Request $request)
     {
-        // prendi tutti i dati 
+        // prendi tutti i dati
         $data = request()->all();
 
-        // Crea un nuovo ordine con i dati 
+        // Crea un nuovo ordine con i dati
         $order = new Order();
         $order->address = $data['indirizzo'];
-        $order->payment = $data['selezione'];
         $order->price = $data['price'];
         $order->date = $data['data'];
         $order->name_customer = $data['name'];
@@ -124,12 +123,12 @@ class ApiRestaurant extends Controller
 
         // Salva l'ordine
         $order->save();
-        // prendi i dishes 
+        // prendi i dishes
         $dishes = $data['dishes'];
 
         // associ i l'ordine con i piatti
         foreach ($dishes as $dishData) {
-            // trova piatto con i dati inseriti che ha il form 
+            // trova piatto con i dati inseriti che ha il form
             $dish = Dish::find($dishData['id']);
             // associa piatto con l'ordine e associa anche la quantita del piatto
             if ($dish) {

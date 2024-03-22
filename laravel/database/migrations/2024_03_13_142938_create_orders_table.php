@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
 
             $table->string('address', 128);
-            $table->string('payment', 128);
             $table->decimal('price');
             $table->datetime('date');
             $table->string('name_customer', 64);

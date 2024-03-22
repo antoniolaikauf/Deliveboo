@@ -15,18 +15,17 @@ export default {
             store,
             dropInInstance: null,
             form: {
-                name: "anton",
-                email: "anto@gmail.com",
-                indirizzo: "via dcomo",
+                name: "",
+                email: "",
+                indirizzo: "",
                 numero: "",
                 // Converti la data in formato aaaa-mm-gg attenti con la data
-                data: "2024-03-06 00:00:00",
-                selezione: "opzione 1",
-                price: 7.5,
+                data: "",
+                price: store.cart[0].totalPrice,
                 dishes: [
-                    // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
-                    { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
-                    { id: 3, quantity: 2 },
+                    // // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
+                    // { id: 2, quantity: 1 }, // Esempio di piatto con ID e quantità
+                    // { id: 3, quantity: 2 },
                 ],
             },
             // in order metti id dell'ordine
@@ -60,8 +59,7 @@ export default {
                 !this.form.name ||
                 !this.form.email ||
                 !this.form.indirizzo ||
-                !this.form.numero ||
-                !this.form.selezione
+                !this.form.numero
             ) {
                 return false; // Se uno qualsiasi dei campi è vuoto, restituisci false
             }
@@ -81,6 +79,17 @@ export default {
                 console.error("Drop-in instance non inizializzata.");
                 return;
             }
+
+                // ottiengo la data corrente nel formato desiderato (YY-MM-DD HH-MM-SS)
+                const currentDate = new Date();
+                const formattedDate = `${currentDate.getFullYear().toString().slice(-2)}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')} ${currentDate.getHours().toString().padStart(2, '0')}-${currentDate.getMinutes().toString().padStart(2, '0')}-${currentDate.getSeconds().toString().padStart(2, '0')}`;
+
+                // assegno la data formattata alla proprietà 'data' nell'oggetto 'form'
+                this.form.data = formattedDate;
+
+                console.log(this.form.data);
+
+
             this.dropInInstance.requestPaymentMethod((err, payload) => {
                 if (err) {
                     console.error(
@@ -108,7 +117,7 @@ export default {
                 // Simula un breve ritardo prima del reindirizzamento
                 this.$router.push({ name: 'PaymentCompleted' });
                 this.loading = false; // Disattiva il caricamento dopo il ritardo
-            }, 4000); // Ritardo di 2 secondi (puoi regolarlo in base alle tue esigenze)
+            }, 4000); // Ritardo di 4 secondi
         },
 
         onError(error) {
@@ -127,6 +136,10 @@ export default {
         },
     },
     mounted() {
+
+        // Calcola il totale dell'ordine e assegnalo alla variabile price
+        this.form.price = this.calculateGrandTotal;
+
         // axios per pagamento
         axios.get("http://localhost:8000/api/v1/generate").then((res) => {
             let token = null;
@@ -224,7 +237,7 @@ export default {
                         </div>
                         <div class="form-group">
                             <label class="label-style-create" for="email">E-mail</label>
-                            >
+
                             <input
                                 type="email"
                                 class="form-control"
