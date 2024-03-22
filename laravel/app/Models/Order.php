@@ -12,9 +12,9 @@ class Order extends Model
     //molti a molti
     public function dishes()
     {
-        return $this->belongsToMany(Dish::class);
+        return $this->belongsToMany(Dish::class)->withPivot('quantity');
     }
-    // gli ordini appartengono ad un ristorante 
+    // gli ordini appartengono ad un ristorante
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
