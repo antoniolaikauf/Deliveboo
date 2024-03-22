@@ -25,6 +25,7 @@ class OrderController extends Controller
     {
 
         $orders = Order::all();
+        // dd($orders);
         $dishes = Dish::all();
 
         return view('orders', compact('orders', 'dishes'));
@@ -70,6 +71,5 @@ class OrderController extends Controller
             ];
             return response()->json($data, 401);
         }
-
     }
 }

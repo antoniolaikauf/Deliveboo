@@ -14,4 +14,9 @@ class Order extends Model
     {
         return $this->belongsToMany(Dish::class);
     }
+    // gli ordini appartengono ad un ristorante 
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }
