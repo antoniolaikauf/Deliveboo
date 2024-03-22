@@ -235,14 +235,15 @@ export default {
                             />
                         </div>
                         <div>
-                            <select
-                                name="selezionametodo"
-                                id=""
-                                v-model="form.selezione"
-                            >
-                                <option value="opzione 1">opzione 1</option>
-                                <option value="opzione 2">opzione 2</option>
-                            </select>
+                            <div>
+                                <label for="selezionametodo">Inserisci un metodo di pagamento:</label>
+                                <select name="selezionametodo" id="" v-model="form.selezione">
+                                    <option value="Visa">Visa</option>
+                                    <option value="Mastercard">Mastercard</option>
+                                    <option value="Paypal">Paypal</option>
+                                    <option value="American Express">American Express</option>
+                                </select>
+                            </div>
                         </div>
                         <!-- <div>pagamento carta credito</div> -->
                         <button
