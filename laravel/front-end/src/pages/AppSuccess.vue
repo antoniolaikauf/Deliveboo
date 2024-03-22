@@ -246,6 +246,16 @@ export default {
                                 </div> -->
                         </div>
                         <!-- <div>pagamento carta credito</div> -->
+<<<<<<< HEAD
+=======
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="submit-button"
+                        >
+                            Invia dati
+                        </button>
+>>>>>>> b468713d791f787f4a9ffc6b5cee8fa95e923824
                     </form>
                 </div>
             </div>
