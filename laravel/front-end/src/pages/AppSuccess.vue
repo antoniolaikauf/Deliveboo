@@ -250,14 +250,17 @@ export default {
                 </div>
             </div>
             <div id="dropin-container" class="mt-5"></div>
-            <button class="btn btn-primary my-3"  id="submit-button" type="submit" @click="submitPayment">
+            <button class="btn-boo my-3"  id="submit-button" type="submit" @click="submitPayment">
                 Paga adesso
-            </button>
+            </button><br>
+            <router-link :to="{ name: 'PaymentCompleted' }">
+                    <button class="btn-boo mb-5">Procedi con l'ordine</button>
+            </router-link>
         </div>
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "../styles/partials/mixins" as *;
 @use "../styles/partials/variables" as *;
 @use "../styles/general.scss" as *;
@@ -266,5 +269,9 @@ export default {
     button {
         margin: 15px 0;
     }
+}
+
+.btn-boo{
+    border: 1px solid $boo-color ;
 }
 </style>
