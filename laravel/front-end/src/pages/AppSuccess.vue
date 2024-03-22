@@ -200,7 +200,7 @@ export default {
 <template>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-12 ">
+            <div class="col-12 col-md-8 offset-md-2">
                 <h1 class="text-center">Completa il tuo ordine da {{ store.restaurantselected.name }}</h1><br>
                 <h3>Riepilogo Ordine</h3>
                 <div class="my_container">
@@ -235,9 +235,10 @@ export default {
                 </div>
             </div>
         </div>
+
         <div class="container mt-5">
             <div class="row">
-                <div class="col-12 form-bg">
+                <div class="col-12 col-md-8 offset-md-2 form-bg">
                     <h3>Inserisci i tuoi dati</h3>
                     <form
                         @submit.prevent="processPayment"
@@ -290,34 +291,6 @@ export default {
                                 v-model="form.numero"
                             />
                         </div>
-                        <!-- <div>
-                            <div>
-                                <label for="selezionametodo"
-                                    >Inserisci un metodo di pagamento:</label
-                                >
-                                <select
-                                    name="selezionametodo"
-                                    id=""
-                                    v-model="form.selezione"
-                                >
-                                    <option value="Visa">Visa</option>
-                                    <option value="Mastercard">
-                                        Mastercard
-                                    </option>
-                                    <option value="Paypal">Paypal</option>
-                                    <option value="American Express">
-                                        American Express
-                                    </option>
-                                </select>
-                            </div>
-                        </div> -->
-                        <!-- <button
-                            type="submit"
-                            class="btn btn-primary"
-                            id="submit-button"
-                        >
-                            Invia dati
-                        </button> -->
                         <div id="dropin-container" class="mt-5"></div>
                         <button class="btn-boo buttons"  id="submit-button" type="submit" @click="submitPayment">
                             Paga adesso
@@ -332,15 +305,6 @@ export default {
                        </button>
                     </router-link>
             </div>
-            <!-- <div id="dropin-container" class="mt-5"></div>
-            <button
-                class="btn btn-primary my-3"
-                id="submit-button"
-                type="submit"
-                @click="submitPayment"
-            >
-                Paga adesso
-            </button> -->
         </div>
     </div>
 </template>
@@ -358,14 +322,7 @@ export default {
     color: white;
     margin-bottom: 40px;
 }
-.cart {
-    top: 10px;
-    background-color: $boo-color;
-    max-height: 400px;
-    position: sticky;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-}
+
 .my_table{
     border-collapse: collapse;
     overflow: hidden;
