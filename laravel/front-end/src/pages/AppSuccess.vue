@@ -19,7 +19,7 @@ export default {
                 email: "",
                 indirizzo: "",
                 numero: "",
-                // Converti la data in formato aaaa-mm-gg attenti con la data 
+                // Converti la data in formato aaaa-mm-gg attenti con la data
                 data: "2024-03-06 00:00:00",
                 selezione: "opzione 1",
                 price: 7.5,
@@ -250,13 +250,16 @@ export default {
                             />
                         </div>
                         <div>
+                            <label for="selezionametodo">Scegli un metodo di pagamento:</label>
                             <select
                                 name="selezionametodo"
                                 id=""
                                 v-model="form.selezione"
                             >
-                                <option value="opzione 1">opzione 1</option>
-                                <option value="opzione 2">opzione 2</option>
+                                <option value="Visa">Visa</option>
+                                <option value="Mastercard">Mastercard</option>
+                                <option value="Paypal">Paypal</option>
+                                <option value="American Express">American Express</option>
                             </select>
                         </div>
                         <!-- <div>pagamento carta credito</div> -->
