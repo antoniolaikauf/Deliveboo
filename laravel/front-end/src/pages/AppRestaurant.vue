@@ -111,23 +111,28 @@ export default {
           </div>
         </div>
       </section>
-        <section class="d-flex">
+        <section class="d-flex bg-dark">
             <div class="position-relative">
                 <!-- Sezione carrello -->
                 <section>
                     <div class="container p-3">
                     <div>
-                        <h1>Menù</h1>
+                        <h1 style="color:#ffffff">Menù</h1>
                     </div>
                     <div class="card my-3 p-3" v-for="dish in store.restaurantselected.user.dishes">
+                      <div class="d-flex">
+                      <img :src= "dish.img" alt="" style="height: 100px; width: 100px;">
+                      <div class="mx-3">
                         <h2>{{ dish.name }}</h2>
                         <p>{{ dish.description }} <br> <b>{{ dish.price }} &euro;</b></p>
+                      </div>  
+                    </div>
 
                         <!-- Bottoni per aggiungere/rimuovere piatti -->
-                        <div class="quantity-control">
-                            <button @click="removeFromCart(dish)" class="btn btn-primary">-</button>
-                        <span>{{ getQuantity(dish) }}</span> <!-- Visualizza la quantità -->
-                        <button @click="addToCart(dish)" class="btn btn-primary">+</button>
+                        <div class="quantity-control d-flex justify-content-end">
+                            <button @click="removeFromCart(dish)" class="btn btn-boo" style="border: 1px solid lightgrey ;"><i class="fa-solid fa-minus" style="color: black;"></i></button>
+                        <span class="align-middle">{{ getQuantity(dish) }}</span> <!-- Visualizza la quantità -->
+                        <button @click="addToCart(dish)" class="btn btn-boo" style="border: 1px solid lightgrey ;"><i class="fa-solid fa-plus" style="color: black;"></i></button> 
                         </div>
                     </div>
                     </div>
