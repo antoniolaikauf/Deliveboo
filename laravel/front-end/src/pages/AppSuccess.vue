@@ -200,12 +200,8 @@ export default {
 <template>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-7 offset-md-3">
-                <h1 class="text-center">
-                    Completa il tuo ordine da
-                    {{ store.restaurantselected.name }}
-                </h1>
-                <br />
+            <div class="col-12 ">
+                <h1 class="text-center">Completa il tuo ordine da {{ store.restaurantselected.name }}</h1><br>
                 <h3>Riepilogo Ordine</h3>
                 <div class="my_container">
                     <table class="table my_table">
@@ -225,17 +221,13 @@ export default {
                                 <td>{{ item.totalPrice }}</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="text-right">
-                                    Spese di consegna
-                                </td>
+                                <td colspan="3" class="text-right">Spese di consegna</td>
                                 <td>€ 0.00</td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3" class="text-right">
-                                    <b>Totale finale</b>
-                                </td>
+                                <td colspan="3" class="text-right"><b>Totale finale</b></td>
                                 <td>€ {{ calculateGrandTotal }}</td>
                             </tr>
                         </tfoot>
@@ -245,7 +237,7 @@ export default {
         </div>
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-7 offset-md-3 form-bg">
+                <div class="col-12 form-bg">
                     <h3>Inserisci i tuoi dati</h3>
                     <form
                         @submit.prevent="processPayment"
@@ -264,8 +256,7 @@ export default {
                             />
                         </div>
                         <div class="form-group">
-                            <label class="label-style-create" for="email"
-                                >E-mail</label
+                            <label class="label-style-create" for="email">E-mail</label>
                             >
                             <input
                                 type="email"
@@ -277,9 +268,7 @@ export default {
                             />
                         </div>
                         <div class="form-group">
-                            <label class="label-style-create" for="address"
-                                >Indirizzo</label
-                            >
+                            <label class="label-style-create" for="address">Indirizzo</label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -290,9 +279,7 @@ export default {
                             />
                         </div>
                         <div class="form-group">
-                            <label class="label-style-create" for="phone"
-                                >Numero di Telefono</label
-                            >
+                            <label class="label-style-create" for="phone">Numero di Telefono</label>
                             <input
                                 type="tel"
                                 class="form-control"
@@ -324,17 +311,28 @@ export default {
                                 </select>
                             </div>
                         </div> -->
-                        <button
+                        <!-- <button
                             type="submit"
                             class="btn btn-primary"
                             id="submit-button"
                         >
                             Invia dati
+                        </button> -->
+                        <div id="dropin-container" class="mt-5"></div>
+                        <button class="btn-boo buttons"  id="submit-button" type="submit" @click="submitPayment">
+                            Paga adesso
                         </button>
                     </form>
+
+
                 </div>
+                <router-link class="text-center mb-5 " :to="{ name: 'PaymentCompleted' }">
+                       <button class="btn-boo">
+                            Procedi con l'ordine
+                       </button>
+                    </router-link>
             </div>
-            <div id="dropin-container" class="mt-5"></div>
+            <!-- <div id="dropin-container" class="mt-5"></div>
             <button
                 class="btn btn-primary my-3"
                 id="submit-button"
@@ -342,7 +340,7 @@ export default {
                 @click="submitPayment"
             >
                 Paga adesso
-            </button>
+            </button> -->
         </div>
     </div>
 </template>
@@ -352,9 +350,30 @@ export default {
 @use "../styles/partials/variables" as *;
 @use "../styles/general.scss" as *;
 
-#orderForm {
-    button {
-        margin: 15px 0;
-    }
+.form-bg {
+    background-color: #292929;
+    padding: 40px;
+    border-radius: 17px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    color: white;
+    margin-bottom: 40px;
+}
+.cart {
+    top: 10px;
+    background-color: $boo-color;
+    max-height: 400px;
+    position: sticky;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+.my_table{
+    border-collapse: collapse;
+    overflow: hidden;
+    border: solid #000000 2px;
+}
+
+.btn-boo{
+    background-color:$boo-color ;
+    border: 1px solid $boo-color;
 }
 </style>
