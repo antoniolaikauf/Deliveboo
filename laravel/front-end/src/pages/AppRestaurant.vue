@@ -119,13 +119,10 @@ export default {
                     <div>
                         <h1>Menù</h1>
                     </div>
-                    <div class="card col-12 col-lg-6 my-3 p-3" v-for="dish in store.restaurantselected.user.dishes">
+                    <div class="card my-3 p-3" v-for="dish in store.restaurantselected.user.dishes">
                         <h2>{{ dish.name }}</h2>
                         <p>{{ dish.description }} <br> <b>{{ dish.price }} &euro;</b></p>
 
-
-                        
-                        
                         <!-- Bottoni per aggiungere/rimuovere piatti -->
                         <div class="quantity-control">
                             <button @click="removeFromCart(dish)" class="btn btn-primary">-</button>
@@ -137,9 +134,9 @@ export default {
                 </section>
             </div>
         <!-- Carrello -->
-            <section class="container col-6 card cart position-sticky p-3 my-5">
+            <section class="col-6 cart p-3 my-5">
                 <div>
-                    <h1>Carrello</h1>
+                    <h1 class="text-white">Carrello</h1>
                 </div>
                 <!-- Mostra ogni piatto nel carrello -->
                 <div v-if="cart.length > 0">
@@ -178,11 +175,13 @@ export default {
 }
 
 
-
-
 .cart {
     top: 10px;
-    height: 500px;
+    background-color: $boo-color;
+    max-height: 400px;
+    position: sticky;
+    border: 1px solid lightgray;
+    border-radius: 10px;
 }
 
 .quantity-control button {
