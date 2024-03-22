@@ -10,6 +10,7 @@ export default {
     name: "BraintreeDropin",
     data() {
         return {
+            loading: false,
             paymentSuccessful: false,
             store,
             dropInInstance: null,
@@ -99,12 +100,17 @@ export default {
         },
         onSuccess(payload) {
             let nonce = payload.nonce;
-            // messo token uguale a from_order e spedito al backend
             this.form_order.token = payload.nonce;
             console.log("Pagamento riuscito con nonce:", nonce);
-            // Imposta paymentSuccessful su true quando il pagamento è completato con successo
             this.paymentSuccessful = true;
+            this.loading = true; // Attiva il caricamento dopo il pagamento riuscito
+            setTimeout(() => {
+                // Simula un breve ritardo prima del reindirizzamento
+                this.$router.push({ name: 'PaymentCompleted' });
+                this.loading = false; // Disattiva il caricamento dopo il ritardo
+            }, 4000); // Ritardo di 2 secondi (puoi regolarlo in base alle tue esigenze)
         },
+
         onError(error) {
             let message = error.message;
             // Whoops, an error has occured while trying to get the nonce
@@ -261,15 +267,21 @@ export default {
                             type="submit"
                             @click="submitPayment"
                         >
-                            Paga adesso
+                            Procedi con l'ordine
                         </button>
 
+                        <div v-if="loading===true" class="loading-overlay">
+                            <div class="logo-deliv">
+                                <img src="/public/DelivebooNoBG.svg" alt="svg deliveboo">
+                            </div>
+                        </div>
+
                         <!-- bottone per procedere all ordine -->
-                        <router-link  v-if="paymentSuccessful" class="text-center" :to="{ name: 'PaymentCompleted' }">
-                       <button class="btn-boo">
-                            Procedi con l'ordine
-                       </button>
-                    </router-link>
+                        <router-link v-if="paymentSuccessful && !loading" class="text-center" :to="{ name: 'PaymentCompleted' }">
+                            <button class="btn-boo">
+                                Procedi con l'ordine
+                            </button>
+                        </router-link>
                     </form>
 
 
@@ -284,6 +296,43 @@ export default {
 @use "../styles/partials/mixins" as *;
 @use "../styles/partials/variables" as *;
 @use "../styles/general.scss" as *;
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+.logo-deliv {
+    transform: scale(1);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 $boo-color;
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 $boo-color;
+    }
+}
 
 .form-bg {
     background-color: #292929;
