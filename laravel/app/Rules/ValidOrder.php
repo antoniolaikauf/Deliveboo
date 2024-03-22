@@ -44,6 +44,6 @@ class ValidOrder implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'ordine non trovato';
     }
 }

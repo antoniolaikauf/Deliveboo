@@ -47,6 +47,7 @@ class OrderController extends Controller
     {
 
         $order = Order::find($request->order);
+
         $result = $gateway->transaction()->sale([
             'amount' => $order->price,
             // questo token inviato dal frontend
@@ -69,5 +70,6 @@ class OrderController extends Controller
             ];
             return response()->json($data, 401);
         }
+
     }
 }
