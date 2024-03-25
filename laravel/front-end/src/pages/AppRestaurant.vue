@@ -163,13 +163,32 @@ export default {
                                         style="color: black;"></i></button>
                                 <span class="align-middle">{{ getQuantity(dish) }}</span>
                                 <!-- Visualizza la quantità -->
-                                <button @click="addToCart(dish)" class="btn btn-boo"
-                                    style="border: 1px solid lightgrey ;"><i class="fa-solid fa-plus"
-                                        style="color: black;"></i></button>
+                                <button @click="addToCart(dish)" class="btn btn-boo" data-bs-toggle="modal" data-bs-target="#confirmationModal" type="button">
+                                    <i class="fa-solid fa-plus" style="color: black;"></i>
+                                </button>
+
                             </div>
                         </div>
                     </div>
                 </section>
+            </div>
+
+            <div v-if="showConfirmationModal" class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Conferma Aggiunta al Carrello</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="background-color: #d8d9d9">
+                            <p>Sei sicuro di voler aggiungere questo piatto al carrello?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                            <button type="button" class="btn btn-primary" @click="confirmAction()">Conferma</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Carrello -->
             <section class="col-6 cart p-3 my-5">
@@ -191,27 +210,7 @@ export default {
                 <div v-else>
                     <p>Il carrello è vuoto.</p>
                 </div>
-                <div class="modal-dialog modal-dialog-centered" id="confirmationModal" tabindex="-1"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="showConfirmationModal === true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Conferma operazione</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
 
-                            <div class="modal-body">
-                                Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                                <button type="button" class="btn btn-primary" @click="confirmAction">Conferma</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
 
                 <!-- checkout btn  -->
                 <section class="checkoutbar d-flex justify-content-center mt-3">
