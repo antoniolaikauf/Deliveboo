@@ -137,6 +137,6 @@ class ApiRestaurant extends Controller
                 $order->dishes()->attach($dish, ['quantity' => $dishData['quantity']]);
             }
         }
-        return response()->json(['message' => 'funziono']);
+        return response()->json(['message' => $order]);
     }
 }
