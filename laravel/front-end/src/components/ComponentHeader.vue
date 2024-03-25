@@ -42,13 +42,13 @@ export default {
                         <!-- </router-link> -->
 
                         <!-- BOTTONE LOGIN (RESPONSIVE) -->
-                        <router-link :to="{ name: 'Login' }">
+                        <a href="http://localhost:8000/login">
                             <button class="btn-boo d-md-none mx-3">
                                 <div class="mx-3">
                                     <i class="fa-solid fa-house color"></i>
                                 </div>
                             </button>
-                        </router-link>
+                        </a>
 
                         <!-- BOTTONE ADVANCE (ricerca) -->
                         <!-- <button
