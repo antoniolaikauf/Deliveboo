@@ -175,16 +175,16 @@ export default {
                             </div>
                         </div>
 
-                        <!-- Bottoni per aggiungere/rimuovere piatti -->
-                        <div class="quantity-control d-flex justify-content-end">
-                            <button @click="removeFromCart(dish)" class="btn btn-boo"
-                                style="border: 1px solid lightgrey ;"><i class="fa-solid fa-minus"
-                                    style="color: black;"></i></button>
-                            <span class="align-middle">{{ getQuantity(dish) }}</span>
-                            <!-- Visualizza la quantità -->
-                            <button @click="addToCart(dish)" class="btn btn-boo" data-bs-toggle="modal" data-bs-target="#confirmationModal" type="button">
-                                <i class="fa-solid fa-plus" style="color: black;"></i>
-                            </button>
+                            <!-- Bottoni per aggiungere/rimuovere piatti -->
+                            <div class="quantity-control d-flex justify-content-end">
+                                <button @click="removeFromCart(dish)" class="btn btn-boo"
+                                    style="border: 1px solid lightgrey ;"><i class="fa-solid fa-minus"
+                                        style="color: black;"></i></button>
+                                <span class="align-middle">{{ getQuantity(dish) }}</span>
+                                <!-- Visualizza la quantità -->
+                                <button @click="addToCart(dish)" class="btn btn-boo" style="border: 1px solid lightgrey;" data-bs-toggle="modal" data-bs-target="#confirmationModal" type="button" >
+                                    <i class="fa-solid fa-plus" style="color: black;"></i>
+                                </button>
 
                         </div>
                     </div>
@@ -192,43 +192,44 @@ export default {
             </section>
         </div>
 
-        <div v-if="showConfirmationModal" class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title fs-5" id="exampleModalLabel">Conferma operazione</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" style="background-color: #d8d9d9">
-                        <p>  Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="confirmAction()">Conferma</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Carrello -->
-        <section class="col-6 cart p-3 my-5">
-            <div>
-                <h1 class="text-white">Carrello</h1>
-            </div>
-            <!-- Mostra ogni piatto nel carrello -->
-            <div v-if="cart.length > 0">
-                <div v-for="item in cart" :key="item.dish.id" class="card col-12 w-100 col-lg-6 my-3 p-3">
-                    <div class="d-flex justify-content-between align-middle">
-                        <div><b>{{ item.dish.name }}</b></div>
-                        <div>Quantità: {{ item.quantity }}</div>
-                        <div>Prezzo: <br> {{ item.dish.price }} &euro;</div>
-                        <div>Totale: <br> <b>{{ item.totalPrice }} &euro;</b></div>
+            <div v-if="showConfirmationModal" class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
+                    <div class="modal-content" style="background-color: #00ccbc; border-radius: 20px;">
+                        <div class="modal-header">
+                            <img src="/public/DelivebooBGBooColorNoScritta.svg" alt="" style="width: 50px;">
+                            <h5 class="modal-title fs-5" id="exampleModalLabel">Conferma operazione</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="background-color: #d8d9d9">
+                            <p>Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annulla</button>
+                            <button type="button" class="btn-boo" data-bs-dismiss="modal" @click="confirmAction()">Conferma</button>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-3 d-flex justify-content-center"> <b>Totale: </b> {{ calculateTotal() }} &euro;</div>
             </div>
-            <div v-else>
-                <p>Il carrello è vuoto.</p>
-            </div>
+            <!-- Carrello -->
+            <section class="col-6 cart p-3 my-5">
+                <div>
+                    <h1 class="text-white">Carrello</h1>
+                </div>
+                <!-- Mostra ogni piatto nel carrello -->
+                <div v-if="cart.length > 0">
+                    <div v-for="item in cart" :key="item.dish.id" class="card col-12 w-100 col-lg-6 my-3 p-3">
+                        <div class="d-flex justify-content-between align-middle">
+                            <div><b>{{ item.dish.name }}</b></div>
+                            <div>Quantità: {{ item.quantity }}</div>
+                            <div>Prezzo: <br> {{ item.dish.price }} &euro;</div>
+                            <div>Totale: <br> <b>{{ item.totalPrice }} &euro;</b></div>
+                        </div>
+                    </div>
+                    <div class="mt-3 d-flex justify-content-center"> <b>Totale: </b> {{ calculateTotal() }} &euro;</div>
+                </div>
+                <div v-else>
+                    <p>Il carrello è vuoto.</p>
+                </div>
 
 
             <!-- checkout btn  -->

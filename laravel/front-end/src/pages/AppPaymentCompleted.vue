@@ -63,7 +63,7 @@
     </div>
 </template>
 
-<style lang="scss" >
+<style lang="scss" scoped >
 @use "../styles/partials/mixins" as *;
 @use "../styles/partials/variables" as *;
 @use "../styles/general.scss" as *;
@@ -74,7 +74,7 @@
 
     img {
         width: 200px;
-        animation: moveBackAndForth 4s infinite; /* Applica l'animazione */
+        animation: moveBackAndForth 4s infinite;
     }
 
     .card{
