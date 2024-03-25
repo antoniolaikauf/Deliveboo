@@ -1,56 +1,80 @@
 <script>
-import { store } from "../store";
-
-
 export default {
     name: "Restaurant",
     data() {
-        return {
-            store,
-            cart: store.cart,
-            showConfirmationModal: false,
-        };
-    },
+    const storedRestaurant = JSON.parse(localStorage.getItem('restaurantselected'));
+    const defaultRestaurant = {
+        name: 'Default Restaurant Name',
+        city: 'Default City',
+        // Altre proprietà predefinite che desideri assegnare
+    };
 
+    // Unisci l'oggetto predefinito con quello salvato nel localStorage
+    const selectedRestaurant = storedRestaurant ? { ...defaultRestaurant, ...storedRestaurant } : defaultRestaurant;
+
+    return {
+        selectedRestaurant: selectedRestaurant,
+        cart: JSON.parse(localStorage.getItem('cart')) || [],
+        showConfirmationModal: false,
+    };
+},
     methods: {
-
         getQuantity(dish) {
             const index = this.cart.findIndex(item => item.dish.id === dish.id);
             return index !== -1 ? this.cart[index].quantity : 0;
         },
-        // Aggiungi un piatto al carrello
-        addToCart(dish) {
-            const restaurantId = this.store.restaurantselected.id;
-            if (this.cart.length > 0) {
-                if (this.cart[0].restaurantId !== restaurantId) {
-                    this.showConfirmationModal = true;
-                    console.log(this.showConfirmationModal); // Mostra il modale di conferma
-                    return; // Esci dalla funzione senza aggiungere il piatto al carrello
-                }
-            }
 
-            const index = this.cart.findIndex(item => item.dish.id === dish.id);
-            if (index !== -1) {
-                this.cart[index].quantity++;
-                this.cart[index].totalPrice = this.cart[index].quantity * this.cart[index].dish.price;
-            } else {
-                // Aggiungi l'id del ristorante al piatto prima di aggiungerlo al carrello
-                this.cart.push({
-                    dish: dish,
-                    quantity: 1,
-                    totalPrice: dish.price,
-                    restaurantId: restaurantId
-                });
-            }
 
-            // Aggiorna lo store globale
-            store.cart = this.cart;
-        },
         confirmAction() {
-            // Svuota il carrello e nascondi il modale di conferma
-            this.cart = [];
-            this.showConfirmationModal = false;
-        },
+        // Svuota il carrello e nascondi il modale di conferma
+        this.cart = [];
+        this.showConfirmationModal = false;
+
+        // Aggiorna il carrello nel localStorage
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+    },
+        
+    addToCart(dish) {
+        const restaurantId = this.selectedRestaurant.id;
+        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        if (storedCart.length > 0) {
+            if (storedCart[0].restaurantId !== restaurantId) {
+                this.showConfirmationModal = true;
+                console.log(this.showConfirmationModal); // Mostra il modale di conferma
+                return; // Esci dalla funzione senza aggiungere il piatto al carrello
+            }
+        }
+
+        const index = storedCart.findIndex(item => item.dish.id === dish.id);
+        if (index !== -1) {
+            storedCart[index].quantity++;
+            storedCart[index].totalPrice = storedCart[index].quantity * storedCart[index].dish.price;
+        } else {
+            // Aggiungi l'id del ristorante al piatto prima di aggiungerlo al carrello
+            storedCart.push({
+                dish: dish,
+                quantity: 1,
+                totalPrice: dish.price,
+                restaurantId: restaurantId
+            });
+        }
+
+        // Aggiorna il carrello nel localStorage
+        localStorage.setItem('cart', JSON.stringify(storedCart));
+
+        // Aggiorna il carrello nel componente
+        this.cart = storedCart;
+    },
+
+        // confirmAction() {
+        //     // Svuota il carrello e nascondi il modale di conferma
+        //     this.cart = [];
+        //     this.showConfirmationModal = false;
+
+        //     // Aggiorna il carrello nel localStorage
+        //     localStorage.setItem('cart', JSON.stringify(this.cart));
+        // },
 
         // Rimuovi un piatto dal carrello
         removeFromCart(dish) {
@@ -64,8 +88,8 @@ export default {
                 }
             }
 
-            // Aggiorna lo store globale
-            store.cart = this.cart;
+            // Aggiorna il carrello nel localStorage
+             localStorage.setItem('cart', JSON.stringify(this.cart));
 
         },
 
@@ -83,144 +107,139 @@ export default {
 
 <template>
     <section>
-        <!-- Sezione ristorante -->
-        <section>
-            <div class="container p-4">
-                <div class="row">
-                    <div class="col-12 col-lg-6">
-                        <div class="card">
-                            <img class="rounded-3 img_restaurant" :src="store.restaurantselected.img"
-                                alt="placeholderrestaurant" />
-                        </div>
+    <!-- Sezione ristorante -->
+    <section>
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <img class="rounded-3 img_restaurant" :src="selectedRestaurant.img" alt="placeholderrestaurant" />
                     </div>
-                    <div class="col-12 col-lg-6 px-3">
+                </div>
+                <div class="col-12 col-lg-6 px-3">
 
-                        <h1 class="restaurantName">{{ store.restaurantselected.name }}</h1>
+                    <h1 class="restaurantName">{{ selectedRestaurant.name }}</h1>
 
-                        <div class="my-4">
-                            <p>Località: <b>{{ store.restaurantselected.city }}</b> <br> Chiude alle 23:00 <br> <b
-                                    style="color: #00ccbc;">Consegna gratuita!</b></p>
-                        </div>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-boo border-secondary-subtle" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" style="width: 250px">
-                            <h4 class="d-flex">
-                                <i class="fa-solid fa-circle-info" style="color: #00ccbc;"><b style="color: black;">
-                                        Allergeni</b></i>
-                            </h4>
-                            Informazioni e tanto altro
-                        </button>
+                    <div class="my-4">
+                        <p>Località: <b>{{ selectedRestaurant.city }}</b> <br> Chiude alle 23:00 <br> <b style="color: #00ccbc;">Consegna gratuita!</b></p>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-boo border-secondary-subtle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 250px">
+                        <h4 class="d-flex">
+                            <i class="fa-solid fa-circle-info" style="color: #00ccbc;"><b style="color: black;">Allergeni</b></i>
+                        </h4>
+                        Informazioni e tanto altro
+                    </button>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Informazioni</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body" style="background-color: #d8d9d9">
-                                        <h5>Allergeni</h5>
-                                        <div>Lista ingredienti</div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <p>Leggi maggiori informazioni sugli allergeni presenti nei prodotti offerti da
-                                            questo partner.</p>
-                                        <a href="https://www.youtube.com/watch?v=nvm2pVrirBQ" style="color: #00ccbc;"><i
-                                                class="fa-solid fa-circle-info"></i> Visualizza informazioni sugli
-                                            allergeni</a>
-                                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Informazioni</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="background-color: #d8d9d9">
+                                    <h5>Allergeni</h5>
+                                    <div>Lista ingredienti</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <p>Leggi maggiori informazioni sugli allergeni presenti nei prodotti offerti da
+                                        questo partner.</p>
+                                    <a href="https://www.youtube.com/watch?v=nvm2pVrirBQ" style="color: #00ccbc;"><i
+                                            class="fa-solid fa-circle-info"></i> Visualizza informazioni sugli
+                                        allergeni</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="d-flex justify-content-center  align-items-start bg-dark">
-            <div class="position-relative">
-                <!-- Sezione carrello -->
-                <section>
-                    <div class="container p-3">
-                        <div>
-                            <h1 style="color:#ffffff">Menù</h1>
-                        </div>
-                        <div class="card my-3 p-3" v-for="dish in store.restaurantselected.user.dishes">
-                            <div class="d-flex">
-                                <img :src="dish.img" alt="" style="height: 100px; width: 100px;">
-                                <div class="mx-3">
-                                    <h2>{{ dish.name }}</h2>
-                                    <p>{{ dish.description }} <br> <b>{{ dish.price }} &euro;</b></p>
-                                </div>
-                            </div>
-
-                            <!-- Bottoni per aggiungere/rimuovere piatti -->
-                            <div class="quantity-control d-flex justify-content-end">
-                                <button @click="removeFromCart(dish)" class="btn btn-boo"
-                                    style="border: 1px solid lightgrey ;"><i class="fa-solid fa-minus"
-                                        style="color: black;"></i></button>
-                                <span class="align-middle">{{ getQuantity(dish) }}</span>
-                                <!-- Visualizza la quantità -->
-                                <button @click="addToCart(dish)" class="btn btn-boo" data-bs-toggle="modal" data-bs-target="#confirmationModal" type="button">
-                                    <i class="fa-solid fa-plus" style="color: black;"></i>
-                                </button>
-
+        </div>
+    </section>
+    <section class="d-flex justify-content-center  align-items-start bg-dark">
+        <div class="position-relative">
+            <!-- Sezione carrello -->
+            <section v-if="selectedRestaurant">
+                <div class="container p-3">
+                    <div>
+                        <h1 style="color:#ffffff">Menù</h1>
+                    </div>
+                    <div class="card my-3 p-3" v-for="dish in selectedRestaurant.user.dishes">
+                        <div class="d-flex">
+                            <img :src="dish.img" alt="" style="height: 100px; width: 100px;">
+                            <div class="mx-3">
+                                <h2>{{ dish.name }}</h2>
+                                <p>{{ dish.description }} <br> <b>{{ dish.price }} &euro;</b></p>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
 
-            <div v-if="showConfirmationModal" class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title fs-5" id="exampleModalLabel">Conferma operazione</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" style="background-color: #d8d9d9">
-                            <p>  Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="confirmAction()">Conferma</button>
+                        <!-- Bottoni per aggiungere/rimuovere piatti -->
+                        <div class="quantity-control d-flex justify-content-end">
+                            <button @click="removeFromCart(dish)" class="btn btn-boo"
+                                style="border: 1px solid lightgrey ;"><i class="fa-solid fa-minus"
+                                    style="color: black;"></i></button>
+                            <span class="align-middle">{{ getQuantity(dish) }}</span>
+                            <!-- Visualizza la quantità -->
+                            <button @click="addToCart(dish)" class="btn btn-boo" data-bs-toggle="modal" data-bs-target="#confirmationModal" type="button">
+                                <i class="fa-solid fa-plus" style="color: black;"></i>
+                            </button>
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Carrello -->
-            <section class="col-6 cart p-3 my-5">
-                <div>
-                    <h1 class="text-white">Carrello</h1>
-                </div>
-                <!-- Mostra ogni piatto nel carrello -->
-                <div v-if="cart.length > 0">
-                    <div v-for="item in cart" :key="item.dish.id" class="card col-12 w-100 col-lg-6 my-3 p-3">
-                        <div class="d-flex justify-content-between align-middle">
-                            <div><b>{{ item.dish.name }}</b></div>
-                            <div>Quantità: {{ item.quantity }}</div>
-                            <div>Prezzo: <br> {{ item.dish.price }} &euro;</div>
-                            <div>Totale: <br> <b>{{ item.totalPrice }} &euro;</b></div>
-                        </div>
-                    </div>
-                    <div class="mt-3 d-flex justify-content-center"> <b>Totale: </b> {{ calculateTotal() }} &euro;</div>
-                </div>
-                <div v-else>
-                    <p>Il carrello è vuoto.</p>
-                </div>
-
-
-                <!-- checkout btn  -->
-                <section class="checkoutbar d-flex justify-content-center mt-3">
-                    <router-link :to="{ name: 'success' }">
-                        <button class="btn-boo">Checkout</button></router-link>
-                </section>
-
             </section>
+        </div>
+
+        <div v-if="showConfirmationModal" class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-5" id="exampleModalLabel">Conferma operazione</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="background-color: #d8d9d9">
+                        <p>  Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="confirmAction()">Conferma</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Carrello -->
+        <section class="col-6 cart p-3 my-5">
+            <div>
+                <h1 class="text-white">Carrello</h1>
+            </div>
+            <!-- Mostra ogni piatto nel carrello -->
+            <div v-if="cart.length > 0">
+                <div v-for="item in cart" :key="item.dish.id" class="card col-12 w-100 col-lg-6 my-3 p-3">
+                    <div class="d-flex justify-content-between align-middle">
+                        <div><b>{{ item.dish.name }}</b></div>
+                        <div>Quantità: {{ item.quantity }}</div>
+                        <div>Prezzo: <br> {{ item.dish.price }} &euro;</div>
+                        <div>Totale: <br> <b>{{ item.totalPrice }} &euro;</b></div>
+                    </div>
+                </div>
+                <div class="mt-3 d-flex justify-content-center"> <b>Totale: </b> {{ calculateTotal() }} &euro;</div>
+            </div>
+            <div v-else>
+                <p>Il carrello è vuoto.</p>
+            </div>
+
+
+            <!-- checkout btn  -->
+            <section class="checkoutbar d-flex justify-content-center mt-3">
+                <router-link :to="{ name: 'success' }">
+                    <button class="btn-boo">Checkout</button></router-link>
+            </section>
+
         </section>
     </section>
+</section>
 </template>
 
 <style lang="scss">

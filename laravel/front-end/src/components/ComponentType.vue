@@ -27,6 +27,8 @@ export default {
     },
 
     methods: {
+
+        // applicazioni filtri 
         check() {
             this.showRestaurant = true;
 
@@ -47,9 +49,9 @@ export default {
                         //incremento count ristoranti
                         count++;
                         if (risposta.data.risposta[0][i].img.startsWith("i")) {
+                            
+                            
                             // chiamata axios
-
-
                             let foto = risposta.data.risposta[0][i].img;
                             axios
                                 .post(
@@ -63,32 +65,37 @@ export default {
                                 .catch((err) => {
                                     console.log(err);
                                 });
+                            }
                         }
-                    }
-                    this.countDisplayedRestaurants = count;
-                    this.arrayRestaurantsSelect = risposta.data.risposta;
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        },
-        selectedRestaurantWithType(index, nRestaurants) {
-            console.log(this.arrayRestaurantsSelect[index][nRestaurants]);
-            store.restaurantselected =
-                this.arrayRestaurantsSelect[index][nRestaurants];
-        },
-        groupRestaurant(index) {
-            console.log(this.restaurants[index]);
-            store.restaurantselected = this.restaurants[index];
-        },
+                        this.countDisplayedRestaurants = count;
+                        this.arrayRestaurantsSelect = risposta.data.risposta;
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+                },
 
-        //al click della label cambia classe
-        toggleLabelClicked(event) {
-            event.currentTarget.classList.toggle("label-clicked");
-        },
+                //al click della label cambia classe
+                toggleLabelClicked(event) {
+                    event.currentTarget.classList.toggle("label-clicked");
+                },
+
+                // metodi selezione ristoranti inizio 
+                selectedRestaurantWithType(index, nRestaurants) {
+                const selectedRestaurant = this.arrayRestaurantsSelect[index][nRestaurants];
+                localStorage.setItem('restaurantselected', JSON.stringify(selectedRestaurant));
+                },
+
+                groupRestaurant(index) {
+                const selectedRestaurant = this.restaurants[index];
+                localStorage.setItem('restaurantselected', JSON.stringify(selectedRestaurant));
+                },
+                
+                // metodi selezione ristoranti fine
+
     },
     mounted() {
-        // chiamata axios per ottenere i types
+        // chiamata axios per ottenere i types di tutti i ristoranti
         axios
             .get("http://localhost:8000/api/v1/types")
             .then((risposta) => {
@@ -182,6 +189,7 @@ export default {
                     v-for="(restaurant, i) in restaurants"
                 >
                     <div class="card">
+                        <!-- carico i ristoranti  -->
                         <router-link
                             class="text-dark"
                             :to="{ name: 'Restaurant', params: { id: i + 1 } }"
