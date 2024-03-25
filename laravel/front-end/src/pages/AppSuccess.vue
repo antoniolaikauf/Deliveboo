@@ -44,6 +44,9 @@ export default {
     },
     methods: {
         sendFormDataToServer() {
+            // Salva i dati del carrello nel localStorage prima di inviarli al server
+            localStorage.setItem('cart', JSON.stringify(this.store.cart));
+
             // rallentato chiamata in modo tale che la chiamata processPayment possa modificare order in form_order
             setTimeout(() => {
                 axios
@@ -147,9 +150,12 @@ export default {
 
         onError(error) {
             let message = error.message;
-            // Whoops, an error has occured while trying to get the nonce
+            // Whoops, idroscimmia.jpeg
         },
         processPayment() {
+            // Salva i dati del carrello nel localStorage prima di inviarli al server
+            localStorage.setItem('cart', JSON.stringify(this.store.cart));
+
             console.log(this.form);
             axios
                 .post("http://localhost:8000/api/v1/create/order", this.form)
@@ -163,6 +169,12 @@ export default {
         },
     },
     mounted() {
+        // Carica i dati del carrello dal localStorage
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            this.store.cart = JSON.parse(storedCart);
+        }
+
 
         console.log(store.cart[0]);
         console.log(this.form);
@@ -191,7 +203,6 @@ export default {
             return {
                 token: token,
             };
-
         });
     },
     computed: {

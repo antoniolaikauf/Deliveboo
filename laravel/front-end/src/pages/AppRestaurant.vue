@@ -1,41 +1,58 @@
 <script>
-import { store } from "../store";
-
-
 export default {
     name: "Restaurant",
     data() {
+        const storedRestaurant = JSON.parse(localStorage.getItem('restaurantselected'));
+        const defaultRestaurant = {
+            name: 'Default Restaurant Name',
+            city: 'Default City',
+            // Altre proprietà predefinite che desideri assegnare
+        };
+
+        // Unisci l'oggetto predefinito con quello salvato nel localStorage
+        const selectedRestaurant = storedRestaurant ? { ...defaultRestaurant, ...storedRestaurant } : defaultRestaurant;
+
         return {
-            store,
-            cart: store.cart,
+            selectedRestaurant: selectedRestaurant,
+            cart: JSON.parse(localStorage.getItem('cart')) || [],
             showConfirmationModal: false,
         };
     },
-
     methods: {
-
         getQuantity(dish) {
             const index = this.cart.findIndex(item => item.dish.id === dish.id);
             return index !== -1 ? this.cart[index].quantity : 0;
         },
-        // Aggiungi un piatto al carrello
+
+
+        confirmAction() {
+            // Svuota il carrello e nascondi il modale di conferma
+            this.cart = [];
+            this.showConfirmationModal = false;
+
+            // Aggiorna il carrello nel localStorage
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+
         addToCart(dish) {
-            const restaurantId = this.store.restaurantselected.id;
-            if (this.cart.length > 0) {
-                if (this.cart[0].restaurantId !== restaurantId) {
+            const restaurantId = this.selectedRestaurant.id;
+            const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (storedCart.length > 0) {
+                if (storedCart[0].restaurantId !== restaurantId) {
                     this.showConfirmationModal = true;
                     console.log(this.showConfirmationModal); // Mostra il modale di conferma
                     return; // Esci dalla funzione senza aggiungere il piatto al carrello
                 }
             }
 
-            const index = this.cart.findIndex(item => item.dish.id === dish.id);
+            const index = storedCart.findIndex(item => item.dish.id === dish.id);
             if (index !== -1) {
-                this.cart[index].quantity++;
-                this.cart[index].totalPrice = this.cart[index].quantity * this.cart[index].dish.price;
+                storedCart[index].quantity++;
+                storedCart[index].totalPrice = storedCart[index].quantity * storedCart[index].dish.price;
             } else {
                 // Aggiungi l'id del ristorante al piatto prima di aggiungerlo al carrello
-                this.cart.push({
+                storedCart.push({
                     dish: dish,
                     quantity: 1,
                     totalPrice: dish.price,
@@ -44,14 +61,21 @@ export default {
                 });
             }
 
-            // Aggiorna lo store globale
-            store.cart = this.cart;
+            // Aggiorna il carrello nel localStorage
+            localStorage.setItem('cart', JSON.stringify(storedCart));
+
+            // Aggiorna il carrello nel componente
+            this.cart = storedCart;
         },
-        confirmAction() {
-            // Svuota il carrello e nascondi il modale di conferma
-            this.cart = [];
-            this.showConfirmationModal = false;
-        },
+
+        // confirmAction() {
+        //     // Svuota il carrello e nascondi il modale di conferma
+        //     this.cart = [];
+        //     this.showConfirmationModal = false;
+
+        //     // Aggiorna il carrello nel localStorage
+        //     localStorage.setItem('cart', JSON.stringify(this.cart));
+        // },
 
         // Rimuovi un piatto dal carrello
         removeFromCart(dish) {
@@ -65,8 +89,8 @@ export default {
                 }
             }
 
-            // Aggiorna lo store globale
-            store.cart = this.cart;
+            // Aggiorna il carrello nel localStorage
+            localStorage.setItem('cart', JSON.stringify(this.cart));
 
         },
 
@@ -90,24 +114,24 @@ export default {
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="card">
-                            <img class="rounded-3 img_restaurant" :src="store.restaurantselected.img"
+                            <img class="rounded-3 img_restaurant" :src="selectedRestaurant.img"
                                 alt="placeholderrestaurant" />
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 px-3">
 
-                        <h1 class="restaurantName">{{ store.restaurantselected.name }}</h1>
+                        <h1 class="restaurantName">{{ selectedRestaurant.name }}</h1>
 
                         <div class="my-4">
-                            <p>Località: <b>{{ store.restaurantselected.city }}</b> <br> Chiude alle 23:00 <br> <b
+                            <p>Località: <b>{{ selectedRestaurant.city }}</b> <br> Chiude alle 23:00 <br> <b
                                     style="color: #00ccbc;">Consegna gratuita!</b></p>
                         </div>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-boo border-secondary-subtle" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" style="width: 250px">
                             <h4 class="d-flex">
-                                <i class="fa-solid fa-circle-info" style="color: #00ccbc;"><b style="color: black;">
-                                        Allergeni</b></i>
+                                <i class="fa-solid fa-circle-info" style="color: #00ccbc;"><b
+                                        style="color: black;">Allergeni</b></i>
                             </h4>
                             Informazioni e tanto altro
                         </button>
@@ -143,12 +167,12 @@ export default {
         <section class="d-flex justify-content-center  align-items-start bg-dark">
             <div class="position-relative">
                 <!-- Sezione carrello -->
-                <section>
+                <section v-if="selectedRestaurant">
                     <div class="container p-3">
                         <div>
                             <h1 style="color:#ffffff">Menù</h1>
                         </div>
-                        <div class="card my-3 p-3" v-for="dish in store.restaurantselected.user.dishes">
+                        <div class="card my-3 p-3" v-for="dish in selectedRestaurant.user.dishes">
                             <div class="d-flex">
                                 <img :src="dish.img" alt="" style="height: 100px; width: 100px;">
                                 <div class="mx-3">
