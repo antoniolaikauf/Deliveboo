@@ -43,6 +43,9 @@ export default {
     },
     methods: {
         sendFormDataToServer() {
+            // Salva i dati del carrello nel localStorage prima di inviarli al server
+            localStorage.setItem('cart', JSON.stringify(this.store.cart));
+
             // rallentato chiamata in modo tale che la chiamata processPayment possa modificare order in form_order
             setTimeout(() => {
                 axios
@@ -146,9 +149,12 @@ export default {
 
         onError(error) {
             let message = error.message;
-            // Whoops, an error has occured while trying to get the nonce
+            // Whoops, idroscimmia.jpeg
         },
         processPayment() {
+        // Salva i dati del carrello nel localStorage prima di inviarli al server
+        localStorage.setItem('cart', JSON.stringify(this.store.cart));
+
             axios
                 .post("http://localhost:8000/api/v1/create/order", this.form)
                 .then((res) => {
@@ -161,32 +167,38 @@ export default {
         },
     },
     mounted() {
-        // Calcola il totale dell'ordine e assegnalo alla variabile price
-        this.form.price = this.calculateGrandTotal;
+         // Carica i dati del carrello dal localStorage
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+        this.store.cart = JSON.parse(storedCart);
+    }
 
-        // axios per pagamento
-        axios.get("http://localhost:8000/api/v1/generate").then((res) => {
-            let token = null;
-            token = res.data.token;
-            dropin.create(
-                {
-                    authorization: token,
-                    container: "#dropin-container",
-                    //traduzione form
-                    locale: "it_IT",
-                },
-                (error, dropinInstance) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        this.dropInInstance = dropinInstance;
-                    }
+    // Calcola il totale dell'ordine e assegnalo alla variabile price
+    this.form.price = this.calculateGrandTotal;
+
+    // axios per pagamento
+    axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+        let token = null;
+        token = res.data.token;
+        dropin.create(
+            {
+                authorization: token,
+                container: "#dropin-container",
+                //traduzione form
+                locale: "it_IT",
+            },
+            (error, dropinInstance) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    this.dropInInstance = dropinInstance;
                 }
-            );
-            return {
-                token: token,
-            };
-        });
+            }
+        );
+        return {
+            token: token,
+        };
+    });
     },
     computed: {
         calculateGrandTotal() {
