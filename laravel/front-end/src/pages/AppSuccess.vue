@@ -183,10 +183,25 @@ export default {
 </script>
 
 <template>
-    <div class="container mt-5">
+<div class="container-fluid gx-0 bg d-flex">
+    <div class="animation">
+            <div class="img animation3">
+                <img src="../../public/hamburger.png" alt="hamburger">
+            </div>
+            <div class="img animation1">
+                <img src="../../public/pizza.png" alt="pizza">
+            </div>
+            <div class="img animation2">
+                <img src="../../public/patatine-fritte.png" alt="patatine fritte" style="width: 30px;">
+            </div>
+            <div class="img animation4">
+                <img src="../../public/sushi.png" alt="sushi" style="width: 50px;">
+            </div>
+    </div>
+    <div class="container">
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2">
-                <h1 class="text-center">
+                <h1 class="text-center mt-5">
                     Completa il tuo ordine da
                     {{ store.restaurantselected.name }}
                 </h1>
@@ -251,7 +266,7 @@ export default {
                         </div>
                         <div class="form-group">
                             <label class="label-style-create" for="email">E-mail</label>
-                            >
+
                             <input
                                 type="email"
                                 class="form-control"
@@ -319,9 +334,27 @@ export default {
                         </router-link>
                     </form>
                 </div>
+
+
             </div>
         </div>
     </div>
+    <div class="animation">
+            <div class="img animation1">
+                <img src="../../public/hamburger.png" alt="hamburger">
+            </div>
+            <div class="img animation2">
+                <img src="../../public/pizza.png" alt="pizza">
+            </div>
+            <div class="img animation4">
+                <img src="../../public/patatine-fritte.png" alt="patatine fritte" style="width: 30px;">
+            </div>
+            <div class="img animation3">
+                <img src="../../public/sushi.png" alt="sushi">
+            </div>
+        </div>
+</div>
+
 </template>
 
 <style lang="scss" scoped>
@@ -385,5 +418,186 @@ export default {
     background-color: $boo-color;
     border: 1px solid $boo-color;
     margin-top: 12px;
+}
+
+.bg{
+  background-color: $boo-color;
+}
+
+// animation
+@keyframes MoveOne {
+
+0% {
+    top: 0;
+    left: 0
+}
+
+20% {
+
+    top: 20%;
+    left: 20%;
+
+}
+
+50% {
+
+    top: 40%;
+    right: 40%;
+
+}
+
+70% {
+
+    top: 80%;
+    right: 20%;
+
+}
+
+100% {
+    top: 0;
+    left: 0;
+}
+}
+
+@keyframes MoveTwo {
+
+0% {
+    bottom: 0;
+    right: 0
+}
+
+20% {
+
+    bottom: 20%;
+    right: 70%;
+
+}
+
+50% {
+
+    bottom: 30%;
+    right: 30%;
+
+}
+
+70% {
+
+    bottom: 50%;
+    right: 80%;
+
+}
+
+100% {
+    bottom: 0;
+    right: 0;
+}
+}
+
+@keyframes MoveThree {
+
+0% {
+    bottom: 0;
+    left: 0;
+}
+
+25% {
+    bottom: 10%;
+    left: 10%;
+}
+
+50% {
+    bottom: 50%;
+    left: 20%;
+}
+
+75% {
+    bottom: 70%;
+    left: 10%;
+}
+
+100% {
+    bottom: 0;
+    left: 0;
+}
+}
+
+@keyframes MoveFour {
+
+0% {
+    top: 0;
+    left: 20%;
+}
+
+25% {
+    top: 86%;
+    left: 60%;
+}
+
+50% {
+    top: 70%;
+    left: 70%;
+}
+
+75% {
+    top: 70%;
+    left: 30%;
+}
+
+100% {
+    top: 0;
+    left: 20%;
+}
+}
+
+.animation {
+width: 40%;
+position: relative;
+display: flex;
+overflow: hidden;
+}
+
+.animation1 {
+position: absolute;
+animation: MoveOne 15s linear infinite;
+
+}
+
+.animation2 {
+position: absolute;
+animation: MoveTwo 10s linear infinite;
+}
+
+.animation3 {
+position: absolute;
+animation: MoveThree 8s linear infinite;
+
+}
+
+.animation4 {
+position: absolute;
+animation: MoveFour 16s linear infinite;
+
+}
+
+.img {
+width: 70px;
+}
+
+img {
+width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+.animation {
+    display: none;
+}
+
+
+}
+
+@media screen and (min-width: 768px) {
+    .container{
+    min-width: 768px;
+}
 }
 </style>
