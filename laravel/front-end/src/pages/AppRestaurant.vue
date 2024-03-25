@@ -8,6 +8,7 @@ export default {
         return {
             store,
             cart: store.cart,
+            showConfirmationModal: false,
         };
     },
 
@@ -19,19 +20,37 @@ export default {
         },
         // Aggiungi un piatto al carrello
         addToCart(dish) {
+            const restaurantId = this.store.restaurantselected.id;
+            if (this.cart.length > 0) {
+                if (this.cart[0].restaurantId !== restaurantId) {
+                    this.showConfirmationModal = true;
+                    console.log(this.showConfirmationModal); // Mostra il modale di conferma
+                    return; // Esci dalla funzione senza aggiungere il piatto al carrello
+                }
+            }
+
             const index = this.cart.findIndex(item => item.dish.id === dish.id);
             if (index !== -1) {
                 this.cart[index].quantity++;
                 this.cart[index].totalPrice = this.cart[index].quantity * this.cart[index].dish.price;
             } else {
-                this.cart.push({ dish: dish, quantity: 1, totalPrice: dish.price });
+                // Aggiungi l'id del ristorante al piatto prima di aggiungerlo al carrello
+                this.cart.push({
+                    dish: dish,
+                    quantity: 1,
+                    totalPrice: dish.price,
+                    restaurantId: restaurantId
+                });
             }
 
             // Aggiorna lo store globale
             store.cart = this.cart;
-
         },
-
+        confirmAction() {
+            // Svuota il carrello e nascondi il modale di conferma
+            this.cart = [];
+            this.showConfirmationModal = false;
+        },
 
         // Rimuovi un piatto dal carrello
         removeFromCart(dish) {
@@ -172,12 +191,34 @@ export default {
                 <div v-else>
                     <p>Il carrello è vuoto.</p>
                 </div>
+                <div class="modal-dialog modal-dialog-centered" id="confirmationModal" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="showConfirmationModal === true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Conferma operazione</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                <button type="button" class="btn btn-primary" @click="confirmAction">Conferma</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
 
                 <!-- checkout btn  -->
                 <section class="checkoutbar d-flex justify-content-center mt-3">
                     <router-link :to="{ name: 'success' }">
                         <button class="btn-boo">Checkout</button></router-link>
                 </section>
+
             </section>
         </section>
     </section>
