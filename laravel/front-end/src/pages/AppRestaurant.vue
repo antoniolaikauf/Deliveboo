@@ -39,7 +39,8 @@ export default {
                     dish: dish,
                     quantity: 1,
                     totalPrice: dish.price,
-                    restaurantId: restaurantId
+                    restaurantId: restaurantId,
+                    dishId: dish.id
                 });
             }
 
@@ -163,7 +164,9 @@ export default {
                                         style="color: black;"></i></button>
                                 <span class="align-middle">{{ getQuantity(dish) }}</span>
                                 <!-- Visualizza la quantità -->
-                                <button @click="addToCart(dish)" class="btn btn-boo" style="border: 1px solid lightgrey;" data-bs-toggle="modal" data-bs-target="#confirmationModal" type="button" >
+                                <button @click="addToCart(dish)" class="btn btn-boo"
+                                    style="border: 1px solid lightgrey;" data-bs-toggle="modal"
+                                    data-bs-target="#confirmationModal" type="button">
                                     <i class="fa-solid fa-plus" style="color: black;"></i>
                                 </button>
 
@@ -173,8 +176,9 @@ export default {
                 </section>
             </div>
 
-            <div v-if="showConfirmationModal" class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
+            <div v-if="showConfirmationModal" class="modal fade" id="confirmationModal" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content" style="background-color: #00ccbc; border-radius: 20px;">
                         <div class="modal-header">
                             <img src="/public/DelivebooBGBooColorNoScritta.svg" alt="" style="width: 50px;">
@@ -182,11 +186,13 @@ export default {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="background-color: #d8d9d9">
-                            <p>Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?</p>
+                            <p>Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?
+                            </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annulla</button>
-                            <button type="button" class="btn-boo" data-bs-dismiss="modal" @click="confirmAction()">Conferma</button>
+                            <button type="button" class="btn-boo" data-bs-dismiss="modal"
+                                @click="confirmAction()">Conferma</button>
                         </div>
                     </div>
                 </div>
