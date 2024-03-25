@@ -177,15 +177,15 @@ export default {
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Conferma Aggiunta al Carrello</h1>
+                            <h5 class="modal-title fs-5" id="exampleModalLabel">Conferma operazione</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="background-color: #d8d9d9">
-                            <p>Sei sicuro di voler aggiungere questo piatto al carrello?</p>
+                            <p>  Sei sicuro di voler svuotare il carrello e aggiungere piatti da un ristorante diverso?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                            <button type="button" class="btn btn-primary" @click="confirmAction()">Conferma</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="confirmAction()">Conferma</button>
                         </div>
                     </div>
                 </div>
