@@ -9,11 +9,19 @@ export default {
     name: "success",
     name: "BraintreeDropin",
     data() {
+        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const defaultCartData = storedCart.length > 0 ? storedCart[0] : {
+            restaurantId: null,
+            dishId: null,
+            quantity: null,
+            totalPrice: null
+        };
+
         return {
             loading: false,
             paymentSuccessful: false,
             store,
-            cart: store.cart,
+            cart: storedCart,
             dropInInstance: null,
             form: {
                 name: "",
@@ -22,15 +30,14 @@ export default {
                 numero: "",
                 // Converti la data in formato aaaa-mm-gg attenti con la data
                 data: "",
-                price: store.cart[0].totalPrice,
+                price: defaultCartData.totalPrice,
 
-                //DEVE ESSERE DINAMICO
-                restaurant_id: store.cart[0].restaurantId,
+                // restaurant_id preso dal localStorage del cart
+                restaurant_id: defaultCartData.restaurantId,
                 dishes: [
                     //DEVE ESSERE DINAMICO
-                    // Supponiamo che tu cambi `dish_ids` in `dishes` per includere le quantità
-                    { id: store.cart[0].dishId, quantity: store.cart[0].quantity }, // Esempio di piatto con ID e quantità
-
+                    // Supponiamo che tu cambi dish_ids in dishes per includere le quantità
+                    { id: defaultCartData.dishId, quantity: defaultCartData.quantity }, // Esempio di piatto con ID e quantità
                 ],
             },
             // in order metti id dell'ordine
@@ -176,7 +183,7 @@ export default {
         }
 
 
-        console.log(store.cart[0]);
+        console.log(storedCart);
         console.log(this.form);
         // Calcola il totale dell'ordine e assegnalo alla variabile price
         this.form.price = this.calculateGrandTotal;
