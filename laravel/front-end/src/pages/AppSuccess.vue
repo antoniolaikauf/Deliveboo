@@ -9,13 +9,16 @@ export default {
     name: "success",
     name: "BraintreeDropin",
     data() {
-        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-        const defaultCartData = storedCart.length > 0 ? storedCart[0] : {
-            restaurantId: null,
-            dishId: null,
-            quantity: null,
-            totalPrice: null
-        };
+        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const defaultCartData =
+            storedCart.length > 0
+                ? storedCart[0]
+                : {
+                      restaurantId: null,
+                      dishId: null,
+                      quantity: null,
+                      totalPrice: null,
+                  };
 
         return {
             loading: false,
@@ -37,7 +40,10 @@ export default {
                 dishes: [
                     //DEVE ESSERE DINAMICO
                     // Supponiamo che tu cambi dish_ids in dishes per includere le quantità
-                    { id: defaultCartData.dishId, quantity: defaultCartData.quantity }, // Esempio di piatto con ID e quantità
+                    // {
+                    //     id: defaultCartData.dishId,
+                    //     quantity: defaultCartData.quantity,
+                    // }, // Esempio di piatto con ID e quantità
                 ],
             },
             // in order metti id dell'ordine
@@ -52,7 +58,7 @@ export default {
     methods: {
         sendFormDataToServer() {
             // Salva i dati del carrello nel localStorage prima di inviarli al server
-            localStorage.setItem('cart', JSON.stringify(this.store.cart));
+            localStorage.setItem("cart", JSON.stringify(this.store.cart));
 
             // rallentato chiamata in modo tale che la chiamata processPayment possa modificare order in form_order
             setTimeout(() => {
@@ -105,20 +111,20 @@ export default {
                 .getFullYear()
                 .toString()
                 .slice(-2)}-${(currentDate.getMonth() + 1)
-                    .toString()
-                    .padStart(2, "0")}-${currentDate
-                        .getDate()
-                        .toString()
-                        .padStart(2, "0")} ${currentDate
-                            .getHours()
-                            .toString()
-                            .padStart(2, "0")}-${currentDate
-                                .getMinutes()
-                                .toString()
-                                .padStart(2, "0")}-${currentDate
-                                    .getSeconds()
-                                    .toString()
-                                    .padStart(2, "0")}`;
+                .toString()
+                .padStart(2, "0")}-${currentDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} ${currentDate
+                .getHours()
+                .toString()
+                .padStart(2, "0")}-${currentDate
+                .getMinutes()
+                .toString()
+                .padStart(2, "0")}-${currentDate
+                .getSeconds()
+                .toString()
+                .padStart(2, "0")}`;
 
             // assegno la data formattata alla proprietà 'data' nell'oggetto 'form'
             this.form.data = formattedDate;
@@ -161,7 +167,7 @@ export default {
         },
         processPayment() {
             // Salva i dati del carrello nel localStorage prima di inviarli al server
-            localStorage.setItem('cart', JSON.stringify(this.store.cart));
+            localStorage.setItem("cart", JSON.stringify(this.store.cart));
 
             console.log(this.form);
             axios
@@ -177,11 +183,20 @@ export default {
     },
     mounted() {
         // Carica i dati del carrello dal localStorage
-        const storedCart = localStorage.getItem('cart');
+        const storedCart = localStorage.getItem("cart");
         if (storedCart) {
             this.store.cart = JSON.parse(storedCart);
         }
 
+        for (let i = 0; i < this.store.cart.length; i++) {
+            console.log(this.store.cart[i].dishId);
+            this.form.dishes.push({
+                id: this.store.cart[i].dishId,
+                quantity: this.store.cart[i].quantity,
+            });
+        }
+
+        // localStorage.clear();
 
         console.log(storedCart);
         console.log(this.form);
@@ -234,10 +249,18 @@ export default {
                 <img src="../../public/pizza.png" alt="pizza" />
             </div>
             <div class="img animation2">
-                <img src="../../public/patatine-fritte.png" alt="patatine fritte" style="width: 30px" />
+                <img
+                    src="../../public/patatine-fritte.png"
+                    alt="patatine fritte"
+                    style="width: 30px"
+                />
             </div>
             <div class="img animation4">
-                <img src="../../public/sushi.png" alt="sushi" style="width: 50px" />
+                <img
+                    src="../../public/sushi.png"
+                    alt="sushi"
+                    style="width: 50px"
+                />
             </div>
         </div>
         <div class="container">
@@ -260,7 +283,10 @@ export default {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in store.cart" :key="item.dish.id">
+                                <tr
+                                    v-for="item in store.cart"
+                                    :key="item.dish.id"
+                                >
                                     <td>{{ item.dish.name }}</td>
                                     <td>{{ item.quantity }}</td>
                                     <td>{{ item.dish.price }}</td>
@@ -290,45 +316,94 @@ export default {
                 <div class="row">
                     <div class="col-12 col-md-8 offset-md-2 form-bg">
                         <h3>Inserisci i tuoi dati</h3>
-                        <form @submit.prevent="processPayment" id="orderForm" method="post">
+                        <form
+                            @submit.prevent="processPayment"
+                            id="orderForm"
+                            method="post"
+                        >
                             <div class="form-group">
                                 <label for="name">Nome</label>
-                                <input type="text" class="form-control" id="name" name="name" required
-                                    v-model="form.name" />
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    v-model="form.name"
+                                />
                             </div>
                             <div class="form-group">
-                                <label class="label-style-create" for="email">E-mail</label>
+                                <label class="label-style-create" for="email"
+                                    >E-mail</label
+                                >
 
-                                <input type="email" class="form-control" id="email" name="email" required
-                                    v-model="form.email" />
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    v-model="form.email"
+                                />
                             </div>
                             <div class="form-group">
-                                <label class="label-style-create" for="address">Indirizzo</label>
-                                <input type="text" class="form-control" id="address" name="address" required
-                                    v-model="form.indirizzo" />
+                                <label class="label-style-create" for="address"
+                                    >Indirizzo</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="address"
+                                    name="address"
+                                    required
+                                    v-model="form.indirizzo"
+                                />
                             </div>
                             <div class="form-group">
-                                <label class="label-style-create" for="phone">Numero di Telefono</label>
-                                <input type="tel" class="form-control" id="phone" name="phone"
-                                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required v-model="form.numero" />
+                                <label class="label-style-create" for="phone"
+                                    >Numero di Telefono</label
+                                >
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    id="phone"
+                                    name="phone"
+                                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                                    required
+                                    v-model="form.numero"
+                                />
                             </div>
                             <div id="dropin-container" class="mt-5"></div>
 
                             <!-- bottone per effettuare il pagamento -->
-                            <button v-if="paymentSuccessful === false" class="btn-boo my-3" id="submit-button"
-                                type="submit" @click="submitPayment">
+                            <button
+                                v-if="paymentSuccessful === false"
+                                class="btn-boo my-3"
+                                id="submit-button"
+                                type="submit"
+                                @click="submitPayment"
+                            >
                                 Procedi con l'ordine
                             </button>
 
-                            <div v-if="loading === true" class="loading-overlay">
+                            <div
+                                v-if="loading === true"
+                                class="loading-overlay"
+                            >
                                 <div class="logo-deliv">
-                                    <img src="/public/DelivebooNoBG.svg" alt="svg deliveboo" />
+                                    <img
+                                        src="/public/DelivebooNoBG.svg"
+                                        alt="svg deliveboo"
+                                    />
                                 </div>
                             </div>
 
                             <!-- bottone per procedere all ordine -->
-                            <router-link v-if="paymentSuccessful" class="text-center"
-                                :to="{ name: 'PaymentCompleted' }">
+                            <router-link
+                                v-if="paymentSuccessful"
+                                class="text-center"
+                                :to="{ name: 'PaymentCompleted' }"
+                            >
                                 <button class="btn-boo">
                                     Procedi con l'ordine
                                 </button>
@@ -346,7 +421,11 @@ export default {
                 <img src="../../public/pizza.png" alt="pizza" />
             </div>
             <div class="img animation4">
-                <img src="../../public/patatine-fritte.png" alt="patatine fritte" style="width: 30px" />
+                <img
+                    src="../../public/patatine-fritte.png"
+                    alt="patatine fritte"
+                    style="width: 30px"
+                />
             </div>
             <div class="img animation3">
                 <img src="../../public/sushi.png" alt="sushi" />
