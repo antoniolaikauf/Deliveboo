@@ -20,8 +20,6 @@ export default {
             selectedRestaurant: selectedRestaurant,
             cart: JSON.parse(localStorage.getItem("cart")) || [],
             showConfirmationModal: false,
-            ciao: 0,
-            prova: false,
         };
     },
     methods: {
@@ -45,26 +43,25 @@ export default {
             const restaurantId = this.selectedRestaurant.id;
             const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
+            const index = storedCart.findIndex(
+                (item) => item.dish.id === dish.id
+            );
             if (
                 storedCart.length > 0 &&
                 storedCart[0].restaurantId !== restaurantId
             ) {
                 this.showConfirmationModal = true;
+                // In questo snippet, l'inizializzazione e la visualizzazione del modale di Bootstrap sono eseguite dentro $nextTick(),
+                // cosi che queste operazioni avvengano solo dopo che Vue ha aggiornato il DOM per rendere visibile il div del modale.
+                // this.$nextTick() funzione per ritardare la logica fino all'aggiornamento del DOM
+                // A causa del sistema di reattività di Vue, l'aggiornamento del DOM per riflettere questa modifica non avviene immediatamente,
                 this.$nextTick(() => {
                     var myModal = new bootstrap.Modal(
-                        document.getElementById("staticBackdrop"),
-                        {
-                            backdrop: "static",
-                            keyboard: false,
-                        }
+                        document.getElementById("staticBackdrop")
                     );
                     myModal.show();
                 });
-            }
-            const index = storedCart.findIndex(
-                (item) => item.dish.id === dish.id
-            );
-            if (index !== -1) {
+            } else if (index !== -1) {
                 storedCart[index].quantity++;
                 storedCart[index].totalPrice =
                     storedCart[index].quantity * storedCart[index].dish.price;
@@ -121,12 +118,6 @@ export default {
                 total += item.dish.price * item.quantity;
             }
             return total;
-        },
-        prova1() {
-            if ((this.ciao = 1)) {
-                this.prova = true;
-            }
-            this.ciao++;
         },
     },
 };

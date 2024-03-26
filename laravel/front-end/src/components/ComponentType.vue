@@ -27,8 +27,7 @@ export default {
     },
 
     methods: {
-
-        // applicazioni filtri 
+        // applicazioni filtri
         check() {
             this.showRestaurant = true;
 
@@ -37,20 +36,15 @@ export default {
             axios
                 .post("http://localhost:8000/api/v1/types/select", this.checked)
                 .then((risposta) => {
-
-
                     // controllo se non ritorna niente
                     if (risposta.data.risposta.length === 0) {
                         this.showRestaurant = false;
                     }
 
                     for (let i = 0; i < risposta.data.risposta[0].length; i++) {
-
                         //incremento count ristoranti
                         count++;
                         if (risposta.data.risposta[0][i].img.startsWith("i")) {
-                            
-                            
                             // chiamata axios
                             let foto = risposta.data.risposta[0][i].img;
                             axios
@@ -65,46 +59,51 @@ export default {
                                 .catch((err) => {
                                     console.log(err);
                                 });
-                            }
                         }
-                        this.countDisplayedRestaurants = count;
-                        this.arrayRestaurantsSelect = risposta.data.risposta;
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
-                },
+                    }
+                    this.countDisplayedRestaurants = count;
+                    this.arrayRestaurantsSelect = risposta.data.risposta;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
 
-                //al click della label cambia classe
-                toggleLabelClicked(event) {
-                    event.currentTarget.classList.toggle("label-clicked");
-                },
+        //al click della label cambia classe
+        toggleLabelClicked(event) {
+            event.currentTarget.classList.toggle("label-clicked");
+        },
 
-                // metodi selezione ristoranti inizio 
-                selectedRestaurantWithType(index, nRestaurants) {
-                const selectedRestaurant = this.arrayRestaurantsSelect[index][nRestaurants];
-                localStorage.setItem('restaurantselected', JSON.stringify(selectedRestaurant));
-                },
+        // metodi selezione ristoranti inizio
+        selectedRestaurantWithType(index, nRestaurants) {
+            const selectedRestaurant =
+                this.arrayRestaurantsSelect[index][nRestaurants];
+            localStorage.setItem(
+                "restaurantselected",
+                JSON.stringify(selectedRestaurant)
+            );
+        },
 
-                groupRestaurant(index) {
-                const selectedRestaurant = this.restaurants[index];
-                localStorage.setItem('restaurantselected', JSON.stringify(selectedRestaurant));
-                },
-                
-                // metodi selezione ristoranti fine
+        groupRestaurant(index) {
+            const selectedRestaurant = this.restaurants[index];
+            console.log(selectedRestaurant.name);
+            localStorage.setItem(
+                "restaurantselected",
+                JSON.stringify(selectedRestaurant)
+            );
+        },
 
+        // metodi selezione ristoranti fine
     },
     mounted() {
         // chiamata axios per ottenere i types di tutti i ristoranti
         axios
             .get("http://localhost:8000/api/v1/types")
             .then((risposta) => {
-
                 this.arrayTypes = risposta.data.types;
                 this.restaurants = risposta.data.restaurants;
                 this.countRestaurantsFound = this.restaurants.length;
                 for (let i = 0; i < risposta.data.restaurants.length; i++) {
-
                     // console.log(risposta.data.restaurants[i]);
                     if (risposta.data.restaurants[i].img.startsWith("i")) {
                         // chiamata axios
@@ -238,9 +237,9 @@ export default {
                 v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                 class="row my-3 p-3"
             >
-
                 <p class="count">
-                    Numero di ristoranti trovati: {{ countDisplayedRestaurants  }}
+                    Numero di ristoranti trovati:
+                    {{ countDisplayedRestaurants }}
                 </p>
                 <div
                     :class="
@@ -292,13 +291,16 @@ export default {
                                     <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
                                     <h5
                                         class="type card-title"
-                                        v-if="Restaurant.hasOwnProperty('pivot')"
+                                        v-if="
+                                            Restaurant.hasOwnProperty('pivot')
+                                        "
                                     >
                                         <i class="fa-solid fa-bowl-food"></i>
                                         Genere:
                                         {{
-                                            arrayTypes[Restaurant.pivot.type_id - 1]
-                                                .name
+                                            arrayTypes[
+                                                Restaurant.pivot.type_id - 1
+                                            ].name
                                         }}
                                     </h5>
 
@@ -311,7 +313,6 @@ export default {
                                         Genere:
                                         {{ types.name }}
                                     </h5>
-
                                 </div>
                             </div>
                         </router-link>
@@ -355,9 +356,8 @@ export default {
 //     // object-fit: cover;
 // }
 
-
 //COUNT
-.count{
+.count {
     font-size: 30px;
     color: #00ccbc;
 }

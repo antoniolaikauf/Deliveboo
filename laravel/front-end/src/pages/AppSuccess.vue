@@ -9,6 +9,9 @@ export default {
     name: "success",
     name: "BraintreeDropin",
     data() {
+        const storedRestaurant = JSON.parse(
+            localStorage.getItem("restaurantselected")
+        );
         const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
         const defaultCartData =
             storedCart.length > 0
@@ -25,6 +28,7 @@ export default {
             paymentSuccessful: false,
             store,
             cart: storedCart,
+            restaurant: storedRestaurant,
             dropInInstance: null,
             form: {
                 name: "",
@@ -189,16 +193,13 @@ export default {
         }
 
         for (let i = 0; i < this.store.cart.length; i++) {
-            console.log(this.store.cart[i].dishId);
             this.form.dishes.push({
                 id: this.store.cart[i].dishId,
                 quantity: this.store.cart[i].quantity,
             });
         }
+        console.log(this.restaurant);
 
-        // localStorage.clear();
-
-        console.log(storedCart);
         console.log(this.form);
         // Calcola il totale dell'ordine e assegnalo alla variabile price
         this.form.price = this.calculateGrandTotal;
@@ -268,7 +269,7 @@ export default {
                 <div class="col-12 col-md-8 offset-md-2">
                     <h1 class="text-center mt-5">
                         Completa il tuo ordine da
-                        {{ store.restaurantselected.name }}
+                        {{ restaurant.name }}
                     </h1>
                     <br />
                     <h3>Riepilogo Ordine</h3>
