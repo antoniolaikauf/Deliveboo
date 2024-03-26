@@ -22,7 +22,7 @@
                     </ul>
                 @endforeach
                 <br>
-                <div class="text-end"><b>tot:</b>{{ $order->price }}&euro;</div>
+                <div class="text-end"><b>tot: </b>{{ $order->price }}&euro;</div>
             </div>
         @endif
     @endforeach
