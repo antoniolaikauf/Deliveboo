@@ -33,6 +33,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
+        // controllare se serve perche teoricamente non serve essendo che nella pagina non viene richiamato user
         $user = User::all();
         return view('create', compact('user'));
     }
