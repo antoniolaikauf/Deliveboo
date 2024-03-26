@@ -286,7 +286,7 @@ export default {
                                 <!-- Visualizza la quantità -->
                                 <button
                                     type="button"
-                                    class="btn btn-primary"
+                                    class="btn btn-boo"
                                     data-bs-toggle="modal"
                                     style="border: 1px solid lightgrey"
                                     data-bs-target="#staticBackdrop"
