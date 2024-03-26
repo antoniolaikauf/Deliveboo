@@ -29,6 +29,7 @@ export default {
     methods: {
         // applicazioni filtri
         check() {
+            // mostra ristoranti selezionati
             this.showRestaurant = true;
 
             //variabile interna di count
@@ -44,9 +45,12 @@ export default {
                     for (let i = 0; i < risposta.data.risposta[0].length; i++) {
                         //incremento count ristoranti
                         count++;
+                        // ricerca dei ristoranti ce hanno l'immagine che inizia con i
+                        // quindi sono immagini salvate nello storage
                         if (risposta.data.risposta[0][i].img.startsWith("i")) {
                             // chiamata axios
                             let foto = risposta.data.risposta[0][i].img;
+                            // chiamata per modificare il path dell'immagine
                             axios
                                 .post(
                                     "http://localhost:8000/api/v1/edit/foto",
@@ -54,7 +58,7 @@ export default {
                                 )
                                 .then((res) => {
                                     this.imgChange = res.data.risposta;
-                                    console.log(res.data.risposta);
+                                    // console.log(res.data.risposta);
                                 })
                                 .catch((err) => {
                                     console.log(err);
@@ -62,6 +66,7 @@ export default {
                         }
                     }
                     this.countDisplayedRestaurants = count;
+                    // associato la risposta della chiamata ad un array
                     this.arrayRestaurantsSelect = risposta.data.risposta;
                 })
                 .catch((err) => {
@@ -105,6 +110,7 @@ export default {
                 this.countRestaurantsFound = this.restaurants.length;
                 for (let i = 0; i < risposta.data.restaurants.length; i++) {
                     // console.log(risposta.data.restaurants[i]);
+                    // controllo se ci sono immagini che sono state caricate dallo storage
                     if (risposta.data.restaurants[i].img.startsWith("i")) {
                         // chiamata axios
                         let foto = risposta.data.restaurants[i].img;
@@ -144,7 +150,7 @@ export default {
                 </div>
                 <div class="row">
                     <!-- INPUT TYPE RISTORANTI -->
-
+                    <!-- ciclo su i typi dei ristoranti -->
                     <div
                         class="text-center col-12 col-md-6 col-lg-2"
                         v-for="(type, i) in arrayTypes"
@@ -182,13 +188,14 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- tag contenete tutti i ristoranti  -->
             <div v-if="!showRestaurant" class="row my-3 p-3">
                 <div
                     class="col-12 col-md-6 col-lg-3 my-3 bg-transparent border-0 bg-white"
                     v-for="(restaurant, i) in restaurants"
                 >
                     <div class="card">
-                        <!-- carico i ristoranti  -->
+                        <!-- rotta per mostrare il singolo ristorante e inserito anche nei params cosi che compaia id del ristorante nell url  -->
                         <router-link
                             class="text-dark"
                             :to="{ name: 'Restaurant', params: { id: i + 1 } }"
@@ -231,8 +238,6 @@ export default {
                     </div>
                 </div>
             </div>
-            <!-- vedere se tenerla o no questa altezza -->
-
             <div
                 v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                 class="row my-3 p-3"
@@ -254,7 +259,7 @@ export default {
                         Non ci sono ristoranti con queste tipologie
                     </span>
                 </div>
-
+                <!-- ciclo su i ristoranti  -->
                 <div
                     v-else
                     class="col-12 col-md-6 col-lg-3 bg-transparent border-0 p-2"

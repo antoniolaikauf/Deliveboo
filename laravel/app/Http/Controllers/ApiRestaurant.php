@@ -97,16 +97,15 @@ class ApiRestaurant extends Controller
             'risposta' => $imguploated,
         ]);
     }
+    // public function order(Request $request)
+    // {
+    //     // prendi tutti gli ordini
+    //     $dishes = order::all();
 
-    public function order(Request $request)
-    {
-        // prendi tutti gli ordini
-        $dishes = order::all();
-
-        return response()->json([
-            'ordine' => $dishes,
-        ]);
-    }
+    //     return response()->json([
+    //         'ordine' => $dishes,
+    //     ]);
+    // }
     public function makeorder(Request $request)
     {
         // prendi tutti i dati
@@ -128,7 +127,7 @@ class ApiRestaurant extends Controller
         // prendi i dishes
         $dishes = $data['dishes'];
 
-        // associ i l'ordine con i piatti
+        // associ l'ordine con i piatti
         foreach ($dishes as $dishData) {
             // trova piatto con i dati inseriti che ha il form
             $dish = Dish::find($dishData['id']);

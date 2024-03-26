@@ -30,12 +30,12 @@ Route::group(['prefix' => '/v1'], function () {
     route::post('types/select', [ApiRestaurant::class, 'TypesSelected']);
     // chiamata per modificare foto
     route::post('edit/foto', [ApiRestaurant::class, 'EditFoto']);
+    // creazione ordine 
+    Route::post('/create/order', [ApiRestaurant::class, 'makeorder']);
     // Rotta per la generazione del token
     Route::get('/generate', [OrderController::class, 'generate']);
     // Rotta per la effettuare il pagamento
     Route::post('/makePayment', [OrderController::class, 'makePayment']);
-    // creazione ordine 
-    Route::post('/create/order', [ApiRestaurant::class, 'makeorder']);
     // prendere ordini
-    Route::get('/order', [ApiRestaurant::class, 'order']);
+    // Route::get('/order', [ApiRestaurant::class, 'order']);
 });

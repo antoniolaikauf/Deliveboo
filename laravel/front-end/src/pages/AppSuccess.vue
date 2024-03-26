@@ -1,6 +1,6 @@
 <script>
 import { store } from "../store";
-// import braintree from "braintree-web-drop-in";
+// import di braintree
 import dropin from "braintree-web-drop-in";
 
 import axios from "axios";
@@ -28,8 +28,10 @@ export default {
             paymentSuccessful: false,
             store,
             cart: storedCart,
+            // variabile uguale al ristorante 
             restaurant: storedRestaurant,
             dropInInstance: null,
+            // form perinderire i dati 
             form: {
                 name: "",
                 email: "",
@@ -41,25 +43,17 @@ export default {
 
                 // restaurant_id preso dal localStorage del cart
                 restaurant_id: defaultCartData.restaurantId,
-                dishes: [
-                    //DEVE ESSERE DINAMICO
-                    // Supponiamo che tu cambi dish_ids in dishes per includere le quantità
-                    // {
-                    //     id: defaultCartData.dishId,
-                    //     quantity: defaultCartData.quantity,
-                    // }, // Esempio di piatto con ID e quantità
-                ],
+                dishes: [],
             },
-            // in order metti id dell'ordine
+            // form per il pagamento con token e  ordine
             form_order: {
                 token: "",
-
-                //reso dinamico
                 order: "",
             },
         };
     },
     methods: {
+        // metodo per controllare il pagamento 
         sendFormDataToServer() {
             // Salva i dati del carrello nel localStorage prima di inviarli al server
             localStorage.setItem("cart", JSON.stringify(this.store.cart));
@@ -134,7 +128,7 @@ export default {
             this.form.data = formattedDate;
 
             console.log(this.form.data);
-
+            // metodo di libreria braintree
             this.dropInInstance.requestPaymentMethod((err, payload) => {
                 if (err) {
                     console.error(
@@ -146,13 +140,14 @@ export default {
                 }
                 // Qui invii il payload.nonce al tuo server per processare il pagamento tramite Braintree
                 console.log("Nonce ottenuto:", payload.nonce);
-                this.onSuccess(payload);
 
+                this.onSuccess(payload);
                 // Dopo aver completato il pagamento tramite Braintree, invia i dati del form al server
                 this.sendFormDataToServer();
             });
         },
         onSuccess(payload) {
+            // presa del token.nonce che serve per il controllo del token nel backend
             let nonce = payload.nonce;
             this.form_order.token = payload.nonce;
             console.log("Pagamento riuscito con nonce:", nonce);
@@ -169,11 +164,11 @@ export default {
             let message = error.message;
             // Whoops, idroscimmia.jpeg
         },
+        // metodo per creare l'ordine del cliente
         processPayment() {
             // Salva i dati del carrello nel localStorage prima di inviarli al server
             localStorage.setItem("cart", JSON.stringify(this.store.cart));
 
-            console.log(this.form);
             axios
                 .post("http://localhost:8000/api/v1/create/order", this.form)
                 .then((res) => {
@@ -191,21 +186,19 @@ export default {
         if (storedCart) {
             this.store.cart = JSON.parse(storedCart);
         }
-
+        // ciclo per inserire i piatti dentro al form per creazione del ordine
         for (let i = 0; i < this.store.cart.length; i++) {
             this.form.dishes.push({
                 id: this.store.cart[i].dishId,
                 quantity: this.store.cart[i].quantity,
             });
         }
-        console.log(this.restaurant);
-
-        console.log(this.form);
         // Calcola il totale dell'ordine e assegnalo alla variabile price
         this.form.price = this.calculateGrandTotal;
 
-        // axios per pagamento
+        // axios per pagamento genera il token
         axios.get("http://localhost:8000/api/v1/generate").then((res) => {
+            // preso token e messonell'authorization
             let token = null;
             token = res.data.token;
             dropin.create(
@@ -317,6 +310,7 @@ export default {
                 <div class="row">
                     <div class="col-12 col-md-8 offset-md-2 form-bg">
                         <h3>Inserisci i tuoi dati</h3>
+                        <!-- form per inviare i dati -->
                         <form
                             @submit.prevent="processPayment"
                             id="orderForm"
