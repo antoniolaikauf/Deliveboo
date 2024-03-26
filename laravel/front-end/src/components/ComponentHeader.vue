@@ -1,43 +1,77 @@
 <script>
 export default {
     name: "Header",
+
+    data() {
+        return {
+            restaurant: JSON.parse(localStorage.getItem("restaurantselected")),
+            dishes: JSON.parse(localStorage.getItem("cart")) || [],
+        };
+    },
+
+    mounted() {
+        console.log(this.restaurant);
+        console.log(this.dishes);
+    },
 };
 </script>
 
 <template>
     <div class="container-fluid bg-black gx-0">
         <div class="container">
-
-            <nav class="navbar ">
+            <nav class="navbar">
                 <div class="container-fluid">
                     <router-link :to="{ name: 'home' }">
                         <img
-                        class="logo"
-                        src="/DelivebooNoBG.svg"
-                        alt="logo-deliveboo"
-                        /></router-link>
+                            class="logo"
+                            src="/DelivebooNoBG.svg"
+                            alt="logo-deliveboo"
+                    /></router-link>
 
-                        <!-- <div class="search-container">
+                    <!-- <div class="search-container">
                             <i class="fa-solid fa-paper-plane"></i>
 
                             <input class="search" type="text" placeholder="Ricerca" />
                             <button class="btn input-btn">Cerca</button>
                         </div> -->
 
-                        <div class="d-flex">
-                            <!-- BOTTONE LOGIN -->
-                            <!-- <router-link :to="{ name: 'Login' }"> -->
+                    <div class="d-flex">
+                        <!-- BOTTONE LOGIN -->
+                        <!-- <router-link :to="{ name: 'Login' }"> -->
 
-                    <a href="http://localhost:8000/login">
-                        <button class="d-none d-md-flex btn-boo mx-3">
-                            <div class="mx-3">
-                                <i class="fa-solid fa-house color"></i>
-                            </div>
+                        <a href="http://localhost:8000/login">
+                            <button class="d-none d-md-flex btn-boo mx-3">
+                                <div class="mx-3">
+                                    <i class="fa-solid fa-house color"></i>
+                                </div>
 
-                            <div>
-                                <span>Accedi</span>
-                            </div>
-                        </button></a
+                                <div>
+                                    <span>Accedi</span>
+                                </div>
+                            </button></a
+                        >
+                        <router-link
+                            :to="{
+                                name: 'Restaurant',
+                                params: { id: this.restaurant.id },
+                            }"
+                            class="text-white"
+                        >
+                            <button class="d-none d-md-flex btn-boo mx-3">
+                                <div class="mx-3">
+                                    <i
+                                        class="fa-solid fa-cart-shopping color"
+                                    ></i>
+                                </div>
+
+                                <div>
+                                    <span v-if="dishes.length > 0">
+                                        ordini nel carrello:
+                                        {{ dishes.length }}</span
+                                    >
+                                    <span v-else> non hai nessun ordine </span>
+                                </div>
+                            </button></router-link
                         >
                         <!-- </router-link> -->
 
@@ -114,17 +148,17 @@ export default {
                                 ></i>
                             </div> -->
 
-                            <!-- <div>
+                        <!-- <div>
                                 <span>Advance</span>
                             </div>
                         </button>
                     </router-link> -->
-                    <!-- </div>
+                        <!-- </div>
                     </div> -->
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
     </div>
 </template>
 

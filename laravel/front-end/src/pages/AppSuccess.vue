@@ -9,9 +9,6 @@ export default {
     name: "success",
     name: "BraintreeDropin",
     data() {
-        const storedRestaurant = JSON.parse(
-            localStorage.getItem("restaurantselected")
-        );
         const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
         const defaultCartData =
             storedCart.length > 0
@@ -28,10 +25,10 @@ export default {
             paymentSuccessful: false,
             store,
             cart: storedCart,
-            // variabile uguale al ristorante 
-            restaurant: storedRestaurant,
+            // variabile uguale al ristorante
+            restaurant: JSON.parse(localStorage.getItem("restaurantselected")),
             dropInInstance: null,
-            // form perinderire i dati 
+            // form perinderire i dati
             form: {
                 name: "",
                 email: "",
@@ -53,7 +50,7 @@ export default {
         };
     },
     methods: {
-        // metodo per controllare il pagamento 
+        // metodo per controllare il pagamento
         sendFormDataToServer() {
             // Salva i dati del carrello nel localStorage prima di inviarli al server
             localStorage.setItem("cart", JSON.stringify(this.store.cart));

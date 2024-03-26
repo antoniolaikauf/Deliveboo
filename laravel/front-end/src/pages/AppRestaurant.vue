@@ -40,6 +40,10 @@ export default {
         },
 
         addToCart(dish) {
+            // aggiorna la pagina senza che schiacci refresh in modo tale che il counter dell'carello
+            // si aggiorni automaticamente
+            location.reload();
+
             const restaurantId = this.selectedRestaurant.id;
             const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -57,7 +61,13 @@ export default {
                 // A causa del sistema di reattività di Vue, l'aggiornamento del DOM per riflettere questa modifica non avviene immediatamente,
                 this.$nextTick(() => {
                     var myModal = new bootstrap.Modal(
-                        document.getElementById("staticBackdrop")
+                        document.getElementById("staticBackdrop"),
+                        {
+                            // impedisce la chiusura del modale quando clicchi fuori
+                            backdrop: "static",
+                            //  disabilita la possibilità di chiudere il modale premendo il tasto Esc.
+                            // keyboard: false,
+                        }
                     );
                     myModal.show();
                 });
@@ -94,6 +104,10 @@ export default {
 
         // Rimuovi un piatto dal carrello
         removeFromCart(dish) {
+            // aggiorna la pagina senza che schiacci refresh in modo tale che il counter dell'carello
+            // si aggiorni automaticamente
+            location.reload();
+
             const index = this.cart.findIndex(
                 (item) => item.dish.id === dish.id
             );
