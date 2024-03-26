@@ -75,8 +75,7 @@ export default {
 
                                 <div class="d-none d-md-flex">
                                     <span v-if="dishes.length > 0">
-                                        ordini nel carrello:
-                                        {{ dishes.length }}</span
+                                        [{{ dishes.length }}]</span
                                     >
                                     <span v-else> [0] </span>
                                 </div>
