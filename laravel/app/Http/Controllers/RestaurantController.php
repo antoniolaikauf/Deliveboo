@@ -33,9 +33,9 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        // controllare se serve perche teoricamente non serve essendo che nella pagina non viene richiamato user
-        $user = User::all();
-        return view('create', compact('user'));
+        // $user = User::all();
+        // commentato user se causa problemi rimetterlo e metterlo nei compact , compact('user')
+        return view('create');
     }
 
     /**
@@ -49,7 +49,6 @@ class RestaurantController extends Controller
 
 
         $data = $request->all();
-
 
         $img = $data['img'];
         $image_path = Storage::disk('public')->put('images', $img);
