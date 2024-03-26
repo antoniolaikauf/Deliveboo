@@ -20,75 +20,77 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Descrizione</th>
-                                <th scope="col" style="width: 100px;">Prezzo</th>
-                                <th scope="col" style="width: 20px;">Disponibilità</th>
-                                <th scope="col" style="width: 20px;">Immagini</th>
-                                <th scope="col" style="width: 90px;">Azioni</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{-- reverse, inverte l'ordine dell'array --}}
-                            @foreach ($dishes->reverse() as $dish)
-                                @if (Auth::check() && Auth::id() === $dish->user_id)
-                                    <tr>
-                                        <td>{{ $dish->name }}</td>
-                                        <td>{{ $dish->description }}</td>
-                                        <td>{{ $dish->price }} €</td>
-                                        <td>
-                                            @if ($dish->available)
-                                                <span class="badge bg-success">Disponibile</span>
-                                            @else
-                                                <span class="badge bg-danger">Non disponibile</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <div class="img-cont">
-                                                @if ($dish->img == null)
-                                                    <div class="text-danger">
-                                                        <b>immagine non selezionata</b>
-                                                    </div>
+                    <div class="card mask-custom">
+                        <table class="table table-striped table-borderless text-white">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Descrizione</th>
+                                    <th scope="col" style="width: 100px;">Prezzo</th>
+                                    <th scope="col" style="width: 20px;">Disponibilità</th>
+                                    <th scope="col" style="width: 20px;">Immagini</th>
+                                    <th scope="col" style="width: 90px;">Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{-- reverse, inverte l'ordine dell'array --}}
+                                @foreach ($dishes->reverse() as $dish)
+                                    @if (Auth::check() && Auth::id() === $dish->user_id)
+                                        <tr>
+                                            <td>{{ $dish->name }}</td>
+                                            <td>{{ $dish->description }}</td>
+                                            <td>{{ $dish->price }} €</td>
+                                            <td>
+                                                @if ($dish->available)
+                                                    <span class="badge bg-success">Disponibile</span>
                                                 @else
-                                                    <div>
-                                                        {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
-                                                        @if ($dish->img && Storage::disk('public')->exists($dish->img))
-                                                            <img class="img-fluid"
-                                                                src="{{ asset('storage/' . $dish->img) }}"
-                                                                alt="Immagine del piatto {{ $dish->name }}">
-                                                        @else
-                                                            <img class="img-fluid" src="{{ asset($dish->img) }}"
-                                                                alt="Immagine del piatto {{ $dish->name }}">
-                                                        @endif
-                                                    </div>
+                                                    <span class="badge bg-danger">Non disponibile</span>
                                                 @endif
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @auth
-                                                <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <button class="btn btn-sm btn-danger"
-                                                    onclick="showConfirmationModal('{{ $dish->id }}')">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                                <form id="deleteForm_{{ $dish->id }}"
-                                                    action="{{ route('dish.delete', $dish->id) }}" method="POST"
-                                                    style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                            @endauth
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                        </tbody>
-                    </table>
+                                            </td>
+                                            <td>
+                                                <div class="img-cont">
+                                                    @if ($dish->img == null)
+                                                        <div class="text-danger">
+                                                            <b>immagine non selezionata</b>
+                                                        </div>
+                                                    @else
+                                                        <div>
+                                                            {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
+                                                            @if ($dish->img && Storage::disk('public')->exists($dish->img))
+                                                                <img class="img-fluid"
+                                                                    src="{{ asset('storage/' . $dish->img) }}"
+                                                                    alt="Immagine del piatto {{ $dish->name }}">
+                                                            @else
+                                                                <img class="img-fluid" src="{{ asset($dish->img) }}"
+                                                                    alt="Immagine del piatto {{ $dish->name }}">
+                                                            @endif
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @auth
+                                                    <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <button class="btn btn-sm btn-danger"
+                                                        onclick="showConfirmationModal('{{ $dish->id }}')">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                    <form id="deleteForm_{{ $dish->id }}"
+                                                        action="{{ route('dish.delete', $dish->id) }}" method="POST"
+                                                        style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @endauth
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,6 +134,23 @@
 
     {{-- CSS --}}
     <style>
+.table > :not(caption) > * > * {
+    color: rgb(255, 255, 255);
+}
+.table{
+    --bs-table-bg: transparent;
+    --bs-table-border-color: gray;
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, .2);
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+  margin: 50px 0;
+}
         .img-cont .img-fluid {
             height: 50px;
             width: 100%;
