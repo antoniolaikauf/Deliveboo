@@ -141,7 +141,7 @@ public function run()
             'name' => 'Vino Rosso',
             'description' => 'Vino rosso di qualità selezionata.',
             'img'=>'https://laspesaonline.eurospin.it/photo/2023/01/05/22/main/large/10726401-11434201-20230101000434.jpg',
-            'available' => false,
+            'available' => true,
             'price' => 15.00,
         ],
         [
