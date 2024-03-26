@@ -71,11 +71,11 @@
                                             <td>
                                                 @auth
                                                     <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-edit"></i>
+                                                        <i class="fas fa-edit" style="color: white";></i>
                                                     </a>
                                                     <button class="btn btn-sm btn-danger"
                                                         onclick="showConfirmationModal('{{ $dish->id }}')">
-                                                        <i class="fas fa-trash-alt"></i>
+                                                        <i class="fas fa-trash-alt" style="color: white";></i>
                                                     </button>
                                                     <form id="deleteForm_{{ $dish->id }}"
                                                         action="{{ route('dish.delete', $dish->id) }}" method="POST"
