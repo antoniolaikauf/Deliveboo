@@ -17,12 +17,12 @@
                     <ul style="list-style-type: none">
                         <li class="d-flex justify-content-between">
                             <div>- {{ $dish->pivot->quantity }}X {{ $dish->name }}</div>
-                            <div>{{ $dish->price }}</div>
+                            <div>{{ $dish->price }}&euro;</div>
                         </li>
                     </ul>
                 @endforeach
                 <br>
-                <div class="text-end"><b>tot:</b>{{ $order->price }}&euro;</div>
+                <div class="text-end"><b>tot: </b>{{ $order->price }}&euro;</div>
             </div>
         @endif
     @endforeach
