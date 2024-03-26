@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <h2 class="fs-4 text-secondary my-4">
-            {{ __('Profile') }}
+    <div class="container form-bg my-5">
+        <h2 class="fs-4 text-white my-4">
+            {{ __('Profilo') }}
         </h2>
-        <div class="card p-4 mb-4 bg-white shadow rounded-lg">
+        <div class="card p-4 mb-4 form-bg text-white shadow rounded-lg">
 
             @include('profile.partials.update-profile-information-form')
 
         </div>
 
-        <div class="card p-4 mb-4 bg-white shadow rounded-lg">
+        <div class="card p-4 mb-4 form-bg shadow rounded-lg">
 
 
             @include('profile.partials.update-password-form')
@@ -18,7 +18,7 @@
         </div>
 
 
-        <div class="card p-4 mb-4 bg-white shadow rounded-lg">
+        <div class="card p-4 mb-4 text-white shadow rounded-lg form-bg">
             <h2>Modifica Ristorante</h2>
             @foreach ($restaurants as $restaurant)
                 @if (Auth::check() && Auth::id() === $restaurant->user_id)
@@ -83,15 +83,46 @@
 
 
 
-        <div class="card p-4 mb-4 bg-white shadow rounded-lg">
+        {{-- <div class="card p-4 mb-4 shadow rounded-lg form-bg">
 
 
             @include('profile.partials.delete-user-form')
 
-        </div>
+        </div> --}}
     </div>
 
 
 
     </div>
+
+<style>
+    /* STILE FORM */
+    .form-bg {
+        background-color: #292929;
+        padding: 40px;
+        border-radius: 17px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        transform: translateY(10px);
+    }
+
+    .form-control {
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) inset;
+        background-color: transparent;
+        color: #ffffff;
+    }
+
+    .form-control::placeholder {
+        color: #ffffff;
+    }
+
+    .form-selectl::placeholder {
+        color: #ffffff;
+    }
+
+    /* END STILE FORM */
+
+</style>
 @endsection

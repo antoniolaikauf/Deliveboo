@@ -11,17 +11,6 @@
                     @csrf
                     @method('POST')
 
-                    {{-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-            </div>
-            @endif --}}
-
-
             {{-- NOME --}}
             <div class="d-flex align-items-center flex-column gap-3">
                 <label class="label-style-create" for="name">Nome</label>

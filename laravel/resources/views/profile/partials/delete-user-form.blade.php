@@ -1,10 +1,10 @@
-<section class="space-y-6">
+<section class="space-y-6 form-bg text-white">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-white">
             {{ __('Elimina account') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <p class="mt-1 text-sm text-white-600">
             {{ __('Una volta eliminato il tuo account, tutte le sue risorse e i suoi dati verranno eliminati definitivamente. Prima di eliminare il tuo account, scarica tutti i dati o le informazioni che desideri conservare.') }}
         </p>
     </header>
@@ -64,5 +64,35 @@
             </div>
         </div>
     </div>
+
+    <style>
+        /* STILE FORM */
+        .form-bg {
+            background-color: #292929;
+            padding: 40px;
+            border-radius: 17px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            transform: translateY(10px);
+        }
+    
+        .form-control {
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) inset;
+            background-color: transparent;
+            color: #ffffff;
+        }
+    
+        .form-control::placeholder {
+            color: #ffffff;
+        }
+    
+        .form-selectl::placeholder {
+            color: #ffffff;
+        }
+    
+        /* END STILE FORM */
+    </style>
 
 </section>
