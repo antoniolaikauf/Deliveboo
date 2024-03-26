@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-center mt-2">I tuoi ordini</h1>
+
+<div class="container-fluid gx-0 p-5 bg-login">
+    <h1 class="text-center text-white">I tuoi ordini</h1>
 
     @foreach ($orders as $order)
         @if (Auth::check() && Auth::id() === $order->restaurant_id)
-            <div class="orders card">
-                <div></div>
+            <div class="orders card form-bg text-white">
                 <div class="d-flex justify-content-between">
                     <p>Codice ordine: <b>#{{ $order->id }}</b></p>
                     <p>{{ $order->created_at }}</p>
@@ -22,11 +23,14 @@
                     </ul>
                 @endforeach
                 <br>
-                <div class="text-end"><b>tot: </b>{{ $order->price }}&euro;</div>
+                <div class="text-end"><b>Totale: </b>{{ $order->price }}&euro;</div>
             </div>
         @endif
     @endforeach
 
+
+
+</div>
     {{-- <div class="orders">
         <div class="d-flex justify-content-between">
             <p>Codice ordine: <b>#1</b></p>
@@ -95,5 +99,20 @@
             margin: 20px auto;
             padding: 2rem
         }
+
+        .form-bg {
+            background-color: #292929;
+            padding: 40px;
+            border-radius: 17px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            transform: translateY(10px);
+        }
+
+        .bg-login {
+            background-image: url(imgs/risto-login.jpg);
+            background-size: cover;
+            height: 100%;
+}
+
     </style>
 @endsection
