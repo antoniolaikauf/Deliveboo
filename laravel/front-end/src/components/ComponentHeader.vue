@@ -57,32 +57,31 @@ export default {
                             }"
                             class="text-white"
                         >
-                            <button class="d-none d-md-flex btn-boo mx-3">
+                            <!-- BOTTONE LOGIN (RESPONSIVE) -->
+                            <a href="http://localhost:8000/login">
+                                <button class="btn-boo d-md-none mx-3">
+                                    <div class="mx-3">
+                                        <i class="fa-solid fa-house color"></i>
+                                    </div>
+                                </button>
+                            </a>
+
+                            <button class="d-md-flex btn-boo mx-3">
                                 <div class="mx-3">
                                     <i
                                         class="fa-solid fa-cart-shopping color"
                                     ></i>
                                 </div>
 
-                                <div>
+                                <div class="d-none d-md-flex">
                                     <span v-if="dishes.length > 0">
-                                        ordini nel carrello:
-                                        {{ dishes.length }}</span
+                                        [{{ dishes.length }}]</span
                                     >
-                                    <span v-else> non hai nessun ordine </span>
+                                    <span v-else> [0] </span>
                                 </div>
                             </button></router-link
                         >
                         <!-- </router-link> -->
-
-                        <!-- BOTTONE LOGIN (RESPONSIVE) -->
-                        <a href="http://localhost:8000/login">
-                            <button class="btn-boo d-md-none mx-3">
-                                <div class="mx-3">
-                                    <i class="fa-solid fa-house color"></i>
-                                </div>
-                            </button>
-                        </a>
 
                         <!-- BOTTONE ADVANCE (ricerca) -->
                         <!-- <button
