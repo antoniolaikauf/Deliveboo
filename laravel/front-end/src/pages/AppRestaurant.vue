@@ -40,10 +40,6 @@ export default {
         },
 
         addToCart(dish) {
-            // aggiorna la pagina senza che schiacci refresh in modo tale che il counter dell'carello
-            // si aggiorni automaticamente
-            location.reload();
-
             const restaurantId = this.selectedRestaurant.id;
             const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -76,6 +72,9 @@ export default {
                 storedCart[index].totalPrice =
                     storedCart[index].quantity * storedCart[index].dish.price;
             } else {
+                // aggiorna la pagina senza che schiacci refresh in modo tale che il counter dell'carello
+                // si aggiorni automaticamente
+                location.reload();
                 // Aggiungi l'id del ristorante al piatto prima di aggiungerlo al carrello
                 storedCart.push({
                     dish: dish,
@@ -104,10 +103,6 @@ export default {
 
         // Rimuovi un piatto dal carrello
         removeFromCart(dish) {
-            // aggiorna la pagina senza che schiacci refresh in modo tale che il counter dell'carello
-            // si aggiorni automaticamente
-            location.reload();
-
             const index = this.cart.findIndex(
                 (item) => item.dish.id === dish.id
             );
@@ -117,6 +112,9 @@ export default {
                     this.cart[index].totalPrice =
                         this.cart[index].quantity * this.cart[index].dish.price;
                 } else {
+                    // aggiorna la pagina senza che schiacci refresh in modo tale che il counter dell'carello
+                    // si aggiorni automaticamente
+                    location.reload();
                     this.cart.splice(index, 1);
                 }
             }
