@@ -191,7 +191,6 @@ export default {
 </script>
 
 <template>
-    <section>
         <!-- Sezione ristorante -->
         <section>
             <div class="container p-4">
@@ -292,13 +291,11 @@ export default {
                 </div>
             </div>
         </section>
-        <section
-            class="d-flex justify-content-center align-items-start bg-dark"
-        >
-            <div class="position-relative">
+        <section class="row gx-0 p-3 bg-dark">
+            <div class="position-relative col-12 col-md-6">
                 <!-- Sezione carrello -->
                 <section v-if="selectedRestaurant">
-                    <div class="container p-3">
+                    <div class="container-fluid">
                         <div>
                             <h1 style="color: #ffffff">Menù</h1>
                         </div>
@@ -428,7 +425,7 @@ export default {
                 </div>
             </div>
             <!-- Carrello -->
-            <section class="col-6 cart p-3 my-5">
+            <section class="col-12 col-md-6 align-items-start cart p-3 my-5">
                 <div>
                     <h1 class="text-white">Carrello</h1>
                 </div>
@@ -472,7 +469,6 @@ export default {
                 </section>
             </section>
         </section>
-    </section>
 </template>
 
 <style lang="scss">
