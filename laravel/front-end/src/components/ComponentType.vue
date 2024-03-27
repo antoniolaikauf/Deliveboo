@@ -27,6 +27,25 @@ export default {
     },
 
     methods: {
+        reveal() {
+            let reveals = document.querySelectorAll(".reveal");
+
+            for (let i = 0; i < reveals.length; i++) {
+                // La linea di codice let windowHeight = window.innerHeight; serve a ottenere l'altezza della finestra di visualizzazione del browser, ovvero la quantità di spazio verticale disponibile sulla pagina web visibile allo spettatore
+                let windowHeight = window.innerHeight;
+
+                // getBoundingClientRect().top restituisce la distanza tra il bordo superiore dell'elemento e il bordo superiore della finestra di visualizzazione.
+                let elementTop = reveals[i].getBoundingClientRect().top;
+                let elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        },
+
         // applicazioni filtri
         check() {
             // mostra ristoranti selezionati
@@ -131,6 +150,8 @@ export default {
             .catch((err) => {
                 console.log(err);
             });
+
+        window.addEventListener("scroll", this.reveal);
     },
 };
 </script>
@@ -191,7 +212,7 @@ export default {
             <!-- tag contenete tutti i ristoranti  -->
             <div v-if="!showRestaurant" class="row my-3 p-3">
                 <div
-                    class="col-12 col-md-6 col-lg-3 my-3 bg-transparent border-0 bg-white"
+                    class="col-12 col-md-6 col-lg-3 my-3 bg-transparent border-0 bg-white reveal"
                     v-for="(restaurant, i) in restaurants"
                 >
                     <div class="card">
@@ -360,6 +381,19 @@ export default {
 //     height: 100%;
 //     // object-fit: cover;
 // }
+
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 1s all ease;
+
+}
+
+.reveal.active{
+  transform: translateY(0);
+  opacity: 1;
+}
 
 //COUNT
 .count {
