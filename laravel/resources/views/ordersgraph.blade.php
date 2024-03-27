@@ -1,4 +1,11 @@
-<canvas id="topDishesChart" width="300" height="300"></canvas>
+@extends('layouts.app')
+@section('content')
+<div class="card">
+<h1 class="text-center p-3">Ecco i tuoi piatti più ordinati:</h1>
+<div>
+<canvas class="p-2" id="topDishesChart" width="800" height="800"></canvas>
+</div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     var ctx = document.getElementById('topDishesChart').getContext('2d');
@@ -31,11 +38,7 @@
             maintainAspectRatio: false,
             width: 300,
             height: 300,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
         }
     });
 </script>
+@endsection

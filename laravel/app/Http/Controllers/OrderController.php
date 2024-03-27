@@ -43,6 +43,7 @@ class OrderController extends Controller
             $query->where('restaurant_id', $restaurantId);
         })
         ->with('dishes')
+        ->limit(5)
         ->get();
 
         //array dei piatti
