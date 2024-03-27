@@ -240,7 +240,7 @@ export default {
                                             <i class="fa-solid fa-city"></i>
                                             Località: {{ restaurant.city }}
                                         </h5>
-                                        <h5 class="card-hover__text type">
+                                        <h5 class="card-hover__text">
                                             Genere:
                                             <span
                                                 v-for="(
@@ -323,16 +323,16 @@ export default {
                                     <h4 class="card-hover__title">
                                         <strong>{{ Restaurant.name }}</strong>
                                     </h4>
-                                    <h5 class="locality card-title">
+                                    <h5 class="locality card-hover__text">
                                         <i class="fa-solid fa-city"></i>
                                         Località:
                                         {{ Restaurant.city }}
                                     </h5>
 
-                                    <div class="label-type">
+                                    <div class="label-type ">
                                         <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
                                         <h5
-                                            class="type card-hover__text"
+                                            class=" card-hover__text"
                                             v-if="
                                                 Restaurant.hasOwnProperty('pivot')
                                             "
@@ -348,7 +348,7 @@ export default {
 
                                         <h5
                                             v-else
-                                            class="type card-hover__text"
+                                            class=" card-hover__text"
                                             v-for="(types, i) in Restaurant.types"
                                         >
                                             <i class="fa-solid fa-bowl-food"></i>
@@ -643,6 +643,7 @@ label {
     background-color: #00ccbc;
     border-radius: 10px 0;
     width: 230px;
+    text-align: center;
 }
 
 .animation-error {
