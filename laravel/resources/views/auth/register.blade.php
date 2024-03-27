@@ -169,10 +169,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4" id="registrationFormContainer">
+    <div class="container-fluid gx-0 bg-login" id="registrationFormContainer">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card card-login form-bg text-white form-create my-5">
                     <div class="card-header">{{ __('Registrati') }}</div>
 
                     <div class="card-body">
@@ -525,7 +525,7 @@
                 // Altrimenti, imposta un messaggio di errore e restituisci false per impedire l'invio del modulo
                 if (atLeastOneSelected) {
                     form.querySelector('.invalid-feedback').textContent =
-                    ""; // Rimuovi eventuali messaggi di errore precedenti
+                        ""; // Rimuovi eventuali messaggi di errore precedenti
                     return true;
                 } else {
                     form.querySelector('.invalid-feedback').textContent =
@@ -536,4 +536,21 @@
             });
         });
     </script>
+    <style>
+        .form-bg {
+            background-color: #292929;
+            padding: 40px;
+            border-radius: 17px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            transform: translateY(10px);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .bg-login {
+            background-image: url(imgs/risto-login.jpg);
+            background-size: cover;
+            height: 100%;
+        }
+    </style>
 @endsection
