@@ -24,11 +24,11 @@ export default {
             imgChange: "",
             imgChangePlates:"",
         };
-        
+
     },
     methods: {
 
-        
+
         getQuantity(dish) {
             const index = this.cart.findIndex(
                 (item) => item.dish.id === dish.id
@@ -40,7 +40,7 @@ export default {
             // Svuota il carrello e nascondi il modale di conferma
             this.cart = [];
             this.showConfirmationModal = false;
-            
+
             // Aggiorna il carrello nel localStorage
             localStorage.setItem("cart", JSON.stringify(this.cart));
         },
@@ -90,23 +90,23 @@ export default {
                     dishId: dish.id,
                 });
             }
-            
+
             // Aggiorna il carrello nel localStorage
             localStorage.setItem("cart", JSON.stringify(storedCart));
-            
+
             // Aggiorna il carrello nel componente
             this.cart = storedCart;
         },
-        
+
         // confirmAction() {
             //     // Svuota il carrello e nascondi il modale di conferma
             //     this.cart = [];
             //     this.showConfirmationModal = false;
-            
+
             //     // Aggiorna il carrello nel localStorage
             //     localStorage.setItem('cart', JSON.stringify(this.cart));
             // },
-            
+
             // Rimuovi un piatto dal carrello
             removeFromCart(dish) {
                 const index = this.cart.findIndex(
@@ -138,7 +138,7 @@ export default {
             return total;
         },
     },
-    
+
     mounted (){
 
                     if (this.selectedRestaurant.img.startsWith("i")) {
@@ -181,12 +181,12 @@ export default {
                                 console.log(err);
                                 });
                         }
-                            
+
                     }
 
 
     }
-    
+
 };
 </script>
 
@@ -292,7 +292,7 @@ export default {
             </div>
         </section>
         <section class="row gx-0 p-3 bg-dark">
-            <div class="position-relative col-12 col-md-6">
+            <div class="position-relative col-12 col-lg-6">
                 <!-- Sezione carrello -->
                 <section v-if="selectedRestaurant">
                     <div class="container-fluid">
@@ -425,7 +425,7 @@ export default {
                 </div>
             </div>
             <!-- Carrello -->
-            <section class="col-12 col-md-6 align-items-start cart p-3 my-5">
+            <section class="col-12 col-lg-6 align-items-start cart p-3 my-5">
                 <div>
                     <h1 class="text-white">Carrello</h1>
                 </div>
@@ -487,6 +487,7 @@ export default {
     position: sticky;
     border: 1px solid lightgray;
     border-radius: 10px;
+    height: 100%;
 }
 
 .quantity-control button {
