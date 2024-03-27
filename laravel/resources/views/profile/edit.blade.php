@@ -33,7 +33,7 @@
                         </div>
 
                         <div>
-                            <label class="my-2" for="city">City</label>
+                            <label class="my-2" for="city">Città</label>
                             <input type="text" class="form-control" name="city" required id="city"
                                 value="{{ $restaurant->city }}">
                         </div>
