@@ -215,14 +215,13 @@ export default {
                     class="col-12 col-md-6 col-lg-3 my-3 bg-transparent border-0 bg-white reveal"
                     v-for="(restaurant, i) in restaurants"
                 >
-                    <div class="card">
-                        <!-- rotta per mostrare il singolo ristorante e inserito anche nei params cosi che compaia id del ristorante nell url  -->
+                    <div class="card-hover">
                         <router-link
                             class="text-dark"
                             :to="{ name: 'Restaurant', params: { id: i + 1 } }"
                             @click="groupRestaurant(i)"
                         >
-                            <div style="height: 420px">
+                            <div>
                                 <img
                                     :src="
                                         restaurant.user_id > 30
@@ -230,35 +229,51 @@ export default {
                                             : restaurant.img
                                     "
                                 />
-                                <!-- <img :src="restaurant.img" /> -->
                                 <div class="card-body">
-                                    <h4 class="card-title">
-                                        <strong> {{ restaurant.name }}</strong>
-                                    </h4>
-                                    <h5 class="card-title locality">
-                                        <i class="fa-solid fa-city"></i>
-                                        Località:
-                                        {{ restaurant.city }}
-                                    </h5>
-                                    <h5 class="type">
-                                        Genere:
-                                        <div
-                                            v-for="(
-                                                types, i
-                                            ) in restaurant.types"
-                                        >
-                                            <i
-                                                class="fa-solid fa-bowl-food pe-2"
-                                            ></i>
-                                            <strong> {{ types.name }}</strong>
-                                        </div>
-                                    </h5>
+                                    <div class="card-hover__content">
+                                        <h4 class="card-hover__title">
+                                            <strong>{{
+                                                restaurant.name
+                                            }}</strong>
+                                        </h4>
+                                        <h5 class="card-hover__text locality">
+                                            <i class="fa-solid fa-city"></i>
+                                            Località: {{ restaurant.city }}
+                                        </h5>
+                                        <h5 class="card-hover__text type">
+                                            Genere:
+                                            <span
+                                                v-for="(
+                                                    types, i
+                                                ) in restaurant.types"
+                                            >
+                                                <i
+                                                    class="fa-solid fa-bowl-food pe-2"
+                                                ></i>
+                                                <strong>{{
+                                                    types.name
+                                                }}</strong>
+                                            </span>
+                                        </h5>
+                                    </div>
+                                    <router-link
+                                        class="card-hover__link"
+                                        :to="{
+                                            name: 'Restaurant',
+                                            params: { id: i + 1 },
+                                        }"
+                                    >
+                                        Vai al ristorante
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </router-link>
                                 </div>
                             </div>
                         </router-link>
                     </div>
                 </div>
             </div>
+
+            <!-- RISTORANTI SELEZIONATI -->
             <div
                 v-for="(RestaurantsSelect, i) in arrayRestaurantsSelect"
                 class="row my-3 p-3"
@@ -285,9 +300,9 @@ export default {
                     v-else
                     class="col-12 col-md-6 col-lg-3 bg-transparent border-0 p-2"
                     v-for="(Restaurant, x) in RestaurantsSelect"
-                    style="height: 420px"
+                    style=""
                 >
-                    <div class="card">
+                    <div class="card-hover">
                         <router-link
                             class="text-dark"
                             :to="{
@@ -304,41 +319,43 @@ export default {
                                 "
                             />
                             <div class="card-body">
-                                <h4>
-                                    <strong>{{ Restaurant.name }}</strong>
-                                </h4>
-                                <h5 class="locality card-title">
-                                    <i class="fa-solid fa-city"></i>
-                                    Località:
-                                    {{ Restaurant.city }}
-                                </h5>
-
-                                <div class="label-type">
-                                    <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
-                                    <h5
-                                        class="type card-title"
-                                        v-if="
-                                            Restaurant.hasOwnProperty('pivot')
-                                        "
-                                    >
-                                        <i class="fa-solid fa-bowl-food"></i>
-                                        Genere:
-                                        {{
-                                            arrayTypes[
-                                                Restaurant.pivot.type_id - 1
-                                            ].name
-                                        }}
+                                <div class="card-hover__content">
+                                    <h4 class="card-hover__title">
+                                        <strong>{{ Restaurant.name }}</strong>
+                                    </h4>
+                                    <h5 class="locality card-title">
+                                        <i class="fa-solid fa-city"></i>
+                                        Località:
+                                        {{ Restaurant.city }}
                                     </h5>
 
-                                    <h5
-                                        v-else
-                                        class="type card-title"
-                                        v-for="(types, i) in Restaurant.types"
-                                    >
-                                        <i class="fa-solid fa-bowl-food"></i>
-                                        Genere:
-                                        {{ types.name }}
-                                    </h5>
+                                    <div class="label-type">
+                                        <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
+                                        <h5
+                                            class="type card-hover__text"
+                                            v-if="
+                                                Restaurant.hasOwnProperty('pivot')
+                                            "
+                                        >
+                                            <i class="fa-solid fa-bowl-food"></i>
+                                            Genere:
+                                            {{
+                                                arrayTypes[
+                                                    Restaurant.pivot.type_id - 1
+                                                ].name
+                                            }}
+                                        </h5>
+
+                                        <h5
+                                            v-else
+                                            class="type card-hover__text"
+                                            v-for="(types, i) in Restaurant.types"
+                                        >
+                                            <i class="fa-solid fa-bowl-food"></i>
+                                            Genere:
+                                            {{ types.name }}
+                                        </h5>
+                                    </div>
                                 </div>
                             </div>
                         </router-link>
@@ -350,6 +367,171 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+// CARD
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+.card-hover {
+    margin: 0 auto;
+    $root: &;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+
+    &:has(#{$root}__link:hover) {
+        #{$root}__extra {
+            transform: translateY(0);
+            transition: transform 0.35s;
+        }
+    }
+
+    &:hover {
+        #{$root} {
+            &__content {
+                background-color: #dee8c2;
+                bottom: 100%;
+                transform: translateY(100%);
+                padding: 50px 60px;
+                transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+            }
+
+            &__link {
+                opacity: 1;
+                transform: translate(-50%, 0);
+                transition: all 0.3s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+            }
+        }
+
+        img {
+            transform: scale(1);
+            transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
+        }
+    }
+
+    &__content {
+        width: 100%;
+        text-align: center;
+        background-color: #86b971;
+        padding: 0 60px 50px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translateY(0);
+        transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+        will-change: bottom, background-color, transform, padding;
+        z-index: 1;
+
+        &::before,
+        &::after {
+            content: "";
+            width: 100%;
+            height: 120px;
+            background-color: inherit;
+            position: absolute;
+            left: 0;
+            z-index: -1;
+        }
+
+        &::before {
+            top: -80px;
+            clip-path: ellipse(60% 80px at bottom center);
+        }
+
+        &::after {
+            bottom: -80px;
+            clip-path: ellipse(60% 80px at top center);
+        }
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        margin-bottom: 1em;
+
+        span {
+            color: #2d7f0b;
+        }
+    }
+
+    &__text {
+        font-size: 0.75rem;
+    }
+
+    &__link {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translate(-50%, 10%);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        text-decoration: none;
+        color: #00ccbc;
+        background-color: white;
+        border-radius: 15px;
+        opacity: 0;
+        padding: 10px;
+        transition: all 0.35s;
+
+        &:hover {
+            svg {
+                transform: translateX(4px);
+            }
+        }
+
+        svg {
+            width: 18px;
+            margin-left: 4px;
+            transition: transform 0.3s;
+        }
+    }
+
+    &__extra {
+        height: 50%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        font-size: 1.5rem;
+        text-align: center;
+        background-color: #86b971;
+        padding: 80px;
+        bottom: 0;
+        z-index: 0;
+        color: #dee8c2;
+        transform: translateY(100%);
+        will-change: transform;
+        transition: transform 0.35s;
+
+        span {
+            color: #2d7f0b;
+        }
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transform: scale(1.2);
+        transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
+    }
+}
+
 // .swiper {
 //     width: 100%;
 //     height: 450px;
@@ -382,17 +564,16 @@ export default {
 //     // object-fit: cover;
 // }
 
-.reveal{
-  position: relative;
-  transform: translateY(150px);
-  opacity: 0;
-  transition: 1s all ease;
-
+.reveal {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s all ease;
 }
 
-.reveal.active{
-  transform: translateY(0);
-  opacity: 1;
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 //COUNT
@@ -416,22 +597,6 @@ export default {
     }
 }
 
-// CARD
-.card {
-    border-radius: 80px;
-    overflow: hidden;
-
-    img {
-        object-fit: cover;
-        height: 208px;
-        width: 100%;
-        transition: transform 0.3s ease;
-    }
-
-    &:hover img {
-        transform: scale(1.1);
-    }
-}
 
 //LABEL
 label {
