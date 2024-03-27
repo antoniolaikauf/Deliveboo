@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
 
     // ROTTE ORDERS
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/ordersgraph', [OrderController::class, 'showGraph'])->name('order.graph');
 });
 
 require __DIR__ . '/auth.php';

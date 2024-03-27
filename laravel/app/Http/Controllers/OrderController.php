@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 // use App\Models\Restaurant;
 // use App\Models\Type;
 use App\Models\Dish;
@@ -31,9 +32,43 @@ class OrderController extends Controller
         return view('orders', compact('orders', 'dishes'));
     }
 
+    //GRAFICO
+    public function showGraph()
+    {
+        // Recupera l'ID del ristorante dell'utente autenticato
+        $restaurantId = auth()->user()->restaurant->id;
+
+        // Recupera i dati dei piatti più ordinati per il ristorante specificato
+        $topDishes = Order::whereHas('dishes', function ($query) use ($restaurantId) {
+            $query->where('restaurant_id', $restaurantId);
+        })
+        ->with('dishes')
+        ->get();
+
+        //array dei piatti
+        $topDishesDetails = [];
+
+        foreach ($topDishes as $order) {
+            foreach ($order->dishes as $dish) {
+                $name = $dish->name;
+                // Quantità del piatto nell'ordine
+                $quantity = $dish->pivot->quantity;
+                if (isset($topDishesDetails[$name])) {
+                    // Aggiorna la quantità
+                    $topDishesDetails[$name] += $quantity;
+                } else {
+                    // Aggiungi il piatto
+                    $topDishesDetails[$name] = $quantity;
+                }
+            }
+        }
+
+        // Passa i dati del grafico alla vista
+        return view('ordersgraph', compact('topDishesDetails'));
+    }
     public function generate(Request $request, Gateway $gateway)
     {
-        // genero il clientToken 
+        // genero il clientToken
         $token = $gateway->clientToken()->generate();
 
         $data = [
