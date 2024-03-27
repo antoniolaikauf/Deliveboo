@@ -14,6 +14,8 @@
                                 piatto</a>
                             <a href="{{ route('order.index') }}" class="btn-boo buttons bg-black text-white p-2">Visualizza
                                 ordini</a>
+                            <a href="{{ route('order.graph') }}" class="btn-boo buttons bg-black text-white p-2">Visualizza
+                                grafico</a>
                         </div>
                     @endauth
                 </div>
