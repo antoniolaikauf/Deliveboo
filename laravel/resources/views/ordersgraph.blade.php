@@ -14,7 +14,7 @@
         data: {
             labels: {!! json_encode(array_keys($topDishesDetails)) !!},
             datasets: [{
-                label: 'Piatti più ordinati',
+                label: 'Piatti ordinati',
                 data: {!! json_encode(array_values($topDishesDetails)) !!},
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.5)',
