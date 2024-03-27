@@ -241,7 +241,7 @@ export default {
                                             Località: {{ restaurant.city }}
                                         </h5>
                                         <h5 class="card-hover__text">
-                                            Genere:
+                                            Genere: <br>
                                             <span
                                                 v-for="(
                                                     types, i
@@ -338,7 +338,7 @@ export default {
                                             "
                                         >
                                             <i class="fa-solid fa-bowl-food"></i>
-                                            Genere:
+                                             Genere:
                                             {{
                                                 arrayTypes[
                                                     Restaurant.pivot.type_id - 1
