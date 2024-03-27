@@ -552,5 +552,9 @@
             background-size: cover;
             height: 100%;
         }
+
+        .row {
+            --bs-gutter-x: 0;
+        }
     </style>
 @endsection
