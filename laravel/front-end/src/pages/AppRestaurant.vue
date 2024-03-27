@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 export default {
     name: "Restaurant",
     data() {
@@ -20,13 +21,18 @@ export default {
             selectedRestaurant: selectedRestaurant,
             cart: JSON.parse(localStorage.getItem("cart")) || [],
             showConfirmationModal: false,
+            imgChange: "",
+            imgChangePlates:"",
         };
+        
     },
     methods: {
+
+        
         getQuantity(dish) {
             const index = this.cart.findIndex(
                 (item) => item.dish.id === dish.id
-            );
+                );
             return index !== -1 ? this.cart[index].quantity : 0;
         },
 
@@ -34,7 +40,7 @@ export default {
             // Svuota il carrello e nascondi il modale di conferma
             this.cart = [];
             this.showConfirmationModal = false;
-
+            
             // Aggiorna il carrello nel localStorage
             localStorage.setItem("cart", JSON.stringify(this.cart));
         },
@@ -84,27 +90,27 @@ export default {
                     dishId: dish.id,
                 });
             }
-
+            
             // Aggiorna il carrello nel localStorage
             localStorage.setItem("cart", JSON.stringify(storedCart));
-
+            
             // Aggiorna il carrello nel componente
             this.cart = storedCart;
         },
-
+        
         // confirmAction() {
-        //     // Svuota il carrello e nascondi il modale di conferma
-        //     this.cart = [];
-        //     this.showConfirmationModal = false;
-
-        //     // Aggiorna il carrello nel localStorage
-        //     localStorage.setItem('cart', JSON.stringify(this.cart));
-        // },
-
-        // Rimuovi un piatto dal carrello
-        removeFromCart(dish) {
-            const index = this.cart.findIndex(
-                (item) => item.dish.id === dish.id
+            //     // Svuota il carrello e nascondi il modale di conferma
+            //     this.cart = [];
+            //     this.showConfirmationModal = false;
+            
+            //     // Aggiorna il carrello nel localStorage
+            //     localStorage.setItem('cart', JSON.stringify(this.cart));
+            // },
+            
+            // Rimuovi un piatto dal carrello
+            removeFromCart(dish) {
+                const index = this.cart.findIndex(
+                    (item) => item.dish.id === dish.id
             );
             if (index !== -1) {
                 if (this.cart[index].quantity > 1) {
@@ -132,6 +138,55 @@ export default {
             return total;
         },
     },
+    
+    mounted (){
+
+                    if (this.selectedRestaurant.img.startsWith("i")) {
+                        // chiamata axios
+                        let foto = this.selectedRestaurant.img;
+                        // chiamata per modificare il path dell'immagine
+                        console.log(this.selectedRestaurant)
+                        axios
+                            .post(
+                               "http://localhost:8000/api/v1/edit/foto",
+                               { data: foto } // Invia il percorso dell'immagine all'interno di un oggetto con chiave 'data'
+                            )
+                            .then((res) => {
+                                this.imgChange = res.data.risposta;
+                                // console.log(res.data.risposta);
+                            })
+                            .catch((err) => {
+                            console.log(err);
+                            });
+                        }
+                    // }
+                    for (let i = 0; i < this.selectedRestaurant.user.dishes.length; i++) {
+                        console.log(this.selectedRestaurant.user.dishes[i])
+
+                        if (this.selectedRestaurant.user.dishes[i].img.startsWith("i")) {
+                            // chiamata axios
+                            let foto = this.selectedRestaurant.user.dishes[i].img;
+                            // chiamata per modificare il path dell'immagine
+                            console.log(this.selectedRestaurant)
+                            axios
+                                .post(
+                                "http://localhost:8000/api/v1/edit/foto",
+                                { data: foto } // Invia il percorso dell'immagine all'interno di un oggetto con chiave 'data'
+                                )
+                                .then((res) => {
+                                    this.selectedRestaurant.user.dishes[i].img = res.data.risposta;
+                                    // console.log(res.data.risposta);
+                                })
+                                .catch((err) => {
+                                console.log(err);
+                                });
+                        }
+                            
+                    }
+
+
+    }
+    
 };
 </script>
 
@@ -145,7 +200,7 @@ export default {
                         <div class="card">
                             <img
                                 class="rounded-3 img_restaurant"
-                                :src="selectedRestaurant.img"
+                                :src="selectedRestaurant.id > 30 ? imgChange : selectedRestaurant.img"
                                 alt="placeholderrestaurant"
                             />
                         </div>
@@ -253,7 +308,7 @@ export default {
                         >
                             <div class="d-flex">
                                 <img
-                                    :src="dish.img"
+                                :src="dish.img"
                                     alt=""
                                     style="height: 100px; width: 100px"
                                 />
