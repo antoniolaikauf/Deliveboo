@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import Swiper from 'swiper';
 export default {
     name: "Restaurant",
     data() {
@@ -184,6 +185,17 @@ export default {
 
                     }
 
+                    new Swiper('.swiper-menu', {
+            // Opzioni Swiper
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            // Aggiungi le frecce di navigazione
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        }); 
+
 
     }
 
@@ -195,8 +207,8 @@ export default {
         <section>
             <div class="container p-4">
                 <div class="row">
-                    <div class="col-12 col-lg-6">
-                        <div class="card">
+                    <div class="col-12 col-lg-8">
+                        <div class="card w-75 h-75">
                             <img
                                 class="rounded-3 img_restaurant"
                                 :src="selectedRestaurant.id > 30 ? imgChange : selectedRestaurant.img"
@@ -204,7 +216,7 @@ export default {
                             />
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 px-3">
+                    <div class="col-12 col-lg-4 px-1">
                         <h1 class="restaurantName">
                             {{ selectedRestaurant.name }}
                         </h1>
@@ -292,7 +304,7 @@ export default {
             </div>
         </section>
         <section class="row gx-0 p-3 bg-dark">
-            <div class="position-relative col-12 col-lg-6">
+            <div class="position-relative d-none d-lg-block col-lg-6">
                 <!-- Sezione carrello -->
                 <section v-if="selectedRestaurant">
                     <div class="container-fluid">
@@ -343,16 +355,79 @@ export default {
                                     style="border: 1px solid lightgrey"
                                     data-bs-target="#staticBackdrop"
                                     @click="addToCart(dish)"
-                                >
+                                    >
                                     <i
-                                        class="fa-solid fa-plus"
-                                        style="color: black"
+                                    class="fa-solid fa-plus"
+                                    style="color: black"
                                     ></i>
                                 </button>
                             </div>
                         </div>
                     </div>
+                    
                 </section>
+                </div>
+                <!-- Sezione carrello -->
+            <div class="d-lg-none d-md-block col-">
+                <section v-if="selectedRestaurant">
+                    <div class="container-fluid">
+                        <div>
+                            <h1 style="color: #ffffff">Menù</h1>
+                        </div>
+                        <!-- Carosello Swiper -->
+                        <div class="swiper-container swiper-menu">
+                            <div class="swiper-wrapper">
+                                <div
+                                    class="swiper-slide card my-3 p-3"
+                                    v-for="dish in selectedRestaurant.user.dishes"
+                                    :key="dish.id"
+                                >
+                                    <!-- Contenuto del carosello -->
+                                    <div class="d-flex">
+                                        <img
+                                            :src="dish.img"
+                                            alt=""
+                                            style="height: 100px; width: 100px"
+                                        />
+                                        <div class="mx-3">
+                                            <h2>{{ dish.name }}</h2>
+                                            <p>
+                                                {{ dish.description }} <br />
+                                                <b>{{ dish.price }} &euro;</b>
+                                            </p>
+                                        </div>
+                                    </div>
+    
+                                    <!-- Bottoni per aggiungere/rimuovere piatti -->
+                                    <div class="quantity-control d-flex justify-content-end">
+                                        <button
+                                            @click="removeFromCart(dish)"
+                                            class="btn btn-boo"
+                                            style="border: 1px solid lightgrey"
+                                        >
+                                            <i class="fa-solid fa-minus" style="color: black"></i>
+                                        </button>
+                                        <span class="align-middle">{{ getQuantity(dish) }}</span>
+                                        <!-- Visualizza la quantità -->
+                                        <button
+                                            type="button"
+                                            class="btn btn-boo"
+                                            data-bs-toggle="modal"
+                                            style="border: 1px solid lightgrey"
+                                            data-bs-target="#staticBackdrop"
+                                            @click="addToCart(dish)"
+                                        >
+                                            <i class="fa-solid fa-plus" style="color: black"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Aggiunta delle frecce di navigazione -->
+                        </div>
+                        <!-- Fine Carosello Swiper -->
+                    </div>
+                
+            </section>
             </div>
             <!-- Modal -->
             <div v-if="showConfirmationModal">
@@ -364,13 +439,13 @@ export default {
                     tabindex="-1"
                     aria-labelledby="staticBackdropLabel"
                     aria-hidden="true"
-                >
-                    <div
-                        class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                     >
-                        <div
-                            class="modal-content"
-                            style="
+                    <div
+                    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                    >
+                    <div
+                    class="modal-content"
+                    style="
                                 background-color: #00ccbc;
                                 border-radius: 20px;
                             "
@@ -480,6 +555,7 @@ export default {
     font-family: $boo-font;
     font-weight: bolder;
 }
+
 
 .cart {
     top: 10px;
