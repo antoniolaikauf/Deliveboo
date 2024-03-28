@@ -50,12 +50,12 @@ export default {
                         <!-- <router-link :to="{ name: 'Login' }"> -->
 
                         <a href="http://localhost:8000/login">
-                            <button class="d-none d-md-flex btn-boo mx-3">
+                            <button class=" d-md-flex btn-boo mx-3">
                                 <div class="mx-3">
                                     <i class="fa-solid fa-house color"></i>
                                 </div>
 
-                                <div>
+                                <div class="d-none d-md-none d-lg-block">
                                     <span>Accedi</span>
                                 </div>
                             </button></a
@@ -68,13 +68,13 @@ export default {
                             class="text-white"
                         >
                             <!-- BOTTONE LOGIN (RESPONSIVE) -->
-                            <a href="http://localhost:8000/login">
+                            <!-- <a href="http://localhost:8000/login">
                                 <button class="btn-boo d-md-none mx-3">
                                     <div class="mx-3">
                                         <i class="fa-solid fa-house color"></i>
                                     </div>
                                 </button>
-                            </a>
+                            </a> -->
 
                             <button class="d-md-flex btn-boo mx-3">
                                 <div class="mx-3">

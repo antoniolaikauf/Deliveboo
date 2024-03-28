@@ -30,7 +30,7 @@
         </video>
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
-                <div class="card text-center py-4 mask-custom " style="width: 500px">
+                <div class="card text-center py-4 mask-custom " >
                     @foreach ($restaurants as $restaurant)
                         @if (Auth::check() && Auth::id() === $restaurant->user_id)
                             <h1 class="mb-4">{{ $restaurant->name }}</h1>

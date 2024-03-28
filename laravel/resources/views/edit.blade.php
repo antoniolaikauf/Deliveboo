@@ -69,7 +69,7 @@
                             <strong>immagine non selezionata</strong>
                         </div>
                         @else
-                        <div>
+                        <div >
                             {{-- Condizione di verifica, se è presente l'img dello storage inserisci quella, altrimenti le img del db(già stabilite) --}}
                             @if ($dish->img && Storage::disk('public')->exists($dish->img))
                             <img style="width: 400px; height: 400px;" src="{{ asset('storage/' . $dish->img) }}" alt="Immagine del piatto {{ $dish->name }}">
@@ -149,7 +149,6 @@
     /* END STILE FORM */
 
     .bg-sfondo {
-        height: 700px;
         background-image: url(/imgs/sala-edit.jpg);
         background-size: cover;
         height: 100%;
