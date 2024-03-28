@@ -7,6 +7,7 @@ import Restaurant from "./pages/AppRestaurant.vue"
 import success from "./pages/AppSuccess.vue"
 import Advance from "./pages/AppAdvanced.vue"
 import PaymentCompleted from "./pages/AppPaymentCompleted.vue"
+import NotFound from "./pages/NotFound.vue"
 
 
 // creazione delle rotte e il loro 'percorso'
@@ -42,6 +43,11 @@ const router = createRouter({
         path: "/paymentcompleted",
         name: "PaymentCompleted",
         component:PaymentCompleted
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'notfound',
+        component: NotFound
     },
   ],
 });

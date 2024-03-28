@@ -26,12 +26,12 @@
                         <table class="table table-striped table-borderless text-white">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Descrizione</th>
-                                    <th scope="col" style="width: 100px;">Prezzo</th>
-                                    <th scope="col" style="width: 20px;">Disponibilità</th>
-                                    <th scope="col" style="width: 20px;">Immagini</th>
-                                    <th scope="col" style="width: 90px;">Azioni</th>
+                                    <th scope="col" >Immagini</th>
+                                    <th scope="col"  >Nome</th>
+                                    <th scope="col"  >Descrizione</th>
+                                    <th scope="col" >Prezzo</th>
+                                    <th scope="col" >Disponibilità</th>
+                                    <th scope="col" >Azioni</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,16 +39,6 @@
                                 @foreach ($dishes->reverse() as $dish)
                                     @if (Auth::check() && Auth::id() === $dish->user_id)
                                         <tr>
-                                            <td>{{ $dish->name }}</td>
-                                            <td>{{ $dish->description }}</td>
-                                            <td>{{ $dish->price }} €</td>
-                                            <td>
-                                                @if ($dish->available)
-                                                    <span class="badge bg-success">Disponibile</span>
-                                                @else
-                                                    <span class="badge bg-danger">Non disponibile</span>
-                                                @endif
-                                            </td>
                                             <td>
                                                 <div class="img-cont">
                                                     @if ($dish->img == null)
@@ -70,12 +60,23 @@
                                                     @endif
                                                 </div>
                                             </td>
+                                            <td>{{ $dish->name }}</td>
+                                            <td>{{ $dish->description }}</td>
+                                            <td>{{ $dish->price }} €</td>
+                                            <td>
+                                                @if ($dish->available)
+                                                    <span class="badge bg-success">Disponibile</span>
+                                                @else
+                                                    <span class="badge bg-danger">Non disponibile</span>
+                                                @endif
+                                            </td>
+
                                             <td>
                                                 @auth
                                                     <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
                                                         <i class="fas fa-edit" style="color: white";></i>
                                                     </a>
-                                                    <button class="btn btn-sm btn-danger"
+                                                    <button class="btn btn-sm btn-danger ms-2"
                                                         onclick="showConfirmationModal('{{ $dish->id }}')">
                                                         <i class="fas fa-trash-alt" style="color: white";></i>
                                                     </button>
@@ -155,7 +156,7 @@
 }
         .img-cont .img-fluid {
             height: 50px;
-            width: 100%;
+
             object-fit: contain;
         }
 
