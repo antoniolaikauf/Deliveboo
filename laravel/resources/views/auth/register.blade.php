@@ -14,7 +14,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Nome') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -31,7 +31,7 @@
 
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* E-Mail') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -48,7 +48,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -65,7 +65,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Conferma Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -74,7 +74,7 @@
                             </div>
                             <div class="mb-4 row">
                                 <label for="nome_ristorante"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Nome Ristorante') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="nome_ristorante" type="text" class="form-control" name="nome_ristorante">
@@ -83,7 +83,7 @@
                             </div>
                             <div class="mb-4 row">
                                 <label for="city"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* City') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="city" type="text" class="form-control" name="city">
@@ -93,7 +93,7 @@
 
                             <div class="mb-4 row">
                                 <label for="piva"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Partita IVA') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="piva" type="text" class="form-control" name="piva" id="piva">
@@ -103,7 +103,7 @@
 
                             <div class="mb-4 row">
                                 <label for="img"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Immagine') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Immagine') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="img" type="file" class="form-control" name="img">
@@ -111,7 +111,7 @@
                             </div>
                             <div class="mb-4 d-flex">
                                 <label for="type"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Tipo di cucina') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Tipo di cucina') }}</label>
                                 <div>
                                     @foreach ($types as $type)
                                         <div>
@@ -182,7 +182,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Nome') }}</label>
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
@@ -197,7 +197,7 @@
 
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* E-Mail') }}</label>
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
@@ -212,7 +212,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Password') }}</label>
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
@@ -227,7 +227,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Conferma Password') }}</label>
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
@@ -236,7 +236,7 @@
 
                             <div class="mb-4 row">
                                 <label for="nome_ristorante"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Nome Ristorante') }}</label>
                                 <div class="col-md-6">
                                     <input id="nome_ristorante" type="text"
                                         class="form-control @error('nome_ristorante') is-invalid @enderror"
@@ -252,7 +252,7 @@
 
                             <div class="mb-4 row">
                                 <label for="city"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Città') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Città') }}</label>
                                 <div class="col-md-6">
                                     <input id="city" type="text"
                                         class="form-control @error('city') is-invalid @enderror" name="city"
@@ -267,7 +267,7 @@
 
                             <div class="mb-4 row">
                                 <label for="piva"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Partita IVA') }}</label>
                                 <div class="col-md-6">
                                     <input id="piva" type="text"
                                         class="form-control @error('piva') is-invalid @enderror" name="piva"
@@ -282,7 +282,7 @@
 
                             <div class="mb-4 row">
                                 <label for="img"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Immagine') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Immagine') }}</label>
                                 <div class="col-md-6">
                                     <input id="img" type="file"
                                         class="form-control @error('img') is-invalid @enderror" name="img" required>
@@ -296,7 +296,7 @@
 
                             <div class="mb-4 d-flex">
                                 <label for="type"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Tipo di cucina') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('* Tipo di cucina') }}</label>
                                 <div>
                                     @foreach ($types as $type)
                                         <div>
@@ -553,8 +553,8 @@
             height: 100%;
         }
 
-        .row {
-            --bs-gutter-x: 0;
-        }
+        /* .row {
+                        --bs-gutter-x: 0;
+                    } */
     </style>
 @endsection
