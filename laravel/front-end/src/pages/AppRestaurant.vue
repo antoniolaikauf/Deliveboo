@@ -183,6 +183,18 @@ export default {
                     });
             }
         }
+
+        new Swiper('.swiper-menu', {
+            // Opzioni Swiper
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            // Aggiungi le frecce di navigazione
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        }); 
+
     },
 };
 </script>
@@ -192,20 +204,16 @@ export default {
     <section>
         <div class="container p-4">
             <div class="row">
-                <div class="col-12 col-lg-6">
-                    <div class="card">
+                <div class="col-12 col-lg-8">
+                    <div class="card w-75 h-75">
                         <img
                             class="rounded-3 img_restaurant"
-                            :src="
-                                selectedRestaurant.id > 30
-                                    ? imgChange
-                                    : selectedRestaurant.img
-                            "
+                            :src="selectedRestaurant.id > 30 ? imgChange : selectedRestaurant.img"
                             alt="placeholderrestaurant"
                         />
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 px-3">
+                <div class="col-12 col-lg-4 px-1">
                     <h1 class="restaurantName">
                         {{ selectedRestaurant.name }}
                     </h1>
@@ -272,13 +280,15 @@ export default {
                                 <div class="modal-footer">
                                     <p>
                                         Leggi maggiori informazioni sugli
-                                        allergeni presenti nei prodotti offerti
-                                        da questo partner.
+                                        allergeni presenti nei prodotti
+                                        offerti da questo partner.
                                     </p>
                                     <a
                                         href="https://www.youtube.com/watch?v=nvm2pVrirBQ"
                                         style="color: #00ccbc"
-                                        ><i class="fa-solid fa-circle-info"></i>
+                                        ><i
+                                            class="fa-solid fa-circle-info"
+                                        ></i>
                                         Visualizza informazioni sugli
                                         allergeni</a
                                     >
@@ -291,7 +301,7 @@ export default {
         </div>
     </section>
     <section class="row gx-0 p-3 bg-dark">
-        <div class="position-relative col-12 col-lg-6">
+        <div class="position-relative d-none d-lg-block col-lg-6">
             <!-- Sezione carrello -->
             <section v-if="selectedRestaurant">
                 <div class="container-fluid">
@@ -304,7 +314,7 @@ export default {
                     >
                         <div class="d-flex">
                             <img
-                                :src="dish.img"
+                            :src="dish.img"
                                 alt=""
                                 style="height: 100px; width: 100px"
                             />
@@ -342,16 +352,79 @@ export default {
                                 style="border: 1px solid lightgrey"
                                 data-bs-target="#staticBackdrop"
                                 @click="addToCart(dish)"
-                            >
+                                >
                                 <i
-                                    class="fa-solid fa-plus"
-                                    style="color: black"
+                                class="fa-solid fa-plus"
+                                style="color: black"
                                 ></i>
                             </button>
                         </div>
                     </div>
                 </div>
+                
             </section>
+            </div>
+            <!-- Sezione carrello -->
+        <div class="d-lg-none d-md-block col-">
+            <section v-if="selectedRestaurant">
+                <div class="container-fluid">
+                    <div>
+                        <h1 style="color: #ffffff">Menù</h1>
+                    </div>
+                    <!-- Carosello Swiper -->
+                    <div class="swiper-container swiper-menu">
+                        <div class="swiper-wrapper">
+                            <div
+                                class="swiper-slide card my-3 p-3"
+                                v-for="dish in selectedRestaurant.user.dishes"
+                                :key="dish.id"
+                            >
+                                <!-- Contenuto del carosello -->
+                                <div class="d-flex">
+                                    <img
+                                        :src="dish.img"
+                                        alt=""
+                                        style="height: 100px; width: 100px"
+                                    />
+                                    <div class="mx-3">
+                                        <h2>{{ dish.name }}</h2>
+                                        <p>
+                                            {{ dish.description }} <br />
+                                            <b>{{ dish.price }} &euro;</b>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Bottoni per aggiungere/rimuovere piatti -->
+                                <div class="quantity-control d-flex justify-content-end">
+                                    <button
+                                        @click="removeFromCart(dish)"
+                                        class="btn btn-boo"
+                                        style="border: 1px solid lightgrey"
+                                    >
+                                        <i class="fa-solid fa-minus" style="color: black"></i>
+                                    </button>
+                                    <span class="align-middle">{{ getQuantity(dish) }}</span>
+                                    <!-- Visualizza la quantità -->
+                                    <button
+                                        type="button"
+                                        class="btn btn-boo"
+                                        data-bs-toggle="modal"
+                                        style="border: 1px solid lightgrey"
+                                        data-bs-target="#staticBackdrop"
+                                        @click="addToCart(dish)"
+                                    >
+                                        <i class="fa-solid fa-plus" style="color: black"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Aggiunta delle frecce di navigazione -->
+                    </div>
+                    <!-- Fine Carosello Swiper -->
+                </div>
+            
+        </section>
         </div>
         <!-- Modal -->
         <div v-if="showConfirmationModal">
@@ -363,13 +436,16 @@ export default {
                 tabindex="-1"
                 aria-labelledby="staticBackdropLabel"
                 aria-hidden="true"
-            >
-                <div
-                    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                 >
-                    <div
-                        class="modal-content"
-                        style="background-color: #00ccbc; border-radius: 20px"
+                <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                >
+                <div
+                class="modal-content"
+                style="
+                            background-color: #00ccbc;
+                            border-radius: 20px;
+                        "
                     >
                         <div class="modal-header">
                             <img
@@ -377,7 +453,10 @@ export default {
                                 alt=""
                                 style="width: 50px"
                             />
-                            <h5 class="modal-title fs-5" id="exampleModalLabel">
+                            <h5
+                                class="modal-title fs-5"
+                                id="exampleModalLabel"
+                            >
                                 Conferma operazione
                             </h5>
                             <button
@@ -429,7 +508,9 @@ export default {
                     :key="item.dish.id"
                     class="card col-12 w-100 col-lg-6 my-3 p-3"
                 >
-                    <div class="d-flex justify-content-between align-middle">
+                    <div
+                        class="d-flex justify-content-between align-middle"
+                    >
                         <div>
                             <b>{{ item.dish.name }}</b>
                         </div>
@@ -468,21 +549,21 @@ export default {
 @use "../styles/general.scss" as *;
 
 .restaurantName {
-    font-family: $boo-font;
-    font-weight: bolder;
+font-family: $boo-font;
+font-weight: bolder;
 }
 
 
 .cart {
-    top: 10px;
-    background-color: $boo-color;
-    position: sticky;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-    height: 100%;
+top: 10px;
+background-color: $boo-color;
+position: sticky;
+border: 1px solid lightgray;
+border-radius: 10px;
+height: 100%;
 }
 
 .quantity-control button {
-    margin: 0 5px;
+margin: 0 5px;
 }
 </style>
