@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import Swiper from 'swiper';
 export default {
     name: "Restaurant",
     data() {
@@ -470,6 +471,7 @@ export default {
     font-family: $boo-font;
     font-weight: bolder;
 }
+
 
 .cart {
     top: 10px;
