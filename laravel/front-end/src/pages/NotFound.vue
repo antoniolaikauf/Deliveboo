@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6">
-                    <img src="/public/DelivebooNoBG.svg" alt="logo deliveboo">
+                    <img src="/public/fantasmino404.png" alt="logo deliveboo">
                 </div>
                 <div class="col-12 col-lg-6">
                     <h1> <span class="text-white">Oops! </span>Sembra che tu abbia preso una direzione sbagliata. <br> Prova a ritornare indietro e navigare nella giusta direzione!</h1>
@@ -33,6 +33,10 @@
 
     .bg-not-found{
         background-color: $boo-color;
+
+        img{
+            width: 100%;
+        }
     }
 
 </style>
