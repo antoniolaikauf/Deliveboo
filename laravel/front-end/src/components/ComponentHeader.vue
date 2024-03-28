@@ -5,13 +5,23 @@ export default {
     data() {
         return {
             restaurant: JSON.parse(localStorage.getItem("restaurantselected")),
-            dishes: JSON.parse(localStorage.getItem("cart")) || [],
+            dishes: "",
         };
     },
-
+    // Il componente Header cattura questo evento e aggiorna i suoi dati leggendo il nuovo stato del carrello da localStorage.
     mounted() {
         console.log(this.restaurant);
-        console.log(this.dishes);
+        //     console.log(this.dishes);
+        this.updateCartFromLocalStorage();
+        window.addEventListener(
+            "cart-updated",
+            this.updateCartFromLocalStorage
+        );
+    },
+    methods: {
+        updateCartFromLocalStorage() {
+            this.dishes = JSON.parse(localStorage.getItem("cart")) || [];
+        },
     },
 };
 </script>
@@ -53,7 +63,7 @@ export default {
                         <router-link
                             :to="{
                                 name: 'Restaurant',
-                                params: { id: this.restaurant.id },
+                                params: { id: this.restaurant.name },
                             }"
                             class="text-white"
                         >

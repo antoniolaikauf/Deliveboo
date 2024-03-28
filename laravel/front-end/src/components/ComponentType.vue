@@ -218,7 +218,10 @@ export default {
                     <div class="card-hover">
                         <router-link
                             class="text-dark"
-                            :to="{ name: 'Restaurant', params: { id: i + 1 } }"
+                            :to="{
+                                name: 'Restaurant',
+                                params: { id: restaurant.name },
+                            }"
                             @click="groupRestaurant(i)"
                         >
                             <div>
@@ -241,7 +244,7 @@ export default {
                                             Località: {{ restaurant.city }}
                                         </h5>
                                         <h5 class="card-hover__text">
-                                            Genere: <br>
+                                            Genere: <br />
                                             <span
                                                 v-for="(
                                                     types, i
@@ -329,16 +332,20 @@ export default {
                                         {{ Restaurant.city }}
                                     </h5>
 
-                                    <div class="label-type ">
+                                    <div class="label-type">
                                         <!-- controllo se esiste la key che ha ritornato l'oggetto essendo che ritorna due oggetti un po' diversi -->
                                         <h5
-                                            class=" card-hover__text"
+                                            class="card-hover__text"
                                             v-if="
-                                                Restaurant.hasOwnProperty('pivot')
+                                                Restaurant.hasOwnProperty(
+                                                    'pivot'
+                                                )
                                             "
                                         >
-                                            <i class="fa-solid fa-bowl-food"></i>
-                                             Genere:
+                                            <i
+                                                class="fa-solid fa-bowl-food"
+                                            ></i>
+                                            Genere:
                                             {{
                                                 arrayTypes[
                                                     Restaurant.pivot.type_id - 1
@@ -348,10 +355,14 @@ export default {
 
                                         <h5
                                             v-else
-                                            class=" card-hover__text"
-                                            v-for="(types, i) in Restaurant.types"
+                                            class="card-hover__text"
+                                            v-for="(
+                                                types, i
+                                            ) in Restaurant.types"
                                         >
-                                            <i class="fa-solid fa-bowl-food"></i>
+                                            <i
+                                                class="fa-solid fa-bowl-food"
+                                            ></i>
                                             Genere:
                                             {{ types.name }}
                                         </h5>
@@ -367,7 +378,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-
 // CARD
 h1,
 h2,
@@ -378,7 +388,6 @@ h5 {
     margin-top: 0;
     margin-bottom: 0;
 }
-
 
 .card-hover {
     margin: 0 auto;
@@ -596,7 +605,6 @@ h5 {
         object-fit: cover;
     }
 }
-
 
 //LABEL
 label {
