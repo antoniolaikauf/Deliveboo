@@ -4,7 +4,7 @@
     <div class="container-fluid gx-0 p-5 bg-login">
         <h1 class="text-center text-white">I tuoi ordini</h1>
 
-        @foreach ($orders as $order)
+        @foreach ($orders->sortByDesc('created_at') as $order)
             @if (Auth::check() && Auth::id() === $order->restaurant_id)
                 <div class="orders card form-bg text-white">
                     <div class="d-flex justify-content-between">
