@@ -10,12 +10,28 @@
                             <h2 class="text-white auth m-4">
                                 Ciao, {{ Auth::user()->name }}. Ecco tutti i piatti disponibili nel tuo account.
                             </h2>
-                            <a href="{{ route('dish.create') }}" class="btn-boo buttons bg-black text-white p-2">Crea il
-                                piatto</a>
-                            <a href="{{ route('order.index') }}" class="btn-boo buttons bg-black text-white p-2">Visualizza
-                                ordini</a>
-                            <a href="{{ route('order.graph') }}" class="btn-boo buttons bg-black text-white p-2">Visualizza
-                                grafico</a>
+                            <div class="d-flex flex-wrap justify-content-center">
+                                <div class="mb-3 me-1"><a href="{{ route('dish.create') }}"
+                                        class="btn-boo buttons bg-black text-white p-2">Crea il
+                                        piatto</a></div>
+                                <div class="mb-3 me-1">
+                                    <a href="{{ route('order.index') }}"
+                                        class="btn-boo buttons bg-black text-white p-2">Visualizza
+                                        ordini</a>
+                                </div>
+                                <div class="mb-3 me-1">
+                                    <a href="{{ route('order.graph') }}"
+                                        class="btn-boo buttons bg-black text-white p-2 mt-3">Visualizza
+                                        grafico</a>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
                         </div>
                     @endauth
                 </div>
@@ -28,9 +44,9 @@
                                 <tr>
                                     <th scope="col">Immagini</th>
                                     <th scope="col">Nome</th>
-                                    <th scope="col">Descrizione</th>
+                                    <th scope="col" class="d-none d-md-table-cell">Descrizione</th>
                                     <th scope="col">Prezzo</th>
-                                    <th scope="col">Disponibilità</th>
+                                    <th scope="col" class="d-none d-md-table-cell">Disponibilità</th>
                                     <th scope="col">Azioni</th>
                                 </tr>
                             </thead>
@@ -61,9 +77,9 @@
                                                 </div>
                                             </td>
                                             <td>{{ $dish->name }}</td>
-                                            <td>{{ $dish->description }}</td>
+                                            <td class="d-none d-md-table-cell">{{ $dish->description }}</td>
                                             <td>{{ $dish->price }} €</td>
-                                            <td>
+                                            <td class="d-none d-md-table-cell">
                                                 @if ($dish->available)
                                                     <span class="badge bg-success">Disponibile</span>
                                                 @else
@@ -74,10 +90,10 @@
                                             <td>
                                                 @auth
                                                     <a href="{{ route('dish.edit', $dish->id) }}"
-                                                        class="btn btn-sm btn-primary">
+                                                        class="btn btn-sm btn-primary mb-1">
                                                         <i class="fas fa-edit" style="color: white";></i>
                                                     </a>
-                                                    <button class="btn btn-sm btn-danger ms-2"
+                                                    <button class="btn btn-sm btn-danger"
                                                         onclick="showConfirmationModal('{{ $dish->id }}')">
                                                         <i class="fas fa-trash-alt" style="color: white";></i>
                                                     </button>
@@ -169,6 +185,10 @@
             background-size: cover;
             height: 100%;
             width: 100%;
+        }
+
+        .fas {
+            width: 15px;
         }
     </style>
 @endsection
