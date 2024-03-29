@@ -162,10 +162,16 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        $dish = Dish::find($id);
-        $dish->delete();
+         // Trova il piatto da eliminare
+         $dish = Dish::findOrFail($id);
 
-        return redirect()->route('dish.index');
+         // Elimina anche i record correlati nella tabella pivot dish_order
+         $dish->orders()->detach();
+
+         // Elimina il piatto
+         $dish->delete();
+
+         return redirect()->route('dish.index');
     }
 
     /**
