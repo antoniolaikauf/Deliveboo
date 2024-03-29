@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-4">
-                <div>
+                <div class="text-center">
                     <a href="http://localhost:8000" class="my-4 link-dashboard">Entra nel tuo menù</a>
                 </div>
             </div>
