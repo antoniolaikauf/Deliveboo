@@ -26,12 +26,12 @@
                         <table class="table table-striped table-borderless text-white">
                             <thead>
                                 <tr>
-                                    <th scope="col" >Immagini</th>
-                                    <th scope="col"  >Nome</th>
-                                    <th scope="col"  >Descrizione</th>
-                                    <th scope="col" >Prezzo</th>
-                                    <th scope="col" >Disponibilità</th>
-                                    <th scope="col" >Azioni</th>
+                                    <th scope="col">Immagini</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Descrizione</th>
+                                    <th scope="col">Prezzo</th>
+                                    <th scope="col">Disponibilità</th>
+                                    <th scope="col">Azioni</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,7 +73,8 @@
 
                                             <td>
                                                 @auth
-                                                    <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-sm btn-primary">
+                                                    <a href="{{ route('dish.edit', $dish->id) }}"
+                                                        class="btn btn-sm btn-primary">
                                                         <i class="fas fa-edit" style="color: white";></i>
                                                     </a>
                                                     <button class="btn btn-sm btn-danger ms-2"
@@ -137,27 +138,30 @@
 
     {{-- CSS --}}
     <style>
-.table > :not(caption) > * > * {
-    color: rgb(255, 255, 255);
-}
-.table{
-    --bs-table-bg: transparent;
-    --bs-table-border-color: gray;
-}
+        .table> :not(caption)>*>* {
+            color: rgb(255, 255, 255);
+        }
 
-.mask-custom {
-  background: rgba(24, 24, 16, .2);
-  border-radius: 2em;
-  backdrop-filter: blur(25px);
-  border: 2px solid rgba(255, 255, 255, 0.05);
-  background-clip: padding-box;
-  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
-  margin: 50px 0;
-}
+        .table {
+            --bs-table-bg: transparent;
+            --bs-table-border-color: gray;
+        }
+
+        .mask-custom {
+            background: rgba(24, 24, 16, .2);
+            border-radius: 2em;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            background-clip: padding-box;
+            box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+            margin: 50px 0;
+        }
+
         .img-cont .img-fluid {
+            width: 50px;
             height: 50px;
 
-            object-fit: contain;
+            object-fit: cover;
         }
 
         .bg-img {
