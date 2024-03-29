@@ -64,34 +64,34 @@ class OrderController extends Controller
         //     }
         // }
 
-        // // Passa i dati del grafico alla vista
+        // Passa i dati del grafico alla vista
         // return view('ordersgraph', compact('topDishesDetails'));
 
-        // Recupera l'ID del ristorante dell'utente autenticato
-    $restaurantId = auth()->user()->restaurant->id;
+        //Recupera l'ID del ristorante dell'utente autenticato
+        $restaurantId = auth()->user()->restaurant->id;
 
-    // Recupera tutti gli ordini per il ristorante specificato nell'anno corrente
-    $orders = Order::where('restaurant_id', $restaurantId)
-                    ->whereYear('created_at', date('Y')) // Filtra per anno corrente
-                    ->get();
+        // Recupera tutti gli ordini per il ristorante specificato nell'anno corrente
+        $orders = Order::where('restaurant_id', $restaurantId)
+                        ->whereYear('created_at', date('Y')) // Filtra per anno corrente
+                        ->get();
 
-    // Inizializza un array per raccogliere le statistiche per ogni mese
-    $monthlyStats = [];
+        // Inizializza un array per raccogliere le statistiche per ogni mese
+        $monthlyStats = [];
 
-    // Inizializza tutti i mesi dell'anno con 0 ordini
-    for ($month = 1; $month <= 12; $month++) {
-        $monthYear = str_pad($month, 2, '0', STR_PAD_LEFT) . '-' . date('Y');
-        $monthlyStats[$monthYear] = 0;
-    }
+        // Inizializza tutti i mesi dell'anno con 0 ordini
+        for ($month = 1; $month <= 12; $month++) {
+            $monthYear = str_pad($month, 2, '0', STR_PAD_LEFT) . '-' . date('Y');
+            $monthlyStats[$monthYear] = 0;
+        }
 
-    // Calcola il numero di ordini per ogni mese
-    foreach ($orders as $order) {
-        $monthYear = $order->created_at->format('m-Y');
-        $monthlyStats[$monthYear]++;
-    }
+        // Calcola il numero di ordini per ogni mese
+        foreach ($orders as $order) {
+            $monthYear = $order->created_at->format('m-Y');
+            $monthlyStats[$monthYear]++;
+        }
 
-    // Passa i dati del grafico alla vista
-    return view('ordersgraph', compact('monthlyStats'));
+        // Passa i dati del grafico alla vista
+        return view('ordersgraph', compact('monthlyStats'));
     }
     public function generate(Request $request, Gateway $gateway)
     {

@@ -1,21 +1,21 @@
 @extends('layouts.app')
 @section('content')
 <div class="card">
-<h1 class="text-center p-3">Ecco i tuoi piatti più ordinati:</h1>
+<h1 class="text-center p-3">Ecco i tuo ordini, divisi per mese:</h1>
 <div>
-<canvas class="p-2" id="topDishesChart" width="800" height="800"></canvas>
+<canvas class="p-2" id="monthlyStats" width="800" height="800"></canvas>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var ctx = document.getElementById('topDishesChart').getContext('2d');
+    var ctx = document.getElementById('monthlyStats').getContext('2d');
     var topDishesChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: {!! json_encode(array_keys($topDishesDetails)) !!},
+            labels: {!! json_encode(array_keys($monthlyStats)) !!},
             datasets: [{
-                label: 'Piatti ordinati',
-                data: {!! json_encode(array_values($topDishesDetails)) !!},
+                label: 'Ordini mensili:',
+                data: {!! json_encode(array_values($monthlyStats)) !!},
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.5)',
                     'rgba(54, 162, 235, 0.5)',
