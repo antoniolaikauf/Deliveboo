@@ -44,8 +44,8 @@
         <div class="bg text-center">
             <h1 class="py-5"><span ref="textSpan"></span></h1>
 
-            <div class="raw">
-                <div class="col-12">
+            <div class="row w-100">
+                <div class="col-12 d-flex flex-column">
                     <div class="card">
                         <img src="/public/DelivebooNoBG.svg" alt="svg deliveboo">
 
@@ -73,13 +73,12 @@
     height: 100%;
 
     img {
-        width: 200px;
+        width: 150px;
         animation: moveBackAndForth 4s infinite;
     }
 
     .card{
         margin: auto;
-        width: 500px;
         background-color: transparent;
         border: none;
     }
