@@ -18,4 +18,13 @@ class Dish extends Model
     public function orders(){
         return $this->belongsToMany(Order::class)->withPivot('quantity');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($dish) {
+            $dish->orders()->detach(); // Elimina i record correlati nella tabella pivot
+        });
+    }
 }

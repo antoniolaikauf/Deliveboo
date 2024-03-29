@@ -35,37 +35,63 @@ class OrderController extends Controller
     //GRAFICO
     public function showGraph()
     {
+        // // Recupera l'ID del ristorante dell'utente autenticato
+        // $restaurantId = auth()->user()->restaurant->id;
+
+        // // Recupera i dati dei piatti più ordinati per il ristorante specificato
+        // $topDishes = Order::whereHas('dishes', function ($query) use ($restaurantId) {
+        //     $query->where('restaurant_id', $restaurantId);
+        // })
+        // ->with('dishes')
+        // ->limit(5)
+        // ->get();
+
+        // //array dei piatti
+        // $topDishesDetails = [];
+
+        // foreach ($topDishes as $order) {
+        //     foreach ($order->dishes as $dish) {
+        //         $name = $dish->name;
+        //         // Quantità del piatto nell'ordine
+        //         $quantity = $dish->pivot->quantity;
+        //         if (isset($topDishesDetails[$name])) {
+        //             // Aggiorna la quantità
+        //             $topDishesDetails[$name] += $quantity;
+        //         } else {
+        //             // Aggiungi il piatto
+        //             $topDishesDetails[$name] = $quantity;
+        //         }
+        //     }
+        // }
+
+        // // Passa i dati del grafico alla vista
+        // return view('ordersgraph', compact('topDishesDetails'));
+
         // Recupera l'ID del ristorante dell'utente autenticato
-        $restaurantId = auth()->user()->restaurant->id;
+    $restaurantId = auth()->user()->restaurant->id;
 
-        // Recupera i dati dei piatti più ordinati per il ristorante specificato
-        $topDishes = Order::whereHas('dishes', function ($query) use ($restaurantId) {
-            $query->where('restaurant_id', $restaurantId);
-        })
-        ->with('dishes')
-        ->limit(5)
-        ->get();
+    // Recupera tutti gli ordini per il ristorante specificato nell'anno corrente
+    $orders = Order::where('restaurant_id', $restaurantId)
+                    ->whereYear('created_at', date('Y')) // Filtra per anno corrente
+                    ->get();
 
-        //array dei piatti
-        $topDishesDetails = [];
+    // Inizializza un array per raccogliere le statistiche per ogni mese
+    $monthlyStats = [];
 
-        foreach ($topDishes as $order) {
-            foreach ($order->dishes as $dish) {
-                $name = $dish->name;
-                // Quantità del piatto nell'ordine
-                $quantity = $dish->pivot->quantity;
-                if (isset($topDishesDetails[$name])) {
-                    // Aggiorna la quantità
-                    $topDishesDetails[$name] += $quantity;
-                } else {
-                    // Aggiungi il piatto
-                    $topDishesDetails[$name] = $quantity;
-                }
-            }
-        }
+    // Inizializza tutti i mesi dell'anno con 0 ordini
+    for ($month = 1; $month <= 12; $month++) {
+        $monthYear = str_pad($month, 2, '0', STR_PAD_LEFT) . '-' . date('Y');
+        $monthlyStats[$monthYear] = 0;
+    }
 
-        // Passa i dati del grafico alla vista
-        return view('ordersgraph', compact('topDishesDetails'));
+    // Calcola il numero di ordini per ogni mese
+    foreach ($orders as $order) {
+        $monthYear = $order->created_at->format('m-Y');
+        $monthlyStats[$monthYear]++;
+    }
+
+    // Passa i dati del grafico alla vista
+    return view('ordersgraph', compact('monthlyStats'));
     }
     public function generate(Request $request, Gateway $gateway)
     {
