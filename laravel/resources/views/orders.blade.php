@@ -1,36 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container-fluid gx-0 p-5 bg-login">
+        <h1 class="text-center text-white">I tuoi ordini</h1>
 
-<div class="container-fluid gx-0 p-5 bg-login">
-    <h1 class="text-center text-white">I tuoi ordini</h1>
+        @foreach ($orders as $order)
+            @if (Auth::check() && Auth::id() === $order->restaurant_id)
+                <div class="orders card form-bg text-white">
+                    <div class="d-flex justify-content-between">
+                        <p>Codice ordine: <b>#{{ $order->id }}</b></p>
+                        <p>{{ $order->created_at }}</p>
 
-    @foreach ($orders as $order)
-        @if (Auth::check() && Auth::id() === $order->restaurant_id)
-            <div class="orders card form-bg text-white">
-                <div class="d-flex justify-content-between">
-                    <p>Codice ordine: <b>#{{ $order->id }}</b></p>
-                    <p>{{ $order->created_at }}</p>
-
+                    </div>
+                    <h4>Piatti</h4>
+                    @foreach ($order->dishes as $dish)
+                        <ul style="list-style-type: none">
+                            <li class="d-flex justify-content-between">
+                                <div>- {{ $dish->pivot->quantity }}X {{ $dish->name }}</div>
+                                <div>{{ $dish->price }}&euro;</div>
+                            </li>
+                        </ul>
+                    @endforeach
+                    <hr>
+                    <br>
+                    <div class="mb-2">Nome: {{ $order->name_customer }}</div>
+                    <div class="mb-2">Emai: {{ $order->email_customer }}</div>
+                    <div class="mb-2">Indirizzo di consegna: {{ $order->address }}</div>
+                    <div class="text-end"><b>Totale: </b>{{ $order->price }}&euro;</div>
                 </div>
-                <h4>Piatti</h4>
-                @foreach ($order->dishes as $dish)
-                    <ul style="list-style-type: none">
-                        <li class="d-flex justify-content-between">
-                            <div>- {{ $dish->pivot->quantity }}X {{ $dish->name }}</div>
-                            <div>{{ $dish->price }}&euro;</div>
-                        </li>
-                    </ul>
-                @endforeach
-                <br>
-                <div class="text-end"><b>Totale: </b>{{ $order->price }}&euro;</div>
-            </div>
-        @endif
-    @endforeach
+            @endif
+        @endforeach
 
 
 
-</div>
+    </div>
     {{-- <div class="orders">
         <div class="d-flex justify-content-between">
             <p>Codice ordine: <b>#1</b></p>
@@ -112,7 +115,6 @@
             background-image: url(imgs/risto-login.jpg);
             background-size: cover;
             height: 100%;
-}
-
+        }
     </style>
 @endsection
