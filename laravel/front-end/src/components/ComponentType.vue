@@ -1,4 +1,5 @@
 <script>
+import Swiper from 'swiper';
 import axios from "axios";
 import { store } from "../store";
 
@@ -152,6 +153,17 @@ export default {
             });
 
         window.addEventListener("scroll", this.reveal);
+
+        new Swiper('.swiper-menu', {
+            // Opzioni Swiper
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            // Aggiungi le frecce di navigazione
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
     },
 };
 </script>
@@ -210,7 +222,7 @@ export default {
                 </div>
             </div>
             <!-- tag contenete tutti i ristoranti  -->
-            <div v-if="!showRestaurant" class="row my-3 p-3">
+            <div v-if="!showRestaurant" class="row my-3 p-3 d-none d-md-flex">
                 <div
                     class="col-12 col-md-6 col-lg-3 my-3 bg-transparent border-0 bg-white reveal"
                     v-for="(restaurant, i) in restaurants"
@@ -273,6 +285,39 @@ export default {
                             </div>
                         </router-link>
                     </div>
+                </div>
+            </div>
+
+            <!-- SWIPER RESPONSIVE -->
+            <div class="swiper-container swiper-menu d-md-none">
+                <div class="swiper-wrapper">
+                <div v-if="!showRestaurant" class="swiper-slide" v-for="(restaurant, i) in restaurants" :key="i">
+                    <div class="card-hover">
+                    <router-link class="text-dark" :to="{ name: 'Restaurant', params: { id: restaurant.name } }" @click="groupRestaurant(i)">
+                        <div>
+                        <img :src="restaurant.user_id > 30 ? imgChange : restaurant.img" alt="Restaurant Image" />
+                        <div class="card-body">
+                            <div class="card-hover__content">
+                            <h4 class="card-hover__title"><strong>{{ restaurant.name }}</strong></h4>
+                            <h5 class="card-hover__text locality">
+                                <i class="fa-solid fa-city"></i> Località: {{ restaurant.city }}
+                            </h5>
+                            <h5 class="card-hover__text">
+                                Genere: <br />
+                                <span v-for="(type, j) in restaurant.types" :key="j">
+                                <i class="fa-solid fa-bowl-food pe-2"></i>
+                                <strong>{{ type.name }}</strong>
+                                </span>
+                            </h5>
+                            </div>
+                            <router-link class="card-hover__link" :to="{ name: 'Restaurant', params: { id: i + 1 } }">
+                            Vai al ristorante <i class="fa-solid fa-arrow-right"></i>
+                            </router-link>
+                        </div>
+                        </div>
+                    </router-link>
+                    </div>
+                </div>
                 </div>
             </div>
 
