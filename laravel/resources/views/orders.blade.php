@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid gx-0 p-5 bg-login">
+    <div class="container-fluid gx-0 p-1 bg-login">
         <h1 class="text-center text-white">I tuoi ordini</h1>
 
         @foreach ($orders->sortByDesc('created_at') as $order)

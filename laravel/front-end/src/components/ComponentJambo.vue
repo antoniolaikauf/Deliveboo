@@ -15,7 +15,7 @@ export default {
                     I piatti dei ristoranti che ami <br />
                     e la spesa, a domicilio
                 </h1>
-                <p style="font-size: 25px">
+                <p>
                     Esplora una vasta varietà di cucine dai migliori ristoranti
                     della tua zona, <br />
                     e goditi il piacere della consegna a domicilio direttamente
@@ -27,6 +27,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use "../styles/partials/mixins" as *;
+@use "../styles/partials/variables" as *;
+@use "../styles/general.scss" as *;
+
 .jumbotron {
     position: relative;
     height: 450px;
@@ -46,5 +50,19 @@ export default {
 .description {
     position: relative;
     padding: 59px;
+    font-size: 25px;
+
+    h1{
+        color: $boo-color;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .description{
+
+        padding: 10px;
+        font-size: 15px;
+    }
+
 }
 </style>

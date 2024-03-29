@@ -54,7 +54,7 @@
                         @endif
 
                         @else
-                        <li class="nav-item dropdown px-3">
+                        <li class="nav-item dropdown px-3 d-none d-lg-block">
                             <a class="nav-link dropdown-toggle buttons btn-boo border-0 " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
@@ -62,13 +62,22 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Pannello di controllo') }}</a>
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Il tuo profilo') }}</a>
-
                             </div>
                         </li>
-                        <a class="buttons btn-boo me-3 border-0" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();"> <i class="fa-solid fa-house color"></i>
+
+                        <a class="buttons btn-boo me-3 border-0 d-none d-lg-block" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();"> <i class="fa-solid fa-right-from-bracket"></i>
                             {{ __('Logout') }}
                         </a>
+
+                        <div class="d-lg-none d-flex">
+                            <a class="buttons btn-boo mx-1" href="{{ url('dashboard') }}"><i class="fa-solid fa-table-columns"></i></a>
+                            <a class="buttons btn-boo mx-1" href="{{ url('profile') }}"><i class="fa-solid fa-user"></i></a>
+                            <a class="buttons btn-boo me-3 border-0 mx-1" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();"> <i class="fa-solid fa-right-from-bracket"></i>
+
+                            </a>
+                        </div>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>

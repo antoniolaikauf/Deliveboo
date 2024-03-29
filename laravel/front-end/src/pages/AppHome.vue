@@ -29,7 +29,9 @@ export default {
         </div>
     </div>
     <TypeRestaurant />
-    <ComponentSliderReview />
+    <div class="d-none d-md-block">
+        <ComponentSliderReview />
+    </div>
     <ComponentPartner />
 </template>
 
