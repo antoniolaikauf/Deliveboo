@@ -83,12 +83,12 @@ export default {
                                     ></i>
                                 </div>
 
-                                <div class="d-none d-md-flex">
+                                <!-- <div class="d-none d-md-flex">
                                     <span v-if="dishes.length > 0">
                                         [{{ dishes.length }}]</span
                                     >
                                     <span v-else> [0] </span>
-                                </div>
+                                </div> -->
                             </button></router-link
                         >
                         <!-- </router-link> -->
