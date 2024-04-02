@@ -24,7 +24,7 @@
                     <hr>
                     <br>
                     <div class="mb-2">Nome: {{ $order->name_customer }}</div>
-                    <div class="mb-2">Emai: {{ $order->email_customer }}</div>
+                    <div class="mb-2">Email: {{ $order->email_customer }}</div>
                     <div class="mb-2">Indirizzo di consegna: {{ $order->address }}</div>
                     <div class="text-end"><b>Totale: </b>{{ $order->price }}&euro;</div>
                 </div>
