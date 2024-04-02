@@ -206,11 +206,9 @@ export default {
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <div class="card w-75 h-75">
-                        <img
-                            class="rounded-3 img_restaurant"
+                        <img class="rounded-3 img_restaurant"
                             :src="selectedRestaurant.id > 30 ? imgChange : selectedRestaurant.img"
-                            alt="placeholderrestaurant"
-                        />
+                            alt="placeholderrestaurant" />
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 px-1">
@@ -227,53 +225,28 @@ export default {
                         </p>
                     </div>
                     <!-- Button trigger modal -->
-                    <button
-                        type="button"
-                        class="btn btn-boo border-secondary-subtle"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                        style="width: 250px"
-                    >
+                    <button type="button" class="btn btn-boo border-secondary-subtle" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" style="width: 250px">
                         <h4 class="d-flex">
-                            <i
-                                class="fa-solid fa-circle-info"
-                                style="color: #00ccbc"
-                                ><b style="color: black">Allergeni</b></i
-                            >
+                            <i class="fa-solid fa-circle-info" style="color: #00ccbc"><b
+                                    style="color: black">Allergeni</b></i>
                         </h4>
                         Informazioni e tanto altro
                     </button>
 
                     <!-- Modal -->
-                    <div
-                        class="modal fade"
-                        id="exampleModal"
-                        tabindex="-1"
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
-                    >
-                        <div
-                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                        >
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1
-                                        class="modal-title fs-5"
-                                        id="exampleModalLabel"
-                                    >
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
                                         Informazioni
                                     </h1>
-                                    <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                    ></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
-                                <div
-                                    class="modal-body"
-                                    style="background-color: #d8d9d9"
-                                >
+                                <div class="modal-body" style="background-color: #d8d9d9">
                                     <h5>Allergeni</h5>
                                     <div>Lista ingredienti</div>
                                 </div>
@@ -283,15 +256,10 @@ export default {
                                         allergeni presenti nei prodotti
                                         offerti da questo partner.
                                     </p>
-                                    <a
-                                        href="https://www.youtube.com/watch?v=nvm2pVrirBQ"
-                                        style="color: #00ccbc"
-                                        ><i
-                                            class="fa-solid fa-circle-info"
-                                        ></i>
+                                    <a href="https://www.youtube.com/watch?v=nvm2pVrirBQ" style="color: #00ccbc"><i
+                                            class="fa-solid fa-circle-info"></i>
                                         Visualizza informazioni sugli
-                                        allergeni</a
-                                    >
+                                        allergeni</a>
                                 </div>
                             </div>
                         </div>
@@ -308,16 +276,9 @@ export default {
                     <div>
                         <h1 style="color: #ffffff">Menù</h1>
                     </div>
-                    <div
-                        class="card my-3 p-3"
-                        v-for="dish in selectedRestaurant.user.dishes"
-                    >
+                    <div class="card my-3 p-3" v-for="dish in selectedRestaurant.user.dishes">
                         <div class="d-flex">
-                            <img
-                            :src="dish.img"
-                                alt=""
-                                style="height: 100px; width: 100px"
-                            />
+                            <img :src="dish.img" alt="" style="height: 100px; width: 100px" />
                             <div class="mx-3">
                                 <h2>{{ dish.name }}</h2>
                                 <p>
@@ -328,43 +289,27 @@ export default {
                         </div>
 
                         <!-- Bottoni per aggiungere/rimuovere piatti -->
-                        <div
-                            class="quantity-control d-flex justify-content-end"
-                        >
-                            <button
-                                @click="removeFromCart(dish)"
-                                class="btn btn-boo"
-                                style="border: 1px solid lightgrey"
-                            >
-                                <i
-                                    class="fa-solid fa-minus"
-                                    style="color: black"
-                                ></i>
+                        <div class="quantity-control d-flex justify-content-end">
+                            <button @click="removeFromCart(dish)" class="btn btn-boo"
+                                style="border: 1px solid lightgrey">
+                                <i class="fa-solid fa-minus" style="color: black"></i>
                             </button>
                             <span class="align-middle">{{
                                 getQuantity(dish)
                             }}</span>
                             <!-- Visualizza la quantità -->
-                            <button
-                                type="button"
-                                class="btn btn-boo"
-                                data-bs-toggle="modal"
-                                style="border: 1px solid lightgrey"
-                                data-bs-target="#staticBackdrop"
-                                @click="addToCart(dish)"
-                                >
-                                <i
-                                class="fa-solid fa-plus"
-                                style="color: black"
-                                ></i>
+                            <button type="button" class="btn btn-boo" data-bs-toggle="modal"
+                                style="border: 1px solid lightgrey" data-bs-target="#staticBackdrop"
+                                @click="addToCart(dish)">
+                                <i class="fa-solid fa-plus" style="color: black"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
             </section>
-            </div>
-            <!-- Sezione carrello -->
+        </div>
+        <!-- Sezione carrello -->
         <div class="d-lg-none d-md-block col-">
             <section v-if="selectedRestaurant">
                 <div class="container-fluid">
@@ -374,18 +319,11 @@ export default {
                     <!-- Carosello Swiper -->
                     <div class="swiper-container swiper-menu">
                         <div class="swiper-wrapper">
-                            <div
-                                class="swiper-slide card my-3 p-3"
-                                v-for="dish in selectedRestaurant.user.dishes"
-                                :key="dish.id"
-                            >
+                            <div class="swiper-slide card my-3 p-3" v-for="dish in selectedRestaurant.user.dishes"
+                                :key="dish.id">
                                 <!-- Contenuto del carosello -->
                                 <div class="d-flex">
-                                    <img
-                                        :src="dish.img"
-                                        alt=""
-                                        style="height: 100px; width: 100px"
-                                    />
+                                    <img :src="dish.img" alt="" style="height: 100px; width: 100px" />
                                     <div class="mx-3">
                                         <h2>{{ dish.name }}</h2>
                                         <p>
@@ -397,23 +335,15 @@ export default {
 
                                 <!-- Bottoni per aggiungere/rimuovere piatti -->
                                 <div class="quantity-control d-flex justify-content-end">
-                                    <button
-                                        @click="removeFromCart(dish)"
-                                        class="btn btn-boo"
-                                        style="border: 1px solid lightgrey"
-                                    >
+                                    <button @click="removeFromCart(dish)" class="btn btn-boo"
+                                        style="border: 1px solid lightgrey">
                                         <i class="fa-solid fa-minus" style="color: black"></i>
                                     </button>
                                     <span class="align-middle">{{ getQuantity(dish) }}</span>
                                     <!-- Visualizza la quantità -->
-                                    <button
-                                        type="button"
-                                        class="btn btn-boo"
-                                        data-bs-toggle="modal"
-                                        style="border: 1px solid lightgrey"
-                                        data-bs-target="#staticBackdrop"
-                                        @click="addToCart(dish)"
-                                    >
+                                    <button type="button" class="btn btn-boo" data-bs-toggle="modal"
+                                        style="border: 1px solid lightgrey" data-bs-target="#staticBackdrop"
+                                        @click="addToCart(dish)">
                                         <i class="fa-solid fa-plus" style="color: black"></i>
                                     </button>
                                 </div>
@@ -424,71 +354,35 @@ export default {
                     <!-- Fine Carosello Swiper -->
                 </div>
 
-        </section>
+            </section>
         </div>
         <!-- Modal -->
         <div v-if="showConfirmationModal">
-            <div
-                class="modal fade"
-                id="staticBackdrop"
-                data-bs-backdrop="static"
-                data-bs-keyboard="false"
-                tabindex="-1"
-                aria-labelledby="staticBackdropLabel"
-                aria-hidden="true"
-                >
-                <div
-                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                >
-                <div
-                class="modal-content"
-                style="
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content" style="
                             background-color: #00ccbc;
                             border-radius: 20px;
-                        "
-                    >
+                        ">
                         <div class="modal-header">
-                            <img
-                                src="/public/DelivebooBGBooColorNoScritta.svg"
-                                alt=""
-                                style="width: 50px"
-                            />
-                            <h5
-                                class="modal-title fs-5"
-                                id="exampleModalLabel"
-                            >
+                            <img src="/public/DelivebooBGBooColorNoScritta.svg" alt="" style="width: 50px" />
+                            <h5 class="modal-title fs-5" id="exampleModalLabel">
                                 Conferma operazione
                             </h5>
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div
-                            class="modal-body"
-                            style="background-color: #d8d9d9"
-                        >
+                        <div class="modal-body" style="background-color: #d8d9d9">
                             <p>
                                 Sei sicuro di voler svuotare il carrello e
                                 aggiungere piatti da un ristorante diverso?
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button
-                                type="button"
-                                class="btn btn-danger"
-                                data-bs-dismiss="modal"
-                            >
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                                 Annulla
                             </button>
-                            <button
-                                type="button"
-                                class="btn-boo"
-                                data-bs-dismiss="modal"
-                                @click="confirmAction()"
-                            >
+                            <button type="button" class="btn-boo" data-bs-dismiss="modal" @click="confirmAction()">
                                 Conferma
                             </button>
                         </div>
@@ -503,14 +397,8 @@ export default {
             </div>
             <!-- Mostra ogni piatto nel carrello -->
             <div v-if="cart.length > 0">
-                <div
-                    v-for="item in cart"
-                    :key="item.dish.id"
-                    class="card col-12 w-100 col-lg-6 my-3 p-3"
-                >
-                    <div
-                        class="d-flex justify-content-between align-middle"
-                    >
+                <div v-for="item in cart" :key="item.dish.id" class="card col-12 w-100 col-lg-6 my-3 p-3">
+                    <div class="d-flex justify-content-between align-middle">
                         <div>
                             <b>{{ item.dish.name }}</b>
                         </div>
@@ -536,8 +424,7 @@ export default {
             <!-- checkout btn  -->
             <section class="checkoutbar d-flex justify-content-center mt-3">
                 <router-link :to="{ name: 'success' }">
-                    <button class="btn-boo">Checkout</button></router-link
-                >
+                    <button class="btn-boo">Vai al pagamento</button></router-link>
             </section>
         </section>
     </section>
@@ -549,21 +436,21 @@ export default {
 @use "../styles/general.scss" as *;
 
 .restaurantName {
-font-family: $boo-font;
-font-weight: bolder;
+    font-family: $boo-font;
+    font-weight: bolder;
 }
 
 
 .cart {
-top: 10px;
-background-color: $boo-color;
-position: sticky;
-border: 1px solid lightgray;
-border-radius: 10px;
-height: 100%;
+    top: 10px;
+    background-color: $boo-color;
+    position: sticky;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    height: 100%;
 }
 
 .quantity-control button {
-margin: 0 5px;
+    margin: 0 5px;
 }
 </style>
