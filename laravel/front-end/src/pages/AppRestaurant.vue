@@ -193,7 +193,7 @@ export default {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
-        }); 
+        });
 
     },
 };
@@ -205,7 +205,7 @@ export default {
         <div class="container p-4">
             <div class="row">
                 <div class="col-12 col-lg-8">
-                    <div class="card w-75 h-75">
+                    <div class="card card-restaurant">
                         <img
                             class="rounded-3 img_restaurant"
                             :src="selectedRestaurant.id > 30 ? imgChange : selectedRestaurant.img"
@@ -361,7 +361,7 @@ export default {
                         </div>
                     </div>
                 </div>
-                
+
             </section>
             </div>
             <!-- Sezione carrello -->
@@ -423,7 +423,7 @@ export default {
                     </div>
                     <!-- Fine Carosello Swiper -->
                 </div>
-            
+
         </section>
         </div>
         <!-- Modal -->
@@ -553,6 +553,14 @@ font-family: $boo-font;
 font-weight: bolder;
 }
 
+.img_restaurant{
+    height: 300px;
+    width: 400px;
+}
+
+.card-restaurant{
+    width: 400px;
+}
 
 .cart {
 top: 10px;
