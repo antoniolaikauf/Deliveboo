@@ -440,6 +440,10 @@ export default {
     font-weight: bolder;
 }
 
+.img_restaurant{
+    height: 400px;
+    object-fit: cover;
+}
 
 .cart {
     top: 10px;
