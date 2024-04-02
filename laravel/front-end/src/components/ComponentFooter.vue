@@ -40,7 +40,7 @@ export default {
                     <div class="card">
                         <h5 class="text-white">Aiuto</h5>
                         <div>
-                            <h6><a href="#">Contatti</a></h6>
+                            <h6><a href="">Contatti</a></h6>
                             <h6><a href="#">FAQ</a></h6>
                             <h6><a href="#">Tipi di cucina</a></h6>
                         </div>

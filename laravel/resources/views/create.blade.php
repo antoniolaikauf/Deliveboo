@@ -53,11 +53,11 @@
                             <div class="form-group">
                                 <label class="form-check-label mx-2">
                                     <input class="form-check-input mx-2" type="radio" id="available" name="available"
-                                        value="1">dispnibile</label>
+                                        value="1">Disponibile</label>
 
                                 <label class="form-check-label mx-2">
                                     <input class="form-check-input mx-2" type="radio" id="available" name="available"
-                                        value="0">non disponibile</label>
+                                        value="0">Non disponibile</label>
                             </div>
                             @error('available')
                                 <span class="invalid-feedback" role="alert">

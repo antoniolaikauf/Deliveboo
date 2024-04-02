@@ -61,6 +61,7 @@ export default {
                             </button></a
                         >
                         <router-link
+                        
                             :to="{
                                 name: 'Restaurant',
                                 params: { id: this.restaurant.name },
