@@ -28,9 +28,11 @@ export default {
             <ComponentMap />
         </div>
     </div>
-    <TypeRestaurant />
     <div class="d-none d-md-block">
         <ComponentSliderReview />
+    </div >
+    <div >
+        <TypeRestaurant />
     </div>
     <ComponentPartner />
 </template>
