@@ -556,6 +556,7 @@ font-weight: bolder;
 .img_restaurant{
     height: 300px;
     width: 400px;
+    object-fit: cover;
 }
 
 .card-restaurant{
